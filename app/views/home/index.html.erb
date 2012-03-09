@@ -1,0 +1,21 @@
+<% content_for :content_splash do %>
+  <p class="tagline">Global Names recognition and discovery tools and services</p>
+<% end %>
+
+<%= form_tag("/find", :method => "post") do -%>
+  <%= text_field_tag(:url, nil, :placeholder => "http://www.example.com", :class => 'gnrd-input') %>
+  <p><em>OR</em></p>
+  <%= text_area_tag(:input, nil, :size => "24x12") -%>
+  <%= field_set_tag "Name-Finding Engine" do %>
+    <%= radio_button_tag 'engine', nil, true -%>
+    <%= label_tag('engine', 'Both') -%>
+    <%= radio_button_tag 'engine', 'TaxonFinder' -%>
+    <%= label_tag('engine_TaxonFinder', 'Taxon Finder') -%>
+    <%= radio_button_tag 'engine', 'NetiNeti' -%>
+    <%= label_tag('engine_NetiNeti', 'Neti Neti') -%>
+    <%= hidden_field_tag 'unique', true -%>
+  <%- end -%>
+  <div>
+  <%= submit_tag("Find Names", :class => "form-button submit-button") -%>
+  </div>
+<% end %>

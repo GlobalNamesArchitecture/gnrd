@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+<total><%= @output[:total] -%></total>
+<status><%= @output[:status] -%></status>
+<engines>
+<% @output[:engines].each do |engine| -%>
+  <engine><%= engine -%></engine>
+<% end %>
+</engines>
+<names>
+<% @output[:names].each do |name| -%>
+  <name>
+    <verbatim><%= name[:verbatim] -%></verbatim>
+    <scientificName><%= name[:scientificName] -%></scientificName>
+    <offsetStart><%= name[:offsetStart] -%></offsetStart>
+    <offsetEnd><%= name[:offsetEnd] -%></offsetEnd>
+  </name>
+<% end -%>
+</names>
+</result>

@@ -1,0 +1,25 @@
+<% title "API" %>
+
+<%- content_for :content_splash do -%>
+<%= content_tag :h2, "Application Programming Interface" %>
+<%- end -%>
+
+<h3>Base URL</h3>
+<div id="base-url">
+  <p><%= url_for( :controller => '/find', :action => 'index', :format => :json, :only_path => false ) %></p>
+</div>
+
+<h3>Parameters (GET or POST)</h3>
+
+<dl>
+  <dt>url</dt><dd>A URL for a web page (url-encoded), PDF, MS Word or MS Excel document<br><em>e.g.</em> <%= url_for( :controller => '/find', :action => 'index', :format => :json, :only_path => false ) << "?url=http://en.wikipedia.org/wiki/Animalia" %></dd>
+  <dt>input</dt><dd>Text content; best used with a POST request<br><em>e.g.</em> <%= url_for( :controller => '/find', :action => 'index', :format => :json, :only_path => false ) << "?input=A+spider+named+Pardosa+moesta+Banks,+1892" %></dd>
+  <dt>engine</dt><dd>Optional; either "TaxonFinder" or "NetiNeti". If absent, both engines are used.<br><em>e.g.</em> <%= url_for( :controller => '/find', :action => 'index', :format => :json, :only_path => false ) << "?url=http://en.wikipedia.org/wiki/Animalia&amp;engine=NetiNeti" %></dd>
+</dl>
+
+<h3>Output Format</h3>
+
+<dl>
+  <dt>JSON (default)</dt><dd>With optional callback parameter<br><em>e.g.</em> <%= url_for( :controller => '/find', :action => 'index', :format => :json, :only_path => false ) << "?url=http://en.wikipedia.org/wiki/Animalia&amp;callback=MyCoolCallback" %>
+  <dt>XML</dt><dd><em>e.g.</em> <%= url_for( :controller => '/find', :action => 'index', :format => :xml, :only_path => false ) << "?url=http://en.wikipedia.org/wiki/Animalia" %>
+</dl>
