@@ -44,7 +44,6 @@ class FindController < ApplicationController
   def read_doc
     content = ""
     Dir.mktmpdir{ |dir|
-      require 'ruby-debug'; debugger
       Docsplit.extract_text(@url, :output => dir)
         for name in Dir.new(dir)
           if name =~ /\.txt$/
