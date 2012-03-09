@@ -58,3 +58,6 @@ Namespotter::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 end
+
+site_specific_file =  File.join(File.dirname(__FILE__), 'production_site_specific')
+require site_specific_file if File.exists?(site_specific_file + ".rb")
