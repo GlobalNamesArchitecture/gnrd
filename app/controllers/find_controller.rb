@@ -4,11 +4,7 @@ class FindController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def index
-    @url = params[:url] || nil
-    @input = params[:input] || nil
-    @engine = (params[:engine] && valid_engines.include?(params[:engine])) ? [params[:engine]] : ["TaxonFinder", "NetiNeti"]
-    @unique = params[:unique] || false
-
+    get_params
     setup_name_spotter
     get_agent_response
     build_output
@@ -16,11 +12,7 @@ class FindController < ApplicationController
   end
   
   def create
-    @url = params[:url] || nil
-    @input = params[:input] || nil
-    @engine = (params[:engine] && valid_engines.include?(params[:engine])) ? [params[:engine]] : ["TaxonFinder", "NetiNeti"]
-    @unique = params[:unique] || false
-
+    get_params
     setup_name_spotter
     get_agent_response
     build_output
@@ -29,12 +21,19 @@ class FindController < ApplicationController
   
   protected
   
+  def get_params
+    @url = params[:url] || nil
+    @input = params[:input] || nil
+    @engine = (params[:engine] && valid_engines.include?(params[:engine])) ? [params[:engine]] : ["TaxonFinder", "NetiNeti"]
+    @unique = params[:unique] || false
+  end
+  
   def get_agent_response
     @agent = { :code => "200", :content_type => "text/html" }
     if !@url.blank?
       begin
         head = new_agent.head @url
-        @agent = { :code => head.code, :content_type => head.response["content-type"] }
+        @agent = { :code => head.code, :content_type => head.response["content-type"], :filename => head.filename }
       rescue
         @agent = { :code => "500" }
       end
@@ -44,7 +43,10 @@ class FindController < ApplicationController
   def read_doc
     content = ""
     Dir.mktmpdir{ |dir|
-      Docsplit.extract_text(@url, :output => dir)
+      file = [dir, @agent[:filename]].join("/")
+      new_agent.pluggable_parser.default = Mechanize::Download
+      new_agent.get(@url).save(file)
+      Docsplit.extract_text(file, :output => dir)
         for name in Dir.new(dir)
           if name =~ /\.txt$/
             content << File.read(File.join(dir, name))
@@ -55,7 +57,7 @@ class FindController < ApplicationController
   end
   
   def find_names(content)
-    if @engine.count == 1
+    if @engine.count == 2
       names = @tf_name_spotter.find(content)[:names] | @neti_name_spotter.find(content)[:names]
     else
       names = (@engine == 'TaxonFinder') ? @tf_name_spotter.find(content)[:names] : @neti_name_spotter.find(content)[:names]
