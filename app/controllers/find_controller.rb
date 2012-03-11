@@ -1,7 +1,7 @@
 class FindController < ApplicationController
   require 'tmpdir'
-
   skip_before_filter :verify_authenticity_token
+  caches_page :index
 
   def index
     get_params
