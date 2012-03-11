@@ -1,4 +1,5 @@
 class FindController < ApplicationController
+  require 'uri'
   require 'tmpdir'
   skip_before_filter :verify_authenticity_token
 
@@ -30,6 +31,9 @@ class FindController < ApplicationController
   def get_agent_response
     @agent = { :code => "200", :content_type => "text/html" }
     if !@url.blank?
+      if URI(@url).scheme.nil?
+        @url.insert(0, "http://")
+      end
       begin
         head = new_agent.head @url
         @agent = { :code => head.code, :content_type => head.response["content-type"], :filename => head.filename }

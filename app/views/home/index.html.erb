@@ -2,6 +2,8 @@
   <p class="tagline">Global Names recognition and discovery tools and services</p>
 <% end %>
 
+<p>Find scientific names on web pages, online PDF documents, or in freeform text.</p>
+
 <%= form_tag("/find", :method => "post") do -%>
   <%= text_field_tag(:url, nil, :placeholder => "http://www.example.com", :class => 'gnrd-input') %>
   <p><em>OR</em></p>
