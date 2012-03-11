@@ -29,7 +29,6 @@ class FindController < ApplicationController
   
   def get_agent_response
     @agent = { :code => "200", :content_type => "text/html" }
-    require 'ruby-debug'; debugger
     if !@url.blank?
       begin
         head = new_agent.head @url
@@ -74,7 +73,7 @@ class FindController < ApplicationController
     elsif !@url.blank?
       if @agent[:content_type].include? "text/html"
         page = new_agent.get @url
-        content = page.content.encode!('UTF-8', page.encodings.last, :invalid => :replace, :undef => :replace, :replace => '')
+        content = page.parser.text.encode!('UTF-8', page.encodings.last, :invalid => :replace, :undef => :replace, :replace => '')
       else
         content = read_doc
       end
