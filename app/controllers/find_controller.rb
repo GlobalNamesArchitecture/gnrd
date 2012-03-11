@@ -1,7 +1,6 @@
 class FindController < ApplicationController
   require 'tmpdir'
   skip_before_filter :verify_authenticity_token
-  caches_page :index
 
   def index
     get_params
@@ -30,6 +29,7 @@ class FindController < ApplicationController
   
   def get_agent_response
     @agent = { :code => "200", :content_type => "text/html" }
+    require 'ruby-debug'; debugger
     if !@url.blank?
       begin
         head = new_agent.head @url
