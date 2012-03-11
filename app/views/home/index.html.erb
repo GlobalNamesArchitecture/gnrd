@@ -2,7 +2,7 @@
   <p class="tagline">Global Names recognition and discovery tools and services</p>
 <% end %>
 
-<%= form_tag("/find", :method => "post") do -%>
+<%= form_tag("/find.json", :method => "post") do -%>
   <%= text_field_tag(:url, nil, :placeholder => "http://www.example.com", :class => 'gnrd-input') %>
   <p><em>OR</em></p>
   <%= text_area_tag(:input, nil, :size => "24x12") -%>

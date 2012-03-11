@@ -17,7 +17,7 @@
     <tr><th>Verbatim</th><th>Scientific</th></tr>
   </thead>
   <tbody>
-<%- @output[:names].each do |name| -%>
+<%- @output[:names].sort { |a,b| a[:verbatim] <=> b[:verbatim] }.each do |name| -%>
   <tr class="<%= cycle("even", "odd") -%>"><td><%= name[:verbatim] -%></td><td><%= name[:scientificName] -%></td></tr>
 <%- end -%>
   </tbody>

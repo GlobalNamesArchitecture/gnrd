@@ -119,6 +119,7 @@ class FindController < ApplicationController
       end
       
       format.html do
+        render :action => :index
       end
     end
   end
