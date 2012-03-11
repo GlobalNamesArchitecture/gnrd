@@ -43,13 +43,13 @@ class FindController < ApplicationController
   def read_doc
     content = ""
     Dir.mktmpdir{ |dir|
-      file = [dir, @agent[:filename]].join("/")
+      file = File.join(dir, @agent[:filename])
       new_agent.pluggable_parser.default = Mechanize::Download
       new_agent.get(@url).save(file)
       Docsplit.extract_text(file, :output => dir)
         for name in Dir.new(dir)
           if name =~ /\.txt$/
-            content << File.read(File.join(dir, name))
+            content << File.open(File.join(dir, name), 'r')  { |f| f.read }
           end
         end
       }
