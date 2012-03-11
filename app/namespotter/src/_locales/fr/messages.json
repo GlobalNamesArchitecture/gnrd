@@ -1,0 +1,23 @@
+{
+  "manifest_description" : {
+    "message" : "Trouver les noms scientifiques sur le document visible."
+  },
+  "loader" : {
+    "message" : "Chercher noms scientifiques.."
+  },
+  "looking" : {
+    "message" : "Chercher information..."
+  },
+  "no_names" : {
+    "message" : "Noms scientifiques n'ont pas été trouvés sur ce document."
+  },
+  "no_result" : {
+    "message" : "Rien trouvé pour ce nom"
+  },
+  "no_content" : {
+    "message" : "Rien trouvé pour ce nom"
+  },
+  "error" : {
+    "message" : "Il y avait un problème avec NameSpotter ou vous avez perdu votre connexion Internet"
+  }
+}

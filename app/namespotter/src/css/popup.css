@@ -1,0 +1,31 @@
+body{
+  font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+#content{
+  width:500px;
+  height:500px;
+}
+#content h1{
+  border-bottom:2px solid #E0E0E0;
+  font-size:1.5em;
+  padding-left:30px;
+  margin-bottom:1em;
+  background-image:url('chrome-extension://__MSG_@@extension_id__/images/icon-19.png');
+  background-repeat:no-repeat;
+  background-position:0px 50%;
+}
+.namespotter-loader{
+  background-image:url('chrome-extension://__MSG_@@extension_id__/images/ajax-loader.gif');
+  background-repeat:no-repeat;
+  padding-left:40px;
+  height:35px;
+  line-height:35px;
+}
+#names{
+  margin-left:1em;
+}
+#names ul{
+  padding:0px;
+  margin:0px;
+  list-style-type:none;
+}
