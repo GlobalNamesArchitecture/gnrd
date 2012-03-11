@@ -11,8 +11,10 @@
 
 <h3>Parameters (GET or POST)</h3>
 
+<p>POST requests with the <em>input</em> parameter additionally produces offsets where names start and end within the text.</p>
+
 <dl>
-  <dt>url</dt><dd>A URL for a web page (url-encoded) or PDF document<br><em>e.g.</em> <%= url_for( :controller => '/find', :action => 'index', :format => :json, :only_path => false ) << "?url=http://en.wikipedia.org/wiki/Animalia" %></dd>
+  <dt>url</dt><dd>An encoded URL for a web page or PDF document<br><em>e.g.</em> <%= url_for( :controller => '/find', :action => 'index', :format => :json, :only_path => false ) << "?url=http://en.wikipedia.org/wiki/Animalia" %></dd>
   <dt>input</dt><dd>Text content; best used with a POST request<br><em>e.g.</em> <%= url_for( :controller => '/find', :action => 'index', :format => :json, :only_path => false ) << "?input=A+spider+named+Pardosa+moesta+Banks,+1892" %></dd>
   <dt>engine</dt><dd>Optional; either "TaxonFinder" or "NetiNeti". If absent, both engines are used.<br><em>e.g.</em> <%= url_for( :controller => '/find', :action => 'index', :format => :json, :only_path => false ) << "?url=http://en.wikipedia.org/wiki/Animalia&amp;engine=NetiNeti" %></dd>
   <dt>unique</dt><dd>Optional. If present, will produce a list of unique names<br><em>e.g.</em> <%= url_for( :controller => '/find', :action => 'index', :format => :json, :only_path => false ) << "?url=http://en.wikipedia.org/wiki/Animalia&amp;unique=true" %></dd>
