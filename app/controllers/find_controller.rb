@@ -101,12 +101,14 @@ class FindController < ApplicationController
         :names   => @unique ? names.uniq : names,
       }
     rescue
+      flash[:error] = "Sorry, the name engines failed. Administrators have been notified."
       @output = {
-        :status  => "FAILED", 
+        :status  => "FAILED",
         :total   => 0,
         :engines => @engine,
         :names   => [],
       }
+      Mailer.error_email.deliver
     end
   end
   

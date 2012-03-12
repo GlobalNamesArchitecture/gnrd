@@ -2,7 +2,7 @@
   <p class="tagline">Global Names recognition and discovery tools and services</p>
 <% end %>
 
-<p>Find scientific names on web pages, online PDF documents, or in freeform text.</p>
+<p>Find scientific names on web pages, online PDF documents, images, or in freeform text. Encrypted or image-based PDFs and image files first pass through an OCR routine using <%= link_to "Tesseract", "http://code.google.com/p/tesseract-ocr/" %> prior to using the excellent <%= link_to "Taxon Finder", "http://code.google.com/p/taxon-finder/" %> and <%= link_to "Neti Neti", "https://github.com/mbl-cli/NetiNeti" %> names engines. This service is an early work in progress, but is bound to improve.</p>
 
 <%= form_tag("/find", :method => "post") do -%>
   <%= text_field_tag(:url, nil, :placeholder => "http://www.example.com", :class => 'gnrd-input') %>
