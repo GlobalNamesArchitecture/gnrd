@@ -7,14 +7,15 @@
   <engine><%= engine -%></engine>
 <% end %>
 </engines>
-<names>
+<names xmlns:dwc="http://rs.tdwg.org/dwc/terms/">
 <% @output[:names].each do |name| -%>
   <name>
     <verbatim><%= name[:verbatim] -%></verbatim>
-    <scientificName><%= name[:scientificName] -%></scientificName>
+    <dwc:scientificName><%= name[:scientificName] -%></dwc:scientificName>
     <%- if name[:offsetStart] && name[:offsetEnd] -%>
-    <offsetStart><%= name[:offsetStart] -%></offsetStart>
-    <offsetEnd><%= name[:offsetEnd] -%></offsetEnd>
+    <offsets>
+      <offset start="<%= name[:offsetStart] %>" end="<%= name[:offsetEnd] %>" />
+    </offsets>
     <%- end -%>
   </name>
 <% end -%>

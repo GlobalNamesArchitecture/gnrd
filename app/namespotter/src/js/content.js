@@ -1,5 +1,7 @@
 /*global $, jQuery, window, document, escape, alert, delete, self */
 
+$(function() {
+
 var NameSpotter = {
   status : "",
   names : {
@@ -13,8 +15,9 @@ var NameSpotter = {
     no_content : chrome.i18n.getMessage("no_content"),
     error      : chrome.i18n.getMessage("error")
   },
-  tab_url : "",
-  ws      : "http://gnrd.globalnames.org/find.json",
+  tab_url  : "",
+  ws       : "http://gnrd.globalnames.org/find.json",
+  settings : {},
   eol_content : []
 };
 
@@ -46,7 +49,7 @@ NameSpotter.makeList = function() {
   this.names.scientific = this.names.scientific.sort();
 };
 
-NameSpotter.getEOLContent = function(obj, title, id) {
+NameSpotter.getEOLContent = function(obj, title, id, link) {
   "use strict";
   var self = this, vernaculars = [], images = [], descriptions = [];
 
@@ -55,7 +58,7 @@ NameSpotter.getEOLContent = function(obj, title, id) {
     async : false,
     url : "http://eol.org/api/pages/1.0/" + id + ".json?videos=0&amp;common_names=1&amp;images=2&amp;details=0&amp;subjects=GeneralDescription&amp;text=1",
     success : function(data) {
-      obj.set('content.title.text', data.scientificName);
+      obj.set('content.title.text', '<a href="' + link + '" target="_blank">' + data.scientificName + '</a>');
       self.eol_content[title] = {
         scientificName : data.scientificName,
         tooltip        : ""
@@ -65,7 +68,7 @@ NameSpotter.getEOLContent = function(obj, title, id) {
           index = null;
           vernaculars.push(value.vernacularName);
         });
-        self.eol_content[title].tooltip += '<div class="namespotter-vernaculars">' + vernaculars.join(", ") + '</div>';
+        self.eol_content[title].tooltip += '<div class="ui-tooltip-vernaculars">' + vernaculars.join(", ") + '</div>';
       }
       if(data.dataObjects.length > 0) {
         $.each(data.dataObjects, function(index, value) {
@@ -77,8 +80,8 @@ NameSpotter.getEOLContent = function(obj, title, id) {
             descriptions.push(value.description || "");
           }
         });
-        self.eol_content[title].tooltip += (images.length > 0) ? '<div class="namespotter-images">' + images.join("") + '</div>' : '';
-        self.eol_content[title].tooltip += (descriptions.length > 0) ? '<div class="namespotter-description">' + descriptions.join("<br>") + '</div>' : '';
+        self.eol_content[title].tooltip += (images.length > 0) ? '<div class="ui-tooltip-images">' + images.join("") + '</div>' : '';
+        self.eol_content[title].tooltip += (descriptions.length > 0) ? '<div class="ui-tooltip-description">' + descriptions.join("<br>") + '</div>' : '';
       }
       if(data.vernacularNames.length === 0 && data.dataObjects.length === 0) {
         self.eol_content[title].tooltip += self.messages.no_content;
@@ -87,7 +90,7 @@ NameSpotter.getEOLContent = function(obj, title, id) {
     error : function() {
       self.eol_content[title] = {
         scientificName : title,
-        tooltip        : '<p class="namespotter-error">' + self.messages.error + '</p>'
+        tooltip        : '<p class="ui-tooltip-error">' + self.messages.error + '</p>'
       };
     }
   });
@@ -97,15 +100,19 @@ NameSpotter.getEOLContent = function(obj, title, id) {
 
 NameSpotter.makeToolTips = function() {
   "use strict";
-  var self = this, title = "", config = {};
+  var self = this, title = "", config = {}, source = 'eol';
+
+  if(self.settings.source){
+    source = self.settings.source;
+  }
 
   $('.namespotter-highlight').each(function() {
-     title = $(this).text();
+     title =  $(this).text();
 
      config = {
        content : {
-         title : { text : title, button: true },
-         text : '<p class="namespotter-loader">' + self.messages.looking + '</p>',
+         title : { text : title, button : true },
+         text : '<p class="ui-tooltip-loader">' + self.messages.looking + '</p>',
          ajax : {
            url  : "http://eol.org/api/search/1.0/" + encodeURIComponent(title) + ".json",
            type : "GET",
@@ -113,17 +120,17 @@ NameSpotter.makeToolTips = function() {
            success : function(data, status) {
              status = null;
              if(data.totalResults === 0) {
-               this.set('content.text', '<p class="namespotter-error">' + self.messages.no_result + '</p>');
+               this.set('content.text', '<p class="ui-tooltip-error">' + self.messages.no_result + '</p>');
              } else {
-               this.set('content.text', self.getEOLContent(this, title, data.results[0].id));
+               this.set('content.text', self.getEOLContent(this, title, data.results[0].id, data.results[0].link));
              }
            },
            error : function(){
-             this.set('content.text', '<p class="namespotter-error">' + self.messages.error + '</p>');
+             this.set('content.text', '<p class="ui-tooltip-error">' + self.messages.error + '</p>');
            }
         }
       },
-      style: { classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded' },
+      style: { classes: 'ui-tooltip-' + source + ' ui-tooltip-shadow ui-tooltip-rounded' },
       hide: { event: 'unfocus' },
       position: { viewport: $(window) }
     };
@@ -142,6 +149,7 @@ NameSpotter.init = function() {
     if (request.method === "NS_fromPopup") {
       // Send JSON data to popup
       self.tab_url = request.taburl;
+      self.settings = $.parseJSON(request.settings);
       self.unhighlight();
 
       $.ajax({
@@ -183,3 +191,5 @@ NameSpotter.init = function() {
 };
 
 NameSpotter.init();
+
+});

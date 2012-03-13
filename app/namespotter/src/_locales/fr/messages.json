@@ -19,5 +19,8 @@
   },
   "error" : {
     "message" : "Il y avait un problème avec NameSpotter ou vous avez perdu votre connexion Internet"
+  },
+  "saved" : {
+    "message" : "Vos options choisies ont été enregistrer."
   }
 }

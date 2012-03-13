@@ -1,0 +1,272 @@
+/*
+* qTip2 - Pretty powerful tooltips
+* http://craigsworks.com/projects/qtip2/
+*
+* Version: nightly
+* Copyright 2009-2010 Craig Michael Thompson - http://craigsworks.com
+*
+* Dual licensed under MIT or GPLv2 licenses
+*   http://en.wikipedia.org/wiki/MIT_License
+*   http://en.wikipedia.org/wiki/GNU_General_Public_License
+*
+* Date: Sat Mar  3 09:04:15.0000000000 2012
+*/
+
+/* Core qTip styles */
+.ui-tooltip, .qtip{
+	position: absolute;
+	left: -28000px;
+	top: -28000px;
+	display: none;
+	max-width: 280px;
+	min-width: 50px;
+	font-size: 10.5px;
+	line-height: 12px;
+	text-decoration:none;
+}
+
+	/* Fluid class for determining actual width in IE */
+	.ui-tooltip-fluid{
+		display: block;
+		visibility: hidden;
+		position: static !important;
+		float: left !important;
+	}
+
+	.ui-tooltip-content{
+		position: relative;
+		padding: 0px;
+		overflow: hidden;
+		border: 1px solid #000001;
+		text-align: left;
+		word-wrap: break-word;
+		overflow: hidden;
+	}
+
+	.ui-tooltip-titlebar{
+		position: relative;
+		min-height: 14px;
+		padding: 5px 35px 5px 5px;
+		overflow: hidden;
+		border: 1px solid #000001;
+		border-width: 1px 1px 0;
+		font-weight: normal;
+		font-size:14px;
+	}
+
+	.ui-tooltip-titlebar + .ui-tooltip-content{ border-top-width: 0px !important; }
+
+		/*! Default close button class */
+		.ui-tooltip-titlebar .ui-state-default{
+			position: absolute;
+			right: 4px;
+			top: 50%;
+			margin-top: -9px;
+
+			cursor: pointer;
+			outline: medium none;
+
+			border-width: 1px;
+			border-style: solid;
+		}
+
+		.ui-tooltip-titlebar .ui-icon,
+		.ui-tooltip-icon .ui-icon{
+			display: block;
+			text-indent: -1000em;
+		}
+
+		.ui-tooltip-icon, .ui-tooltip-icon .ui-icon{
+			-moz-border-radius: 3px;
+			-webkit-border-radius: 3px;
+			border-radius: 3px;
+		}
+
+			.ui-tooltip-icon .ui-icon{
+				width: 18px;
+				height: 14px;
+
+				text-align: center;
+				text-indent: 0;
+				font: normal bold 10px/13px Tahoma,sans-serif;
+
+				color: inherit;
+				background: transparent none no-repeat -100em -100em;
+			}
+
+.ui-tooltip .ui-tooltip-loader{
+  background-image:url('chrome-extension://__MSG_@@extension_id__/images/ajax-loader.gif');
+  background-repeat:no-repeat;
+  padding-left:40px;
+  height:35px;
+  line-height:35px;
+  font-size:16px;
+  margin:10px;
+}
+
+.ui-tooltip .ui-tooltip-error{
+	margin:10px;font-size:16px;padding-left:20px;
+}
+
+/* Applied to 'focused' tooltips e.g. most recently displayed/interacted with */
+.ui-tooltip-focus{
+
+}
+
+/* Applied on hover of tooltips i.e. added/removed on mouseenter/mouseleave respectively */
+.ui-tooltip-hover{
+	
+}
+
+
+/*! Default tooltip style */
+.ui-tooltip-default .ui-tooltip-titlebar,
+.ui-tooltip-default .ui-tooltip-content{
+	border-color: #F1D031;
+	background-color: #FFFFA3;
+	color: #555;
+}
+
+	.ui-tooltip-default .ui-tooltip-titlebar{
+		background-color: #FFEF93;
+	}
+
+	.ui-tooltip-default .ui-tooltip-icon{
+		border-color: #CCC;
+		background: #F1F1F1;
+		color: #777;
+		text-decoration:none;
+	}
+	
+	.ui-tooltip-default .ui-tooltip-titlebar .ui-state-hover{
+		border-color: #AAA;
+		color: #111;
+	}
+
+/* Tips plugin */
+.ui-tooltip .ui-tooltip-tip{
+	margin: 0 auto;
+	overflow: hidden;
+	z-index: 10;
+}
+
+	.ui-tooltip .ui-tooltip-tip,
+	.ui-tooltip .ui-tooltip-tip *{
+		position: absolute;
+		
+		line-height: 0.1px !important;
+		font-size: 0.1px !important;
+		color: #123456;
+
+		background: transparent;
+		border: 0px dashed transparent;
+	}
+	
+	.ui-tooltip .ui-tooltip-tip canvas{ top: 0; left: 0; }
+
+
+/*! EOL tooltip style */
+.ui-tooltip-eol .ui-tooltip-titlebar,
+.ui-tooltip-eol .ui-tooltip-content{
+	border-color: #93A4B0;
+	color: #394651;
+}
+
+	.ui-tooltip-eol .ui-tooltip-content{
+		background-color: #fff;
+	}
+
+	.ui-tooltip-eol .ui-tooltip-titlebar{
+		background-color: #394651;
+		color:#fff;
+	}
+
+	.ui-tooltip-eol .ui-tooltip-title{
+		padding-left:20px;
+		background-image:url('chrome-extension://__MSG_@@extension_id__/images/eol.png');
+		background-repeat:no-repeat;
+	}
+	
+	.ui-tooltip-eol .ui-tooltip-title a{
+        color:#fff;
+        text-decoration:none;
+	}
+
+	.ui-tooltip-eol .ui-state-default .ui-tooltip-icon{
+		background-position: -2px 0;
+	}
+	
+	.ui-tooltip-eol .ui-tooltip-vernaculars{
+		border-bottom:1px solid #CAD3DB;background-color:#E2E9EF;color:#394651;font-size:11px;padding:5px;
+	}
+
+    .ui-tooltip-eol .ui-tooltip-images{text-align:center;margin:0px auto;}
+    .ui-tooltip-eol .ui-tooltip-images img{margin:10px;}
+    .ui-tooltip-eol .ui-tooltip-description{font-size:11px;line-height:12px;overflow-y:scroll;height:150px;padding:10px;margin-bottom:10px;}
+
+/*! COL tooltip style */
+.ui-tooltip-col .ui-tooltip-titlebar,
+.ui-tooltip-col .ui-tooltip-content{
+	border-color: #BD0300;
+	border-size:2px;
+	color: #000;
+}
+
+	.ui-tooltip-col .ui-tooltip-content{
+		background-color: #fff;
+	}
+
+	.ui-tooltip-col .ui-tooltip-titlebar{
+		background-color: #FAFCFE;
+		color:#000;
+		border-bottom:1px solid #333366
+	}
+
+	.ui-tooltip-col .ui-tooltip-title{
+		padding-left:20px;
+		background-image:url('chrome-extension://__MSG_@@extension_id__/images/col.png');
+		background-repeat:no-repeat;
+	}
+	
+	.ui-tooltip-col .ui-tooltip-title a{
+        color:#000;
+        text-decoration:none;
+	}
+
+	.ui-tooltip-col .ui-state-default .ui-tooltip-icon{
+		background-position: -2px 0;
+	}
+
+	.ui-tooltip-col .ui-tooltip-vernaculars{
+		border-bottom:font-size:11px;padding:5px;
+	}
+
+    .ui-tooltip-col .ui-tooltip-images{text-align:center;margin:0px auto;}
+    .ui-tooltip-col .ui-tooltip-images img{margin:10px;}
+    .ui-tooltip-col .ui-tooltip-description{font-size:11px;line-height:12px;overflow-y:scroll;height:150px;padding:10px;margin-bottom:10px;}
+
+/*! Add shadows to your tooltips in: FF3+, Chrome 2+, Opera 10.6+, IE6+, Safari 2+ */
+.ui-tooltip-shadow{
+	-webkit-box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.15);
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+
+
+/*! Add rounded corners to your tooltips in: FF3+, Chrome 2+, Opera 10.6+, IE9+, Safari 2+ */
+.ui-tooltip-rounded,
+.ui-tooltip-rounded .ui-tooltip-content,{
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.ui-tooltip-rounded .ui-tooltip-titlebar{
+	-webkit-border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
+}
+
+.ui-tooltip-rounded .ui-tooltip-titlebar + .ui-tooltip-content{
+	-webkit-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
+}
+

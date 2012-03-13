@@ -8,7 +8,7 @@ $(function() {
   });
 
   chrome.tabs.getSelected(null, function(tab) {
-    chrome.tabs.sendRequest(tab.id, { method : "NS_fromPopup", tabid : tab.id, taburl : tab.url }, function(response) {
+    chrome.tabs.sendRequest(tab.id, { method : "NS_fromPopup", tabid : tab.id, taburl : tab.url, settings : bg.settings() }, function(response) {
       $('.namespotter-loader').remove();
       if(response.status === "ok") {
         $.each(response.names.scientific, function() {

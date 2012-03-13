@@ -1,0 +1,31 @@
+<html>
+<head>
+  <link rel="stylesheet" media="screen" href="css/options.css">
+  <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="js/options.js"></script>
+</head>
+<body>
+  <div id="sidebar">
+    <img src="images/icon-19.png" alt="NameSpotter" />
+    <h1>Settings</h1>
+  </div>
+  <div id="content">
+    <h2>Global Names NameSpotter</h2>
+    <div id="status"></div>
+    <form id="namespotter-form">
+    <fieldset>
+      <legend>Default data source in tooltips</legend>
+      <div class="radio-buttons">
+        <input id="namespotter-source-eol" name="source" type="radio" value="eol">
+        <label for="namespotter-source-eol">Encyclopedia of Life</label>
+      </div>
+      <div class="radio-buttons">
+        <input id="namespotter-source-col" name="source" type="radio" value="col">
+        <label for="namespotter-source-col">Catalogue of Life</label>
+      </div>
+    </fieldset>
+    <input type="button" id="submit" value="Save">
+    </form>
+  </div>
+</body>
+</html>

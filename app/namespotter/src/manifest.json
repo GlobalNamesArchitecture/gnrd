@@ -1,9 +1,10 @@
 {
-  "name"        : "GlobalNames NameSpotter",
-  "version"     : "0.5",
-  "description" : "__MSG_manifest_description__",
-  "update_url"  : "http://gnrd.globalnames.org/namespotter/updates.xml",
-  "background_page": "background.html",
+  "name"            : "Global Names NameSpotter",
+  "version"         : "0.6",
+  "description"     : "__MSG_manifest_description__",
+  "update_url"      : "http://gnrd.globalnames.org/namespotter/updates.xml",
+  "background_page" : "background.html",
+  "options_page"    : "options.html",
   "icons" : {
     "48"  : "images/icon-48.png",
     "128" : "images/icon-128.png"
@@ -21,7 +22,7 @@
       "matches" : ["<all_urls>"],
       "css"     : [
         "css/content.css",
-        "css/jquery.qtip.min.css"
+        "css/jquery.qtip.css"
       ],
       "js"      : [
         "js/jquery-1.7.1.min.js",
