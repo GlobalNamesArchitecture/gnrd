@@ -102,7 +102,7 @@ NameSpotter.makeToolTips = function() {
   "use strict";
   var self = this, title = "", config = {}, source = 'eol';
 
-  if(self.settings.source){
+  if(self.settings !== null && self.settings.source !== undefined){
     source = self.settings.source;
   }
 
