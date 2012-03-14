@@ -52,6 +52,7 @@
 		border-width: 1px 1px 0;
 		font-weight: normal;
 		font-size:14px;
+		line-height:16px;
 	}
 
 	.ui-tooltip-titlebar + .ui-tooltip-content{ border-top-width: 0px !important; }
@@ -105,19 +106,8 @@
 }
 
 .ui-tooltip .ui-tooltip-error{
-	margin:10px;font-size:16px;padding-left:20px;
+  margin:10px;font-size:16px;padding-left:20px;line-height:16px;
 }
-
-/* Applied to 'focused' tooltips e.g. most recently displayed/interacted with */
-.ui-tooltip-focus{
-
-}
-
-/* Applied on hover of tooltips i.e. added/removed on mouseenter/mouseleave respectively */
-.ui-tooltip-hover{
-	
-}
-
 
 /*! Default tooltip style */
 .ui-tooltip-default .ui-tooltip-titlebar,
@@ -174,6 +164,7 @@
 
 	.ui-tooltip-eol .ui-tooltip-content{
 		background-color: #fff;
+		min-height:30px;
 	}
 
 	.ui-tooltip-eol .ui-tooltip-titlebar{

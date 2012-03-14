@@ -44,12 +44,13 @@
  */
 
 jQuery.extend({
-    highlight: function (node, re, nodeName, className) {
+    highlight: function (node, re, nodeName, className, dataValue) {
         if (node.nodeType === 3) {
             var match = node.data.match(re);
             if (match) {
                 var highlight = document.createElement(nodeName || 'span');
                 highlight.className = className || 'highlight';
+                highlight.setAttribute("data-highlight", dataValue);
                 var wordNode = node.splitText(match.index);
                 wordNode.splitText(match[0].length);
                 var wordClone = wordNode.cloneNode(true);
@@ -61,7 +62,7 @@ jQuery.extend({
                 !/(script|style)/i.test(node.tagName) && // ignore script and style nodes
                 !(node.tagName === nodeName.toUpperCase() && node.className === className)) { // skip if already highlighted
             for (var i = 0; i < node.childNodes.length; i++) {
-                i += jQuery.highlight(node.childNodes[i], re, nodeName, className);
+                i += jQuery.highlight(node.childNodes[i], re, nodeName, className, dataValue);
             }
         }
         return 0;
@@ -80,7 +81,7 @@ jQuery.fn.unhighlight = function (options) {
 };
 
 jQuery.fn.highlight = function (words, options) {
-    var settings = { className: 'highlight', element: 'span', caseSensitive: false, wordsOnly: false };
+    var settings = { className: 'highlight', element: 'span', caseSensitive: false, wordsOnly: false, dataValue: false };
     jQuery.extend(settings, options);
     
     if (words.constructor === String) {
@@ -102,7 +103,7 @@ jQuery.fn.highlight = function (words, options) {
     var re = new RegExp(pattern, flag);
     
     return this.each(function () {
-        jQuery.highlight(this, re, settings.element, settings.className);
+        jQuery.highlight(this, re, settings.element, settings.className, settings.dataValue);
     });
 };
 
