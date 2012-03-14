@@ -15,7 +15,7 @@ $(function() {
       error      : chrome.i18n.getMessage("error")
     },
     tab_url  : "",
-    ws       : "http://0.0.0.0:3000/find.json",
+    ws       : "http://gnrd.globalnames.org/find.json",
     settings : {},
     eol_content : []
   };
