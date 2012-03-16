@@ -2,25 +2,43 @@
   "manifest_description" : {
     "message" : "Trouver les noms scientifiques sur le document visible."
   },
-  "loader" : {
-    "message" : "Chercher noms scientifiques.."
-  },
-  "looking" : {
-    "message" : "Chercher information..."
-  },
-  "no_names" : {
-    "message" : "Noms scientifiques n'ont pas été trouvés sur ce document."
-  },
-  "no_result" : {
-    "message" : "Rien trouvé pour ce nom"
-  },
-  "no_content" : {
-    "message" : "Rien trouvé pour ce nom"
-  },
   "error" : {
     "message" : "Il y avait un problème avec NameSpotter ou vous avez perdu votre connexion Internet"
   },
-  "saved" : {
+  "popup_loader" : {
+    "message" : "Chercher noms scientifiques.."
+  },
+  "popup_no_names" : {
+    "message" : "Noms scientifiques n'ont pas été trouvés sur ce document."
+  },
+  "popup_hook_title" : {
+    "message" : "Envoyer à Web Hook"
+  },
+  "popup_settings_title" : {
+    "message" : "Paramètres"
+  },
+  "content_looking" : {
+    "message" : "Chercher information..."
+  },
+  "content_no_result" : {
+    "message" : "Rien trouvé pour ce nom"
+  },
+  "content_no_content" : {
+    "message" : "Rien trouvé pour ce nom"
+  },
+  "options_settings_title" : {
+    "message" : "Paramètres"
+  },
+  "options_source_legend" : {
+    "message" : "Source de données dans les infobulles"
+  },
+  "options_hook_title" : {
+    "message" : "URL Web Hook"
+  },
+  "options_hook_description" : {
+    "message" : "Tapez une URL qui peut accepter une requête POST. Les données publiées est un objet JSON de noms uniques sur la page. e.x. { \"url\" : \"http://www.example.com\", \"names\" : [\"Pardosa\",\"Pardosa distincta\",\"Pardosa moesta\"] }"
+  },
+  "options_saved_message" : {
     "message" : "Vos options choisies ont été enregistrer."
   }
 }

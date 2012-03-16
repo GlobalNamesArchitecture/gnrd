@@ -2,25 +2,43 @@
   "manifest_description" : {
     "message" : "Find scientific names on the visible document."
   },
-  "loader" : {
-    "message" : "Looking for scientific names..."
-  },
-  "looking" : {
-    "message" : "Looking for information..."
-  },
-  "no_names" : {
-    "message" : "No scientific names were found on this document."
-  },
-  "no_result" : {
-    "message" : "Nothing found for that name."
-  },
-  "no_content" : {
-    "message" : "Nothing found for that name."
-  },
   "error" : {
     "message" : "Either there was a problem with NameSpotter or you lost your Internet connection."
   },
-  "saved" : {
+  "popup_loader" : {
+    "message" : "Looking for scientific names..."
+  },
+  "popup_no_names" : {
+    "message" : "No scientific names were found on this document."
+  },
+  "popup_hook_title" : {
+    "message" : "Send to Web Hook"
+  },
+  "popup_settings_title" : {
+    "message" : "Settings"
+  },
+  "content_looking" : {
+    "message" : "Looking for information..."
+  },
+  "content_no_result" : {
+    "message" : "Nothing found for that name."
+  },
+  "content_no_content" : {
+    "message" : "Nothing found for that name."
+  },
+  "options_settings_title" : {
+    "message" : "Settings"
+  },
+  "options_source_legend" : {
+    "message" : "Default data source in tooltips"
+  },
+  "options_hook_title" : {
+    "message" : "Web Hook URL"
+  },
+  "options_hook_description" : {
+    "message" : "Type a URL that can accept a POST request. Data POSTed is a JSON object of unique names on the page. e.g. { \"url\" : \"http://www.example.com\", \"names\" : [\"Pardosa\",\"Pardosa distincta\",\"Pardosa moesta\"] }"
+  },
+  "options_saved_message" : {
     "message" : "Your chosen options were saved."
   }
 }

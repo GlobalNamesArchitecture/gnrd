@@ -6,25 +6,34 @@
 </head>
 <body>
   <div id="sidebar">
-    <img src="images/icon-19.png" alt="NameSpotter" />
-    <h1>Settings</h1>
+    <img src="images/icon-48.png" alt="NameSpotter" />
+    <h1 data-namespotter-i18n="options_settings_title">Settings</h1>
   </div>
   <div id="content">
     <h2>Global Names NameSpotter</h2>
     <div id="status"></div>
     <form id="namespotter-form">
+<!--
     <fieldset>
-      <legend>Default data source in tooltips</legend>
+      <legend data-namespotter-i18n="options_source_legend">Default data source in tooltips</legend>
       <div class="radio-buttons">
-        <input id="namespotter-source-eol" name="source" type="radio" value="eol">
+        <input id="namespotter-source-eol" name="source" type="radio" value="eol" />
         <label for="namespotter-source-eol">Encyclopedia of Life</label>
       </div>
       <div class="radio-buttons">
-        <input id="namespotter-source-col" name="source" type="radio" value="col">
+        <input id="namespotter-source-col" name="source" type="radio" value="col" />
         <label for="namespotter-source-col">Catalogue of Life</label>
       </div>
     </fieldset>
-    <input type="button" id="submit" value="Save">
+-->
+    <fieldset>
+      <legend data-namespotter-i18n="options_hook_title">Web Hook URL</legend>
+      <div>
+        <p data-namespotter-i18n="options_hook_description">Type a URL that can accept a POST request. Data POSTed is a JSON object of unique names on the page. e.g. { "url" : "http://www.example.com", "names" : ["Pardosa","Pardosa distincta","Pardosa moesta"] }</p>
+        <input id="namespotter-hook" name="hook" placeholder="http://www.example.com/webhook" size="75" />
+      </div>
+    </fieldset>
+    <input type="button" id="submit" value="Save" />
     </form>
   </div>
 </body>

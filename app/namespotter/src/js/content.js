@@ -8,10 +8,9 @@ $(function() {
     status : "",
     names : [],
     messages : {
-      looking    : chrome.i18n.getMessage("looking"),
-      no_names   : chrome.i18n.getMessage("no_names"),
-      no_result  : chrome.i18n.getMessage("no_result"),
-      no_content : chrome.i18n.getMessage("no_content"),
+      looking    : chrome.i18n.getMessage("content_looking"),
+      no_result  : chrome.i18n.getMessage("content_no_result"),
+      no_content : chrome.i18n.getMessage("content_no_content"),
       error      : chrome.i18n.getMessage("error")
     },
     tab_url  : "",
@@ -138,7 +137,7 @@ $(function() {
         // Send JSON data to popup
         self.cleanup();
         self.tab_url = request.taburl;
-        self.settings = $.parseJSON(request.settings);
+        self.settings = request.settings;
 
         $.ajax({
           type : "POST",

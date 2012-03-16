@@ -10,5 +10,5 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 });
 
 function settings() {
-  return localStorage["namespotter"] || "";
+  return localStorage["namespotter"] || {};
 }

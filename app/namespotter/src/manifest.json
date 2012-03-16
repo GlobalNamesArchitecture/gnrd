@@ -4,7 +4,7 @@
   "description"     : "__MSG_manifest_description__",
   "update_url"      : "http://gnrd.globalnames.org/namespotter/updates.xml",
   "background_page" : "background.html",
-/*  "options_page"    : "options.html", */
+  "options_page"    : "options.html",
   "icons" : {
     "48"  : "images/icon-48.png",
     "128" : "images/icon-128.png"

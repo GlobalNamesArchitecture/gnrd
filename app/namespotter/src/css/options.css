@@ -76,13 +76,13 @@ body{
   position:absolute;
   right:25px;
   top:13px;
-  line-height:1;
+  line-height:48px;
   margin-bottom:0.5em;
 }
 #content h2{
   color:#707070;
   font-size:26px;
-  line-height:1;
+  line-height:48px;
   margin-bottom:0;
   margin-left:0;
   margin-right:0;
@@ -104,3 +104,10 @@ fieldset legend{
   color:#707070;
 }
 input{margin:5px;}
+#namespotter-hook{
+  height:25px;
+  padding:3px;
+}
+#submit{
+  width:50px;
+}

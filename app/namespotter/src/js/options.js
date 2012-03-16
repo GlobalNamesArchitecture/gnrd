@@ -12,28 +12,37 @@
 
 $(function() {
 
-  var NameSpotterOptions = {};
+  var nso = {};
 
-  NameSpotterOptions.save = function() {
-    localStorage["namespotter"] = JSON.stringify($('form').serializeJSON());
-    $('#status').text(chrome.i18n.getMessage("saved")).show();
-    setTimeout(function() {
-      $('#status').hide();
-    }, 750);
+  nso.i18n = function() {
+    $("[data-namespotter-i18n]").each(function() {
+      var message = chrome.i18n.getMessage($(this).attr("data-namespotter-i18n"));
+      $(this).text(message);
+    });
   };
 
-  NameSpotterOptions.restore = function() {
+  nso.save = function() {
+    localStorage["namespotter"] = JSON.stringify($('form').serializeJSON());
+    $('#status').text(chrome.i18n.getMessage("options_saved_message")).show();
+    setTimeout(function() {
+      $('#status').hide();
+    }, 1000);
+  };
+
+  nso.restore = function() {
     var data = localStorage["namespotter"];
     if(!data) { return; }
 
     $.each($.parseJSON(data), function(name, value) {
       $('input:radio[name="' + name + '"][value="' + value + '"]').attr('checked', true);
+      $('input[name="' + name + '"]').val(value);
     });
   };
 
-  NameSpotterOptions.init = function() {
+  nso.init = function() {
     var self = this;
 
+    self.i18n();
     self.restore();
     $('#submit').click(function(e) {
       e.preventDefault();
@@ -41,6 +50,6 @@ $(function() {
     });
   };
 
-  NameSpotterOptions.init();
+  nso.init();
 
 });

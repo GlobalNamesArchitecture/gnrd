@@ -18,8 +18,6 @@ $(function() {
     names : []
   };
 
-  nsp.backgroundPage = chrome.extension.getBackgroundPage();
-
   nsp.i18n = function() {
     $("[data-namespotter-i18n]").each(function() {
       var message = chrome.i18n.getMessage($(this).attr("data-namespotter-i18n"));
@@ -29,15 +27,19 @@ $(function() {
 
   nsp.cleanup = function() {
     $('.namespotter-loader').remove();
+    $('#hook a').removeClass("success").removeClass("error");
     $('#names ul').html("");
+    this.names = [];
+    this.url = "";
   };
 
   nsp.sendRequest = function() {
-    var self = this;
+    var self = this, settings = $.parseJSON(chrome.extension.getBackgroundPage().settings());
 
     chrome.tabs.getSelected(null, function(tab) {
-      chrome.tabs.sendRequest(tab.id, { method : "ns_fromPopup", tabid : tab.id, taburl : tab.url, settings : nsp.backgroundPage.settings() }, function(response) {
+      chrome.tabs.sendRequest(tab.id, { method : "ns_fromPopup", tabid : tab.id, taburl : tab.url, settings : settings }, function(response) {
         self.cleanup();
+        self.url = tab.url;
         if(response.status === "ok") {
           $.each(response.names, function() {
             self.names.push(this.s);
@@ -45,8 +47,14 @@ $(function() {
           $.each($.distinct(self.names).sort(), function() {
             $('#names ul').append('<li>' + this + '</li>');
           });
+          if(settings !== null && settings.hook !== undefined) {
+            $('#hook').show().find("a").click(function(e) {
+              e.preventDefault();
+              self.webHook(settings);
+            });
+          }
         } else if (response.status === "nothing") {
-          $('#content').append('<p>' + response.messages.no_names + '</p>');
+          $('#content').append('<p>' + response.messages.popup_no_names + '</p>');
         } else {
           $('#content').append('<p>' + response.messages.error + '</p>');
         }
@@ -54,7 +62,30 @@ $(function() {
     });
   };
 
+  nsp.webHook = function(settings) {
+    var self = this;
+
+    $.ajax({
+      type : "POST",
+      data : { url : self.url, names : $.distinct(self.names) },
+      url  : settings.hook,
+      success : function(data) {
+        data = null;
+        $('#hook a').addClass("success");
+      },
+      error : function() {
+        $('#hook a').addClass("error");
+      }
+    });
+  };
+
   nsp.init = function() {
+    $('#settings a').click(function(e) {
+      e.preventDefault();
+      chrome.tabs.create({
+        url: "options.html"
+      });
+    });
     this.i18n();
     this.sendRequest();
   };
