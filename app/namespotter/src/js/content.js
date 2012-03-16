@@ -9,6 +9,7 @@ $(function() {
     names : [],
     messages : {
       looking    : chrome.i18n.getMessage("content_looking"),
+      no_names   : chrome.i18n.getMessage("popup_no_names"),
       no_result  : chrome.i18n.getMessage("content_no_result"),
       no_content : chrome.i18n.getMessage("content_no_content"),
       error      : chrome.i18n.getMessage("error")

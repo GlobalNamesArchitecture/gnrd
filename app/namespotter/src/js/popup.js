@@ -54,7 +54,7 @@ $(function() {
             });
           }
         } else if (response.status === "nothing") {
-          $('#content').append('<p>' + response.messages.popup_no_names + '</p>');
+          $('#content').append('<p>' + response.messages.no_names + '</p>');
         } else {
           $('#content').append('<p>' + response.messages.error + '</p>');
         }
