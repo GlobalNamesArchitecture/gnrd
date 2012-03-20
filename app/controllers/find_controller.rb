@@ -60,6 +60,7 @@ class FindController < ApplicationController
   end
   
   def find_names(content)
+    content = content.gsub("_", " ")
     if @engine.count == 2
       names = @tf_name_spotter.find(content)[:names] | @neti_name_spotter.find(content)[:names]
     else
