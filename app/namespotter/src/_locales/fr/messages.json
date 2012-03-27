@@ -12,7 +12,7 @@
     "message" : "Noms scientifiques n'ont pas été trouvés sur ce document."
   },
   "popup_hook_title" : {
-    "message" : "Envoyer à Web Hook"
+    "message" : "Envoyer à Webhook"
   },
   "popup_settings_title" : {
     "message" : "Paramètres"
@@ -33,10 +33,10 @@
     "message" : "Source de données dans les infobulles"
   },
   "options_hook_title" : {
-    "message" : "URL Web Hook"
+    "message" : "URL Webhook"
   },
   "options_hook_description" : {
-    "message" : "Tapez une URL qui peut accepter une requête POST. Les données publiées est un objet JSON de noms uniques sur la page. e.x. { \"url\" : \"http://www.example.com\", \"names\" : [\"Pardosa\",\"Pardosa distincta\",\"Pardosa moesta\"] }"
+    "message" : "Tapez une URL qui peut accepter une requête POST. Les données publiées est un objet JSON de noms uniques sur la page."
   },
   "options_saved_message" : {
     "message" : "Vos options choisies ont été enregistrer."

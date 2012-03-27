@@ -12,7 +12,7 @@
     "message" : "No scientific names were found on this document."
   },
   "popup_hook_title" : {
-    "message" : "Send to Web Hook"
+    "message" : "Send to Webhook"
   },
   "popup_settings_title" : {
     "message" : "Settings"
@@ -33,10 +33,10 @@
     "message" : "Default data source in tooltips"
   },
   "options_hook_title" : {
-    "message" : "Web Hook URL"
+    "message" : "Webhook URL"
   },
   "options_hook_description" : {
-    "message" : "Type a URL that can accept a POST request. Data POSTed is a JSON object of unique names on the page. e.g. { \"url\" : \"http://www.example.com\", \"names\" : [\"Pardosa\",\"Pardosa distincta\",\"Pardosa moesta\"] }"
+    "message" : "Type a URL that can accept a POST request. Data POSTed is a JSON object of unique names on the page."
   },
   "options_saved_message" : {
     "message" : "Your chosen options were saved."

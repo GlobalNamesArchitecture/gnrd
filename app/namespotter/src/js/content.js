@@ -70,7 +70,7 @@ $(function() {
           self.eol_content[title].tooltip += (descriptions.length > 0) ? '<div class="ui-tooltip-description">' + descriptions.join("<br>") + '</div>' : '';
         }
         if(data.vernacularNames.length === 0 && data.dataObjects.length === 0) {
-          self.eol_content[title].tooltip += self.messages.no_content;
+          self.eol_content[title].tooltip += '<p class="ui-tooltip-error">' + self.messages.no_content + '</p>';
         }
       },
       error : function() {
@@ -98,7 +98,7 @@ $(function() {
            title : { text : decodeURIComponent(title), button : true },
            text : '<p class="ui-tooltip-loader">' + self.messages.looking + '</p>',
            ajax : {
-             url  : "http://eol.org/api/search/1.0/" + title.replace(/\./g, "%2E") + ".json",
+             url  : "http://eol.org/api/search/1.0/" + title.replace(/[\., ]/g, "+") + ".json",
              type : "GET",
              data : {},
              success : function(data, status) {
