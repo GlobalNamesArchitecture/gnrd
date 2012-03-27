@@ -48,7 +48,6 @@ class FindController < ApplicationController
     Dir.mktmpdir{ |dir|
       file = File.join(dir, @agent[:filename])
       new_agent.pluggable_parser.default = Mechanize::Download
-      require 'ruby-debug'; debugger
       new_agent.get(@url).save(file)
       Docsplit.extract_text(file, :output => dir)
         for name in Dir.new(dir)
