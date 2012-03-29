@@ -13,15 +13,15 @@
 
 <div id="form-panel" class="panel">
 <%= form_tag("/find", :method => "post") do -%>
-  <%= label :find, :url %>
-  <%= text_field(:find, :url, :placeholder => "http://www.example.com", :class => 'gnrd-input') %>
+  <%= label :find, :url -%>
+  <%= text_field(:find, :url, :placeholder => "http://www.example.com", :class => 'gnrd-input') -%>
   <p class="separator"> -- OR -- </p>
-  <%= label :find, :input %>
+  <%= label :find, :input -%>
   <%= text_area(:find, :input, :size => "24x12") -%>
   <%= field_set_tag "Name-Finding Engine" do %>
     <% ['Both', 'TaxonFinder', 'NetiNeti'].each do |radio| %>
-      <%= radio_button_tag 'engine', radio, (true unless radio != 'Both') %>
-      <%= label_tag 'engine', radio %>
+      <%= radio_button_tag 'engine', radio, (true unless radio != 'Both') -%>
+      <%= label_tag 'engine', radio -%>
     <% end %>
     <%= hidden_field_tag 'unique', true -%>
   <%- end -%>

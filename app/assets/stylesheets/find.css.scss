@@ -1,6 +1,8 @@
 // Place all the styles related to the find controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#found-names-preview{max-width:85%;min-width:40%;margin:0px auto;text-align:center;padding:10px;border:1px solid gray;border-radius:6px;}
+#found-names-preview img{max-width:800px;}
 #found-names-summary{margin:20px 0px;}
 #found-names-summary li{line-height:1.5em;}
 #found-names-grid{background:none repeat scroll 0 0 #e6e6e6;border:1px solid gray;border-collapse:collapse;width:95%;color:#555;}

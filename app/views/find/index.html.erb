@@ -4,9 +4,15 @@
 <%= content_tag :h2, "Discovered Names" %>
 <%- end -%>
 
+<% if !@agent.blank? && @agent[:content_type].include?("image") %>
+<div id="found-names-preview">
+  <img src="<%= @url -%>" />
+</div>
+<% end %>
+
 <ul id="found-names-summary">
   <% if !@url.blank? %>
-  <li><strong>URL: </strong><%= @url -%></li>
+    <li><strong>URL: </strong><%= @url -%></li>
   <% end %>
   <li><strong>Total: </strong><%= @output[:total] -%></li>
   <li><strong>Engine(s): </strong><%= @output[:engines].join(", ") -%></li>
