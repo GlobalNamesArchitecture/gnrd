@@ -1,23 +1,25 @@
 <% title "Discovered Names" %>
 
 <%- content_for :content_splash do -%>
-<%= content_tag :h2, "Discovered Names" %>
+<%= content_tag :h2, "Discovered Names" -%>
 <%- end -%>
 
-<% if !@agent.blank? && @agent[:content_type].include?("image") %>
+<%- if !@agent.blank? && @agent[:content_type].include?("image") -%>
+<%= content_tag :h3, "Source Image" %>
 <div id="found-names-preview">
   <img src="<%= @url -%>" />
 </div>
-<% end %>
+<%- end -%>
 
 <ul id="found-names-summary">
-  <% if !@url.blank? %>
+  <%- if !@url.blank? -%>
     <li><strong>URL: </strong><%= @url -%></li>
-  <% end %>
+  <%- end -%>
   <li><strong>Total: </strong><%= @output[:total] -%></li>
   <li><strong>Engine(s): </strong><%= @output[:engines].join(", ") -%></li>
 </ul>
 
+<%- if @output[:total] > 0 -%>
 <table id="found-names-grid">
   <thead>
     <tr><th>Verbatim</th><th>Scientific</th></tr>
@@ -28,3 +30,4 @@
 <%- end -%>
   </tbody>
 </table>
+<%- end -%>
