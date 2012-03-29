@@ -2,29 +2,33 @@
   <p class="tagline">Global Names recognition and discovery tools and services</p>
 <% end %>
 
-<p>Find scientific names on web pages, online PDF documents, images, or in freeform text. Encrypted or image-based PDFs and image files first pass through an OCR routine using <%= link_to "Tesseract", "http://code.google.com/p/tesseract-ocr/" %> prior to using the excellent <%= link_to "Taxon Finder", "http://code.google.com/p/taxon-finder/" %> and <%= link_to "NetiNeti", "https://github.com/mbl-cli/NetiNeti" %> names engines. This service is an early work in progress, but is bound to improve.</p>
+<p>Find scientific names on web pages, online PDF documents, images, or in freeform text. Encrypted or image-based PDFs and image files first pass through an OCR routine using <%= link_to "Tesseract", "http://code.google.com/p/tesseract-ocr/" %> prior to using the excellent <%= link_to "Taxon Finder", "http://code.google.com/p/taxon-finder/" %> and <%= link_to "NetiNeti", "https://github.com/mbl-cli/NetiNeti" %> names discovery engines.</p>
 
+<div id="chrome-panel" class="panel">
+  <div id="chrome" class="clear">
+    <div id="chrome-icon"><a href="/namespotter/namespotter.crx"><img src="<%= asset_path 'icon-48.png' %>" alt="BiblioSpotter Chrome Extension" /></div>
+    <div id="chrome-description"><span><a href="/namespotter/namespotter.crx">Chrome NameSpotter Extension</a></span><span>Make scientific names actionable.</span></div>
+  </div>
+</div>
+
+<div id="form-panel" class="panel">
 <%= form_tag("/find", :method => "post") do -%>
-  <%= text_field_tag(:url, nil, :placeholder => "http://www.example.com", :class => 'gnrd-input') %>
-  <p><em>OR</em></p>
-  <%= text_area_tag(:input, nil, :size => "24x12") -%>
+  <%= label :find, :url %>
+  <%= text_field(:find, :url, :placeholder => "http://www.example.com", :class => 'gnrd-input') %>
+  <p class="separator"> -- OR -- </p>
+  <%= label :find, :input %>
+  <%= text_area(:find, :input, :size => "24x12") -%>
   <%= field_set_tag "Name-Finding Engine" do %>
-    <%= radio_button_tag 'engine', nil, true -%>
-    <%= label_tag('engine', 'Both') -%>
-    <%= radio_button_tag 'engine', 'TaxonFinder' -%>
-    <%= label_tag('engine_TaxonFinder', 'Taxon Finder') -%>
-    <%= radio_button_tag 'engine', 'NetiNeti' -%>
-    <%= label_tag('engine_NetiNeti', 'Neti Neti') -%>
+    <% ['Both', 'TaxonFinder', 'NetiNeti'].each do |radio| %>
+      <%= radio_button_tag 'engine', radio, (true unless radio != 'Both') %>
+      <%= label_tag 'engine', radio %>
+    <% end %>
     <%= hidden_field_tag 'unique', true -%>
   <%- end -%>
   <div>
   <%= submit_tag("Find Names", :class => "form-button submit-button") -%>
   </div>
 <% end %>
-
-<div id="chrome" class="clear">
-<div id="chrome-icon"><a href="/namespotter/namespotter.crx"><img src="<%= asset_path 'icon-48.png' %>" alt="BiblioSpotter Chrome Extension" /></div>
-<div id="chrome-description"><span><a href="/namespotter/namespotter.crx">Google Chrome NameSpotter Extension</a></span><span>Find scientific names on the visible web page.</span></div>
 </div>
 
 <p><a href="https://github.com/GlobalNamesArchitecture/gnrd">Code</a> on GitHub</p>

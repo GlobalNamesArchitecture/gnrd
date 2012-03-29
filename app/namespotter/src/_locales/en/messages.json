@@ -12,19 +12,19 @@
     "message" : "No scientific names were found on this document."
   },
   "popup_hook_title" : {
-    "message" : "Send to Webhook"
+    "message" : "Send to WebHook"
   },
   "popup_settings_title" : {
     "message" : "Settings"
   },
   "content_looking" : {
-    "message" : "Looking for information..."
+    "message" : "Looking..."
   },
   "content_no_result" : {
-    "message" : "Nothing found for that name."
+    "message" : "Nothing found."
   },
   "content_no_content" : {
-    "message" : "Nothing found for that name."
+    "message" : "Nothing found."
   },
   "options_settings_title" : {
     "message" : "Settings"

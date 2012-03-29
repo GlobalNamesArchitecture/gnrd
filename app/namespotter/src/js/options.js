@@ -1,16 +1,22 @@
-// Saves options to localStorage.
-(function( $ ){
+/*global $, jQuery, window, document, escape, alert, delete, self, chrome, setTimeout, localStorage */
+
+(function($){
+
+  "use strict";
+
   $.fn.serializeJSON = function() {
     var json = {};
 
-    jQuery.map($(this).serializeArray(), function(n, i){
-      json[n['name']] = n['value'];
+    $.map($(this).serializeArray(), function(n, i){
+      json[n.name] = n.value;
     });
     return json;
   };
-})( jQuery );
+})(jQuery);
 
 $(function() {
+
+  "use strict";
 
   var nso = {};
 
@@ -22,15 +28,16 @@ $(function() {
   };
 
   nso.save = function() {
-    localStorage["namespotter"] = JSON.stringify($('form').serializeJSON());
+    localStorage.removeItem("namespotter");
+    localStorage.namespotter = JSON.stringify($('form').serializeJSON());
     $('#status').text(chrome.i18n.getMessage("options_saved_message")).show();
     setTimeout(function() {
       $('#status').hide();
-    }, 1000);
+    }, 2000);
   };
 
   nso.restore = function() {
-    var data = localStorage["namespotter"];
+    var data = localStorage.namespotter;
     if(!data) { return; }
 
     $.each($.parseJSON(data), function(name, value) {

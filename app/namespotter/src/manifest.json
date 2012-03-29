@@ -31,5 +31,8 @@
         "js/content.js"
       ]
     }
-  ]
+  ],
+  "namespotter" : {
+    "ga" : "UA-29483410-1"
+  }
 }

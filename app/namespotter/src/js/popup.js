@@ -1,13 +1,17 @@
 /*global $, jQuery, window, document, escape, alert, delete, self, chrome */
 
 $.extend({
-    distinct : function(anArray) {
-       var result = [];
-       $.each(anArray, function(i,v){
-           if ($.inArray(v, result) == -1) result.push(v);
-       });
-       return result;
-    }
+  distinct : function(anArray) {
+
+    "use strict";
+
+    var result = [];
+    $.each(anArray, function(i, v){
+      i = null;
+      if ($.inArray(v, result) === -1) { result.push(v); }
+    });
+    return result;
+  }
 });
 
 $(function() {
@@ -15,7 +19,8 @@ $(function() {
   "use strict";
 
   var nsp = {
-    names : []
+    names : [],
+    url : ""
   };
 
   nsp.i18n = function() {
@@ -47,7 +52,7 @@ $(function() {
           $.each($.distinct(self.names).sort(), function() {
             $('#names ul').append('<li>' + this + '</li>');
           });
-          if(settings !== null && settings.hook !== undefined) {
+          if(settings !== null && settings.hook !== undefined && settings.hook !== "") {
             $('#hook').show().find("a").click(function(e) {
               e.preventDefault();
               self.webHook(settings);

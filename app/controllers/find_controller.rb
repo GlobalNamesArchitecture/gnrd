@@ -4,26 +4,26 @@ class FindController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def index
-    get_params
-    setup_name_spotter
-    get_agent_response
-    build_output
-    produce_response
+    init
   end
   
   def create
-    get_params
-    setup_name_spotter
-    get_agent_response
-    build_output
-    produce_response
+    init
   end
   
   protected
   
+  def init
+    get_params
+    setup_name_spotter
+    get_agent_response
+    build_output
+    produce_response
+  end
+  
   def get_params
-    @url = params[:url] || nil
-    @input = params[:input] || nil
+    @url = params[:url] || (params[:find] && params[:find][:url]) || nil
+    @input = params[:input] || (params[:find] && params[:find][:input]) || nil
     @engine = (params[:engine] && valid_engines.include?(params[:engine])) ? [params[:engine]] : ["TaxonFinder", "NetiNeti"]
     @unique = params[:unique] || false
   end

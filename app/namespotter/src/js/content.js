@@ -98,7 +98,7 @@ $(function() {
            title : { text : decodeURIComponent(title), button : true },
            text : '<p class="ui-tooltip-loader">' + self.messages.looking + '</p>',
            ajax : {
-             url  : "http://eol.org/api/search/1.0/" + title.replace(/[\., ]/g, "+") + ".json",
+             url  : "http://eol.org/api/search/1.0/" + title.replace(/[\., ]/g, "+") + ".json", //TODO: replace with GNI
              type : "GET",
              data : {},
              success : function(data, status) {
@@ -106,6 +106,7 @@ $(function() {
                if(data.totalResults === 0) {
                  this.set('content.text', '<p class="ui-tooltip-error">' + self.messages.no_result + '</p>');
                } else {
+//TODO: replace with settings as is done with style
                  this.set('content.text', self.getEOLContent(this, title, data.results[0].id, data.results[0].link));
                }
              },

@@ -12,19 +12,19 @@
     "message" : "Noms scientifiques n'ont pas été trouvés sur ce document."
   },
   "popup_hook_title" : {
-    "message" : "Envoyer à Webhook"
+    "message" : "Envoyer à WebHook"
   },
   "popup_settings_title" : {
     "message" : "Paramètres"
   },
   "content_looking" : {
-    "message" : "Chercher information..."
+    "message" : "Chercher..."
   },
   "content_no_result" : {
-    "message" : "Rien trouvé pour ce nom"
+    "message" : "Rien trouvé"
   },
   "content_no_content" : {
-    "message" : "Rien trouvé pour ce nom"
+    "message" : "Rien trouvé"
   },
   "options_settings_title" : {
     "message" : "Paramètres"

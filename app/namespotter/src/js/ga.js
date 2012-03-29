@@ -1,5 +1,5 @@
 var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-29483410-1']);
+_gaq.push(['_setAccount', chrome.extension.getBackgroundPage().chrome.manifest.namespotter.ga]);
 _gaq.push(['_trackPageview']);
 (function() {
   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
