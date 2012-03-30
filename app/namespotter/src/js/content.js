@@ -33,6 +33,9 @@ $(function() {
   };
 
   ns.unhighlight = function() {
+    $('.namespotter-highlight').each(function() {
+      $(this).qtip('destroy');
+    });
     $("body").unhighlight({element: 'span', className: 'namespotter-highlight'});
   };
 
@@ -115,8 +118,9 @@ $(function() {
              }
           }
         },
+        show : { solo : true },
         style: { classes: 'ui-tooltip-' + source + ' ui-tooltip-shadow ui-tooltip-rounded' },
-        hide: { event: 'unfocus' },
+        hide: { event: 'unfocus', fixed: true },
         position: { viewport: $(window) }
       };
 
