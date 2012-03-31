@@ -10,7 +10,6 @@
     <div id="chrome-description"><span><a href="/namespotter/namespotter.crx">Chrome NameSpotter Extension</a></span><span>Make scientific names actionable.</span></div>
   </div>
 </div>
-
 <div id="form-panel" class="panel">
 <%= form_tag("/find", :method => "post") do -%>
   <%= label :find, :url -%>
@@ -23,11 +22,11 @@
       <%= radio_button_tag 'engine', radio, (true unless radio != 'Both') -%>
       <%= label_tag 'engine', radio -%>
     <% end %>
-    <%= hidden_field_tag 'unique', true -%>
   <%- end -%>
   <div>
   <%= submit_tag("Find Names", :class => "form-button submit-button") -%>
   </div>
+  <%= hidden_field_tag 'unique', true -%>
 <% end %>
 </div>
 

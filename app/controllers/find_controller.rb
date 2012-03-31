@@ -38,7 +38,7 @@ class FindController < ApplicationController
         head = new_agent.head @url
         @agent = { :code => head.code, :content_type => head.response["content-type"], :filename => head.filename }
       rescue
-        @agent = { :code => "500" }
+        @agent = { :code => "500", :content_type => "" }
       end
     end
   end
@@ -60,7 +60,7 @@ class FindController < ApplicationController
   end
   
   def find_names(content)
-    content = content.gsub("_", " ")
+    content.gsub!("_", " ")
     if @engine.count == 2
       names = @tf_name_spotter.find(content)[:names] | @neti_name_spotter.find(content)[:names]
     else
@@ -72,8 +72,10 @@ class FindController < ApplicationController
   def get_content
     content = ""
     if @agent[:code] == "500"
-      return
-    elsif !@input.blank?
+      flash[:error] = "That URL was inaccessible."
+      return content
+    end
+    if !@input.blank?
       content = @input
     elsif !@url.blank?
       if @agent[:content_type].include? "text/html"
@@ -102,7 +104,7 @@ class FindController < ApplicationController
         :names   => @unique ? names.uniq : names,
       }
     rescue
-      flash[:error] = "Sorry, the name engines failed. Administrators have been notified."
+      flash[:error] = "The name engines failed. Administrators have been notified."
       @output = {
         :status  => "FAILED",
         :total   => 0,
