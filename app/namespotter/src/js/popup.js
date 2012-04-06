@@ -6,9 +6,8 @@ $.extend({
     "use strict";
 
     var result = [];
-    $.each(anArray, function(i, v){
-      i = null;
-      if ($.inArray(v, result) === -1) { result.push(v); }
+    $.each(anArray, function() {
+      if ($.inArray(this, result) === -1) { result.push(this); }
     });
     return result;
   }
