@@ -39,17 +39,17 @@ $(function() {
   };
 
   nsp.sendRequest = function() {
-    var self = this, settings = $.parseJSON(chrome.extension.getBackgroundPage().settings());
+    var self = this, background = chrome.extension.getBackgroundPage();
 
     chrome.tabs.getSelected(null, function(tab) {
-      chrome.tabs.sendRequest(tab.id, { method : "ns_fromPopup", tabid : tab.id, taburl : tab.url, settings : settings }, function(response) {
+      chrome.tabs.sendRequest(tab.id, { method : "ns_fromPopup", tabid : tab.id, taburl : tab.url, settings : $.parseJSON(background.settings()), manifest : background.chrome.manifest }, function(response) {
         self.cleanup();
         self.url = tab.url;
         if(response.status === "ok") {
           $.each(response.names, function() {
-            self.names.push(this.s);
+            self.names.push(this.scientificName.replace(/[\[\]]/gi,""));
           });
-          $.each($.distinct(self.names).sort(), function() {
+          $.each($.distinct(self.names.sort()), function() {
             $('#names ul').append('<li>' + this + '</li>');
           });
           if(settings !== null && settings.hook !== undefined && settings.hook !== "") {

@@ -6,7 +6,8 @@ $(function() {
 
   var ns = {
     status : "",
-    names : [],
+    names  : [],
+    keys   : {},
     messages : {
       looking    : chrome.i18n.getMessage("content_looking"),
       no_names   : chrome.i18n.getMessage("popup_no_names"),
@@ -15,21 +16,34 @@ $(function() {
       error      : chrome.i18n.getMessage("error")
     },
     tab_url  : "",
-    ws       : "http://gnrd.globalnames.org/find.json",
+    manifest : {},
     settings : {},
     eol_content : []
   };
 
   ns.compareStringLengths = function(a, b) {
-    if (a.v.length < b.v.length) { return 1; }
-    if (a.v.length > b.v.length) { return -1; }
+    if (a.verbatim.length < b.verbatim.length) { return 1; }
+    if (a.verbatim.length > b.verbatim.length) { return -1; }
     return 0;
   };
 
   ns.highlight = function() {
-    $.each(this.names.sort(this.compareStringLengths), function() {
-      $('body').highlight(this.v, { className: 'namespotter-highlight', wordsOnly: true, dataValue : encodeURIComponent(this.s) });
+    var self = this;
+    $('body').highlight(this.verbatim(), { className : 'namespotter-highlight', wordsOlny : true });
+    $('.namespotter-highlight').each(function() {
+      $(this).attr("data-highlight", self.keys[$(this).text()]);
     });
+  };
+
+  ns.verbatim = function() {
+    var verbatim = [], self = this;
+
+    $.each(this.names, function() {
+      verbatim.push(this.verbatim);
+      self.keys[this.verbatim] = [];
+      self.keys[this.verbatim].push(encodeURIComponent(this.scientificName.replace(/[\[\]]/gi,"")));
+    });
+    return verbatim;
   };
 
   ns.unhighlight = function() {
@@ -144,19 +158,17 @@ $(function() {
         self.cleanup();
         self.tab_url = request.taburl;
         self.settings = request.settings;
-
+        self.manifest = request.manifest;
         $.ajax({
           type : "POST",
           data : { input : $('body').text(), unique : true },
-          url  : self.ws,
+          url  : self.manifest.namespotter.ws,
           success : function(data) {
             self.status = "ok";
             if(data.names.length === 0) {
               self.status = "nothing";
             } else {
-              $.each(data.names, function() {
-                self.names.push({ 'v' : this.verbatim, 's' : this.scientificName.replace(/[\[\]]/gi,"") });
-              });
+              self.names = data.names;
             }
             self.highlight();
             self.makeToolTips();

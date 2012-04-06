@@ -1,12 +1,12 @@
 {
   "manifest_description" : {
-    "message" : "Trouver les noms scientifiques sur le document visible."
+    "message" : "Trouver les noms scientifiques."
   },
   "error" : {
     "message" : "Il y avait un problème avec NameSpotter ou vous avez perdu votre connexion Internet"
   },
   "popup_loader" : {
-    "message" : "Chercher noms scientifiques.."
+    "message" : "Chercher noms scientifiques..."
   },
   "popup_no_names" : {
     "message" : "Noms scientifiques n'ont pas été trouvés sur ce document."

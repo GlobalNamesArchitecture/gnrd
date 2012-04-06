@@ -1,6 +1,6 @@
 {
   "manifest_description" : {
-    "message" : "Find scientific names on the visible document."
+    "message" : "Make scientific names actionable."
   },
   "error" : {
     "message" : "Either there was a problem with NameSpotter or you lost your Internet connection."

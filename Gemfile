@@ -5,6 +5,7 @@ gem 'mysql2'
 gem 'name-spotter'
 gem 'mechanize'
 gem 'docsplit'
+gem 'pdfextract'
 gem 'crxmake'
 
 # Bundle edge Rails instead:
