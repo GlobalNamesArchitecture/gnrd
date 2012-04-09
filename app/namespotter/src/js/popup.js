@@ -38,10 +38,10 @@ $(function() {
   };
 
   nsp.sendRequest = function() {
-    var self = this, background = chrome.extension.getBackgroundPage();
+    var self = this, background = chrome.extension.getBackgroundPage(), settings = $.parseJSON(background.settings());
 
     chrome.tabs.getSelected(null, function(tab) {
-      chrome.tabs.sendRequest(tab.id, { method : "ns_fromPopup", tabid : tab.id, taburl : tab.url, settings : $.parseJSON(background.settings()), manifest : background.chrome.manifest }, function(response) {
+      chrome.tabs.sendRequest(tab.id, { method : "ns_fromPopup", tabid : tab.id, taburl : tab.url, settings : settings, manifest : background.chrome.manifest }, function(response) {
         self.cleanup();
         self.url = tab.url;
         if(response.status === "ok") {
@@ -71,7 +71,7 @@ $(function() {
 
     $.ajax({
       type : "POST",
-      data : { url : self.url, names : $.distinct(self.names) },
+      data : { url : self.url, names : self.names },
       url  : settings.hook,
       success : function(data) {
         data = null;
