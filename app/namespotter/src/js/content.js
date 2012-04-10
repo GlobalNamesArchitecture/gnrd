@@ -22,8 +22,8 @@ $(function() {
   };
 
   ns.compareStringLengths = function(a, b) {
-    if (a.verbatim.length < b.verbatim.length) { return 1; }
-    if (a.verbatim.length > b.verbatim.length) { return -1; }
+    if (a.length < b.length) { return 1; }
+    if (a.length > b.length) { return -1; }
     return 0;
   };
 
@@ -43,7 +43,7 @@ $(function() {
       self.keys[this.verbatim] = [];
       self.keys[this.verbatim].push(encodeURIComponent(this.scientificName.replace(/[\[\]]/gi,"")));
     });
-    return verbatim;
+    return verbatim.sort(this.compareStringLengths);
   };
 
   ns.unhighlight = function() {

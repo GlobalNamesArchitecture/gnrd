@@ -28,6 +28,8 @@ $(function() {
   };
 
   nso.save = function() {
+    var self = this;
+
     localStorage.removeItem("namespotter");
     localStorage.namespotter = JSON.stringify($('form').serializeJSON());
     $('#status').text(chrome.i18n.getMessage("options_saved_message")).show();
@@ -38,11 +40,20 @@ $(function() {
 
   nso.restore = function() {
     var data = localStorage.namespotter;
-    if(!data) { return; }
 
+    if(!data) {
+      $('input:radio[name="source"][value="eol"]').attr('checked', true);
+      return;
+    }
     $.each($.parseJSON(data), function(name, value) {
-      $('input:radio[name="' + name + '"][value="' + value + '"]').attr('checked', true);
-      $('input[name="' + name + '"]').val(value);
+      var ele = $('form :input[name="' + name + '"]');
+      $.each(ele, function() {
+        if(this.type === 'checkbox' || this.type === 'radio') {
+          this.checked = (this.value === value);
+        } else {
+          this.value = value;
+        }
+      });
     });
   };
 

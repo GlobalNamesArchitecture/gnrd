@@ -30,7 +30,7 @@
     "message" : "Settings"
   },
   "options_source_legend" : {
-    "message" : "Default data source in tooltips"
+    "message" : "Tooltip Theme"
   },
   "options_hook_title" : {
     "message" : "Webhook URL"

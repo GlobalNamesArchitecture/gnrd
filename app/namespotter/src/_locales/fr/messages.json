@@ -30,7 +30,7 @@
     "message" : "Paramètres"
   },
   "options_source_legend" : {
-    "message" : "Source de données dans les infobulles"
+    "message" : "Thème pour les infobulles"
   },
   "options_hook_title" : {
     "message" : "URL Webhook"
