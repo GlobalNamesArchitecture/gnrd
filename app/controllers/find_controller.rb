@@ -33,7 +33,7 @@ class FindController < ApplicationController
     if !@url.blank?
       if URI(@url).scheme.nil?
         @url.insert(0, "http://")
-      end
+      end rescue nil
       begin
         head = new_agent.head @url
         @agent = { :code => head.code, :content_type => head.response["content-type"], :filename => head.filename }
@@ -49,7 +49,7 @@ class FindController < ApplicationController
       file = File.join(dir, @agent[:filename])
       new_agent.pluggable_parser.default = Mechanize::Download
       new_agent.get(@url).save(file)
-      Docsplit.extract_text(file, :output => dir)
+      Docsplit.extract_text(file, :output => dir, :clean => true)
         for name in Dir.new(dir)
           if name =~ /\.txt$/
             content << File.open(File.join(dir, name), 'r')  { |f| f.read }
