@@ -1,4 +1,16 @@
 /*global $, jQuery, window, document, escape, alert, delete, self, chrome */
+$.extend({
+  distinct : function(anArray) {
+
+    "use strict";
+
+    var result = [];
+    $.each(anArray, function() {
+      if ($.inArray(this, result) === -1) { result.push(this); }
+    });
+    return result;
+  }
+});
 
 $(function() {
 
@@ -8,14 +20,16 @@ $(function() {
     status : "",
     names  : [],
     keys   : {},
+    scientific : [],
     messages : {
-      looking    : chrome.i18n.getMessage("content_looking"),
-      no_names   : chrome.i18n.getMessage("popup_no_names"),
-      no_result  : chrome.i18n.getMessage("content_no_result"),
-      no_content : chrome.i18n.getMessage("content_no_content"),
+      tooltip_looking    : chrome.i18n.getMessage("tooltip_looking"),
+      tooltip_no_result  : chrome.i18n.getMessage("tooltip_no_result"),
+      tooltip_no_content : chrome.i18n.getMessage("tooltip_no_content"),
+      tooltip_source     : chrome.i18n.getMessage("tooltip_source"),
+      tooltip_more       : chrome.i18n.getMessage("tooltip_more"),
+      toolbox_no_names   : chrome.i18n.getMessage("toolbox_no_names"),
       error      : chrome.i18n.getMessage("error")
     },
-    tab_url  : "",
     manifest : {},
     settings : {},
     eol_content : []
@@ -27,30 +41,40 @@ $(function() {
     return 0;
   };
 
-  ns.highlight = function() {
-    var self = this;
-    $('body').highlight(this.verbatim(), { className : 'namespotter-highlight', wordsOlny : true });
-    $('.namespotter-highlight').each(function() {
-      $(this).attr("data-highlight", self.keys[$(this).text()]);
-    });
-  };
-
   ns.verbatim = function() {
     var verbatim = [], self = this;
 
     $.each(this.names, function() {
       verbatim.push(this.verbatim);
-      self.keys[this.verbatim] = [];
-      self.keys[this.verbatim].push(encodeURIComponent(this.scientificName.replace(/[\[\]]/gi,"")));
+      self.keys[this.verbatim.toLowerCase()] = [];
+      self.keys[this.verbatim.toLowerCase()].push(encodeURIComponent(this.scientificName.replace(/[\[\]]/gi,"")));
     });
     return verbatim.sort(this.compareStringLengths);
   };
 
+  ns.highlight = function() {
+    var self = this;
+
+    $('body').highlight(this.verbatim(), { className : 'namespotter-highlight', wordsOnly : true });
+    $.each($('.namespotter-highlight'), function() {
+      $(this).attr("data-highlight", self.keys[$(this).text().toLowerCase()]);
+    });
+  };
+
   ns.unhighlight = function() {
-    $('.namespotter-highlight').each(function() {
+    var self = this;
+
+    $.each($('.namespotter-highlight'), function() {
       $(this).qtip('destroy');
     });
-    $("body").unhighlight({element: 'span', className: 'namespotter-highlight'});
+    $('body').unhighlight({className: 'namespotter-highlight'});
+  };
+
+  ns.i18n = function() {
+    $.each($("[data-namespotter-i18n]"), function() {
+      var message = chrome.i18n.getMessage($(this).attr("data-namespotter-i18n"));
+      $(this).text(message);
+    });
   };
 
   ns.getEOLContent = function(obj, title, id, link) {
@@ -59,7 +83,7 @@ $(function() {
     $.ajax({
       type : "GET",
       async : false,
-      url : "http://eol.org/api/pages/1.0/" + id + ".json?videos=0&amp;common_names=1&amp;images=2&amp;details=0&amp;subjects=GeneralDescription&amp;text=1",
+      url : "http://eol.org/api/pages/1.0/" + id + ".json?videos=0&amp;common_names=1&amp;images=4&amp;details=1&amp;subjects=GeneralDescription|Description|TaxonBiology&amp;text=1",
       success : function(data) {
         obj.set('content.title.text', '<a href="' + link + '" target="_blank">' + data.scientificName + '</a>');
         self.eol_content[title] = {
@@ -80,14 +104,18 @@ $(function() {
               images.push('<img src="' + value.eolThumbnailURL + '" title="' + escape(value.title || "") + '" />');
             }
             if(value.mimeType && value.mimeType.indexOf("text") !== -1) {
-              descriptions.push(value.description || "");
+              var description = value.description || "",
+                  source      = (value.source) ? '<br><span class="ui-tooltip-source">[<a href="' + value.source + '" target="_blank">' + self.messages.tooltip_source + '</a>]</span>' : '';
+              descriptions.push(description + source);
             }
           });
           self.eol_content[title].tooltip += (images.length > 0) ? '<div class="ui-tooltip-images">' + images.join("") + '</div>' : '';
           self.eol_content[title].tooltip += (descriptions.length > 0) ? '<div class="ui-tooltip-description">' + descriptions.join("<br>") + '</div>' : '';
         }
         if(data.vernacularNames.length === 0 && data.dataObjects.length === 0) {
-          self.eol_content[title].tooltip += '<p class="ui-tooltip-error">' + self.messages.no_content + '</p>';
+          self.eol_content[title].tooltip += '<p class="ui-tooltip-error">' + self.messages.tooltip_no_content + '</p>';
+        } else {
+          self.eol_content[title].tooltip += '<p class="ui-tooltip-link"><a href="' + link + '" target="_blank">' + self.messages.tooltip_more + '</a>';
         }
       },
       error : function() {
@@ -108,12 +136,12 @@ $(function() {
       source = self.settings.source;
     }
 
-    $('.namespotter-highlight').each(function() {
+    $.each($('.namespotter-highlight'), function() {
        title =  $(this).attr("data-highlight") || "";
        config = {
          content : {
            title : { text : decodeURIComponent(title), button : true },
-           text : '<p class="ui-tooltip-loader">' + self.messages.looking + '</p>',
+           text : '<p class="ui-tooltip-loader">' + self.messages.tooltip_looking + '</p>',
            ajax : {
              url  : "http://eol.org/api/search/1.0/" + title.replace(/[\., ]/g, "+") + ".json", //TODO: replace with GNI
              type : "GET",
@@ -121,7 +149,7 @@ $(function() {
              success : function(data, status) {
                status = null;
                if(data.totalResults === 0) {
-                 this.set('content.text', '<p class="ui-tooltip-error">' + self.messages.no_result + '</p>');
+                 this.set('content.text', '<p class="ui-tooltip-error">' + self.messages.tooltip_no_result + '</p>');
                } else {
 //TODO: replace with settings as is done with style
                  this.set('content.text', self.getEOLContent(this, title, data.results[0].id, data.results[0].link));
@@ -143,52 +171,125 @@ $(function() {
   };
 
   ns.cleanup = function() {
+    $('#namespotter-toolbox').remove();
+    this.status = "";
     this.names = [];
+    this.keys = {};
+    this.scientific = [];
+    this.manifest = {};
+    this.settings = {};
+    this.eol_content = [];
     this.unhighlight();
   };
 
-  ns.init = function() {
+  ns.makeToolBox = function() {
+    var toolbox = '';
+
+    $.ajax({
+      type     : "GET",
+      async    : false,
+      url      : chrome.extension.getURL("/toolbox.html"),
+      dataType : 'html',
+      success  : function(data) {
+        toolbox = data;
+      }
+    });
+    $('body').prepend(toolbox);
+    $('#namespotter-names').resizer();
+    $('#namespotter-names-buttons a.close').click(function(e) {
+      e.preventDefault();
+      $('#namespotter-names').remove();
+    });
+    $('#namespotter-names-buttons a.minimize').click(function(e) {
+      e.preventDefault();
+      $('#namespotter-names').height('32px');
+      $('#namespotter-names-list').height('0px');
+    });
+    $('#namespotter-names-buttons a.maximize').click(function(e) {
+      e.preventDefault();
+      $('#namespotter-names').height('400px');
+      $('#namespotter-names-list').height('432px');
+    });
+  };
+
+  ns.addNames = function() {
+    var self = this, scientific = [];
+
+    $.each(self.names, function() {
+      scientific.push(this.scientificName.replace(/[\[\]]/gi,""));
+    });
+    self.scientific = $.distinct(scientific.sort());
+    $.each(self.scientific, function() {
+      var encoded = encodeURIComponent(this);
+      $('#namespotter-names-list ul').append('<li><input type="checkbox" id="ns-' + encoded + '" name="names[' + encoded + ']" value="' + this + '"><label for="ns-' + encoded + '">' + this + '</label></li>');
+    });
+    $('#namespotter-names-tools').show();
+    $('#namespotter-select-all').click(function(e) {
+      e.preventDefault();
+      $.each($('input', '#namespotter-names-list'), function() {
+        $(this).attr("checked", true);
+      });
+    });
+    $('#namespotter-select-none').click(function(e) {
+      e.preventDefault();
+      $.each($('input', '#namespotter-names-list'), function() {
+        $(this).attr("checked", false);
+      });
+    });
+    $('#namespotter-select-copy').click(function(e) {
+      e.preventDefault();
+      chrome.extension.sendRequest({ method : "ns_clipBoard", names: $('form', '#namespotter-toolbox').serializeArray() });
+    });
+
+  };
+
+  ns.analytics = function(category, action, label) {
+    chrome.extension.sendRequest({ method : "ns_analytics", category : category, action : action, label : label });
+  };
+
+  ns.sendPage = function() {
+    var self = this;
+
+    $.ajax({
+      type  : "POST",
+      async : false,
+      data  : { input : $('body').text(), unique : true },
+      url   : self.manifest.namespotter.ws,
+      success : function(data) {
+        self.status = "ok";
+        self.names = data.names;
+      },
+      error : function() {
+        self.status = "failed";
+      }
+    });
+  };
+
+  ns.loadListener = function() {
     var self = this;
 
     chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-      sender = null;
-
-      if (request.method === "ns_fromPopup") {
-        // Send JSON data to popup
+      if (request.method === "ns_fromBackground") {
         self.cleanup();
-        self.tab_url = request.taburl;
         self.settings = request.settings;
         self.manifest = request.manifest;
-        $.ajax({
-          type : "POST",
-          data : { input : $('body').text(), unique : true },
-          url  : self.manifest.namespotter.ws,
-          success : function(data) {
-            self.status = "ok";
-            if(data.names.length === 0) {
-              self.status = "nothing";
-            } else {
-              self.names = data.names;
-            }
-            self.highlight();
-            self.makeToolTips();
-            sendResponse(self);
-          },
-          error : function() {
-            self.status = "failed";
-            sendResponse(self);
-          }
-        });
-
-        // Send JSON data to background page
-        chrome.extension.sendRequest({method: "ns_fromContentScript"}, function(response) {
-          //user input from popup could be fed to background page
-          response = null;
-        });
+        self.sendPage();
+        if(self.names.length > 0) {
+          self.highlight();
+          self.makeToolTips();
+          self.makeToolBox();
+          self.addNames();
+          self.i18n();
+        }
+        sendResponse(self);
       } else {
-        sendResponse({}); // snub them.
+        sendResponse({});
       }
     });
+  };
+
+  ns.init = function() {
+    this.loadListener();
   };
 
   ns.init();

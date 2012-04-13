@@ -1,21 +1,22 @@
 {
   "name"            : "Global Names NameSpotter",
-  "version"         : "0.95",
+  "version"         : "0.97",
   "description"     : "__MSG_manifest_description__",
   "update_url"      : "http://gnrd.globalnames.org/namespotter/updates.xml",
   "background_page" : "background.html",
-  "options_page"    : "options.html",
   "icons" : {
+    "19"  : "images/icon-19.png",
     "48"  : "images/icon-48.png",
-    "128" : "images/icon-128.png"
+    "128" : "images/icon-128.png",
+    "gray" : "images/icon-19-gray.png",
+    "loader" : "images/ajax-loader.gif"
   },
   "default_locale" : "en",
   "browser_action": {
     "default_title" : "Find scientific names",
-    "default_icon"  : "images/icon-19-grey.png",
-    "popup"         : "popup.html"
+    "default_icon"  : "images/icon-19.png"
   },
-  "permissions": ["tabs", "<all_urls>", "background"],
+  "permissions": ["tabs", "<all_urls>", "background", "clipboardWrite"],
   "content_security_policy" : "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
   "content_scripts": [
     {
@@ -25,11 +26,13 @@
         "css/jquery.qtip.css"
       ],
       "js"      : [
-        "js/jquery-1.7.1.min.js",
+        "js/jquery-1.7.2.min.js",
         "js/jquery.highlight.js",
         "js/jquery.qtip.min.js",
+        "js/jquery.resizer.min.js",
         "js/content.js"
-      ]
+      ],
+      "run_at" : "document_end"
     }
   ],
   "namespotter" : {

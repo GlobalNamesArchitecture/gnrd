@@ -5,29 +5,41 @@
   "error" : {
     "message" : "Il y avait un problème avec NameSpotter ou vous avez perdu votre connexion Internet"
   },
-  "popup_loader" : {
-    "message" : "Chercher noms scientifiques..."
-  },
-  "popup_no_names" : {
-    "message" : "Noms scientifiques n'ont pas été trouvés sur ce document."
-  },
-  "popup_hook_title" : {
-    "message" : "Envoyer à WebHook"
-  },
-  "popup_settings_title" : {
-    "message" : "Paramètres"
-  },
-  "content_looking" : {
+  "tooltip_looking" : {
     "message" : "Chercher..."
   },
-  "content_no_result" : {
+  "tooltip_no_result" : {
     "message" : "Rien trouvé"
   },
-  "content_no_content" : {
+  "tooltip_no_content" : {
     "message" : "Rien trouvé"
   },
-  "options_settings_title" : {
-    "message" : "Paramètres"
+  "tooltip_source" : {
+    "message" : "source"
+  },
+  "tooltip_more" : {
+    "message" : "Plus &gt;&gt;"
+  },
+  "toolbox_no_names" : {
+    "message" : "Des noms scientifiques n'ont pas été trouvés"
+  },
+  "toolbox_select_all" : {
+    "message" : "tout sélectionner"
+  },
+  "toolbox_select_none" : {
+    "message" : "sélectionnez aucun"
+  },
+  "toolbox_select_copy" : {
+    "message" : "copier à bloc-note"
+  },
+  "toolbox_close" : {
+    "message" : "fermer"
+  },
+  "toolbox_minimize" : {
+    "message" : "minimizer"
+  },
+  "toolbox_maximize" : {
+    "message" : "maximizer"
   },
   "options_source_legend" : {
     "message" : "Thème pour les infobulles"

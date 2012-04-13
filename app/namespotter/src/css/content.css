@@ -1,1 +1,31 @@
 .namespotter-highlight{background-color:#ffff00;}
+#namespotter-toolbox .clearfix:before, #namespotter-toolbox .clearfix:after { content: ""; display: table; }
+#namespotter-toolbox .clearfix:after { clear: both; }
+#namespotter-toolbox .clearfix { zoom: 1; }
+#namespotter-toolbox{background-color:#fff;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;border-top:2px solid #ccc;position:fixed;z-index:100000;bottom:-5px;left:0px;width:100%;font-size:12px;margin:0px;padding:0px;}
+.namespotter-grippie{
+background:#EEEEEE url('chrome-extension://__MSG_@@extension_id__/images/grippie.png') no-repeat scroll center 2px;
+border-color:#DDDDDD;
+border-style:solid;
+border-width:0pt 1px 1px;
+cursor:ns-resize;
+height:9px;
+overflow:hidden;
+}
+#namespotter-names{margin:0px;padding:0px;background:#fff;}
+#namespotter-names-tools{position:relative;display:none;text-align:left;margin:5px;padding:0px;height:24px;}
+#namespotter-names-tools a{margin-left:10px;padding:5px 0px 5px 18px;color:#606060;text-decoration:none;font-weight:bold;}
+#namespotter-select-all{background:transparent url('chrome-extension://__MSG_@@extension_id__/images/tick.png') no-repeat left center;}
+#namespotter-select-none{background:transparent url('chrome-extension://__MSG_@@extension_id__/images/cancel.png') no-repeat left center;}
+#namespotter-select-copy{background:transparent url('chrome-extension://__MSG_@@extension_id__/images/page_white_paste.png') no-repeat left center;}
+
+
+#namespotter-names-buttons{position:absolute;right:5px;top:0px;}
+#namespotter-names-buttons a{margin-left:5px;}
+#namespotter-names-buttons a.close{background:transparent url('chrome-extension://__MSG_@@extension_id__/images/bullet_red.png') no-repeat left center;}
+#namespotter-names-buttons a.minimize{background:transparent url('chrome-extension://__MSG_@@extension_id__/images/bullet_yellow.png') no-repeat left center;}
+#namespotter-names-buttons a.maximize{background:transparent url('chrome-extension://__MSG_@@extension_id__/images/bullet_green.png') no-repeat left center;}
+#namespotter-names-list{width:100%;margin:5px 0px;padding:0px;text-align:left;height:100px;overflow-y:auto;}
+#namespotter-names-list ul{list-style-image:none;list-style-type:none;padding:0px;margin:0px;}
+#namespotter-names li{color:#202020;width:18em;list-style-image:none;list-style-type:none;float:left;margin:10px;padding:0px;line-height:14px;}
+#namespotter-names label{margin-left:5px;}

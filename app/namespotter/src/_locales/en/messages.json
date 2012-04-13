@@ -5,29 +5,41 @@
   "error" : {
     "message" : "Either there was a problem with NameSpotter or you lost your Internet connection."
   },
-  "popup_loader" : {
-    "message" : "Looking for scientific names..."
-  },
-  "popup_no_names" : {
-    "message" : "No scientific names were found on this document."
-  },
-  "popup_hook_title" : {
-    "message" : "Send to WebHook"
-  },
-  "popup_settings_title" : {
-    "message" : "Settings"
-  },
-  "content_looking" : {
+  "tooltip_looking" : {
     "message" : "Looking..."
   },
-  "content_no_result" : {
+  "tooltip_no_result" : {
     "message" : "Nothing found."
   },
-  "content_no_content" : {
+  "tooltip_no_content" : {
     "message" : "Nothing found."
   },
-  "options_settings_title" : {
-    "message" : "Settings"
+  "tooltip_source" : {
+    "message" : "source"
+  },
+  "tooltip_more" : {
+    "message" : "More &gt;&gt;"
+  },
+  "toolbox_no_names" : {
+    "message" : "No names were found"
+  },
+  "toolbox_select_all" : {
+    "message" : "Select all"
+  },
+  "toolbox_select_none" : {
+    "message" : "Select none"
+  },
+  "toolbox_select_copy" : {
+    "message" : "Copy to clipboard"
+  },
+  "toolbox_close" : {
+    "message" : "close"
+  },
+  "toolbox_minimize" : {
+    "message" : "minimize"
+  },
+  "toolbox_maximize" : {
+    "message" : "maximize"
   },
   "options_source_legend" : {
     "message" : "Tooltip Theme"

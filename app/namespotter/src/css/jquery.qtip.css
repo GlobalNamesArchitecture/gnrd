@@ -18,8 +18,8 @@
     left: -28000px;
     top: -28000px;
     display: none;
-    max-width: 325px;
-    min-width: 50px;
+    max-width: 600px;
+    min-width: 250px;
     font-size: 10.5px;
     line-height: 12px;
     text-decoration:none;
@@ -154,6 +154,8 @@
     
     .ui-tooltip .ui-tooltip-tip canvas{ top: 0; left: 0; }
 
+.ui-tooltip-source{}
+.ui-tooltip-link{text-align:right;}
 
 /*! EOL tooltip style */
 .ui-tooltip-eol{font-family: Helvetica,Arial,sans-serif;}
@@ -182,6 +184,9 @@
         background-image:url('chrome-extension://__MSG_@@extension_id__/images/eol.png');
         background-repeat:no-repeat;
         color:#fff;
+        text-align:left;
+        text-decoration:none;
+        font-size:14px;
     }
     
     .ui-tooltip-eol .ui-tooltip-title a{
@@ -199,7 +204,9 @@
 
     .ui-tooltip-eol .ui-tooltip-images{text-align:center;margin:0px auto;}
     .ui-tooltip-eol .ui-tooltip-images img{margin:5px;}
-    .ui-tooltip-eol .ui-tooltip-description{font-size:11px;line-height:12px;overflow-y:scroll;height:150px;padding:10px;margin-bottom:10px;}
+    .ui-tooltip-eol .ui-tooltip-description{font-size:11px;line-height:12px;overflow-y:scroll;min-height:15px;max-height:150px;padding:10px;margin-bottom:10px;}
+    
+    .ui-tooltip-eol .ui-tooltip-link{font-size:14px; margin:10px;}
 
 /*! COL tooltip style */
 .ui-tooltip-col .ui-tooltip-titlebar,
@@ -215,6 +222,7 @@
 
     .ui-tooltip-col .ui-tooltip-content{
         background-color: #fff;
+        min-height:35px;
     }
 
     .ui-tooltip-col .ui-tooltip-titlebar{
@@ -228,6 +236,9 @@
         background-image:url('chrome-extension://__MSG_@@extension_id__/images/col.png');
         background-repeat:no-repeat;
         color:#000;
+        text-align:left;
+        text-decoration:none;
+        font-size:14px;
     }
     
     .ui-tooltip-col .ui-tooltip-title a{
@@ -245,7 +256,7 @@
 
     .ui-tooltip-col .ui-tooltip-images{text-align:center;margin:0px auto;}
     .ui-tooltip-col .ui-tooltip-images img{margin:10px;}
-    .ui-tooltip-col .ui-tooltip-description{font-size:11px;line-height:12px;overflow-y:scroll;height:150px;padding:10px;margin-bottom:10px;}
+    .ui-tooltip-col .ui-tooltip-description{font-size:11px;line-height:12px;overflow-y:scroll;min-height:15px;max-height:150px;padding:10px;margin-bottom:10px;}
 
 /*! Add shadows to your tooltips in: FF3+, Chrome 2+, Opera 10.6+, IE6+, Safari 2+ */
 .ui-tooltip-shadow{
