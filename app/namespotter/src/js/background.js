@@ -43,10 +43,11 @@ var nsbg = nsbg || {};
   nsbg.resetBadgeIcon = function(tab) {
     chrome.browserAction.setBadgeText({ text: "", tabId : tab.id });
     chrome.browserAction.setIcon({ path : this.manifest.icons['19'], tabId : tab.id });
+    chrome.browserAction.setTitle({ title : chrome.i18n.getMessage("manifest_title") , tabId : tab.id });
   };
 
   nsbg.setBadge = function(tab,val,color) {
-    var _color = [];
+    var _color = [], title = '';
 
     if(!color) { color = 'red'; }
 
@@ -61,6 +62,9 @@ var nsbg = nsbg || {};
     }
     chrome.browserAction.setBadgeText({ text: val, tabId : tab.id });
     chrome.browserAction.setBadgeBackgroundColor({ color : _color, tabId : tab.id});
+
+    if(val === '0') { title = chrome.i18n.getMessage("toolbox_no_names"); }
+    chrome.browserAction.setTitle({ title : title, tabId : tab.id });
   };
 
   nsbg.setIcon = function(tab, type) {
@@ -88,7 +92,7 @@ var nsbg = nsbg || {};
       self.resetBadgeIcon(tab);
       self.setIcon(tab, 'loader');
       self.analytics('initialize', 'get_url', tab.url);
-      chrome.tabs.sendRequest(tab.id, { method : "ns_fromBackground", settings : self.settings, manifest : self.manifest }, function(response) {
+      chrome.tabs.sendRequest(tab.id, { method : "ns_initialize", settings : self.settings, manifest : self.manifest }, function(response) {
         if(response.status && response.status === "ok") {
           if(response.scientific.length > 0) {
             self.setBadge(tab, response.scientific.length.toString(), 'green');
@@ -100,7 +104,6 @@ var nsbg = nsbg || {};
         } else {
           self.setIcon(tab, 'gray');
         }
-        response.cleanup();
       });
     });
   };
@@ -111,16 +114,16 @@ var nsbg = nsbg || {};
       switch(request.method) {
         case 'ns_analytics':
           var _gaq     = _gaq || [],
-              category = request.category || "",
-              action   = request.action || "",
-              label    = request.label || "";
+              category = request.params.category || "",
+              action   = request.params.action || "",
+              label    = request.params.label || "";
 
           self.analytics(request.category, request.action, request.label);
         break;
 
         case 'ns_clipBoard':
           var names = [];
-          $.each(request.names, function() {
+          $.each(request.params.names, function() {
             names.push(this.value);
           });
           $('#namespotter-clipboard').val(names.join("\n"));

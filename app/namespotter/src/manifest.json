@@ -1,8 +1,7 @@
 {
   "name"            : "Global Names NameSpotter",
-  "version"         : "0.97",
+  "version"         : "0.1",
   "description"     : "__MSG_manifest_description__",
-  "update_url"      : "http://gnrd.globalnames.org/namespotter/updates.xml",
   "background_page" : "background.html",
   "icons" : {
     "19"  : "images/icon-19.png",
@@ -13,7 +12,7 @@
   },
   "default_locale" : "en",
   "browser_action": {
-    "default_title" : "Find scientific names",
+    "default_title" : "__MSG_manifest_title__",
     "default_icon"  : "images/icon-19.png"
   },
   "permissions": ["tabs", "<all_urls>", "background", "clipboardWrite"],
@@ -29,7 +28,7 @@
         "js/jquery-1.7.2.min.js",
         "js/jquery.highlight.js",
         "js/jquery.qtip.min.js",
-        "js/jquery.resizer.min.js",
+        "js/jquery.resizer.js",
         "js/content.js"
       ],
       "run_at" : "document_end"

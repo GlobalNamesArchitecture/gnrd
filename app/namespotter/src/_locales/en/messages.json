@@ -2,23 +2,11 @@
   "manifest_description" : {
     "message" : "Make scientific names actionable."
   },
+  "manifest_title" : {
+    "message" : "Find scientific names"
+  },
   "error" : {
     "message" : "Either there was a problem with NameSpotter or you lost your Internet connection."
-  },
-  "tooltip_looking" : {
-    "message" : "Looking..."
-  },
-  "tooltip_no_result" : {
-    "message" : "Nothing found."
-  },
-  "tooltip_no_content" : {
-    "message" : "Nothing found."
-  },
-  "tooltip_source" : {
-    "message" : "source"
-  },
-  "tooltip_more" : {
-    "message" : "More &gt;&gt;"
   },
   "toolbox_no_names" : {
     "message" : "No names were found"
@@ -41,16 +29,19 @@
   "toolbox_maximize" : {
     "message" : "maximize"
   },
-  "options_source_legend" : {
-    "message" : "Tooltip Theme"
+  "tooltip_looking" : {
+    "message" : "Looking..."
   },
-  "options_hook_title" : {
-    "message" : "Webhook URL"
+  "tooltip_no_result" : {
+    "message" : "Nothing found."
   },
-  "options_hook_description" : {
-    "message" : "Type a URL that can accept a POST request. Data POSTed is a JSON object of unique names on the page."
+  "tooltip_no_content" : {
+    "message" : "Nothing found."
   },
-  "options_saved_message" : {
-    "message" : "Your chosen options were saved."
+  "tooltip_source" : {
+    "message" : "source"
+  },
+  "tooltip_more" : {
+    "message" : "More &gt;&gt;"
   }
 }

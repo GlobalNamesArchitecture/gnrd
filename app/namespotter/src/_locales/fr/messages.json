@@ -2,23 +2,11 @@
   "manifest_description" : {
     "message" : "Trouver les noms scientifiques."
   },
+  "manifest_title" : {
+    "message" : "Trouver les noms scientifiques"
+  },
   "error" : {
     "message" : "Il y avait un problème avec NameSpotter ou vous avez perdu votre connexion Internet"
-  },
-  "tooltip_looking" : {
-    "message" : "Chercher..."
-  },
-  "tooltip_no_result" : {
-    "message" : "Rien trouvé"
-  },
-  "tooltip_no_content" : {
-    "message" : "Rien trouvé"
-  },
-  "tooltip_source" : {
-    "message" : "source"
-  },
-  "tooltip_more" : {
-    "message" : "Plus &gt;&gt;"
   },
   "toolbox_no_names" : {
     "message" : "Des noms scientifiques n'ont pas été trouvés"
@@ -41,16 +29,19 @@
   "toolbox_maximize" : {
     "message" : "maximizer"
   },
-  "options_source_legend" : {
-    "message" : "Thème pour les infobulles"
+  "tooltip_looking" : {
+    "message" : "Chercher..."
   },
-  "options_hook_title" : {
-    "message" : "URL Webhook"
+  "tooltip_no_result" : {
+    "message" : "Rien trouvé"
   },
-  "options_hook_description" : {
-    "message" : "Tapez une URL qui peut accepter une requête POST. Les données publiées est un objet JSON de noms uniques sur la page."
+  "tooltip_no_content" : {
+    "message" : "Rien trouvé"
   },
-  "options_saved_message" : {
-    "message" : "Vos options choisies ont été enregistrer."
+  "tooltip_source" : {
+    "message" : "source"
+  },
+  "tooltip_more" : {
+    "message" : "Plus &gt;&gt;"
   }
 }
