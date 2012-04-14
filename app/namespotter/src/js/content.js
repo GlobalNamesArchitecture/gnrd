@@ -198,7 +198,7 @@ $(function() {
     $('#namespotter-names').resizer();
     $('#namespotter-names-buttons a.close').click(function(e) {
       e.preventDefault();
-      $('#namespotter-names').remove();
+      $('#namespotter-toolbox').remove();
     });
     $('#namespotter-names-buttons a.minimize').click(function(e) {
       e.preventDefault();
