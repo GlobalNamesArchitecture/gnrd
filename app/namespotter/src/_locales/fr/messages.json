@@ -29,6 +29,9 @@
   "toolbox_maximize" : {
     "message" : "maximizer"
   },
+  "toolbox_feedback" : {
+    "message" : "réactions"
+  },
   "tooltip_looking" : {
     "message" : "Chercher..."
   },
