@@ -56,6 +56,7 @@ Namespotter::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
   resources :api, :only => [:index]
+  resources :feedback, :only => [:index]
   
   resources :find, :only => [:index, :create], :defaults => { :format => 'html' }
   

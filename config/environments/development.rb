@@ -30,5 +30,5 @@ Namespotter::Application.configure do
   
   config.default_admin_email = 'email@example.com'
   
-  config.chrome_app_id = 'xxx'
+  config.disqus_shortname = 'gnrd'
 end

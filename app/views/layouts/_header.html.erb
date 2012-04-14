@@ -11,6 +11,11 @@
       <%- else -%>
         <li><%= link_to "Home", root_path %></li>
       <%- end -%>
+      <%- if controller_name == "feedback" -%>
+        <li class="active"><%= link_to "Feedback", feedback_index_path %></li>
+      <%- else -%>
+        <li><%= link_to "Feedback", feedback_index_path %></li>
+      <%- end -%>
       <%- if controller_name == "api" -%>
         <li class="active"><%= link_to "API", api_index_path %></li>
       <%- else -%>
