@@ -5,7 +5,6 @@ gem 'mysql2'
 gem 'name-spotter'
 gem 'mechanize'
 gem 'docsplit'
-gem 'crxmake'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
