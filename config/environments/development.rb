@@ -30,5 +30,5 @@ Namespotter::Application.configure do
   
   config.default_admin_email = 'email@example.com'
   
-  config.disqus_shortname = 'gnrd'
+  config.disqus_shortname = 'globalnames-rd'
 end
