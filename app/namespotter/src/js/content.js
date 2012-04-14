@@ -202,13 +202,13 @@ $(function() {
     });
     $('#namespotter-names-buttons a.minimize').click(function(e) {
       e.preventDefault();
-      $('#namespotter-names').height('32px');
+      $('#namespotter-names').height('36px');
       $('#namespotter-names-list').height('0px');
     });
     $('#namespotter-names-buttons a.maximize').click(function(e) {
       e.preventDefault();
       $('#namespotter-names').height('400px');
-      $('#namespotter-names-list').height('432px');
+      $('#namespotter-names-list').height('436px');
     });
   };
 
