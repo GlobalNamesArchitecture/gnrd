@@ -8,6 +8,9 @@
   "error" : {
     "message" : "Either there was a problem with NameSpotter or you lost your Internet connection."
   },
+  "failed" : {
+    "message" : "failed"
+  },
   "toolbox_no_names" : {
     "message" : "No names were found"
   },

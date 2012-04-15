@@ -102,6 +102,7 @@ var nsbg = nsbg || {};
             self.setIcon(tab, 'gray');
           }
         } else {
+          self.setBadge(tab, chrome.i18n.getMessage('failed'), 'red');
           self.setIcon(tab, 'gray');
         }
       });

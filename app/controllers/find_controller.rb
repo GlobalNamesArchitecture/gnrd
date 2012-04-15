@@ -76,7 +76,7 @@ class FindController < ApplicationController
       return content
     end
     if !@input.blank?
-      content = @input
+      content = @input.force_encoding('BINARY').encode!('UTF-8',  :invalid => :replace, :undef => :replace, :replace => '')
     elsif !@url.blank?
       if @agent[:content_type].include? "text/html"
         page = new_agent.get @url
