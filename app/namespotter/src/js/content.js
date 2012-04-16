@@ -74,7 +74,7 @@ $(function() {
   ns.i18n = function() {
     $.each($("[data-namespotter-i18n]"), function() {
       var message = chrome.i18n.getMessage($(this).attr("data-namespotter-i18n"));
-      $(this).text(message);
+      $(this).html(message);
     });
   };
 

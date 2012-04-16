@@ -42,15 +42,18 @@ a.namespotter-settings{background:url('chrome-extension://__MSG_@@extension_id__
 #namespotter-names input{margin:0px;padding:0px;width:12px;height:12px;}
 
 #namespotter-settings{display:none;margin:0px 10px 10px 10px;min-height:200px;color:#202020;}
-#namespotter-settings fieldset{border:1px solid #ccc;border-radius:4px;margin:0px 10px 10px 0px;padding:10px;width:25%;}
+#namespotter-settings-form{margin-bottom:10px;}
+#namespotter-settings fieldset{float:left;border:1px solid #ccc;border-radius:4px;margin:0px 10px 10px 0px;padding:10px;width:25%;}
 #namespotter-settings legend{font-weight:normal;color:#202020;font-size:14px;margin:0px;padding:0px 5px;}
 #namespotter-settings label{display:inline;font-weight:normal;color:#202020;margin:0px 0px 0px 3px;padding:0px;}
 #namespotter-settings input{margin:0px;padding:0px;width:13px;height:13px;}
 #namespotter-settings .radio-buttons{float:left;margin:0px 25px 0px 0px;padding:0px;}
-#namespotter-settings-engine-description{font-size:11px;margin-top:10px;line-height:14px;padding:0px;}
+.namespotter-settings-description{font-size:11px;margin-top:10px;line-height:14px;padding:0px;}
 #namespotter-settings a{border:1px solid transparent;border-radius:4px;margin:0px 5px 0px 0px;padding:3px 3px 3px 22px;color:#202020;text-decoration:none;font-weight:normal;text-shadow: 1px 1px #f0f0f0;}
 
 a.namespotter-settings-save{background:url('chrome-extension://__MSG_@@extension_id__/images/disk.png') no-repeat 3px center;}
 a.namespotter-settings-cancel{background:url('chrome-extension://__MSG_@@extension_id__/images/cancel.png') no-repeat 3px center;}
 #namespotter-settings a.namespotter-settings-save:hover{background: url('chrome-extension://__MSG_@@extension_id__/images/disk.png') no-repeat 3px center, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(21%,#f3f3f3), color-stop(78%,#ededed), color-stop(100%,#ffffff));border:1px solid #ccc;}
 #namespotter-settings a.namespotter-settings-cancel:hover{background: url('chrome-extension://__MSG_@@extension_id__/images/cancel.png') no-repeat 3px center, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(21%,#f3f3f3), color-stop(78%,#ededed), color-stop(100%,#ffffff));border:1px solid #ccc;}
+
+#namespotter-settings .namespotter-settings-description a{margin:0px;padding:0px;display:inline;text-decoration:underline;text-shadow:none;}

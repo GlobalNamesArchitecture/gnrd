@@ -22,9 +22,10 @@
       </form>
     </div>
     <div id="namespotter-settings">
-      <form id="namespotter-settings-form">
+      <form id="namespotter-settings-form" class="clearfix">
       <fieldset>
         <legend data-namespotter-i18n="toolbox_settings_engine">Name-finding engine</legend>
+          <div class="clearfix">
           <div class="radio-buttons">
             <input id="namespotter-engine-tf" name="engine" type="radio" value="TaxonFinder" />
             <label for="namespotter-engine-tf">TaxonFinder</label>
@@ -37,8 +38,12 @@
             <input id="namespotter-engine-both" name="engine" type="radio" value="" />
             <label for="namespotter-engine-both" data-namespotter-i18n="toolbox_settings_engine_both">Both</label>
           </div>
-<p class="clearfix"></p>
-          <div id="namespotter-settings-engine-description" data-namespotter-i18n="toolbox_settings_engine_description">TaxonFinder is a dictionary-based engine. It is more accurate when names are known. NetiNeti is a language processing engine that may discover more names, but can result in false positives.</div>
+          </div>
+          <div id="namespotter-settings-engine-description" class="namespotter-settings-description" data-namespotter-i18n="toolbox_settings_engine_description">TaxonFinder is a dictionary-based engine. It is more accurate when names are known. NetiNeti is a language processing engine that may discover more names, but can result in false positives.</div>
+        </fieldset>
+        <fieldset>
+          <legend data-namespotter-i18n="toolbox_settings_about">About</legend>
+             <div class="namespotter-settings-description" data-namespotter-i18n="toolbox_settings_about_description">NameSpotter was developed by David P. Shorthouse at the <a href="http://www.mbl.edu/cli/" target="_blank">Center for Library and Informatics</a>, <a href="http://www.mbl.edu" target="_blank">Marine Biological Laboratory</a> for the <a href="http://www.globalnames.org" target="_blank">Global Names</a> project. The name-finding engines, <a href="http://code.google.com/p/taxon-finder/" target="_blank">TaxonFinder</a> and <a href="https://github.com/mbl-cli/NetiNeti" target="_blank">NetiNeti</a> were developed by his colleagues.</div>
         </fieldset>
       </form>
       <a href="#" class="namespotter-settings-save" data-namespotter-i18n="toolbox_settings_save">Save</a>

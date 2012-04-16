@@ -52,5 +52,11 @@
   },
   "toolbox_settings_engine_description" : {
     "message" : "TaxonFinder is a dictionary-based engine. It is more accurate when names are known. NetiNeti is a language processing engine that may discover more names, but can result in false positives."
+  },
+  "toolbox_settings_about" : {
+    "message" : "About"
+  },
+  "toolbox_settings_about_description" : {
+    "message" : "NameSpotter was developed by David P. Shorthouse at the <a href=\"http://www.mbl.edu/cli/\" target=\"_blank\">Center for Library and Informatics</a>, <a href=\"http://www.mbl.edu\" target=\"_blank\">Marine Biological Laboratory</a> for the <a href=\"http://www.globalnames.org\" target=\"_blank\">Global Names</a> project. The name-finding engines, <a href=\"http://code.google.com/p/taxon-finder/\" target=\"_blank\">TaxonFinder</a> and <a href=\"https://github.com/mbl-cli/NetiNeti\" target=\"_blank\">NetiNeti</a> were developed by his colleagues."
   }
 }

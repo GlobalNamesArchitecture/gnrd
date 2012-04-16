@@ -1,6 +1,6 @@
 {
   "name"            : "Global Names NameSpotter",
-  "version"         : "0.2.2",
+  "version"         : "0.2.3",
   "description"     : "__MSG_manifest_description__",
   "background_page" : "background.html",
   "icons" : {
@@ -21,8 +21,7 @@
     {
       "matches" : ["<all_urls>"],
       "css"     : [
-        "css/content.css",
-        "css/jquery.qtip.css"
+        "css/content.css"
       ],
       "js"      : [
         "js/jquery-1.7.2.min.js",
