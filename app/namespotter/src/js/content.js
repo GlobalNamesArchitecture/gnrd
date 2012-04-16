@@ -208,13 +208,29 @@ $(function() {
     chrome.extension.sendRequest({ method : "ns_analytics", params : data });
   };
 
+  ns.getParameterByName = function(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(window.location.search);
+    if(results == null) {
+      return "";
+    } else {
+      return decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+  };
+
   ns.sendPage = function() {
     var self   = this,
         engine = (self.settings && self.settings.engine) ? self.settings.engine : null,
-        data   = { unique : true };
+        data   = { unique : true },
+        url    = self.tab.url,
+        ext    = url.split('.').pop().toLowerCase();
 
-    if(self.tab.url.split('.').pop().toLowerCase() === "pdf") {
-      data.url = self.tab.url;
+    if(url.indexOf("docs.google.com") != -1 && ext === "pdf") {
+      data.url = self.getParameterByName('url');
+    } else if(ext === "pdf") {
+      data.url = url;
     } else {
       data.input = $('body').text();
     }
