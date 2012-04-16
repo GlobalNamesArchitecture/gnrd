@@ -38,7 +38,7 @@ var nsbg = nsbg || {};
   };
 
   nsbg.analytics = function(category, action, label) {
-    _gaq.push(['_trackPageview'], category, action, label)
+    _gaq.push(['_trackPageview'], category, action, label);
   };
 
   nsbg.resetBadgeIcon = function(tab) {
@@ -112,7 +112,7 @@ var nsbg = nsbg || {};
   };
 
   nsbg.receiveRequests = function() {
-    var self = this;
+    var self = this, names = [];
 
     chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
       sender = null;
@@ -127,7 +127,6 @@ var nsbg = nsbg || {};
         break;
 
         case 'ns_clipBoard':
-          var names = [];
           $.each(request.params.names, function() {
             names.push(this.value);
           });
@@ -143,6 +142,7 @@ var nsbg = nsbg || {};
         case 'ns_saveSettings':
           localStorage.removeItem("namespotter");
           localStorage.namespotter = JSON.stringify(request.params);
+          sendResponse({"message" : "saved"})
           self.loadSettings();
           self.sendRequest();
         break;

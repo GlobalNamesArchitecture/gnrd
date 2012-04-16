@@ -116,16 +116,18 @@ $(function() {
       $('input:radio[name="engine"][value=""]').attr('checked', true);
     }
 
-    $.each(self.settings, function(name, value) {
-      var ele = $('#namespotter-settings-form :input[name="' + name + '"]');
-      $.each(ele, function() {
-        if(this.type === 'checkbox' || this.type === 'radio') {
-          this.checked = (this.value === value);
-        } else {
-          this.value = value;
-        }
+    if(self.settings) {
+      $.each(self.settings, function(name, value) {
+        var ele = $('form :input[name="' + name + '"]');
+        $.each(ele, function() {
+          if(this.type === 'checkbox' || this.type === 'radio') {
+            this.checked = (this.value === value);
+          } else {
+            this.value = value;
+          }
+        });
       });
-    });
+    }
   };
 
   ns.makeToolBox = function() {
@@ -157,12 +159,10 @@ $(function() {
   };
 
   ns.saveSettings = function() {
-    var self = this, data = $('#namespotter-settings-form').serializeJSON();
+    var data = $('#namespotter-settings-form').serializeJSON();
 
     chrome.extension.sendRequest({ method : "ns_saveSettings", params : data }, function(response) {
-      if(response.message === "saved") {
-        //save message here
-      }
+//make a saved message here
     });
   };
 
@@ -221,8 +221,13 @@ $(function() {
   };
 
   ns.sendPage = function() {
-    var self = this,
-        data = { input : $('body').text(), unique : true, engine : (self.settings.engine || null) };
+    var self   = this,
+        engine = (self.settings && self.settings.engine) ? self.settings.engine : null,
+        data   = { input : $('body').text(), unique : true };
+    
+    if(engine) {
+      data.engine = engine;
+    }
 
     $.ajax({
       type     : "POST",
