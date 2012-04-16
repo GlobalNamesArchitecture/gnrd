@@ -35,19 +35,22 @@
   "toolbox_feedback" : {
     "message" : "Feedback"
   },
-  "tooltip_looking" : {
-    "message" : "Looking..."
+  "toolbox_settings" : {
+    "message" : "Settings"
   },
-  "tooltip_no_result" : {
-    "message" : "Nothing found."
+  "toolbox_settings_save" : {
+    "message" : "Save"
   },
-  "tooltip_no_content" : {
-    "message" : "Nothing found."
+  "toolbox_settings_cancel" : {
+    "message" : "Cancel"
   },
-  "tooltip_source" : {
-    "message" : "source"
+  "toolbox_settings_engine" : {
+    "message" : "Name-finding engine"
   },
-  "tooltip_more" : {
-    "message" : "More &gt;&gt;"
+  "toolbox_settings_engine_both" : {
+    "message" : "Both"
+  },
+  "toolbox_settings_engine_description" : {
+    "message" : "TaxonFinder is a dictionary-based engine. It is more accurate when names are known. NetiNeti is a language processing engine that may discover more names, but can result in false positives."
   }
 }

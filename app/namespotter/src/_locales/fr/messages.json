@@ -35,19 +35,22 @@
   "toolbox_feedback" : {
     "message" : "réactions"
   },
-  "tooltip_looking" : {
-    "message" : "Chercher..."
+  "toolbox_settings" : {
+    "message" : "paramètres"
   },
-  "tooltip_no_result" : {
-    "message" : "Rien trouvé"
+  "toolbox_settings_save" : {
+    "message" : "enregistrer"
   },
-  "tooltip_no_content" : {
-    "message" : "Rien trouvé"
+  "toolbox_settings_cancel" : {
+    "message" : "annuler"
   },
-  "tooltip_source" : {
-    "message" : "source"
+  "toolbox_settings_engine" : {
+    "message" : "moteur de recherche pour les noms scientifiques"
   },
-  "tooltip_more" : {
-    "message" : "Plus &gt;&gt;"
+  "toolbox_settings_engine_both" : {
+    "message" : "les deux"
+  },
+  "toolbox_settings_engine_description" : {
+    "message" : "TaxonFinder est un moteur d'un dictionnaire. Il est plus précis lorsque les noms sont connus. NetiNeti est un moteur de traitement du langage qui peuvent découvrir plus de noms, mais peut entraîner des faux positifs."
   }
 }

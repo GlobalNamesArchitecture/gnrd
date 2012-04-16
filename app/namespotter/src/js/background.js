@@ -31,6 +31,7 @@ var nsbg = nsbg || {};
     var self = this;
 
     chrome.browserAction.onClicked.addListener(function() {
+      self.loadSettings();
       self.sendRequest();
       self.receiveRequests();
     });
@@ -86,13 +87,14 @@ var nsbg = nsbg || {};
   };
 
   nsbg.sendRequest = function() {
-    var self = this;
+    var self = this, data = {};
 
     chrome.tabs.getSelected(null, function(tab) {
       self.resetBadgeIcon(tab);
       self.setIcon(tab, 'loader');
       self.analytics('initialize', 'get_url', tab.url);
-      chrome.tabs.sendRequest(tab.id, { method : "ns_initialize", settings : self.settings, manifest : self.manifest }, function(response) {
+      data = { settings : self.settings, manifest : self.manifest, tab : tab };
+      chrome.tabs.sendRequest(tab.id, { method : "ns_initialize", params : data }, function(response) {
         if(response.status && response.status === "ok") {
           if(response.scientific.length > 0) {
             self.setBadge(tab, response.scientific.length.toString(), 'green');
@@ -110,6 +112,8 @@ var nsbg = nsbg || {};
   };
 
   nsbg.receiveRequests = function() {
+    var self = this;
+
     chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
       sender = null;
       switch(request.method) {
@@ -119,7 +123,7 @@ var nsbg = nsbg || {};
               action   = request.params.action || "",
               label    = request.params.label || "";
 
-          self.analytics(request.category, request.action, request.label);
+          self.analytics(category, action, label);
         break;
 
         case 'ns_clipBoard':
@@ -132,6 +136,17 @@ var nsbg = nsbg || {};
           document.execCommand("copy", false, null);
         break;
 
+        case 'ns_closed':
+          self.resetBadgeIcon(request.params.tab);
+        break;
+
+        case 'ns_saveSettings':
+          localStorage.removeItem("namespotter");
+          localStorage.namespotter = JSON.stringify(request.params);
+          self.loadSettings();
+          self.sendRequest();
+        break;
+
         default:
           sendResponse({});
       }
@@ -139,7 +154,6 @@ var nsbg = nsbg || {};
   };
 
   nsbg.init = function() {
-    this.loadSettings();
     this.loadManifest();
     this.loadListener();
   };

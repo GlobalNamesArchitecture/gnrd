@@ -1,10 +1,24 @@
-/*global $, jQuery, window, document, escape, alert, delete, self, chrome */
+/*global $, jQuery, window, document, escape, alert, delete, self, chrome, localStorage */
+
+(function($){
+  "use strict";
+
+  $.fn.serializeJSON = function() {
+    var json = {};
+
+    $.map($(this).serializeArray(), function(n, i){
+      i = null;
+      json[n.name] = n.value;
+    });
+    return json;
+  };
+}(jQuery));
+
 $.extend({
   distinct : function(anArray) {
-
     "use strict";
-
     var result = [];
+
     $.each(anArray, function() {
       if ($.inArray(this, result) === -1) { result.push(this); }
     });
@@ -19,6 +33,7 @@ $(function() {
   var ns = {
     status      : "",
     timeout     : 5000,
+    tab         : {},
     names       : [],
     keys        : {},
     scientific  : [],
@@ -63,8 +78,6 @@ $(function() {
   };
 
   ns.unhighlight = function() {
-    var self = this;
-
     $.each($('.namespotter-highlight'), function() {
       $(this).qtip('destroy');
     });
@@ -78,103 +91,15 @@ $(function() {
     });
   };
 
-  ns.getEOLContent = function(obj, title, id, link) {
-    var self = this, vernaculars = [], images = [], descriptions = [];
-
-    $.ajax({
-      type     : "GET",
-      dataType : 'json',
-      async    : false,
-      url      : "http://eol.org/api/pages/1.0/" + id + ".json?videos=0&amp;common_names=1&amp;images=4&amp;details=1&amp;subjects=GeneralDescription|Description|TaxonBiology&amp;text=1",
-      timeout  : self.timeout,
-      success  : function(response) {
-        obj.set('content.title.text', '<a href="' + link + '" target="_blank">' + response.scientificName + '</a>');
-        self.eol_content[title] = {
-          scientificName : response.scientificName,
-          tooltip        : ""
-        };
-        if(response.vernacularNames.length > 0) {
-          $.each(response.vernacularNames, function() {
-            vernaculars.push(this.vernacularName);
-          });
-          self.eol_content[title].tooltip += '<div class="ui-tooltip-vernaculars">' + vernaculars.join(", ") + '</div>';
-        }
-        if(response.dataObjects.length > 0) {
-          $.each(response.dataObjects, function() {
-            if(this.mimeType && this.mimeType.indexOf("image") !== -1) {
-              images.push('<img src="' + this.eolThumbnailURL + '" title="' + escape(this.title || "") + '" />');
-            }
-            if(this.mimeType && this.mimeType.indexOf("text") !== -1) {
-              var description = this.description || "",
-                  source      = (this.source) ? '<br><span class="ui-tooltip-source">[<a href="' + this.source + '" target="_blank">' + self.messages.tooltip_source + '</a>]</span>' : '';
-              descriptions.push(description + source);
-            }
-          });
-          self.eol_content[title].tooltip += (images.length > 0) ? '<div class="ui-tooltip-images">' + images.join("") + '</div>' : '';
-          self.eol_content[title].tooltip += (descriptions.length > 0) ? '<div class="ui-tooltip-description">' + descriptions.join("<br>") + '</div>' : '';
-        }
-        if(response.vernacularNames.length === 0 && response.dataObjects.length === 0) {
-          self.eol_content[title].tooltip += '<p class="ui-tooltip-error">' + self.messages.tooltip_no_content + '</p>';
-        } else {
-          self.eol_content[title].tooltip += '<p class="ui-tooltip-link"><a href="' + link + '" target="_blank">' + self.messages.tooltip_more + '</a>';
-        }
-      },
-      error   : function() {
-        self.eol_content[title] = {
-          scientificName : title,
-          tooltip        : '<p class="ui-tooltip-error">' + self.messages.error + '</p>'
-        };
-      }
-    });
-
-    return self.eol_content[title].tooltip;
-  };
-
-  ns.makeToolTips = function() {
-    var self = this, title = "", config = {}, source = 'eol';
-
-    if(self.settings !== null && self.settings.source !== undefined){
-      source = self.settings.source;
-    }
-
-    $.each($('.namespotter-highlight'), function() {
-       title =  $(this).attr("data-highlight") || "";
-       config = {
-         content : {
-           title : { text : decodeURIComponent(title), button : true },
-           text  : '<p class="ui-tooltip-loader">' + self.messages.tooltip_looking + '</p>',
-           ajax  : {
-             url      : "http://eol.org/api/search/1.0/" + title.replace(/[\., ]/g, "+") + ".json", //TODO: replace with GNI
-             timeout  : self.timeout,
-             type     : "GET",
-             dataType : 'json',
-             success  : function(response) {
-               if(response.totalResults === 0) {
-                 this.set('content.text', '<p class="ui-tooltip-error">' + self.messages.tooltip_no_result + '</p>');
-               } else {
-                 this.set('content.text', self.getEOLContent(this, title, response.results[0].id, response.results[0].link));
-               }
-             },
-             error   : function(){
-               this.set('content.text', '<p class="ui-tooltip-error">' + self.messages.error + '</p>');
-             }
-          }
-        },
-        show : { solo : true },
-        style: { classes: 'ui-tooltip-' + source + ' ui-tooltip-shadow ui-tooltip-rounded' },
-        hide: { event: 'unfocus', fixed: true },
-        position: { viewport: $(window) }
-      };
-
-      $(this).qtip(config);
-    });
-  };
-
   ns.activateToolBox = function() {
+    var self = this;
+
     $('#namespotter-names').resizer();
     $('.namespotter-close').click(function(e) {
       e.preventDefault();
       $('#namespotter-toolbox').remove();
+      self.unhighlight();
+      chrome.extension.sendRequest({ method : "ns_closed", params : { tab : self.tab } });
     });
     $('.namespotter-minimize').click(function(e) {
       e.preventDefault();
@@ -185,6 +110,21 @@ $(function() {
       e.preventDefault();
       $('#namespotter-names').height('400px');
       $('#namespotter-names-list').height('436px');
+    });
+
+    if(!self.settings || !self.settings.engine) {
+      $('input:radio[name="engine"][value=""]').attr('checked', true);
+    }
+
+    $.each(self.settings, function(name, value) {
+      var ele = $('#namespotter-settings-form :input[name="' + name + '"]');
+      $.each(ele, function() {
+        if(this.type === 'checkbox' || this.type === 'radio') {
+          this.checked = (this.value === value);
+        } else {
+          this.value = value;
+        }
+      });
     });
   };
 
@@ -204,8 +144,30 @@ $(function() {
     this.activateToolBox();
   };
 
+  ns.showSettings = function() {
+    $('#namespotter-names-buttons').hide();
+    $('#namespotter-names-list').hide();
+    $('#namespotter-settings').show();
+  };
+
+  ns.hideSettings = function() {
+    $('#namespotter-settings').hide();
+    $('#namespotter-names-buttons').show();
+    $('#namespotter-names-list').show();
+  };
+
+  ns.saveSettings = function() {
+    var self = this, data = $('#namespotter-settings-form').serializeJSON();
+
+    chrome.extension.sendRequest({ method : "ns_saveSettings", params : data }, function(response) {
+      if(response.message === "saved") {
+        //save message here
+      }
+    });
+  };
+
   ns.addNames = function() {
-    var self = this, scientific = [], data = {};
+    var self = this, scientific = [];
 
     $.each(self.names, function() {
       scientific.push(this.scientificName.replace(/[\[\]]/gi,""));
@@ -215,6 +177,11 @@ $(function() {
       var encoded = encodeURIComponent(this);
       $('#namespotter-names-list ul').append('<li><input type="checkbox" id="ns-' + encoded + '" name="names[' + encoded + ']" value="' + this + '"><label for="ns-' + encoded + '">' + this + '</label></li>');
     });
+  };
+
+  ns.activateButtons = function() {
+    var self = this, data = {};
+
     $('.namespotter-select-all').click(function(e) {
       e.preventDefault();
       $.each($('input', '#namespotter-names-list'), function() {
@@ -229,8 +196,21 @@ $(function() {
     });
     $('.namespotter-select-copy').click(function(e) {
       e.preventDefault();
-      data = { names: $('form', '#namespotter-toolbox').serializeArray() };
+      data = { names: $('#namespotter-names-form').serializeArray() };
       chrome.extension.sendRequest({ method : "ns_clipBoard", params : data });
+    });
+    $('.namespotter-settings').click(function(e) {
+      e.preventDefault();
+      self.showSettings();
+    });
+    $('.namespotter-settings-save').click(function(e) {
+      e.preventDefault();
+      self.saveSettings();
+      self.hideSettings();
+    });
+    $('.namespotter-settings-cancel').click(function(e) {
+      e.preventDefault();
+      self.hideSettings();
     });
   };
 
@@ -242,7 +222,7 @@ $(function() {
 
   ns.sendPage = function() {
     var self = this,
-        data = { input : $('body').text(), unique : true };
+        data = { input : $('body').text(), unique : true, engine : (self.settings.engine || null) };
 
     $.ajax({
       type     : "POST",
@@ -277,16 +257,18 @@ $(function() {
     var self = this;
 
     chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+      sender = null;
       if (request.method === "ns_initialize") {
         self.cleanup();
-        self.settings = request.settings;
-        self.manifest = request.manifest;
+        self.settings = request.params.settings;
+        self.manifest = request.params.manifest;
+        self.tab      = request.params.tab;
         self.sendPage();
         if(self.names.length > 0) {
           self.highlight();
-//          self.makeToolTips();
           self.makeToolBox();
           self.addNames();
+          self.activateButtons();
           self.i18n();
         }
         sendResponse(self);
