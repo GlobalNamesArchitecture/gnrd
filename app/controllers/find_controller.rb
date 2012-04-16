@@ -62,9 +62,14 @@ class FindController < ApplicationController
   def find_names(content)
     content.gsub!("_", " ")
     if @engine.count == 2
-      names = @tf_name_spotter.find(content)[:names] | @neti_name_spotter.find(content)[:names]
+      #force encoding for taxon_finder because it cannot properly deal with some unicode characters
+      names = @tf_name_spotter.find(content.force_encoding('BINARY').encode('UTF-8',  :invalid => :replace, :undef => :replace, :replace => ''))[:names] | @neti_name_spotter.find(content)[:names]
     else
-      names = (@engine == 'TaxonFinder') ? @tf_name_spotter.find(content)[:names] : @neti_name_spotter.find(content)[:names]
+      names = (@engine == 'TaxonFinder') ? @tf_name_spotter.find(content.force_encoding('BINARY').encode('UTF-8',  :invalid => :replace, :undef => :replace, :replace => ''))[:names] : @neti_name_spotter.find(content)[:names]
+    end
+    names.each do |name|
+      #force encoding for output because it comes back as ASCII-8bit
+      name.each { |k,v| name[k] = v.force_encoding('UTF-8') unless v.is_a? Numeric }
     end
     names
   end
@@ -76,10 +81,11 @@ class FindController < ApplicationController
       return content
     end
     if !@input.blank?
-      content = @input.force_encoding('BINARY').encode!('UTF-8',  :invalid => :replace, :undef => :replace, :replace => '')
+      content = @input
     elsif !@url.blank?
       if @agent[:content_type].include? "text/html"
         page = new_agent.get @url
+        #encode the web page content
         content = page.parser.text.encode!('UTF-8', page.encodings.last, :invalid => :replace, :undef => :replace, :replace => '')
       else
         content = read_doc
@@ -101,7 +107,7 @@ class FindController < ApplicationController
         :status  => "OK",
         :total   => @unique ? names.uniq.count : names.count,
         :engines => @engine,
-        :names   => @unique ? names.uniq : names,
+        :names   => @unique ? names.uniq : names
       }
     rescue
       flash[:error] = "The name engines failed. Administrators have been notified."
