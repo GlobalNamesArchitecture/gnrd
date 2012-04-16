@@ -211,7 +211,13 @@ $(function() {
   ns.sendPage = function() {
     var self   = this,
         engine = (self.settings && self.settings.engine) ? self.settings.engine : null,
-        data   = { input : $('body').text(), unique : true };
+        data   = { unique : true };
+
+    if(self.tab.url.split('.').pop().toLowerCase() === "pdf") {
+      data.url = self.tab.url;
+    } else {
+      data.input = $('body').text();
+    }
     
     if(engine) {
       data.engine = engine;
