@@ -37,18 +37,8 @@ $(function() {
     names       : [],
     keys        : {},
     scientific  : [],
-    messages    : {
-      tooltip_looking    : chrome.i18n.getMessage("tooltip_looking"),
-      tooltip_no_result  : chrome.i18n.getMessage("tooltip_no_result"),
-      tooltip_no_content : chrome.i18n.getMessage("tooltip_no_content"),
-      tooltip_source     : chrome.i18n.getMessage("tooltip_source"),
-      tooltip_more       : chrome.i18n.getMessage("tooltip_more"),
-      toolbox_no_names   : chrome.i18n.getMessage("toolbox_no_names"),
-      error              : chrome.i18n.getMessage("error")
-    },
     manifest    : {},
-    settings    : {},
-    eol_content : []
+    settings    : {}
   };
 
   ns.compareStringLengths = function(a, b) {
@@ -78,9 +68,6 @@ $(function() {
   };
 
   ns.unhighlight = function() {
-    $.each($('.namespotter-highlight'), function() {
-      $(this).qtip('destroy');
-    });
     $('body').unhighlight({className: 'namespotter-highlight'});
   };
 
@@ -161,8 +148,9 @@ $(function() {
   ns.saveSettings = function() {
     var data = $('#namespotter-settings-form').serializeJSON();
 
-    chrome.extension.sendRequest({ method : "ns_saveSettings", params : data }, function(response) {
-//make a saved message here
+    this.clearvars();
+    $('#namespotter-names').fadeTo('slow', 0.3, function() {
+      chrome.extension.sendRequest({ method : "ns_saveSettings", params : data });
     });
   };
 
@@ -246,15 +234,19 @@ $(function() {
     });
   };
 
-  ns.cleanup = function() {
-    $('#namespotter-toolbox').remove();
+  ns.clearvars = function() {
     this.status = "";
+    this.tab = {};
     this.names = [];
     this.keys = {};
     this.scientific = [];
     this.manifest = {};
     this.settings = {};
-    this.eol_content = [];
+  };
+
+  ns.cleanup = function() {
+    $('#namespotter-toolbox').remove();
+    this.clearvars();
     this.unhighlight();
   };
 
