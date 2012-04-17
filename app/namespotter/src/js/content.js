@@ -79,9 +79,17 @@ $(function() {
   };
 
   ns.activateToolBox = function() {
-    var self = this;
+    var self = this,
+        maxZ = Math.max.apply(null, $.map($('body *'), function(e,n) {
+          n = null;
+          if($(e).css('position') === 'absolute') {
+            return parseInt($(e).css('z-index')) || 100000;
+          }
+        }));
 
+    $('#namespotter-toolbox').css('z-index', maxZ+1);
     $('#namespotter-names').resizer();
+
     $('.namespotter-close').click(function(e) {
       e.preventDefault();
       $('#namespotter-toolbox').remove();

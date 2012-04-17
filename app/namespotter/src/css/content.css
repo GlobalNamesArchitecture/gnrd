@@ -4,9 +4,9 @@
 #namespotter-toolbox .clearfix:before, #namespotter-toolbox .clearfix:after { content: ""; display: table; }
 #namespotter-toolbox .clearfix:after { clear: both; }
 #namespotter-toolbox .clearfix { zoom: 1; }
-.namespotter-grippie{background:#eee url('chrome-extension://__MSG_@@extension_id__/images/grippie.png') no-repeat scroll center 3px;border-color:#ccc;border-style:solid;border-width:0pt 1px 1px;cursor:ns-resize;height:11px;overflow:hidden;}
+.namespotter-grippie{background:#eee url('chrome-extension://__MSG_@@extension_id__/images/grippie.png') no-repeat scroll center 2px;border-color:#ccc;border-style:solid;border-width:0pt 1px 1px;cursor:ns-resize;height:9px;overflow:hidden;width:100%;}
 
-#namespotter-names{margin:0px;padding:0px;background:#fff;}
+#namespotter-names{margin:0px;padding:0px;background:#fff;width:100%;}
 
 #namespotter-names-tools{position:relative;text-align:left;margin:5px;padding:0px;height:18px;line-height:20px;}
 #namespotter-names-tools a{border:1px solid transparent;border-radius:4px;margin:0px 5px 0px 0px;padding:3px 3px 3px 22px;color:#202020;text-decoration:none;font-weight:normal;text-shadow: 1px 1px #f0f0f0;}
@@ -18,8 +18,8 @@ a.namespotter-select-copy{background:url('chrome-extension://__MSG_@@extension_i
 #namespotter-names-buttons a.namespotter-select-none:hover{border:1px solid #ccc;background: url('chrome-extension://__MSG_@@extension_id__/images/cancel.png') no-repeat 3px center, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(21%,#f3f3f3), color-stop(78%,#ededed), color-stop(100%,#ffffff));}
 #namespotter-names-buttons a.namespotter-select-copy:hover{border:1px solid #ccc;background: url('chrome-extension://__MSG_@@extension_id__/images/page_white_paste.png') no-repeat 3px center, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(21%,#f3f3f3), color-stop(78%,#ededed), color-stop(100%,#ffffff));}
 
-#namespotter-names-actions{position:absolute;right:0px;top:-21px;padding:0px;margin:0px;}
-#namespotter-names-actions a{margin-right:5px;padding:0 5px 0px 5px;}
+#namespotter-names-actions{position:absolute;top:-31px;right:0px;height:15px;text-align:right;padding:0px 5px 0px 10px;margin:0px;background-color:#eee;border-top:1px solid #888;border-left:1px solid #888;border-right:1px solid #888;border-top-left-radius:4px;border-top-right-radius:4px;box-shadow: 0px -5px 15px -4px #888;}
+#namespotter-names-actions a{padding:0px 6px 0px 6px;}
 a.namespotter-close{background:transparent url('chrome-extension://__MSG_@@extension_id__/images/bullet_red.png') no-repeat center center;}
 a.namespotter-minimize{background:transparent url('chrome-extension://__MSG_@@extension_id__/images/bullet_yellow.png') no-repeat center center;}
 a.namespotter-maximize{background:transparent url('chrome-extension://__MSG_@@extension_id__/images/bullet_green.png') no-repeat center center;}
