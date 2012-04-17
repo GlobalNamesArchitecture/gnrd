@@ -38,7 +38,8 @@ $(function() {
     keys        : {},
     scientific  : [],
     manifest    : {},
-    settings    : {}
+    settings    : {},
+    scrub       : ['select', 'input', 'textearea', 'script', 'style', 'noscript', 'img']
   };
 
   ns.compareStringLengths = function(a, b) {
@@ -233,14 +234,19 @@ $(function() {
         engine = (self.settings && self.settings.engine) ? self.settings.engine : null,
         data   = { unique : true },
         url    = self.tab.url,
-        ext    = url.split('.').pop().toLowerCase();
+        ext    = url.split('.').pop().toLowerCase(),
+        body   = "";
 
     if(url.indexOf("docs.google.com") != -1 && ext === "pdf") {
       data.url = self.getParameterByName('url');
     } else if(ext === "pdf") {
       data.url = url;
     } else {
-      data.input = $('body').text();
+      body = $('body').clone();
+      $.each(self.scrub, function() {
+        body.find(this).remove();
+      });
+      data.input = body.text().replace(/\s+/g, " ");
     }
     
     if(engine) {

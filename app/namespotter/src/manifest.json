@@ -1,6 +1,6 @@
 {
   "name"            : "Global Names NameSpotter",
-  "version"         : "0.2.5",
+  "version"         : "0.2.7",
   "description"     : "__MSG_manifest_description__",
   "background_page" : "background.html",
   "icons" : {
