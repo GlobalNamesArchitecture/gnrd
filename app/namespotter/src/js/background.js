@@ -8,6 +8,8 @@ var nsbg = nsbg || {};
 
   nsbg.settings = {};
   nsbg.manifest = {};
+  nsbg.tab      = {};
+  nsbg.timeout  = 5000;
 
   nsbg.loadSettings = function() {
     var storage = localStorage.namespotter || "";
@@ -41,47 +43,50 @@ var nsbg = nsbg || {};
     _gaq.push(['_trackPageview'], category, action, label);
   };
 
-  nsbg.resetBadgeIcon = function(tab) {
-    chrome.browserAction.setBadgeText({ text: "", tabId : tab.id });
-    chrome.browserAction.setIcon({ path : this.manifest.icons['19'], tabId : tab.id });
-    chrome.browserAction.setTitle({ title : chrome.i18n.getMessage("manifest_title") , tabId : tab.id });
+  nsbg.resetBadgeIcon = function() {
+    chrome.browserAction.setBadgeText({ text: "", tabId : this.tab.id });
+    chrome.browserAction.setIcon({ path : this.manifest.icons['19'], tabId : this.tab.id });
+    chrome.browserAction.setTitle({ title : chrome.i18n.getMessage("manifest_title") , tabId : this.tab.id });
   };
 
-  nsbg.setBadge = function(tab,val,color) {
-    var _color = [], title = '';
+  nsbg.setBadge = function(val, color) {
+    var title = '';
 
     if(!color) { color = 'red'; }
 
     switch(color) {
       case 'red':
-        _color = [255, 0, 0, 175];
+        color = [255, 0, 0, 175];
       break;
 
       case 'green':
-        _color = [0, 255, 0, 175];
+        color = [0, 255, 0, 175];
       break;
+
+      default:
+        color = [255, 0, 0, 175];
     }
-    chrome.browserAction.setBadgeText({ text: val, tabId : tab.id });
-    chrome.browserAction.setBadgeBackgroundColor({ color : _color, tabId : tab.id});
+    chrome.browserAction.setBadgeText({ text: val, tabId : this.tab.id });
+    chrome.browserAction.setBadgeBackgroundColor({ color : color, tabId : this.tab.id });
 
     if(val === '0') { title = chrome.i18n.getMessage("toolbox_no_names"); }
-    chrome.browserAction.setTitle({ title : title, tabId : tab.id });
+    chrome.browserAction.setTitle({ title : title, tabId : this.tab.id });
   };
 
-  nsbg.setIcon = function(tab, type) {
+  nsbg.setIcon = function(type) {
     if(!type) { return; }
 
     switch(type) {
       case 'default':
-        chrome.browserAction.setIcon({ path : this.manifest.icons['19'], tabId : tab.id });
+        chrome.browserAction.setIcon({ path : this.manifest.icons['19'], tabId : this.tab.id });
       break;
 
       case 'gray':
-        chrome.browserAction.setIcon({ path : this.manifest.icons.gray, tabId : tab.id });
+        chrome.browserAction.setIcon({ path : this.manifest.icons.gray, tabId : this.tab.id });
       break;
 
       case 'loader':
-        chrome.browserAction.setIcon({ path : this.manifest.icons.loader, tabId : tab.id });
+        chrome.browserAction.setIcon({ path : this.manifest.icons.loader, tabId : this.tab.id });
       break;
     }
   };
@@ -90,24 +95,12 @@ var nsbg = nsbg || {};
     var self = this, data = {};
 
     chrome.tabs.getSelected(null, function(tab) {
-      self.resetBadgeIcon(tab);
-      self.setIcon(tab, 'loader');
+      self.tab = tab;
+      self.resetBadgeIcon();
+      self.setIcon('loader');
       self.analytics('initialize', 'get_url', tab.url);
-      data = { settings : self.settings, manifest : self.manifest, tab : tab };
-      chrome.tabs.sendRequest(tab.id, { method : "ns_initialize", params : data }, function(response) {
-        if(response.status && response.status === "ok") {
-          if(response.scientific.length > 0) {
-            self.setBadge(tab, response.scientific.length.toString(), 'green');
-            self.setIcon(tab, 'default');
-          } else {
-            self.setBadge(tab, '0', 'red');
-            self.setIcon(tab, 'gray');
-          }
-        } else {
-          self.setBadge(tab, chrome.i18n.getMessage('failed'), 'red');
-          self.setIcon(tab, 'gray');
-        }
-      });
+      data = { url : tab.url, settings : self.settings };
+      chrome.tabs.sendRequest(tab.id, { method : "ns_initialize", params : data });
     });
   };
 
@@ -117,6 +110,32 @@ var nsbg = nsbg || {};
     chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
       sender = null;
       switch(request.method) {
+        case 'ns_content':
+          $.ajax({
+            type     : "POST",
+            async    : false,
+            data     : request.params,
+            dataType : 'json',
+            url      : self.manifest.namespotter.ws,
+            timeout  : self.timeout,
+            success  : function(response) {
+              sendResponse(response);
+              if(response.total > 0) {
+                self.setBadge(response.total.toString(), 'green');
+                self.setIcon('default');
+              } else {
+                self.setBadge('0', 'red');
+                self.setIcon('gray');
+              }
+            },
+            error : function() {
+              sendResponse({"status" : "FAILED"});
+              self.setBadge(chrome.i18n.getMessage('failed'), 'red');
+              self.setIcon('gray');
+            }
+          });
+        break;
+
         case 'ns_analytics':
           var _gaq     = _gaq || [],
               category = request.params.category || "",
@@ -133,16 +152,17 @@ var nsbg = nsbg || {};
           $('#namespotter-clipboard').val(names.join("\n"));
           $('#namespotter-clipboard')[0].select();
           document.execCommand("copy", false, null);
+          sendResponse({"message" : "success"});
         break;
 
         case 'ns_closed':
-          self.resetBadgeIcon(request.params.tab);
+          self.resetBadgeIcon();
         break;
 
         case 'ns_saveSettings':
           localStorage.removeItem("namespotter");
           localStorage.namespotter = JSON.stringify(request.params);
-          sendResponse({"message" : "saved"})
+          sendResponse({"message" : "success"});
           self.loadSettings();
           self.sendRequest();
         break;

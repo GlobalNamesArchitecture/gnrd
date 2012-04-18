@@ -38,15 +38,15 @@ a.namespotter-settings{background:url('chrome-extension://__MSG_@@extension_id__
 #namespotter-names-list{width:100%;margin:5px 0px;padding:0px;text-align:left;height:100px;overflow-y:auto;}
 #namespotter-names-list ul{list-style-image:none;list-style-type:none;padding:0px;margin:0px;}
 #namespotter-names li{font-weight:normal;width:18em;list-style-image:none;list-style-type:none;float:left;margin:10px;padding:0px;line-height:14px;}
-#namespotter-names label{display:inline;font-size:12px;font-weight:normal;color:#202020;margin-left:5px;}
-#namespotter-names input{margin:0px;padding:0px;width:12px;height:12px;}
+#namespotter-names label{float:none;display:inline;font-size:12px;font-weight:normal;color:#202020;margin-left:5px;}
+#namespotter-names input{float:none;display:inline;margin:0px;padding:0px;width:12px;height:12px;}
 
 #namespotter-settings{display:none;margin:0px 10px 10px 10px;min-height:200px;color:#202020;}
 #namespotter-settings-form{margin-bottom:10px;}
 #namespotter-settings fieldset{float:left;border:1px solid #ccc;border-radius:4px;margin:0px 10px 10px 0px;padding:10px;width:25%;}
-#namespotter-settings legend{font-weight:normal;color:#202020;font-size:14px;margin:0px;padding:0px 5px;}
-#namespotter-settings label{display:inline;font-weight:normal;color:#202020;margin:0px 0px 0px 3px;padding:0px;}
-#namespotter-settings input{margin:0px;padding:0px;width:13px;height:13px;}
+#namespotter-settings legend{float:none;font-weight:normal;color:#202020;font-size:14px;margin:0px;padding:0px 5px;}
+#namespotter-settings label{float:none;display:inline;font-weight:normal;color:#202020;margin:0px 0px 0px 3px;padding:0px;}
+#namespotter-settings input{display:inline;margin:0px;padding:0px;width:13px;height:13px;}
 #namespotter-settings .radio-buttons{float:left;margin:0px 25px 0px 0px;padding:0px;}
 .namespotter-settings-description{font-size:11px;margin-top:10px;line-height:14px;padding:0px;}
 #namespotter-settings a{border:1px solid transparent;border-radius:4px;margin:0px 5px 0px 0px;padding:3px 3px 3px 22px;color:#202020;text-decoration:none;font-weight:normal;text-shadow: 1px 1px #f0f0f0;}
