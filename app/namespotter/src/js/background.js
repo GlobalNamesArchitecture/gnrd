@@ -119,7 +119,6 @@ var nsbg = nsbg || {};
             url      : self.manifest.namespotter.ws,
             timeout  : self.timeout,
             success  : function(response) {
-              sendResponse(response);
               if(response.total > 0) {
                 self.setBadge(response.total.toString(), 'green');
                 self.setIcon('default');
@@ -127,6 +126,7 @@ var nsbg = nsbg || {};
                 self.setBadge('0', 'red');
                 self.setIcon('gray');
               }
+              sendResponse(response);
             },
             error : function() {
               sendResponse({"status" : "FAILED"});
