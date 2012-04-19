@@ -1,6 +1,7 @@
 /*global $, jQuery, window, document, escape, alert, delete, self, chrome, localStorage */
 
-var nsbg = nsbg || {};
+var nsbg = nsbg || {},
+    _gaq = _gaq || [];
 
 (function() {
 
@@ -26,6 +27,19 @@ var nsbg = nsbg || {};
         self.manifest = $.parseJSON(data);
       }
     });
+  };
+
+  nsbg.loadAnalytics = function() { 
+    _gaq.push(['_setAccount', this.manifest.namespotter.ga]);
+    _gaq.push(['_trackPageview']);
+
+   var ga = document.createElement('script'),
+       s  = document.getElementsByTagName('script')[0];
+
+   ga.type = 'text/javascript';
+   ga.async = true;
+   ga.src = 'https://ssl.google-analytics.com/ga.js';
+   s.parentNode.insertBefore(ga, s);
   };
 
   nsbg.analytics = function(category, action, label) {
@@ -127,8 +141,7 @@ var nsbg = nsbg || {};
         break;
 
         case 'ns_analytics':
-          var _gaq     = _gaq || [],
-              category = request.params.category || "",
+          var category = request.params.category || "",
               action   = request.params.action || "",
               label    = request.params.label || "";
 
@@ -173,10 +186,10 @@ var nsbg = nsbg || {};
   nsbg.init = function() {
     var self = this;
 
-    self.loadManifest();
-
     chrome.browserAction.onClicked.addListener(function() {
       self.cleanup();
+      self.loadManifest();
+      self.loadAnalytics();
       self.loadSettings();
       self.sendRequest();
     });
