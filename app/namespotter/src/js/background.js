@@ -8,7 +8,6 @@ var nsbg = nsbg || {};
 
   nsbg.settings = {};
   nsbg.manifest = {};
-  nsbg.tab      = {};
   nsbg.timeout  = 5000;
 
   nsbg.loadSettings = function() {
@@ -29,27 +28,17 @@ var nsbg = nsbg || {};
     });
   };
 
-  nsbg.loadListener = function() {
-    var self = this;
-
-    chrome.browserAction.onClicked.addListener(function() {
-      self.loadSettings();
-      self.sendRequest();
-      self.receiveRequests();
-    });
-  };
-
   nsbg.analytics = function(category, action, label) {
     _gaq.push(['_trackPageview'], category, action, label);
   };
 
-  nsbg.resetBadgeIcon = function() {
-    chrome.browserAction.setBadgeText({ text: "", tabId : this.tab.id });
-    chrome.browserAction.setIcon({ path : this.manifest.icons['19'], tabId : this.tab.id });
-    chrome.browserAction.setTitle({ title : chrome.i18n.getMessage("manifest_title") , tabId : this.tab.id });
+  nsbg.resetBadgeIcon = function(tab) {
+    chrome.browserAction.setBadgeText({ text: "", tabId : tab.id });
+    chrome.browserAction.setIcon({ path : this.manifest.icons['19'], tabId : tab.id });
+    chrome.browserAction.setTitle({ title : chrome.i18n.getMessage("manifest_title") , tabId : tab.id });
   };
 
-  nsbg.setBadge = function(val, color) {
+  nsbg.setBadge = function(tab, val, color) {
     var title = '';
 
     if(!color) { color = 'red'; }
@@ -66,27 +55,27 @@ var nsbg = nsbg || {};
       default:
         color = [255, 0, 0, 175];
     }
-    chrome.browserAction.setBadgeText({ text: val, tabId : this.tab.id });
-    chrome.browserAction.setBadgeBackgroundColor({ color : color, tabId : this.tab.id });
+    chrome.browserAction.setBadgeText({ text: val, tabId : tab.id });
+    chrome.browserAction.setBadgeBackgroundColor({ color : color, tabId : tab.id });
 
     if(val === '0') { title = chrome.i18n.getMessage("toolbox_no_names"); }
-    chrome.browserAction.setTitle({ title : title, tabId : this.tab.id });
+    chrome.browserAction.setTitle({ title : title, tabId : tab.id });
   };
 
-  nsbg.setIcon = function(type) {
+  nsbg.setIcon = function(tab, type) {
     if(!type) { return; }
 
     switch(type) {
       case 'default':
-        chrome.browserAction.setIcon({ path : this.manifest.icons['19'], tabId : this.tab.id });
+        chrome.browserAction.setIcon({ path : this.manifest.icons['19'], tabId : tab.id });
       break;
 
       case 'gray':
-        chrome.browserAction.setIcon({ path : this.manifest.icons.gray, tabId : this.tab.id });
+        chrome.browserAction.setIcon({ path : this.manifest.icons.gray, tabId : tab.id });
       break;
 
       case 'loader':
-        chrome.browserAction.setIcon({ path : this.manifest.icons.loader, tabId : this.tab.id });
+        chrome.browserAction.setIcon({ path : this.manifest.icons.loader, tabId : tab.id });
       break;
     }
   };
@@ -95,11 +84,10 @@ var nsbg = nsbg || {};
     var self = this, data = {};
 
     chrome.tabs.getSelected(null, function(tab) {
-      self.tab = tab;
-      self.resetBadgeIcon();
-      self.setIcon('loader');
+      self.resetBadgeIcon(tab);
+      self.setIcon(tab, 'loader');
       self.analytics('initialize', 'get_url', tab.url);
-      data = { url : tab.url, settings : self.settings };
+      data = { url : tab.url, settings : self.settings, tab : tab };
       chrome.tabs.sendRequest(tab.id, { method : "ns_initialize", params : data });
     });
   };
@@ -111,27 +99,29 @@ var nsbg = nsbg || {};
       sender = null;
       switch(request.method) {
         case 'ns_content':
+          self.resetBadgeIcon(request.params.tab);
+          self.setIcon(request.params.tab, 'loader');
           $.ajax({
             type     : "POST",
             async    : false,
-            data     : request.params,
+            data     : request.params.data,
             dataType : 'json',
             url      : self.manifest.namespotter.ws,
             timeout  : self.timeout,
             success  : function(response) {
               if(response.total > 0) {
-                self.setBadge(response.total.toString(), 'green');
-                self.setIcon('default');
+                self.setBadge(request.params.tab, response.total.toString(), 'green');
+                self.setIcon(request.params.tab, 'default');
               } else {
-                self.setBadge('0', 'red');
-                self.setIcon('gray');
+                self.setBadge(request.params.tab, '0', 'red');
+                self.setIcon(request.params.tab, 'gray');
               }
               sendResponse(response);
             },
             error : function() {
               sendResponse({"status" : "FAILED"});
-              self.setBadge(chrome.i18n.getMessage('failed'), 'red');
-              self.setIcon('gray');
+              self.setBadge(request.params.tab, chrome.i18n.getMessage('failed'), 'red');
+              self.setIcon(request.params.tab, 'gray');
             }
           });
         break;
@@ -143,6 +133,7 @@ var nsbg = nsbg || {};
               label    = request.params.label || "";
 
           self.analytics(category, action, label);
+          sendResponse({"message" : "success"});
         break;
 
         case 'ns_clipBoard':
@@ -156,15 +147,16 @@ var nsbg = nsbg || {};
         break;
 
         case 'ns_closed':
-          self.resetBadgeIcon();
+          self.resetBadgeIcon(request.tab);
+          sendResponse({"message" : "success"});
         break;
 
         case 'ns_saveSettings':
           localStorage.removeItem("namespotter");
           localStorage.namespotter = JSON.stringify(request.params);
-          sendResponse({"message" : "success"});
           self.loadSettings();
           self.sendRequest();
+          sendResponse({"message" : "success"});
         break;
 
         default:
@@ -173,9 +165,22 @@ var nsbg = nsbg || {};
     });
   };
 
+  nsbg.cleanup = function() {
+    this.settings = {};
+    this.manifest = {};
+  };
+
   nsbg.init = function() {
-    this.loadManifest();
-    this.loadListener();
+    var self = this;
+
+    chrome.browserAction.onClicked.addListener(function() {
+      self.cleanup();
+      self.loadManifest();
+      self.loadSettings();
+      self.sendRequest();
+    });
+
+    self.receiveRequests();
   };
 
   nsbg.init();

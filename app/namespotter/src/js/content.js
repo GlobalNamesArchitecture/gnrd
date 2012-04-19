@@ -14,28 +14,14 @@
   };
 }(jQuery));
 
-$.extend({
-  distinct : function(anArray) {
-    "use strict";
-    var result = [];
-
-    $.each(anArray, function() {
-      if ($.inArray(this, result) === -1) { result.push(this); }
-    });
-    return result;
-  }
-});
-
 $(function() {
 
   "use strict";
 
   var ns = {
-    url         : "",
+    tab         : {},
     settings    : {},
     response    : { names : [] },
-    keys        : {},
-    scientific  : [],
     scrub       : ['select', 'input', 'textearea', 'script', 'style', 'noscript', 'img']
   };
 
@@ -50,8 +36,6 @@ $(function() {
 
     $.each(this.response.names, function() {
       verbatim.push(this.verbatim);
-      self.keys[this.verbatim.toLowerCase()] = [];
-      self.keys[this.verbatim.toLowerCase()].push(encodeURIComponent(this.scientificName.replace(/[\[\]]/gi,"")));
     });
     return verbatim.sort(this.compareStringLengths);
   };
@@ -60,9 +44,6 @@ $(function() {
     var self = this;
 
     $('body').highlight(this.verbatim(), { className : 'namespotter-highlight', wordsOnly : true });
-    $.each($('.namespotter-highlight'), function() {
-      $(this).attr("data-highlight", self.keys[$(this).text().toLowerCase()]);
-    });
   };
 
   ns.unhighlight = function() {
@@ -92,7 +73,7 @@ $(function() {
       e.preventDefault();
       $('#namespotter-toolbox').remove();
       self.unhighlight();
-      chrome.extension.sendRequest({ method : "ns_closed" });
+      chrome.extension.sendRequest({ method : "ns_closed", tab : self.tab });
     });
     $('.namespotter-minimize').click(function(e) {
       e.preventDefault();
@@ -154,23 +135,24 @@ $(function() {
   ns.saveSettings = function() {
     var data = $('#namespotter-settings-form').serializeJSON();
 
-    this.clearvars();
-    $('#namespotter-names').fadeTo('slow', 0.3, function() {
-      chrome.extension.sendRequest({ method : "ns_saveSettings", params : data });
-    });
+    this.cleanup();
+    chrome.extension.sendRequest({ method : "ns_saveSettings", params : data });
   };
 
   ns.addNames = function() {
-    var self = this, scientific = [];
+    var self = this, list = "", encoded = "", name = "", scientific = [];
 
     $.each(self.response.names, function() {
-      scientific.push(this.scientificName.replace(/[\[\]]/gi,""));
+      name = this.scientificName.replace(/[\[\]]/gi,"");
+      if($.inArray(name, scientific) === -1) { scientific.push(name); }
     });
-    self.scientific = $.distinct(scientific.sort());
-    $.each(self.scientific, function() {
-      var encoded = encodeURIComponent(this);
-      $('#namespotter-names-list ul').append('<li><input type="checkbox" id="ns-' + encoded + '" name="names[' + encoded + ']" value="' + this + '"><label for="ns-' + encoded + '">' + this + '</label></li>');
+    scientific.sort();
+
+    $.each(scientific, function() {
+      encoded = encodeURIComponent(this);
+      list += '<li><input type="checkbox" id="ns-' + encoded + '" name="names[' + encoded + ']" value="' + this + '"><label for="ns-' + encoded + '">' + this + '</label></li>';
     });
+    $('#namespotter-names-list ul').html("").append(list);
   };
 
   ns.activateButtons = function() {
@@ -218,7 +200,7 @@ $(function() {
     name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
     var regexS  = "[\\?&]" + name + "=([^&#]*)",
         regex   = new RegExp(regexS),
-        results = regex.exec(window.location.search);
+        results = regex.exec(this.tab.url);
 
     if(results === null) {
       return "";
@@ -227,28 +209,28 @@ $(function() {
   };
 
   ns.sendPage = function() {
-    var self   = this,
-        engine = (self.settings && self.settings.engine) ? self.settings.engine : null,
-        data   = { unique : true },
-        url    = self.url,
-        ext    = url.split('.').pop().toLowerCase(),
-        body   = "";
+    var self    = this,
+        engine  = (self.settings && self.settings.engine) ? self.settings.engine : null,
+        url     = self.tab.url,
+        message = { tab : self.tab, data : { unique : true  } },
+        ext     = url.split('.').pop().toLowerCase(),
+        body    = "";
 
     if(url.indexOf("docs.google.com") !== -1 && ext === "pdf") {
-      data.url = self.getParameterByName('url');
+      message.data.url = self.getParameterByName('url');
     } else if(ext === "pdf") {
-      data.url = url;
+      message.data.url = url;
     } else {
       body = $('body').clone();
       $.each(self.scrub, function() {
         body.find(this).remove();
       });
-      data.input = body.text().replace(/\s+/g, " ");
+      message.data.input = body.text().replace(/\s+/g, " ");
     }
     
-    if(engine) { data.engine = engine; }
+    if(engine) { message.data.engine = engine; }
 
-    chrome.extension.sendRequest({ method : "ns_content", params : data }, function(response) {
+    chrome.extension.sendRequest({ method : "ns_content", params : message }, function(response) {
       if(response.total > 0) {
         self.response = response;
         self.highlight();
@@ -256,18 +238,14 @@ $(function() {
         self.addNames();
         self.activateButtons();
         self.i18n();
-      } else {
-        self.cleanup();
       }
     });
   };
 
   ns.clearvars = function() {
-    this.url        = "";
-    this.response   = { names : [] };
-    this.keys       = {};
-    this.scientific = [];
+    this.tab        = {};
     this.settings   = {};
+    this.response   = { names : [] };
   };
 
   ns.cleanup = function() {
@@ -283,7 +261,7 @@ $(function() {
       sender = null;
       if (request.method === "ns_initialize") {
         self.cleanup();
-        self.url = request.params.url;
+        self.tab = request.params.tab;
         self.settings = request.params.settings;
         self.sendPage();
         sendResponse(self);
