@@ -173,9 +173,10 @@ var nsbg = nsbg || {};
   nsbg.init = function() {
     var self = this;
 
+    self.loadManifest();
+
     chrome.browserAction.onClicked.addListener(function() {
       self.cleanup();
-      self.loadManifest();
       self.loadSettings();
       self.sendRequest();
     });
