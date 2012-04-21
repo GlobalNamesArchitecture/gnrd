@@ -17,6 +17,7 @@
   <%- end -%>
   <li><strong>Total: </strong><%= @output[:total] -%></li>
   <li><strong>Engine(s): </strong><%= @output[:engines].join(", ") -%></li>
+  <li><strong>Elapsed: </strong><%= @output[:elapsed].to_s -%> seconds</li>
 </ul>
 
 <%- if @output[:total] > 0 -%>

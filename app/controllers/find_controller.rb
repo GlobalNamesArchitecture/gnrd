@@ -22,6 +22,7 @@ class FindController < ApplicationController
   end
   
   def get_params
+    @start = Time.now
     @url = params[:url] || (params[:find] && params[:find][:url]) || nil
     @input = params[:input] || (params[:find] && params[:find][:input]) || nil
     @engine = (params[:engine] && valid_engines.include?(params[:engine])) ? [params[:engine]] : ["TaxonFinder", "NetiNeti"]
@@ -105,6 +106,7 @@ class FindController < ApplicationController
       end
       @output = {
         :status  => "OK",
+        :elapsed => (Time.now - @start),
         :total   => @unique ? names.uniq.count : names.count,
         :engines => @engine,
         :names   => @unique ? names.uniq : names
