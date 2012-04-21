@@ -17,7 +17,7 @@
   <%- end -%>
   <li><strong>Total: </strong><%= @output[:total] -%></li>
   <li><strong>Engine(s): </strong><%= @output[:engines].join(", ") -%></li>
-  <li><strong>Time: </strong><%= @output[:time][:execution].to_s -%> s to collect names, <%= @output[:time][:total].to_s -%> s for entire process</li>
+  <li><strong>Time: </strong><%= @output[:execution_time][:find_names_duration].to_s -%> s to find names, <%= @output[:execution_time][:total_duration].to_s -%> s for entire process</li>
 </ul>
 
 <%- if @output[:total] > 0 -%>

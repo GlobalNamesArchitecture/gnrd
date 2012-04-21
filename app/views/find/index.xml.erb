@@ -2,10 +2,10 @@
 <result>
 <total><%= @output[:total] -%></total>
 <status><%= @output[:status] -%></status>
-<time>
-  <execution><%= @output[:time][:execution] -%></execution>
-  <total><%= @output[:time][:total] -%></total>
-</time>
+<execution_time>
+  <find_names_duration><%= @output[:execution_time][:find_names_duration] -%></find_names_duration>
+  <total_duration><%= @output[:execution_time][:total_duration] -%></total_duration>
+</execution_time>
 <engines>
 <% @output[:engines].each do |engine| -%>
   <engine><%= engine -%></engine>

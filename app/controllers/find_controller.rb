@@ -50,7 +50,6 @@ class FindController < ApplicationController
       file = File.join(dir, @agent[:filename])
       new_agent.pluggable_parser.default = Mechanize::Download
       new_agent.get(@url).save(file)
-      @start_execution = Time.now
       Docsplit.extract_text(file, :output => dir, :clean => true)
         for name in Dir.new(dir)
           if name =~ /\.txt$/
@@ -63,6 +62,7 @@ class FindController < ApplicationController
   
   def find_names(content)
     content.gsub!("_", " ")
+    start_execution = Time.now
     if @engine.count == 2
       #force encoding for taxon_finder because it cannot properly deal with some unicode characters
       names = @tf_name_spotter.find(content.force_encoding('BINARY').encode('UTF-8',  :invalid => :replace, :undef => :replace, :replace => ''))[:names] | @neti_name_spotter.find(content)[:names]
@@ -73,11 +73,11 @@ class FindController < ApplicationController
       #force encoding for output because it comes back as ASCII-8bit
       name.each { |k,v| name[k] = v.force_encoding('UTF-8') unless v.is_a? Numeric }
     end
+    @end_execution = (Time.now - start_execution)
     names
   end
   
   def get_content
-    @start_execution = Time.now
     content = ""
     if @agent[:code] == "500"
       flash[:error] = "That URL was inaccessible."
@@ -88,7 +88,6 @@ class FindController < ApplicationController
     elsif !@url.blank?
       if @agent[:content_type].include? "text/html"
         page = new_agent.get @url
-        @start_execution = Time.now
         #encode the web page content
         content = page.parser.text.encode!('UTF-8', page.encodings.last, :invalid => :replace, :undef => :replace, :replace => '')
       else
@@ -109,7 +108,7 @@ class FindController < ApplicationController
       end
       @output = {
         :status  => "OK",
-        :time    => { :execution => (Time.now - @start_execution), :total => (Time.now - @start_process) },
+        :execution_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
         :total   => @unique ? names.uniq.count : names.count,
         :engines => @engine,
         :names   => @unique ? names.uniq : names
