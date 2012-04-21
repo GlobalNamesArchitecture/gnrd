@@ -22,7 +22,7 @@ class FindController < ApplicationController
   end
   
   def get_params
-    @start = Time.now
+    @start_process = Time.now
     @url = params[:url] || (params[:find] && params[:find][:url]) || nil
     @input = params[:input] || (params[:find] && params[:find][:input]) || nil
     @engine = (params[:engine] && valid_engines.include?(params[:engine])) ? [params[:engine]] : ["TaxonFinder", "NetiNeti"]
@@ -50,6 +50,7 @@ class FindController < ApplicationController
       file = File.join(dir, @agent[:filename])
       new_agent.pluggable_parser.default = Mechanize::Download
       new_agent.get(@url).save(file)
+      @start_execution = Time.now
       Docsplit.extract_text(file, :output => dir, :clean => true)
         for name in Dir.new(dir)
           if name =~ /\.txt$/
@@ -76,6 +77,7 @@ class FindController < ApplicationController
   end
   
   def get_content
+    @start_execution = Time.now
     content = ""
     if @agent[:code] == "500"
       flash[:error] = "That URL was inaccessible."
@@ -86,6 +88,7 @@ class FindController < ApplicationController
     elsif !@url.blank?
       if @agent[:content_type].include? "text/html"
         page = new_agent.get @url
+        @start_execution = Time.now
         #encode the web page content
         content = page.parser.text.encode!('UTF-8', page.encodings.last, :invalid => :replace, :undef => :replace, :replace => '')
       else
@@ -106,7 +109,7 @@ class FindController < ApplicationController
       end
       @output = {
         :status  => "OK",
-        :elapsed => (Time.now - @start),
+        :time    => { :execution => (Time.now - @start_execution), :total => (Time.now - @start_process) },
         :total   => @unique ? names.uniq.count : names.count,
         :engines => @engine,
         :names   => @unique ? names.uniq : names
