@@ -31,9 +31,9 @@ a.namespotter-maximize:hover{background:transparent url('chrome-extension://__MS
 #namespotter-config a{border:1px solid transparent;border-radius:4px;margin:0px 5px 0px 0px;padding:3px 3px 3px 22px;color:#202020;text-decoration:none;font-weight:normal;text-shadow: 1px 1px #f0f0f0;}
 
 a.namespotter-feedback{background:url('chrome-extension://__MSG_@@extension_id__/images/user_comment.png') no-repeat 3px center;}
-a.namespotter-settings{background:url('chrome-extension://__MSG_@@extension_id__/images/cog.png') no-repeat 3px center;}
+a.namespotter-settings-show{background:url('chrome-extension://__MSG_@@extension_id__/images/cog.png') no-repeat 3px center;}
 #namespotter-config a.namespotter-feedback:hover{background: url('chrome-extension://__MSG_@@extension_id__/images/user_comment.png') no-repeat 3px center, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(21%,#f3f3f3), color-stop(78%,#ededed), color-stop(100%,#ffffff));border:1px solid #ccc;}
-#namespotter-config a.namespotter-settings:hover{background: url('chrome-extension://__MSG_@@extension_id__/images/cog.png') no-repeat 3px center, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(21%,#f3f3f3), color-stop(78%,#ededed), color-stop(100%,#ffffff));border:1px solid #ccc;}
+#namespotter-config a.namespotter-settings-show:hover{background: url('chrome-extension://__MSG_@@extension_id__/images/cog.png') no-repeat 3px center, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(21%,#f3f3f3), color-stop(78%,#ededed), color-stop(100%,#ffffff));border:1px solid #ccc;}
 
 #namespotter-names-list{width:100%;margin:5px 0px;padding:0px;text-align:left;height:100px;overflow-y:auto;}
 #namespotter-names-list ul{list-style-image:none;list-style-type:none;padding:0px;margin:0px;}
@@ -43,7 +43,7 @@ a.namespotter-settings{background:url('chrome-extension://__MSG_@@extension_id__
 
 #namespotter-settings{display:none;margin:0px 10px 10px 10px;min-height:200px;color:#202020;}
 #namespotter-settings-form{margin-bottom:10px;}
-#namespotter-settings fieldset{float:left;border:1px solid #ccc;border-radius:4px;margin:0px 10px 10px 0px;padding:10px;width:25%;}
+#namespotter-settings fieldset{float:left;border:1px solid #ccc;border-radius:4px;margin:0px 10px 10px 0px;padding:10px;width:325px;min-height:100px;}
 #namespotter-settings legend{float:none;font-weight:normal;color:#202020;font-size:14px;margin:0px;padding:0px 5px;}
 #namespotter-settings label{float:none;display:inline;font-weight:normal;color:#202020;margin:0px 0px 0px 3px;padding:0px;}
 #namespotter-settings input{display:inline;margin:0px;padding:0px;width:13px;height:13px;}

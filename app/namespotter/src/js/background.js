@@ -30,12 +30,11 @@ var nsbg = nsbg || {},
   };
 
   nsbg.loadAnalytics = function() { 
-    _gaq.push(['_setAccount', this.manifest.namespotter.ga]);
-    _gaq.push(['_trackPageview']);
-
    var ga = document.createElement('script'),
        s  = document.getElementsByTagName('script')[0];
 
+   _gaq.push(['_setAccount', this.manifest.namespotter.ga]);
+   _gaq.push(['_trackPageview']);
    ga.type = 'text/javascript';
    ga.async = true;
    ga.src = 'https://ssl.google-analytics.com/ga.js';

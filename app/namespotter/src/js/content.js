@@ -19,6 +19,7 @@ $(function() {
   "use strict";
 
   var ns = {
+    n           : "namespotter",
     tab         : {},
     settings    : {},
     response    : { names : [] },
@@ -32,7 +33,7 @@ $(function() {
   };
 
   ns.verbatim = function() {
-    var verbatim = [], self = this;
+    var verbatim = [];
 
     $.each(this.response.names, function() {
       verbatim.push(this.verbatim);
@@ -41,49 +42,47 @@ $(function() {
   };
 
   ns.highlight = function() {
-    var self = this;
-
-    $('body').highlight(this.verbatim(), { className : 'namespotter-highlight', wordsOnly : true });
+    $('body').highlight(this.verbatim(), { className : this.n+'-highlight', wordsOnly : true });
   };
 
   ns.unhighlight = function() {
-    $('body').unhighlight({className: 'namespotter-highlight'});
+    $('body').unhighlight({className: this.n+'-highlight'});
   };
 
   ns.i18n = function() {
-    $.each($("[data-namespotter-i18n]"), function() {
-      var message = chrome.i18n.getMessage($(this).attr("data-namespotter-i18n"));
+    var self = this;
+
+    $.each($("[data-"+self.n+"-i18n]"), function() {
+      var message = chrome.i18n.getMessage($(this).attr("data-"+self.n+"-i18n"));
       $(this).html(message);
     });
   };
 
   ns.activateToolBox = function() {
-    var self = this,
-        maxZ = Math.max.apply(null, $.map($('body *'), function(e,n) {
-          n = null;
-          if($(e).css('position') === 'absolute') {
-            return parseInt($(e).css('z-index'),10) || 100000;
-          }
-        }));
+    var self          = this,
+        names_el      = $('#'+self.n+'-names').resizer(),
+        names_el_list = $('#'+self.n+'-names-list'),
+        maxZ          = Math.max.apply(null, $.map($('body *'), function(e,n) {
+                          n = null;
+                          if($(e).css('position') === 'absolute') {
+                            return parseInt($(e).css('z-index'),10) || 100000;
+                          }
+                        }));
 
-    $('#namespotter-toolbox').css('z-index', maxZ+1);
-    $('#namespotter-names').resizer();
+    $('#'+self.n+'-toolbox').css('z-index', maxZ+1);
 
-    $('.namespotter-close').click(function(e) {
-      e.preventDefault();
-      $('#namespotter-toolbox').remove();
-      self.unhighlight();
-      chrome.extension.sendRequest({ method : "ns_closed", tab : self.tab });
-    });
-    $('.namespotter-minimize').click(function(e) {
-      e.preventDefault();
-      $('#namespotter-names').height('36px');
-      $('#namespotter-names-list').height('0px');
-    });
-    $('.namespotter-maximize').click(function(e) {
-      e.preventDefault();
-      $('#namespotter-names').height('400px');
-      $('#namespotter-names-list').height('436px');
+    $.each(['close', 'minimize', 'maximize'], function() {
+      var item = this;
+      $('.'+self.n+'-'+item).click(function(e) {
+        e.preventDefault();
+        if(item === 'minimize') { names_el.height('36px'); names_el_list.height('0px'); }
+        if(item === 'maximize') { names_el.height('400px'); names_el_list.height('436px'); }
+        if(item === 'close') {
+          $('#'+self.n+'-toolbox').remove();
+          self.unhighlight();
+          chrome.extension.sendRequest({ method : "ns_closed", tab : self.tab });
+        }
+      });
     });
 
     if(!self.settings || !self.settings.engine) {
@@ -121,19 +120,19 @@ $(function() {
   };
 
   ns.showSettings = function() {
-    $('#namespotter-names-buttons').hide();
-    $('#namespotter-names-list').hide();
-    $('#namespotter-settings').show();
+    $('#'+this.n+'-names-buttons').hide();
+    $('#'+this.n+'-names-list').hide();
+    $('#'+this.n+'-settings').show();
   };
 
   ns.hideSettings = function() {
-    $('#namespotter-settings').hide();
-    $('#namespotter-names-buttons').show();
-    $('#namespotter-names-list').show();
+    $('#'+this.n+'-names-buttons').show();
+    $('#'+this.n+'-names-list').show();
+    $('#'+this.n+'-settings').hide();
   };
 
   ns.saveSettings = function() {
-    var data = $('#namespotter-settings-form').serializeJSON();
+    var data = $('#'+this.n+'-settings-form').serializeJSON();
 
     this.cleanup();
     chrome.extension.sendRequest({ method : "ns_saveSettings", params : data });
@@ -146,47 +145,46 @@ $(function() {
       name = this.scientificName.replace(/[\[\]]/gi,"");
       if($.inArray(name, scientific) === -1) { scientific.push(name); }
     });
-    scientific.sort();
 
-    $.each(scientific, function() {
+    $.each(scientific.sort(), function() {
       encoded = encodeURIComponent(this);
       list += '<li><input type="checkbox" id="ns-' + encoded + '" name="names[' + encoded + ']" value="' + this + '"><label for="ns-' + encoded + '">' + this + '</label></li>';
     });
-    $('#namespotter-names-list ul').html("").append(list);
+    $('#'+self.n+'-names-list ul').html("").append(list);
   };
 
   ns.activateButtons = function() {
-    var self = this, data = {};
+    var self = this, data = {}, names_list_input = $('input', '#'+self.n+'-names-list');
 
-    $('.namespotter-select-all').click(function(e) {
-      e.preventDefault();
-      $.each($('input', '#namespotter-names-list'), function() {
-        $(this).attr("checked", true);
+    $.each(['all', 'none', 'copy'], function() {
+      var action = this;
+      $('.' + self.n + '-select-' + action).click(function(e) {
+        e.preventDefault();
+        if(action === 'all') {
+          $.each(names_list_input, function() {
+            $(this).attr("checked", true);
+          });
+        }
+        if(action === 'none') {
+          $.each(names_list_input, function() {
+            $(this).attr("checked", false);
+          });
+        }
+        if(action === 'copy') {
+          data = { names: $('#'+self.n+'-names-form').serializeArray() };
+          chrome.extension.sendRequest({ method : "ns_clipBoard", params : data });
+        }
       });
     });
-    $('.namespotter-select-none').click(function(e) {
-      e.preventDefault();
-      $.each($('input', '#namespotter-names-list'), function() {
-        $(this).attr("checked", false);
+
+    $.each(['show', 'save', 'cancel'], function() {
+      var action = this;
+      $('.' + self.n + '-settings-' + action).click(function(e) {
+        e.preventDefault();
+        if(action === 'show') { self.showSettings(); }
+        if(action === 'save') { self.saveSettings(); self.hideSettings(); }
+        if(action === 'cancel') { self.hideSettings(); }
       });
-    });
-    $('.namespotter-select-copy').click(function(e) {
-      e.preventDefault();
-      data = { names: $('#namespotter-names-form').serializeArray() };
-      chrome.extension.sendRequest({ method : "ns_clipBoard", params : data });
-    });
-    $('.namespotter-settings').click(function(e) {
-      e.preventDefault();
-      self.showSettings();
-    });
-    $('.namespotter-settings-save').click(function(e) {
-      e.preventDefault();
-      self.saveSettings();
-      self.hideSettings();
-    });
-    $('.namespotter-settings-cancel').click(function(e) {
-      e.preventDefault();
-      self.hideSettings();
     });
   };
 
@@ -225,7 +223,7 @@ $(function() {
       $.each(self.scrub, function() {
         body.find(this).remove();
       });
-      message.data.input = body.text().replace(/\s+/g, " ");
+      message.data.input  = body.text().replace(/\s+/g, " ");
     }
     
     if(engine) { message.data.engine = engine; }
@@ -249,7 +247,7 @@ $(function() {
   };
 
   ns.cleanup = function() {
-    $('#namespotter-toolbox').remove();
+    $('#'+this.n+'-toolbox').remove();
     this.clearvars();
     this.unhighlight();
   };
