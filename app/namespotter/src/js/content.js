@@ -1,4 +1,4 @@
-/*global $, jQuery, window, document, escape, alert, delete, self, chrome, localStorage */
+/*global $, jQuery, window, document, escape, alert, delete, self, chrome, localStorage, setTimeout */
 
 (function($){
   "use strict";
@@ -163,7 +163,7 @@ $(function() {
   };
 
   ns.activateButtons = function() {
-    var self = this, checked = false, data = {}, names_list_input = $('input', '#'+self.n+'-names-list');
+    var self = this, data = {}, names_list_input = $('input', '#'+self.n+'-names-list');
 
     $.each(['all', 'none', 'copy'], function() {
       var action = this;
