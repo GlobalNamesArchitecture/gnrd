@@ -11,6 +11,12 @@
   "failed" : {
     "message" : "failed"
   },
+  "copied" : {
+    "message" : "Copied to the clipboard"
+  },
+  "saved" : {
+    "message" : "Saved and reloading..."
+  },
   "toolbox_no_names" : {
     "message" : "No names were found"
   },

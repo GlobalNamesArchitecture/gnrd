@@ -149,13 +149,17 @@ var nsbg = nsbg || {},
         break;
 
         case 'ns_clipBoard':
-          $.each(request.params.names, function() {
-            names.push(this.value);
-          });
-          $('#namespotter-clipboard').val(names.join("\n"));
-          $('#namespotter-clipboard')[0].select();
-          document.execCommand("copy", false, null);
-          sendResponse({"message" : "success"});
+          if(request.params.names.length > 0) {
+            $.each(request.params.names, function() {
+              names.push(this.value);
+            });
+            $('#namespotter-clipboard').val(names.join("\n"));
+            $('#namespotter-clipboard')[0].select();
+            document.execCommand("copy", false, null);
+            sendResponse({"message" : "success"});
+          } else {
+            sendResponse({"message" : "failed"});
+          }
         break;
 
         case 'ns_closed':

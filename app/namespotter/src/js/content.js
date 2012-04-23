@@ -132,10 +132,13 @@ $(function() {
   };
 
   ns.saveSettings = function() {
-    var data = $('#'+this.n+'-settings-form').serializeJSON();
+    var self = this, data = $('#'+this.n+'-settings-form').serializeJSON();
 
-    this.cleanup();
-    chrome.extension.sendRequest({ method : "ns_saveSettings", params : data });
+    self.showMessage('saved');
+    setTimeout(function pause() {
+      self.cleanup();
+      chrome.extension.sendRequest({ method : "ns_saveSettings", params : data });
+    }, 3000);
   };
 
   ns.addNames = function() {
@@ -153,8 +156,14 @@ $(function() {
     $('#'+self.n+'-names-list ul').html("").append(list);
   };
 
+  ns.showMessage = function(key) {
+    var width = $('#namespotter-toolbox').width()/2 - $('#namespotter-message').width()/2 - 30;
+
+    $('#namespotter-message').text(chrome.i18n.getMessage(key)).css('left', width).slideDown('slow').delay(1000).slideUp('slow');
+  };
+
   ns.activateButtons = function() {
-    var self = this, data = {}, names_list_input = $('input', '#'+self.n+'-names-list');
+    var self = this, checked = false, data = {}, names_list_input = $('input', '#'+self.n+'-names-list');
 
     $.each(['all', 'none', 'copy'], function() {
       var action = this;
@@ -172,7 +181,9 @@ $(function() {
         }
         if(action === 'copy') {
           data = { names: $('#'+self.n+'-names-form').serializeArray() };
-          chrome.extension.sendRequest({ method : "ns_clipBoard", params : data });
+          chrome.extension.sendRequest({ method : "ns_clipBoard", params : data }, function(response) {
+            if(response.message && response.message === "success") { self.showMessage('copied'); }
+          });
         }
       });
     });
@@ -182,7 +193,7 @@ $(function() {
       $('.' + self.n + '-settings-' + action).click(function(e) {
         e.preventDefault();
         if(action === 'show') { self.showSettings(); }
-        if(action === 'save') { self.saveSettings(); self.hideSettings(); }
+        if(action === 'save') { self.saveSettings(); }
         if(action === 'cancel') { self.hideSettings(); }
       });
     });

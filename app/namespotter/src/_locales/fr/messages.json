@@ -11,6 +11,12 @@
   "failed" : {
     "message" : "échoué"
   },
+  "copied" : {
+    "message" : "copié à bloc-note"
+  },
+  "saved" : {
+    "message" : "enregistré et en train de rechargé..."
+  },
   "toolbox_no_names" : {
     "message" : "Des noms scientifiques n'ont pas été trouvés"
   },
