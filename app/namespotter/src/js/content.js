@@ -22,6 +22,7 @@ $(function() {
     n           : "namespotter",
     tab         : {},
     settings    : {},
+    ns_height   : 100,
     response    : { names : [] },
     scrub       : ['select', 'input', 'textearea', 'script', 'style', 'noscript', 'img']
   };
@@ -61,7 +62,7 @@ $(function() {
   ns.activateToolBox = function() {
     var self          = this,
         names_el      = $('#'+self.n+'-names').resizer(),
-        names_el_list = $('#'+self.n+'-names-list'),
+        names_el_list = $('#'+self.n+'-names-list').height(self.ns_height),
         maxZ          = Math.max.apply(null, $.map($('body *'), function(e,n) {
                           n = null;
                           if($(e).css('position') === 'absolute') {
@@ -135,10 +136,11 @@ $(function() {
     var self = this, data = $('#'+this.n+'-settings-form').serializeJSON();
 
     self.showMessage('saved');
-    setTimeout(function pause() {
-      self.cleanup();
+    self.ns_height = $('#'+self.n+'-names-list').height();
+    $('#'+self.n+'-config').fadeOut(3000);
+    $('#'+self.n+'-settings').fadeOut(3000, function(){
       chrome.extension.sendRequest({ method : "ns_saveSettings", params : data });
-    }, 3000);
+    });
   };
 
   ns.addNames = function() {
@@ -240,6 +242,7 @@ $(function() {
     if(engine) { message.data.engine = engine; }
 
     chrome.extension.sendRequest({ method : "ns_content", params : message }, function(response) {
+      $('#'+self.n+'-toolbox').remove();
       if(response.total > 0) {
         self.response = response;
         self.highlight();
@@ -258,7 +261,6 @@ $(function() {
   };
 
   ns.cleanup = function() {
-    $('#'+this.n+'-toolbox').remove();
     this.clearvars();
     this.unhighlight();
   };

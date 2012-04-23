@@ -9,7 +9,7 @@
 #namespotter-names{margin:0px;padding:0px;background:#fff;width:100%;}
 
 #namespotter-names-tools{position:relative;text-align:left;margin:5px;padding:0px;height:18px;line-height:20px;}
-#namespotter-message{display:none;position:absolute;top:-5px;min-width:100px;border-color:#ccc;border-style:solid;border-width:0 1px 1px;background-color:#79FC72;border-bottom-left-radius:4px;border-bottom-right-radius:4px;color:#202020;text-decoration:none;font-weight:normal;text-shadow: 1px 1px #f0f0f0;text-align:center;padding:5px 15px;}
+#namespotter-message{display:none;position:absolute;top:-5px;min-width:100px;border-color:#ccc;border-style:solid;border-width:0 1px 1px;background-color:#22ccff;border-bottom-left-radius:4px;border-bottom-right-radius:4px;color:#202020;text-decoration:none;font-weight:normal;text-shadow: 1px 1px #f0f0f0;text-align:center;padding:0px 15px;}
 
 #namespotter-names-tools a{border:1px solid transparent;border-radius:4px;margin:0px 5px 0px 0px;padding:3px 3px 3px 22px;color:#202020;text-decoration:none;font-weight:normal;text-shadow: 1px 1px #f0f0f0;}
 
@@ -58,4 +58,5 @@ a.namespotter-settings-cancel{background:url('chrome-extension://__MSG_@@extensi
 #namespotter-settings a.namespotter-settings-save:hover{background: url('chrome-extension://__MSG_@@extension_id__/images/disk.png') no-repeat 3px center, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(21%,#f3f3f3), color-stop(78%,#ededed), color-stop(100%,#ffffff));border:1px solid #ccc;}
 #namespotter-settings a.namespotter-settings-cancel:hover{background: url('chrome-extension://__MSG_@@extension_id__/images/cancel.png') no-repeat 3px center, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(21%,#f3f3f3), color-stop(78%,#ededed), color-stop(100%,#ffffff));border:1px solid #ccc;}
 
+#namespotter-about{background:url('chrome-extension://__MSG_@@extension_id__/images/icon-48.png') no-repeat left top;padding-left:55px;}
 #namespotter-settings .namespotter-settings-description a{margin:0px;padding:0px;display:inline;text-decoration:underline;text-shadow:none;}
