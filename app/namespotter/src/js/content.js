@@ -22,7 +22,6 @@ $(function() {
     n           : "namespotter",
     tab         : {},
     settings    : {},
-    ns_height   : 100,
     response    : { names : [] },
     scrub       : ['select', 'input', 'textearea', 'script', 'style', 'noscript', 'img']
   };
@@ -62,7 +61,7 @@ $(function() {
   ns.activateToolBox = function() {
     var self          = this,
         names_el      = $('#'+self.n+'-names').resizer(),
-        names_el_list = $('#'+self.n+'-names-list').height(self.ns_height),
+        names_el_list = $('#'+self.n+'-names-list'),
         maxZ          = Math.max.apply(null, $.map($('body *'), function(e,n) {
                           n = null;
                           if($(e).css('position') === 'absolute') {
@@ -136,7 +135,6 @@ $(function() {
     var self = this, data = $('#'+this.n+'-settings-form').serializeJSON();
 
     self.showMessage('saved');
-    self.ns_height = $('#'+self.n+'-names-list').height();
     $('#'+self.n+'-config').fadeOut(3000);
     $('#'+self.n+'-settings').fadeOut(3000, function(){
       chrome.extension.sendRequest({ method : "ns_saveSettings", params : data });
