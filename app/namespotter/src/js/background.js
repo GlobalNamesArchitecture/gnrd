@@ -173,8 +173,10 @@ $(function() {
         break;
 
         case 'ns_complete':
+          var total  = (request.params.total > 9999) ? ">999":  request.params.total.toString();
+
           self.total[request.params.tab.id] = request.params.total;
-          self.setBadge(request.params.tab, request.params.total.toString(), 'green');
+          self.setBadge(request.params.tab, total, 'green');
         break;
 
         case 'ns_analytics':
