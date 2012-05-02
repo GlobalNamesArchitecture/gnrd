@@ -211,10 +211,14 @@ $(function() {
         regex   = new RegExp(regexS),
         results = regex.exec(this.tab.url);
 
-    if(results === null) {
-      return "";
-    }
+    if(results === null) { return ""; }
     return decodeURIComponent(results[1].replace(/\+/g, " "));
+  };
+
+  ns.sendComplete = function(total) {
+    var message = { tab : this.tab, total : total };
+
+    chrome.extension.sendRequest({ method : "ns_complete", params : message });
   };
 
   ns.sendPage = function() {
@@ -239,17 +243,8 @@ $(function() {
     
     if(engine) { message.data.engine = engine; }
 
-    chrome.extension.sendRequest({ method : "ns_content", params : message }, function(response) {
-      $('#'+self.n+'-toolbox').remove();
-      if(response.total > 0) {
-        self.response = response;
-        self.highlight();
-        self.makeToolBox();
-        self.addNames();
-        self.activateButtons();
-        self.i18n();
-      }
-    });
+    $('#'+self.n+'-toolbox').remove();
+    chrome.extension.sendRequest({ method : "ns_content", params : message });
   };
 
   ns.clearvars = function() {
@@ -268,15 +263,27 @@ $(function() {
 
     chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
       sender = null;
-      if (request.method === "ns_initialize") {
-        self.cleanup();
-        self.tab = request.params.tab;
-        self.settings = request.params.settings;
-        self.sendPage();
-        sendResponse(self);
-      } else {
-        sendResponse({});
+      switch(request.method) {
+        case 'ns_initialize':
+          self.cleanup();
+          self.tab = request.params.tab;
+          self.settings = request.params.settings;
+          self.sendPage();
+        break;
+
+        case 'ns_highlight':
+          if(request.params && request.params.total > 0) {
+            self.response = request.params;
+            self.highlight();
+            self.makeToolBox();
+            self.addNames();
+            self.activateButtons();
+            self.i18n();
+            self.sendComplete(request.params.total);
+          }
+        break;
       }
+      sendResponse({});
     });
   };
 

@@ -1,18 +1,45 @@
-/*global $, jQuery, window, document, escape, alert, delete, self, chrome, localStorage */
+/*global $, jQuery, window, document, escape, alert, delete, self, chrome, localStorage, Image */
 
 var nsbg = nsbg || {},
     _gaq = _gaq || [];
 
-(function() {
+$(function() {
 
   "use strict";
 
   nsbg.settings = {};
   nsbg.manifest = {};
-  nsbg.timeout  = 5000;
+  nsbg.total    = {};
+
+  nsbg.animateIcon = function(tab) {
+    var self    = this,
+        img     = new Image(),
+        c       = $('#canvas')[0].getContext('2d'),
+        counter = 0;
+
+    self.total[tab.id] = -1;
+
+    window.setTimeout(function animate() {
+      if(self.total[tab.id] === 0) {
+        self.setIcon(tab, 'gray');
+      } else if (self.total[tab.id] > 0) {
+        self.setIcon(tab, 'default');
+      } else {
+        img.src = self.manifest.icons['19' + (counter % 4).toString()];
+        img.onload = function() {
+          c.clearRect(0, 0, 19, 15);
+          c.drawImage(img, 0, 0, 19, 15);
+          chrome.browserAction.setIcon({ imageData : c.getImageData(0, 0, 19, 15), tabId : tab.id });
+        };
+        counter += 1;
+        window.setTimeout(animate, 125);
+      }
+    }, 125);
+  };
 
   nsbg.loadSettings = function() {
     var storage = localStorage.namespotter || "";
+
     this.settings = $.parseJSON(storage);
   };
 
@@ -27,6 +54,7 @@ var nsbg = nsbg || {},
         self.manifest = $.parseJSON(data);
       }
     });
+
   };
 
   nsbg.loadAnalytics = function() { 
@@ -47,7 +75,7 @@ var nsbg = nsbg || {},
 
   nsbg.resetBadgeIcon = function(tab) {
     chrome.browserAction.setBadgeText({ text: "", tabId : tab.id });
-    chrome.browserAction.setIcon({ path : this.manifest.icons['19'], tabId : tab.id });
+    this.setIcon(tab, 'default');
     chrome.browserAction.setTitle({ title : chrome.i18n.getMessage("manifest_title") , tabId : tab.id });
   };
 
@@ -78,17 +106,26 @@ var nsbg = nsbg || {},
   nsbg.setIcon = function(tab, type) {
     if(!type) { return; }
 
+    var img = new Image(),
+        c   = $('#canvas')[0].getContext('2d');
+
     switch(type) {
       case 'default':
-        chrome.browserAction.setIcon({ path : this.manifest.icons['19'], tabId : tab.id });
+        img.src = this.manifest.icons['19'];
+        img.onload = function() {
+          c.clearRect(0, 0, 19, 15);
+          c.drawImage(img, 0, 0, 19, 15);
+          chrome.browserAction.setIcon({ imageData : c.getImageData(0, 0, 19, 15), tabId : tab.id });
+        };
       break;
 
       case 'gray':
-        chrome.browserAction.setIcon({ path : this.manifest.icons.gray, tabId : tab.id });
-      break;
-
-      case 'loader':
-        chrome.browserAction.setIcon({ path : this.manifest.icons.loader, tabId : tab.id });
+        img.src = this.manifest.icons.gray;
+        img.onload = function() {
+          c.clearRect(0, 0, 19, 15);
+          c.drawImage(img, 0, 0, 19, 15);
+          chrome.browserAction.setIcon({ imageData : c.getImageData(0, 0, 19, 15), tabId : tab.id });
+        };
       break;
     }
   };
@@ -97,9 +134,9 @@ var nsbg = nsbg || {},
     var self = this, data = {};
 
     chrome.tabs.getSelected(null, function(tab) {
-      self.resetBadgeIcon(tab);
-      self.setIcon(tab, 'loader');
       self.analytics('initialize', 'get_url', tab.url);
+      self.resetBadgeIcon(tab);
+      self.animateIcon(tab);
       data = { url : tab.url, settings : self.settings, tab : tab };
       chrome.tabs.sendRequest(tab.id, { method : "ns_initialize", params : data });
     });
@@ -110,33 +147,34 @@ var nsbg = nsbg || {},
 
     chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
       sender = null;
+
       switch(request.method) {
         case 'ns_content':
+          sendResponse({"message" : "success"});
           self.resetBadgeIcon(request.params.tab);
-          self.setIcon(request.params.tab, 'loader');
           $.ajax({
             type     : "POST",
-            async    : false,
             data     : request.params.data,
             dataType : 'json',
             url      : self.manifest.namespotter.ws,
-            timeout  : self.timeout,
             success  : function(response) {
               if(response.total > 0) {
-                self.setBadge(request.params.tab, response.total.toString(), 'green');
-                self.setIcon(request.params.tab, 'default');
+                chrome.tabs.sendRequest(request.params.tab.id, { method : "ns_highlight", params : response });
               } else {
+                self.total[request.params.tab.id] = 0;
                 self.setBadge(request.params.tab, '0', 'red');
-                self.setIcon(request.params.tab, 'gray');
               }
-              sendResponse(response);
             },
             error : function() {
-              sendResponse({"status" : "FAILED"});
+              self.total[request.params.tab.id] = 0;
               self.setBadge(request.params.tab, chrome.i18n.getMessage('failed'), 'red');
-              self.setIcon(request.params.tab, 'gray');
             }
           });
+        break;
+
+        case 'ns_complete':
+          self.total[request.params.tab.id] = request.params.total;
+          self.setBadge(request.params.tab, request.params.total.toString(), 'green');
         break;
 
         case 'ns_analytics':
@@ -202,4 +240,4 @@ var nsbg = nsbg || {},
 
   nsbg.init();
 
-}());
+});
