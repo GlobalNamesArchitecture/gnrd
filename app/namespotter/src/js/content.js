@@ -216,7 +216,7 @@ $(function() {
   };
 
   ns.sendComplete = function(total) {
-    var message = { tab : this.tab, total : total };
+    var message = { tab : this.tab, total : total || null };
 
     chrome.extension.sendRequest({ method : "ns_complete", params : message });
   };
@@ -240,7 +240,7 @@ $(function() {
       });
       message.data.input  = body.text().replace(/\s+/g, " ");
     }
-    
+
     if(engine) { message.data.engine = engine; }
 
     $('#'+self.n+'-toolbox').remove();
@@ -258,6 +258,12 @@ $(function() {
     this.unhighlight();
   };
 
+  ns.showWarning = function() {
+    var message = chrome.i18n.getMessage("content_warning");
+
+    alert(message);
+  };
+
   ns.loadListener = function() {
     var self = this;
 
@@ -268,18 +274,28 @@ $(function() {
           self.cleanup();
           self.tab = request.params.tab;
           self.settings = request.params.settings;
-          self.sendPage();
+          try {
+            self.sendPage();
+          } catch(err) {
+            self.sendComplete();
+            self.showWarning();
+          }
         break;
 
         case 'ns_highlight':
           if(request.params && request.params.total > 0) {
             self.response = request.params;
-            self.highlight();
-            self.makeToolBox();
-            self.addNames();
-            self.activateButtons();
-            self.i18n();
-            self.sendComplete(request.params.total);
+            try {
+              self.highlight();
+              self.makeToolBox();
+              self.addNames();
+              self.activateButtons();
+              self.i18n();
+              self.sendComplete(request.params.total);
+            } catch(err) {
+              self.sendComplete();
+              self.showWarning();
+            }
           }
         break;
       }

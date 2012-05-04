@@ -173,10 +173,16 @@ $(function() {
         break;
 
         case 'ns_complete':
-          var total  = (request.params.total > 9999) ? ">999":  request.params.total.toString();
+          var total = "";
 
-          self.total[request.params.tab.id] = request.params.total;
-          self.setBadge(request.params.tab, total, 'green');
+          if(!request.params.total) {
+            self.total[request.params.tab.id] = 0;
+            self.setBadge(request.params.tab, total, 'red');
+          } else {
+            total = (request.params.total > 9999) ? ">999" : request.params.total.toString();
+            self.total[request.params.tab.id] = request.params.total;
+            self.setBadge(request.params.tab, total, 'green');
+          }
         break;
 
         case 'ns_analytics':

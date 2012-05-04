@@ -5,6 +5,9 @@
   "manifest_title" : {
     "message" : "Find scientific names"
   },
+  "content_warning" : {
+    "message" : "Scientific names cannot be found on this page"
+  },
   "error" : {
     "message" : "Either there was a problem with NameSpotter or you lost your Internet connection."
   },
