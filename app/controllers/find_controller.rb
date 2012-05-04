@@ -64,14 +64,9 @@ class FindController < ApplicationController
     content.gsub!("_", " ")
     start_execution = Time.now
     if @engine.count == 2
-      #force encoding for taxon_finder because it cannot properly deal with some unicode characters
-      names = @tf_name_spotter.find(content.force_encoding('BINARY').encode('UTF-8',  :invalid => :replace, :undef => :replace, :replace => ''))[:names] | @neti_name_spotter.find(content)[:names]
+      names = @tf_name_spotter.find(content)[:names] | @neti_name_spotter.find(content)[:names]
     else
-      names = (@engine[0] == 'TaxonFinder') ? @tf_name_spotter.find(content.force_encoding('BINARY').encode('UTF-8',  :invalid => :replace, :undef => :replace, :replace => ''))[:names] : @neti_name_spotter.find(content)[:names]
-    end
-    names.each do |name|
-      #force encoding for output because it comes back as ASCII-8bit
-      name.each { |k,v| name[k] = v.force_encoding('UTF-8') unless v.is_a? Numeric }
+      names = (@engine[0] == 'TaxonFinder') ? @tf_name_spotter.find(content)[:names] : @neti_name_spotter.find(content)[:names]
     end
     @end_execution = (Time.now - start_execution)
     names
