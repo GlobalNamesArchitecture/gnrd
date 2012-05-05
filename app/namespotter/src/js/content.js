@@ -227,7 +227,8 @@ $(function() {
         url     = self.tab.url,
         message = { tab : self.tab, data : { unique : true  } },
         ext     = url.split('.').pop().toLowerCase(),
-        body    = "";
+        body    = "",
+        cell    = "";
 
     if(url.indexOf("docs.google.com") !== -1 && ext === "pdf") {
       message.data.url = self.getParameterByName('url');
@@ -237,6 +238,10 @@ $(function() {
       body = $('body').clone();
       $.each(self.scrub, function() {
         body.find(this).remove();
+      });
+      $.each($('td', body), function() {
+        cell = $(this).html();
+        $(this).html(" " + cell);
       });
       message.data.input  = body.text().replace(/\s+/g, " ");
     }

@@ -68,6 +68,7 @@ class FindController < ApplicationController
     else
       names = (@engine[0] == 'TaxonFinder') ? @tf_name_spotter.find(content)[:names] : @neti_name_spotter.find(content)[:names]
     end
+    names.each { |name| name[:scientificName].gsub!(/[\[\]]/, "") }
     @end_execution = (Time.now - start_execution)
     names
   end
