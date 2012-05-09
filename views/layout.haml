@@ -5,19 +5,37 @@
     %title= @title || SiteConfig.title
     %link{ :href => '/main.css', :rel => 'stylesheet', :type => 'text/css' }
   %body
-    #container
-      #header
-        #logo
-          %table{ :style => "width:100%" }
-            %tbody
-              %tr
-                %td{ :style => 'text-align:left' }
-                  %span.title
-                    %a{:href => '/'}= SiteConfig.title
-                %td{ :style => 'text-align:right' }
-                  %form{ :action => '/search', :method => 'get' }
-                    %input{ :type => "string", :name => "search_term" }
-                    %input{ :type => "submit", :value => "Search" }
-      #content= yield
-      #footer
-        /%p#legal= "&mdash; &copy; #{Time.now.strftime('%Y')} #{SiteConfig.author} &mdash;"
+    #SiteContainer.structural
+      .background
+      #Header.structural.fixedWidth
+        .inner
+          #Logo
+            %a{:href => "/"}
+            %h1 Global Names Recognition and Discovery
+          %ul#SiteNavigation
+            - klass =  @page == "home" ? :active : nil
+            %li{:class => klass}
+              %a{:href => "/home"} Home
+            - klass = @page == "feedback" ? :active : nil
+            %li{:class => klass}
+              %a{:href => "/feedback"} Feedback
+            - klass = @page == "api" ? :active : nil
+            %li{:class => klass}
+              %a{:href => "/api"} API
+      #BodyContent.structural.fixedWidth.clear
+        .inner
+          #content-wrapper
+            #content-body= yield
+      #Footer.structural.fixedWidth
+        .inner
+          %span
+            %a{:href => 'http://www.globalnames.org'} Global Names Architecture
+          |
+          = succeed "|" do
+            %span
+              %a{:href => 'http://gni.globalnames.org'} Global Names Index
+          = succeed "|" do
+            %span
+              %a{:href => "http://gnaclr.globalnames.org"} Global Names Classification and List Repository
+          %span
+            %a{:href => 'http://gnite.org'} Global Names Integrated Taxonomic Editor 

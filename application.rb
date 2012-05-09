@@ -10,5 +10,6 @@ get '/main.css' do
 end
 
 get "/" do
+  @page = 'home'
   haml :home
 end
