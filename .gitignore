@@ -6,12 +6,6 @@
 .bundle
 tags
 config/database.yml
-db/*.sqlite3
 log/*.log
-tmp/**/*
-tmp/*
-capybara*.html
 .DS_Store
-*_site_specific.rb
-cucumber-rails
-app/namespotter/namespotter.pem
+config.yml
