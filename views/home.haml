@@ -1,0 +1,37 @@
+%p.tagline Global Names recognition and discovery tools and services
+%p
+  Find scientific names on web pages, online PDF documents, images, or in freeform text. Encrypted or image-based PDFs and image files first pass through an OCR routine using 
+  %a{:href =>"http://code.google.com/p/tesseract-ocr/"} Tesseract
+  prior to using the excellent 
+  %a{:htre => "http://code.google.com/p/taxon-finder/"} TaxonFinder 
+  and 
+  %a{:href => "https://github.com/mbl-cli/NetiNeti"} NetiNeti
+  names discovery engines.
+#chrome-panel.panel
+  #chrome.clear
+    #chrome-icon
+      %a{:href => "https://chrome.google.com/webstore/detail/pogmooobpbggadhlleijfpjgnpkjdnhn", :target => "_blank"}
+        %img{:alt => "BiblioSpotter Chrome Extension", :src => 'icon-48.png'}/
+    #chrome-description
+      %span
+        %a{:href => "https://chrome.google.com/webstore/detail/pogmooobpbggadhlleijfpjgnpkjdnhn", :target => "_blank"} Chrome NameSpotter Extension
+      %span Make scientific names actionable.
+#form-panel.panel
+  %form{:action => "/find", :method => "post"}
+    %label{:for => 'find_url'} URL to web page, PDF, or image
+    %input.gnrd_input{:type => :text, :name => :find_url, :id => :find_url, :placeholder => "http://example.com"}
+    %p.separator -- OR --
+    %label{ :for => :find_input } Freeform Text
+    %textarea.gnrd_input{ :cols => 25, :rows => 12, :name => :find_input, :id => :find_input }
+    %fieldset 
+      %legend "Name-Finding Engine"
+      - ['Both', 'TaxonFinder', 'NetiNeti'].each do |radio|
+        - checked = radio == 'Both' ? true : nil
+        %input{:type => :radio, :name => "engine_#{radio}", :id => "engine_#{radio}", :value => radio, :checked =>  checked}
+        %label{:for => "engine_#{radio}"}
+    %div
+      %input.form-button.submit-button{:type => :submit, :value => "Find Names"}
+      %input{:type => :hidden,  :name => :unique, :value => :true}
+%p
+  %a{:href => "https://github.com/GlobalNamesArchitecture/gnrd"} Code
+  on GitHub
