@@ -1,15 +1,15 @@
 development:
-  apapter: mysql2
+  adapter: mysql2
   host: localhost
   user: root
   password:
-  database: gnrd
+  database: gnrd_dev
   url_base: 'http://localhost:4567'
   salt: substitute_with_your_secret_salt_string
   solr_url: 'http://localhost:8983/solr'
 
 test:
-  apapter: mysql2
+  adapter: mysql2
   host: localhost
   user: root
   password:
@@ -19,7 +19,7 @@ test:
   solr_url: 'http://localhost:8983/solr'
 
 production:
-  apapter: mysql2
+  adapter: mysql2
   host: localhost
   user: root
   password:

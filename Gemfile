@@ -8,6 +8,8 @@ gem "sass"
 gem "name-spotter"
 gem "mechanize"
 gem "docsplit"
+gem "rspec"
+gem "resque"
 
 
 group :development, :test do
