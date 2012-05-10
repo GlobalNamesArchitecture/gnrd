@@ -13,3 +13,6 @@ get "/" do
   @page = 'home'
   haml :home
 end
+
+post "/find:format" do 
+end

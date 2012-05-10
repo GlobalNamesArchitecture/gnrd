@@ -11,7 +11,7 @@
         .inner
           #Logo
             %a{:href => "/"}
-            %h1 Global Names Recognition and Discovery
+              %h1 Global Names Recognition and Discovery
           %ul#SiteNavigation
             - klass =  @page == "home" ? :active : nil
             %li{:class => klass}
@@ -25,6 +25,8 @@
       #BodyContent.structural.fixedWidth.clear
         .inner
           #content-wrapper
+            #content-splash
+              %p.tagline Global Names recognition and discovery tools and services
             #content-body= yield
       #Footer.structural.fixedWidth
         .inner

@@ -1,4 +1,3 @@
-%p.tagline Global Names recognition and discovery tools and services
 %p
   Find scientific names on web pages, online PDF documents, images, or in freeform text. Encrypted or image-based PDFs and image files first pass through an OCR routine using 
   %a{:href =>"http://code.google.com/p/tesseract-ocr/"} Tesseract
@@ -19,16 +18,16 @@
 #form-panel.panel
   %form{:action => "/find", :method => "post"}
     %label{:for => 'find_url'} URL to web page, PDF, or image
-    %input.gnrd_input{:type => :text, :name => :find_url, :id => :find_url, :placeholder => "http://example.com"}
+    %input.gnrd-input{:type => :text, :name => :find[url], :id => :find_url, :placeholder => "http://example.com", :size => 30}
     %p.separator -- OR --
     %label{ :for => :find_input } Freeform Text
-    %textarea.gnrd_input{ :cols => 25, :rows => 12, :name => :find_input, :id => :find_input }
+    %textarea.gnrd-input{ :cols => 25, :rows => 12, :name => :find_input, :id => :find_input }
     %fieldset 
-      %legend "Name-Finding Engine"
+      %legend Name-Finding Engine
       - ['Both', 'TaxonFinder', 'NetiNeti'].each do |radio|
         - checked = radio == 'Both' ? true : nil
         %input{:type => :radio, :name => "engine_#{radio}", :id => "engine_#{radio}", :value => radio, :checked =>  checked}
-        %label{:for => "engine_#{radio}"}
+        %label{:for => "engine_#{radio}"}= radio
     %div
       %input.form-button.submit-button{:type => :submit, :value => "Find Names"}
       %input{:type => :hidden,  :name => :unique, :value => :true}
