@@ -6,6 +6,7 @@ require 'ostruct'
 require 'yaml'
 require 'active_record'
 require 'logger'
+require 'name-spotter'
 
 #set environment
 environment = ENV["RACK_ENV"] || ENV["RAILS_ENV"]

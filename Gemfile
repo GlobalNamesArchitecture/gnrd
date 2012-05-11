@@ -10,6 +10,7 @@ gem "mechanize"
 gem "docsplit"
 gem "rspec"
 gem "resque"
+gem "rack-flash"
 
 
 group :development, :test do
