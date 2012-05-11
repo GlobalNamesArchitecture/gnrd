@@ -24,6 +24,7 @@ configure do
                  :root_path => root_path,
                  :files_path => File.join(root_path, 'public', 'files'),
                  :salt => conf.delete('salt'),
+                 :disqus_shortname => 'globalnames-rd',
                )
 
   # to see sql during tests uncomment next line

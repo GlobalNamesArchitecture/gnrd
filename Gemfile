@@ -11,7 +11,7 @@ gem "docsplit"
 gem "rspec"
 gem "resque"
 gem "rack-flash"
-
+gem "builder"
 
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'

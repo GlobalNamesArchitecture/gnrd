@@ -1,0 +1,46 @@
+%h3 Base URL
+#base-url
+  - base_url = "http://#{SiteConfig.url_base}/name_finder.json"
+  %p= base_url
+%h3 Parameters (GET or POST)
+%p
+  POST requests with the
+  %em input
+  parameter additionally produces offsets where names start and end within the text.
+%dl
+  %dt url
+  %dd
+    An encoded URL for a web page, PDF document, or image file
+    %br/
+    %em e.g.
+    = base_url + "?url=http://en.wikipedia.org/wiki/Animalia"
+  %dt input
+  %dd
+    Text content; best used with a POST request
+    %br/
+    %em e.g.
+    =  base_url + "?input=A+spider+named+Pardosa+moesta+Banks,+1892"
+  %dt engine
+  %dd
+    Optional; either "TaxonFinder" or "NetiNeti". If absent, both engines are used.
+    %br/
+    %em e.g.
+    = base_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;engine=NetiNeti"
+  %dt unique
+  %dd
+    Optional. If present, will produce a list of unique names
+    %br/
+    %em e.g.
+    = base_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;unique=true"
+%h3 Output Format
+%dl
+  %dt JSON (default)
+  %dd
+    With optional callback parameter
+    %br/
+    %em e.g.
+    = base_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;callback=MyCoolCallback"
+  %dt XML
+  %dd
+    %em e.g.
+    = base_url.sub(/json/,'xml') + "?url=http://en.wikipedia.org/wiki/Animalia"

@@ -6,7 +6,6 @@ development:
   database: gnrd_dev
   url_base: 'http://localhost:4567'
   salt: substitute_with_your_secret_salt_string
-  solr_url: 'http://localhost:8983/solr'
 
 test:
   adapter: mysql2
@@ -16,7 +15,6 @@ test:
   database: gnrd_test
   url_base: 'http://localhost:4567'
   salt: substitute_with_your_secret_salt_string
-  solr_url: 'http://localhost:8983/solr'
 
 production:
   adapter: mysql2
@@ -26,7 +24,6 @@ production:
   database: gnrd_test
   url_base: 'http://localhost:4567'
   salt: substitute_with_your_secret_salt_string
-  solr_url: 'http://localhost:8983/solr'
   
   
   

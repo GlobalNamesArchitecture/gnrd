@@ -1,0 +1,33 @@
+- require 'ruby-debug'; debugger
+- if !@agent.blank? && @agent[:content_type].include?("image")
+  = content_tag :h3, "Source Image"
+  #found-names-preview
+    %img{:src => @url}/
+%ul#found-names-summary
+  - if !@url.blank?
+    %li
+      %strong URL:
+      = @url
+  %li
+    %strong Total:
+    = @output[:total]
+  %li
+    %strong Engine(s):
+    = @output[:engines].join(", ")
+  %li
+    %strong Time:
+    = @output[:execution_time][:find_names_duration].to_s
+    s to find names, #{@output[:execution_time][:total_duration].to_s} s for entire process
+- if @output[:total] > 0
+  %table#found-names-grid
+    %thead
+      %tr
+        %th Verbatim
+        %th Scientific
+    %tbody
+      - cycle = "odd"
+      - @output[:names].sort { |a,b| a[:verbatim] <=> b[:verbatim] }.each do |name|
+        - cycle = (cycle == "odd") ? "even" : "odd"
+        %tr{:class => cycle}
+          %td= name[:verbatim]
+          %td= name[:scientificName]

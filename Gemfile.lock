@@ -107,6 +107,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 3.2.3)
+  builder
   docsplit
   haml
   mechanize
