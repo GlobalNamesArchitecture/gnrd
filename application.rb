@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'sinatra'
 require 'sinatra/base'
+require "sinatra/reloader" if development?
 require 'rack-flash'
 require File.join(File.dirname(__FILE__), 'environment')
 

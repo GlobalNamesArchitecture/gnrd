@@ -53,6 +53,8 @@ GEM
       rack
     rack-protection (1.2.0)
       rack
+    rack-test (0.6.1)
+      rack (>= 1.0)
     rake (0.9.2.2)
     redis (2.2.2)
     redis-namespace (1.0.3)
@@ -114,6 +116,7 @@ DEPENDENCIES
   mysql2
   name-spotter
   rack-flash
+  rack-test
   resque
   rspec
   ruby-debug19
