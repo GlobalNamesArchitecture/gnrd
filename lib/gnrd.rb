@@ -1,5 +1,7 @@
 require 'uri'
 require 'tmpdir'
+require 'mechanize'
+require 'docsplit'
 
 module GNRD
   class NameFinder
@@ -10,8 +12,9 @@ module GNRD
       @valid_engines = ["TaxonFinder", "NetiNeti"]
       @input = params[:input] || (params[:find] && params[:find][:input]) || nil
       @engine = (params[:engine] && @valid_engines.include?(params[:engine])) ? [params[:engine]] : @valid_engines
-      @unique = params[:unique] == "true" || false
+      @unique = params[:unique] || false
       @format = params[:format] || "html"
+      @agent = nil
       @output = nil
     end
     
@@ -112,6 +115,8 @@ module GNRD
         end
         @output = {
           :status  => "OK",
+          :url     => @url,
+          :agent   => @agent,
           :execution_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
           :total   => @unique ? names.uniq.count : names.count,
           :engines => @engine,
@@ -120,6 +125,8 @@ module GNRD
       rescue
         @output = {
           :status  => "FAILED",
+          :url     => @url,
+          :agent   => @agent,
           :total   => 0,
           :engines => @engine,
           :names   => [],

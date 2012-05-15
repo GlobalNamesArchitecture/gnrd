@@ -2,6 +2,7 @@
 require 'sinatra'
 require 'sinatra/base'
 require 'rack-flash'
+require 'builder'
 require File.join(File.dirname(__FILE__), 'environment')
 
 enable :sessions
@@ -10,7 +11,7 @@ use Rack::Flash
 set :haml, :format => :html5
 
 def find(params)
-  @output = GNRD::NameFinder.new(params).find 
+  @output = GNRD::NameFinder.new(params).find
   case params[:format]
   when 'json'
     content_type 'application/json', :charset => 'utf-8'
@@ -26,7 +27,7 @@ def find(params)
     @title = "Discovered Names"
     @page = "home"
     @header = "Discovered Names"
-    flash[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == "FAILED" 
+    flash[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == "FAILED"
     haml :name_finder
   end
 end

@@ -1,23 +1,24 @@
-- require 'ruby-debug'; debugger
-- if !@agent.blank? && @agent[:content_type].include?("image")
-  = content_tag :h3, "Source Image"
+- if @output[:agent][:content_type] && @output[:agent][:content_type].include?("image")
+  %h3
+    %strong Source Image
   #found-names-preview
-    %img{:src => @url}/
+    %img{:src => @output[:url]}
 %ul#found-names-summary
-  - if !@url.blank?
+  - if !@output[:url].blank?
     %li
       %strong URL:
-      = @url
+      = @output[:url]
   %li
     %strong Total:
     = @output[:total]
   %li
     %strong Engine(s):
     = @output[:engines].join(", ")
-  %li
-    %strong Time:
-    = @output[:execution_time][:find_names_duration].to_s
-    s to find names, #{@output[:execution_time][:total_duration].to_s} s for entire process
+  - if @output[:execution_time]
+    %li
+      %strong Time:
+      = @output[:execution_time][:find_names_duration].to_s
+      s to find names, #{@output[:execution_time][:total_duration].to_s} s for entire process
 - if @output[:total] > 0
   %table#found-names-grid
     %thead
