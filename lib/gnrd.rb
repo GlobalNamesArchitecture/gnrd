@@ -41,7 +41,6 @@ module GNRD
     end
 
     def get_agent_response
-      @agent = { :code => "200", :content_type => "text/html" }
       if !@url.blank?
         if URI(@url).scheme.nil?
           @url.insert(0, "http://")
@@ -86,7 +85,7 @@ module GNRD
     
     def get_content
       content = ""
-      if @agent[:code] == "500"
+      if @agent && @agent[:code] == "500"
         flash[:error] = "That URL was inaccessible."
         return content
       end

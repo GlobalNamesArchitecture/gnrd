@@ -1,4 +1,4 @@
-- if @output[:agent][:content_type] && @output[:agent][:content_type].include?("image")
+- if @output[:agent] && @output[:agent][:content_type].include?("image")
   %h3
     %strong Source Image
   #found-names-preview
