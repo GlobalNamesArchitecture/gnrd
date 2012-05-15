@@ -12,7 +12,19 @@ use Rack::Flash
 set :haml, :format => :html5
 
 def find(params)
-  @output = GNRD::NameFinder.new(params).find
+  url = params[:url] || (params[:find] && params[:find][:url]) || nil
+  file_path = params[:file] || (params[:find] && params[:find][:file]) || nil
+  input = params[:input] || (params[:find] && params[:find][:input]) || nil
+  unique = params[:unique] || false
+  format = params[:format] || "html"
+  engine = params[:engine] || "Both"
+  token = "_"
+  while token.match(/_/) 
+    token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
+  end
+  nf = NameFinder.create(:url => url, :token => token, :file_path => file_path, :input => input, :format => format, :unique => unique)
+  Resque.enqueue(NameFinder, nf.id) rescue nf.name_find
+  @output = nf.output
   case params[:format]
   when 'json'
     content_type 'application/json', :charset => 'utf-8'
@@ -25,11 +37,7 @@ def find(params)
     content_type 'text/xml', :charset => 'utf-8'
     builder :namefinder
   else
-    @title = "Discovered Names"
-    @page = "home"
-    @header = "Discovered Names"
-    flash[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == "FAILED"
-    haml :name_finder
+    redirect  "/name_finder/#{nf.token}"
   end
 end
 
@@ -56,6 +64,16 @@ get "/" do
   @page = 'home'
   @tagline = 'Global Names recognition and discovery tools and services'
   haml :home
+end
+
+get "/name_finder/:token.?:format?" do
+  nf = NameFinder.find_by_token(params[:token])
+  @title = "Discovered Names"
+  @page = "home"
+  @header = "Discovered Names"
+  @output = nf.output
+  flash[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == "FAILED"
+  haml :name_finder
 end
 
 get "/name_finder.?:format?" do

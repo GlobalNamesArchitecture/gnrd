@@ -7,6 +7,10 @@ require 'yaml'
 require 'active_record'
 require 'logger'
 require 'name-spotter'
+require 'uri'
+require 'tmpdir'
+require 'mechanize'
+require 'docsplit'
 
 #set environment
 environment = ENV["RACK_ENV"] || ENV["RAILS_ENV"]
