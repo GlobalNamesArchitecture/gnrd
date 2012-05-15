@@ -1,11 +1,13 @@
 xml.instruct!
 xml.result do
-  xml.total @output[:total]
   xml.status @output[:status]
+  xml.total @output[:total]
+  xml.url @output[:url] unless @output[:url].nil?
+  xml.agent @output[:agent] unless @output[:agent].nil?
   xml.execution_time do
     xml.find_names_duration @output[:execution_time][:find_names_duration]
     xml.total_duration @output[:execution_time][:total_duration]
-  end
+  end unless !@output[:execution_time]
   xml.engines do
     @output[:engines].each do |engine|
       xml.engine engine

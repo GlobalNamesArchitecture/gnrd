@@ -27,8 +27,11 @@
           #content-wrapper
             - if flash[:error]
               #flash_error= flash[:error]
-            #content-splash
-              = @content_splash ? @content_splash : '' 
+            - if !@tagline.nil?
+              %p{:class => 'tagline'}= @tagline
+            - if !@header.nil?
+              #content-splash
+                %h2= @header
             #content-body= yield
       #Footer.structural.fixedWidth
         .inner
