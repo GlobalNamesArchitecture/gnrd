@@ -9,8 +9,9 @@ module GNRD
     def initialize(params)
       @start_process = Time.now
       @url = params[:url] || (params[:find] && params[:find][:url]) || nil
-      @valid_engines = ["TaxonFinder", "NetiNeti"]
+      @file = params[:file] || (params[:find] && params[:find][:file]) || nil
       @input = params[:input] || (params[:find] && params[:find][:input]) || nil
+      @valid_engines = ["TaxonFinder", "NetiNeti"]
       @engine = (params[:engine] && @valid_engines.include?(params[:engine])) ? [params[:engine]] : @valid_engines
       @unique = params[:unique] || false
       @format = params[:format] || "html"
@@ -61,12 +62,32 @@ module GNRD
         new_agent.pluggable_parser.default = Mechanize::Download
         new_agent.get(@url).save(file)
         Docsplit.extract_text(file, :output => dir, :clean => true)
-          for name in Dir.new(dir)
-            if name =~ /\.txt$/
-              content << File.open(File.join(dir, name), 'r')  { |f| f.read }
-            end
+        for name in Dir.new(dir)
+          if name =~ /\.txt$/
+            content << File.open(File.join(dir, name), 'r')  { |f| f.read }
           end
-        }
+        end
+      }
+      content
+    end
+    
+    def upload_doc
+      content = ""
+      tmpfile = @file[:tempfile]
+      Dir.mktmpdir{ |dir|
+        file = File.join(dir, @file[:filename])
+        open_file = File.open(file, "ab")
+        while blk = tmpfile.read(65536)
+          open_file.write(blk)
+        end
+        open_file.close
+        Docsplit.extract_text(file, :output => dir, :clean => true)
+        for name in Dir.new(dir)
+          if name =~ /\.txt$/
+            content << File.open(File.join(dir, name), 'r')  { |f| f.read }
+          end
+        end
+      }
       content
     end
     
@@ -89,16 +110,17 @@ module GNRD
         flash[:error] = "That URL was inaccessible."
         return content
       end
-      if !@input.blank?
-        content = @input
-      elsif !@url.blank?
+      if !@url.blank?
         if @agent[:content_type].include? "text/html"
           page = new_agent.get @url
-          #encode the web page content
           content = page.parser.text.encode!('UTF-8', page.encodings.last, :invalid => :replace, :undef => :replace, :replace => '')
         else
           content = read_doc
         end
+      elsif !@file.blank?
+        content = upload_doc
+      elsif !@input.blank?
+        content = @input
       end
       content
     end
@@ -115,6 +137,7 @@ module GNRD
         @output = {
           :status  => "OK",
           :url     => @url,
+          :file    => @file,
           :agent   => @agent,
           :execution_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
           :total   => @unique ? names.uniq.count : names.count,
@@ -125,6 +148,7 @@ module GNRD
         @output = {
           :status  => "FAILED",
           :url     => @url,
+          :file    => @file,
           :agent   => @agent,
           :total   => 0,
           :engines => @engine,

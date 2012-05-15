@@ -16,9 +16,12 @@
         %a{:href => "https://chrome.google.com/webstore/detail/pogmooobpbggadhlleijfpjgnpkjdnhn", :target => "_blank"} Chrome NameSpotter Extension
       %span Make scientific names actionable.
 #form-panel.panel
-  %form{:action => "/name_finder", :method => "post"}
+  %form{:action => "/name_finder", :method => "post", :enctype=>"multipart/form-data"}
     %label{:for => 'find_url'} URL to web page, PDF, or image
     %input.gnrd-input{:type => :text, :name => "find[url]", :id => :find_url, :placeholder => "http://example.com", :size => 30}
+    %p.separator -- OR --
+    %label{:for => 'find_file'} File
+    %input.gnrd-file{:type => :file, :name => "find[file]", :id => :find_file, :accept => "application/x-gzip;application/zip", :size => 30}
     %p.separator -- OR --
     %label{ :for => :find_input } Freeform Text
     %textarea.gnrd-input{ :cols => 25, :rows => 12, :name => "find[input]", :id => :find_input }

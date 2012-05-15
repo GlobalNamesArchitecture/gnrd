@@ -8,6 +8,10 @@
     %li
       %strong URL:
       = @output[:url]
+  - if !@output[:file].blank?
+    %li
+      %strong File:
+      = @output[:file][:filename]
   %li
     %strong Total:
     = @output[:total]
