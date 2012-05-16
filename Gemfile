@@ -14,7 +14,6 @@ gem "resque"
 gem "rack-flash"
 gem "rack-test"
 gem "builder"
-gem "mailfactory"
 
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
