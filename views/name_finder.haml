@@ -4,17 +4,21 @@
   #found-names-preview
     %img{:src => @output[:url]}
 %ul#found-names-summary
-  - if !@output[:url].blank?
+  %li
+    %strong Status:
+    = @output[:status]
+  - if !@output[:input_url].blank?
     %li
       %strong URL:
-      = @output[:url]
+      = @output[:input_url]
   - if !@output[:file].blank?
     %li
       %strong File:
       = @output[:file][:filename]
-  %li
-    %strong Total:
-    = @output[:total]
+  - if !@output[:total].blank?
+    %li
+      %strong Total:
+      = @output[:total]
   %li
     %strong Engine(s):
     = @output[:engines].join(", ")
@@ -23,7 +27,7 @@
       %strong Time:
       = @output[:execution_time][:find_names_duration].to_s
       s to find names, #{@output[:execution_time][:total_duration].to_s} s for entire process
-- if @output[:total] > 0
+- if @output[:total] && @output[:total] > 0
   %table#found-names-grid
     %thead
       %tr

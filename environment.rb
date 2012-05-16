@@ -12,13 +12,11 @@ require 'tmpdir'
 require 'mechanize'
 require 'docsplit'
 require 'resque'
-require 'resque_scheduler'
 
 #set environment
 environment = ENV["RACK_ENV"] || ENV["RAILS_ENV"]
 environment = (environment && ["production", "test", "development"].include?(environment.downcase)) ? environment.downcase.to_sym : :development
 Sinatra::Base.environment = environment
-
 
 #configure
 root_path = File.expand_path(File.dirname(__FILE__))
@@ -44,4 +42,9 @@ configure do
   $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'models'))
   Dir.glob(File.join(File.dirname(__FILE__), 'lib', '**', '*.rb')) { |lib|   require File.basename(lib, '.*') }
   Dir.glob(File.join(File.dirname(__FILE__), 'models', '*.rb')) { |model| require File.basename(model, '.*') }
+end
+
+after do
+  Cleaner.run
+  ActiveRecord::Base.clear_active_connections!
 end

@@ -20,8 +20,8 @@ class NameFinder < ActiveRecord::Base
 
   def make_output
     url_format = ['xml', 'json'].include?(format) ? ".#{format}" : ''
-    self.url = SiteConfig.url_base + "/name_finder/" + token + url_format
-    self.output = {:url => url, :status => 'In Progress'}
+    self.url = SiteConfig.url_base + "/name_finder" + url_format + "?token=" + token 
+    self.output = {:url => url, :input_url => input_url, :status => 'In Progress', :engines => ENGINES[engine]}
     self.save!
   end
 

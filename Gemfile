@@ -11,10 +11,10 @@ gem "mechanize"
 gem "docsplit"
 gem "rspec"
 gem "resque"
-gem "resque-scheduler"
 gem "rack-flash"
 gem "rack-test"
 gem "builder"
+gem "mailfactory"
 
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'

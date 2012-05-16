@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'sinatra'
 require 'sinatra/base'
-require "sinatra/reloader" if development?
+# require "sinatra/reloader" if development?
 require 'rack-flash'
 require 'builder'
 require File.join(File.dirname(__FILE__), 'environment')
@@ -23,7 +23,11 @@ def find(params)
     token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
   end
   nf = NameFinder.create(:input_url => input_url, :engine => engine, :token => token, :file_path => file_path, :input => input, :format => format, :unique => unique)
-  Resque.enqueue(NameFinder, nf.id) rescue nf.name_find
+  if ['xml', 'json'].include?(format)
+    Resque.enqueue(NameFinder, nf.id) rescue nf.name_find
+  else
+    nf.name_find
+  end
   name_finder_presentation(nf, format, true)
 end
 
@@ -31,7 +35,6 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
   @title = "Discovered Names"
   @page = "home"
   @header = "Discovered Names"
-  require 'ruby-debug'; debugger
   @output = name_finder_instance.output
   flash[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == "FAILED"
   case format
@@ -79,13 +82,13 @@ get "/" do
   haml :home
 end
 
-get "/name_finder/:token.?:format?" do
-  nf = NameFinder.find_by_token(params[:token])
-  name_finder_presentation(nf, params[:format])
-end
-
 get "/name_finder.?:format?" do
-  find(params)
+  if params[:token]
+    nf = NameFinder.find_by_token(params[:token])
+    name_finder_presentation(nf, params[:format])
+  else
+    find(params)
+  end
 end
 
 post "/name_finder.?:format?" do
