@@ -11,6 +11,8 @@ require 'uri'
 require 'tmpdir'
 require 'mechanize'
 require 'docsplit'
+require 'resque'
+require 'resque_scheduler'
 
 #set environment
 environment = ENV["RACK_ENV"] || ENV["RAILS_ENV"]

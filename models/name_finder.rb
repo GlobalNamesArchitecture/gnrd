@@ -19,8 +19,8 @@ class NameFinder < ActiveRecord::Base
 
   def set_instance_vars
     @start_process = Time.now
-    @valid_engines = ["TaxonFinder", "NetiNeti"]
-    @engines = (engine && @valid_engines.include?(engine)) ? [engine] : @valid_engines
+    valid_engines = ["TaxonFinder", "NetiNeti"]
+    @engines = (engine && valid_engines.include?(engine)) ? [engine] : valid_engines
     @agent = nil
     @output = nil
   end
@@ -151,9 +151,6 @@ class NameFinder < ActiveRecord::Base
         :engines => @engines,
         :names   => [],
       }
-      #require 'ruby-debug'; debugger
-      require 'pp'
-      pp output
       save!
     end
   end

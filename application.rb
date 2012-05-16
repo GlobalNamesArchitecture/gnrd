@@ -22,8 +22,9 @@ def find(params)
   while token.match(/_/) 
     token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
   end
-  nf = NameFinder.create(:url => url, :token => token, :file_path => file_path, :input => input, :format => format, :unique => unique)
+  nf = NameFinder.create(:token => token, :url => url, :file_path => file_path, :input => input, :engine => engine, :format => format, :unique => unique)
   Resque.enqueue(NameFinder, nf.id) rescue nf.name_find
+  Resque.enqueue_in(7.days, NameFinderNuke, nf.id) rescue nil
   @output = nf.output
   case params[:format]
   when 'json'
@@ -49,8 +50,8 @@ get '/api' do
 end
 
 get '/feedback' do
-  @page = 'feedback'
-  @title = 'Feedback'
+  @page = "feedback"
+  @title = "Feedback"
   @header = "Feedback"
   haml :feedback
 end
@@ -61,15 +62,15 @@ get '/main.css' do
 end
 
 get "/" do
-  @page = 'home'
-  @tagline = 'Global Names recognition and discovery tools and services'
+  @page = "home"
+  @tagline = "Global Names recognition and discovery tools and services"
   haml :home
 end
 
 get "/name_finder/:token.?:format?" do
   nf = NameFinder.find_by_token(params[:token])
-  @title = "Discovered Names"
   @page = "home"
+  @title = "Discovered Names"
   @header = "Discovered Names"
   @output = nf.output
   flash[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == "FAILED"
