@@ -3,15 +3,18 @@ class CreateNameFinder < ActiveRecord::Migration
     create_table :name_finders do |t|
       t.string  :token
       t.text    :input
-      t.string  :url
+      t.string  :input_url
       t.string  :file_path
       t.text    :output
-      t.string  :engine
+      t.string  :url
+      t.integer :engine, :default => 0
       t.boolean :unique
       t.string  :format
       t.string  :document_sha
       t.timestamps
     end
     add_index :name_finders, :token, :unique => true
+    execute "alter table name_finders modify column input longtext"
+    execute "alter table name_finders modify column output mediumtext"
   end
 end

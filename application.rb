@@ -12,7 +12,7 @@ use Rack::Flash
 set :haml, :format => :html5
 
 def find(params)
-  url = params[:url] || (params[:find] && params[:find][:url]) || nil
+  input_url = params[:url] || (params[:find] && params[:find][:url]) || nil
   file_path = params[:file] || (params[:find] && params[:find][:file]) || nil
   input = params[:input] || (params[:find] && params[:find][:input]) || nil
   unique = params[:unique] || false
@@ -22,11 +22,19 @@ def find(params)
   while token.match(/_/) 
     token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
   end
-  nf = NameFinder.create(:token => token, :url => url, :file_path => file_path, :input => input, :engine => engine, :format => format, :unique => unique)
+  nf = NameFinder.create(:input_url => input_url, :engine => engine, :token => token, :file_path => file_path, :input => input, :format => format, :unique => unique)
   Resque.enqueue(NameFinder, nf.id) rescue nf.name_find
-  Resque.enqueue_in(7.days, NameFinderNuke, nf.id) rescue nil
-  @output = nf.output
-  case params[:format]
+  name_finder_presentation(nf, format, true)
+end
+
+def name_finder_presentation(name_finder_instance, format, do_redirect = false) 
+  @title = "Discovered Names"
+  @page = "home"
+  @header = "Discovered Names"
+  require 'ruby-debug'; debugger
+  @output = name_finder_instance.output
+  flash[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == "FAILED"
+  case format
   when 'json'
     content_type 'application/json', :charset => 'utf-8'
     json_data = JSON.dump(@output)
@@ -38,7 +46,11 @@ def find(params)
     content_type 'text/xml', :charset => 'utf-8'
     builder :namefinder
   else
-    redirect  "/name_finder/#{nf.token}"
+    if do_redirect
+      redirect  name_finder_instance.url
+    else
+      haml :name_finder
+    end
   end
 end
 
@@ -69,12 +81,7 @@ end
 
 get "/name_finder/:token.?:format?" do
   nf = NameFinder.find_by_token(params[:token])
-  @page = "home"
-  @title = "Discovered Names"
-  @header = "Discovered Names"
-  @output = nf.output
-  flash[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == "FAILED"
-  haml :name_finder
+  name_finder_presentation(nf, params[:format])
 end
 
 get "/name_finder.?:format?" do

@@ -27,10 +27,10 @@
     %textarea.gnrd-input{ :cols => 25, :rows => 12, :name => "find[input]", :id => :find_input }
     %fieldset 
       %legend Name-Finding Engine
-      - ['Both', 'TaxonFinder', 'NetiNeti'].each do |radio|
-        - checked = radio == 'Both' ? true : nil
-        %input{:type => :radio, :name => "engine", :id => "engine_#{radio}", :value => radio, :checked =>  checked}
-        %label{:for => "engine_#{radio}"}= radio
+      - {'Both' => 0, 'TaxonFinder' => 1, 'NetiNeti' => 2}.each do |key, value|
+        - checked = (key == 'Both') ? true : nil
+        %input{:type => :radio, :name => "engine", :id => "engine_#{key}", :value => value, :checked =>  checked}
+        %label{:for => "engine_#{key}"}= key
     %input{:type => :hidden,  :name => :unique, :value => :true}
     %div
       %input.form-button.submit-button{:type => :submit, :value => "Find Names"}

@@ -36,6 +36,7 @@ configure do
   # to see sql during tests uncomment next line
   ActiveRecord::Base.logger = Logger.new(STDOUT, :debug)
   ActiveRecord::Base.establish_connection(conf)
+  # ActiveRecord::Base.schema_format = :sql
 
   # load models
   $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'lib'))

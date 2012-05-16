@@ -1,8 +1,9 @@
 class NameFinder < ActiveRecord::Base
-  
+  after_create :make_output  
   @queue = :name_finder
   serialize :output, Hash
-  
+  ENGINES = { 0 => ["TaxonFinder", "NetiNeti"], 1 => ["TaxonFinder"], 2 => ["NetiNeti"] } 
+
   def self.perform(name_finder_id)
     nf = NameFinder.find(name_finder_id)
     nf.name_find
@@ -17,10 +18,16 @@ class NameFinder < ActiveRecord::Base
     
   private
 
+  def make_output
+    url_format = ['xml', 'json'].include?(format) ? ".#{format}" : ''
+    self.url = SiteConfig.url_base + "/name_finder/" + token + url_format
+    self.output = {:url => url, :status => 'In Progress'}
+    self.save!
+  end
+
   def set_instance_vars
     @start_process = Time.now
-    valid_engines = ["TaxonFinder", "NetiNeti"]
-    @engines = (engine && valid_engines.include?(engine)) ? [engine] : valid_engines
+    @engines = [ENGINES[engine]]
     @agent = nil
     @output = nil
   end
@@ -39,12 +46,12 @@ class NameFinder < ActiveRecord::Base
   end
 
   def get_agent_response
-    if !url.blank?
-      if URI(url).scheme.nil?
-        url.insert(0, "http://")
+    if !input_url.blank?
+      if URI(input_url).scheme.nil?
+        input_url.insert(0, "http://")
       end rescue nil
       begin
-        head = new_agent.head url
+        head = new_agent.head input_url
         @agent = { :code => head.code, :content_type => head.response["content-type"], :filename => head.filename }
       rescue
         @agent = { :code => "500", :content_type => "" }
@@ -57,7 +64,7 @@ class NameFinder < ActiveRecord::Base
     Dir.mktmpdir{ |dir|
       file = File.join(dir, @agent[:filename])
       new_agent.pluggable_parser.default = Mechanize::Download
-      new_agent.get(url).save(file)
+      new_agent.get(input_url).save(file)
       Docsplit.extract_text(file, :output => dir, :clean => true)
       for name in Dir.new(dir)
         if name =~ /\.txt$/
@@ -107,9 +114,9 @@ class NameFinder < ActiveRecord::Base
       flash[:error] = "That URL was inaccessible."
       return content
     end
-    if !url.blank?
+    if !input_url.blank?
       if @agent[:content_type].include? "text/html"
-        page = new_agent.get url
+        page = new_agent.get input_url
         content = page.parser.text.encode!('UTF-8', page.encodings.last, :invalid => :replace, :undef => :replace, :replace => '')
       else
         content = read_doc
@@ -131,27 +138,30 @@ class NameFinder < ActiveRecord::Base
           name.delete :offsetEnd
         end
       end
-      output = {
+      self.output.merge!(
         :status  => "OK",
-        :url     => url,
+        :input_url     => input_url,
         :file    => file_path,
         :agent   => @agent,
         :execution_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
         :total   => unique ? names.uniq.count : names.count,
         :engines => @engines,
         :names   => unique ? names.uniq : names
-      }
+      )
     rescue
-      output = {
+      self.output.merge!(
         :status  => "FAILED",
-        :url     => url,
+        :input_url     => input_url,
         :file    => file_path,
         :agent   => @agent,
         :total   => 0,
         :engines => @engines,
         :names   => [],
-      }
-      save!
+      )
     end
+    require 'pp'
+    pp self.output
+    puts 'output printed'
+    save!
   end
 end
