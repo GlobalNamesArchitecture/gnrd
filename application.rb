@@ -13,16 +13,21 @@ set :haml, :format => :html5
 
 def find(params)
   input_url = params[:url] || (params[:find] && params[:find][:url]) || nil
-  file_path = params[:file] || (params[:find] && params[:find][:file]) || nil
   input = params[:input] || (params[:find] && params[:find][:input]) || nil
   unique = params[:unique] || false
   format = params[:format] || "html"
   engine = params[:engine] || "Both"
+  file = params[:file] || (params[:find] && params[:find][:file]) || nil
+  file_name = file ? file[:filename] : nil
+  file_path = file ? file[:tempfile].path : nil
+  sha = file ? Digest::SHA1.file(file[:tempfile]).hexdigest : nil
+
   token = "_"
   while token.match(/_/) 
     token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
   end
-  nf = NameFinder.create(:input_url => input_url, :engine => engine, :token => token, :file_path => file_path, :input => input, :format => format, :unique => unique)
+  
+  nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :token => token, :document_sha => sha, :unique => unique, :input => input, :file_path => file_path, :file_name => file_name)
   if ['xml', 'json'].include?(format)
     Resque.enqueue(NameFinder, nf.id) rescue nf.name_find
   else

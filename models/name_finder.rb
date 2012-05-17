@@ -27,7 +27,7 @@ class NameFinder < ActiveRecord::Base
 
   def set_instance_vars
     @start_process = Time.now
-    @engines = [ENGINES[engine]]
+    @engines = ENGINES[engine]
     @agent = nil
     @output = nil
   end
@@ -59,39 +59,31 @@ class NameFinder < ActiveRecord::Base
     end
   end
   
-  def read_doc
-    content = ""
-    Dir.mktmpdir{ |dir|
-      file = File.join(dir, @agent[:filename])
-      new_agent.pluggable_parser.default = Mechanize::Download
-      new_agent.get(input_url).save(file)
-      Docsplit.extract_text(file, :output => dir, :clean => true)
-      for name in Dir.new(dir)
-        if name =~ /\.txt$/
-          content << File.open(File.join(dir, name), 'r')  { |f| f.read }
-        end
-      end
-    }
-    content
+  def save_file
+    file_path = Dir.mktmpdir
+    file = File.join(@file_path, @agent[:filename])
+    new_agent.pluggable_parser.default = Mechanize::Download
+    new_agent.get(input_url).save(file)
+    document_sha = Digest::SHA1.hexdigest(file)
   end
-  
-  def upload_doc
+
+  def read_file
     content = ""
-    tmpfile = file_path[:tempfile]
-    Dir.mktmpdir{ |dir|
-      file = File.join(dir, file_path[:filename])
-      open_file = File.open(file, "ab")
-      while blk = tmpfile.read(65536)
-        open_file.write(blk)
-      end
-      open_file.close
-      Docsplit.extract_text(file, :output => dir, :clean => true)
-      for name in Dir.new(dir)
-        if name =~ /\.txt$/
-          content << File.open(File.join(dir, name), 'r')  { |f| f.read }
+    file_type = `file #{file_path}`
+    if file_type.match /text/ 
+      content = open(file_path).read
+    else
+      Dir.mktmpdir do |dir|
+        Docsplit.extract_text(file_path, :output => dir, :clean => true)
+        Dir.entries(dir).each do |name|
+          if name.match /\.txt$/
+            content << open(File.join(dir, name), 'r').read 
+          end
         end
       end
-    }
+    end
+    FileUtils.remove_entry_secure file_path
+    file_path = nil
     content
   end
   
@@ -114,17 +106,11 @@ class NameFinder < ActiveRecord::Base
       flash[:error] = "That URL was inaccessible."
       return content
     end
-    if !input_url.blank?
-      if @agent[:content_type].include? "text/html"
-        page = new_agent.get input_url
-        content = page.parser.text.encode!('UTF-8', page.encodings.last, :invalid => :replace, :undef => :replace, :replace => '')
-      else
-        content = read_doc
-      end
-    elsif !file_path.blank?
-      content = upload_doc
-    elsif !input.blank?
+    save_file if !input_url.blank?
+    if !input.blank?
       content = input
+    else
+      content = read_file
     end
     content
   end

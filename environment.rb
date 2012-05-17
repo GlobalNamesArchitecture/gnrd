@@ -12,6 +12,7 @@ require 'tmpdir'
 require 'mechanize'
 require 'docsplit'
 require 'resque'
+require 'digest/sha1'
 
 #set environment
 environment = ENV["RACK_ENV"] || ENV["RAILS_ENV"]
@@ -26,7 +27,6 @@ configure do
                  :title => 'Global Names Recognition and Discovery',
                  :url_base => conf.delete('url_base'),
                  :root_path => root_path,
-                 :files_path => File.join(root_path, 'public', 'files'),
                  :salt => conf.delete('salt'),
                  :disqus_shortname => 'globalnames-rd',
                )

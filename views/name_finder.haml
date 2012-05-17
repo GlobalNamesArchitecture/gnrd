@@ -11,10 +11,11 @@
     %li
       %strong URL:
       = @output[:input_url]
-  - if !@output[:file].blank?
+  - if !@output[:file_path].blank?
     %li
       %strong File:
-      = @output[:file][:filename]
+      - file_name = @output[:file_path].split("/").last
+      = file_name
   - if !@output[:total].blank?
     %li
       %strong Total:
