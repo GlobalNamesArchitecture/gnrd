@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'sinatra'
+gem 'sinatra-flash'
 gem 'sinatra-reloader'
 gem 'mysql2'
 gem "activerecord", "~> 3.2.3"
@@ -11,7 +12,7 @@ gem "mechanize"
 gem "docsplit"
 gem "rspec"
 gem "resque"
-gem "rack-flash"
+gem "rack"
 gem "rack-test"
 gem "builder"
 
