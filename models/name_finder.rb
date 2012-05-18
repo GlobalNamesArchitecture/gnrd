@@ -1,6 +1,8 @@
 class NameFinder < ActiveRecord::Base
-  after_create :make_output  
+  after_create :make_output
+
   @queue = :name_finder
+
   serialize :output, Hash
   ENGINES = { 0 => ["TaxonFinder", "NetiNeti"], 1 => ["TaxonFinder"], 2 => ["NetiNeti"] } 
 
@@ -60,11 +62,12 @@ class NameFinder < ActiveRecord::Base
   end
   
   def save_file
-    file_path = Dir.mktmpdir
-    file = File.join(@file_path, @agent[:filename])
+    tmp_path = Dir.mktmpdir
+    file_path = File.join(tmp_path, @agent[:filename])
     new_agent.pluggable_parser.default = Mechanize::Download
-    new_agent.get(input_url).save(file)
-    document_sha = Digest::SHA1.hexdigest(file)
+    new_agent.get(input_url).save(file_path)
+    document_sha = Digest::SHA1.hexdigest(file_path)
+    self.update_attributes :file_path => file_path, :document_sha => document_sha
   end
 
   def read_file
@@ -145,9 +148,6 @@ class NameFinder < ActiveRecord::Base
         :names   => [],
       )
     end
-    require 'pp'
-    pp self.output
-    puts 'output printed'
     save!
   end
 end

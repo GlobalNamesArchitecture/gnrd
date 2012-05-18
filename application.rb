@@ -2,12 +2,11 @@
 require 'sinatra'
 require 'sinatra/base'
 # require "sinatra/reloader" if development?
-require 'rack-flash'
+require 'sinatra/flash'
 require 'builder'
 require File.join(File.dirname(__FILE__), 'environment')
 
 enable :sessions
-use Rack::Flash
 
 set :haml, :format => :html5
 
@@ -41,7 +40,8 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
   @page = "home"
   @header = "Discovered Names"
   @output = name_finder_instance.output
-  flash[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == "FAILED"
+  flash.sweep
+  flash.now[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == "FAILED"
   case format
   when 'json'
     content_type 'application/json', :charset => 'utf-8'
