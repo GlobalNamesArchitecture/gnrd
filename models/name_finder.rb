@@ -59,22 +59,24 @@ class NameFinder < ActiveRecord::Base
     end
   end
   
-  def save_file
-    file_path = Dir.mktmpdir
-    file = File.join(@file_path, @agent[:filename])
+  def save_file_from_url
+    temp_dir = Dir.mktmpdir
+    file_path = File.join(temp_dir, @agent[:filename])
     new_agent.pluggable_parser.default = Mechanize::Download
-    new_agent.get(input_url).save(file)
-    document_sha = Digest::SHA1.hexdigest(file)
+    new_agent.get(input_url).save(file_path)
+    document_sha = Digest::SHA1.hexdigest(file_path)
+    self.file_path = file_path
+    save!
   end
 
   def read_file
     content = ""
-    file_type = `file #{file_path}`
+    file_type = `file #{self.file_path}`
     if file_type.match /text/ 
-      content = open(file_path).read
+      content = open(self.file_path).read
     else
       Dir.mktmpdir do |dir|
-        Docsplit.extract_text(file_path, :output => dir, :clean => true)
+        Docsplit.extract_text(self.file_path, :output => dir, :clean => true)
         Dir.entries(dir).each do |name|
           if name.match /\.txt$/
             content << open(File.join(dir, name), 'r').read 
@@ -82,8 +84,9 @@ class NameFinder < ActiveRecord::Base
         end
       end
     end
-    FileUtils.remove_entry_secure file_path
-    file_path = nil
+    FileUtils.remove_entry_secure self.file_path
+    self.file_path = nil
+    save!
     content
   end
   
@@ -106,7 +109,7 @@ class NameFinder < ActiveRecord::Base
       flash[:error] = "That URL was inaccessible."
       return content
     end
-    save_file if !input_url.blank?
+    save_file_from_url if !input_url.blank?
     if !input.blank?
       content = input
     else
@@ -126,19 +129,19 @@ class NameFinder < ActiveRecord::Base
       end
       self.output.merge!(
         :status  => "OK",
-        :input_url     => input_url,
-        :file    => file_path,
+        :input_url     => self.input_url,
+        :file    => self.file_path,
         :agent   => @agent,
         :execution_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
-        :total   => unique ? names.uniq.count : names.count,
+        :total   => self.unique ? names.uniq.count : names.count,
         :engines => @engines,
-        :names   => unique ? names.uniq : names
+        :names   => self.unique ? names.uniq : names
       )
     rescue
       self.output.merge!(
         :status  => "FAILED",
-        :input_url     => input_url,
-        :file    => file_path,
+        :input_url     => self.input_url,
+        :file    => self.file_path,
         :agent   => @agent,
         :total   => 0,
         :engines => @engines,
