@@ -25,5 +25,5 @@ xml.result do
         end
       end
     end
-  end
+  end if @output[:names]
 end

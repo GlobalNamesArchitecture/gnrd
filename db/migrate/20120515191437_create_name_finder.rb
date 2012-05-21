@@ -6,6 +6,7 @@ class CreateNameFinder < ActiveRecord::Migration
       t.string  :input_url
       t.string  :file_path
       t.string  :file_name
+      t.string  :file_format
       t.text    :output
       t.string  :url
       t.integer :engine, :default => 0

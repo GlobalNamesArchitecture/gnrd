@@ -18,21 +18,35 @@ def find(params)
   engine = params[:engine] || "Both"
   file = params[:file] || (params[:find] && params[:find][:file]) || nil
   file_name = file ? file[:filename] : nil
-  file_path = file ? file[:tempfile].path : nil
-  sha = file ? Digest::SHA1.file(file[:tempfile]).hexdigest : nil
+  upload_path = file ? file[:tempfile].path : nil
+  file_path = nil
+  if upload_path && file_name
+    file_path = File.join(File.split(upload_path)[0..-2] + [file_name])
+    FileUtils.mv(upload_path, file_path)
+  end
+  sha = file ? Digest::SHA1.file(file_path).hexdigest : nil
+  
 
   token = "_"
-  while token.match(/_/) 
+  while token.match(/[_-]/) 
     token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
   end
   
   nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :token => token, :document_sha => sha, :unique => unique, :input => input, :file_path => file_path, :file_name => file_name)
-  if ['xml', 'json'].include?(format)
-    Resque.enqueue(NameFinder, nf.id) rescue nf.name_find
+  if ['xml', 'json'].include?(format) && workers_running? && input_large?(input)
+    Resque.enqueue(NameFinder, nf.id)
   else
     nf.name_find
   end
   name_finder_presentation(nf, format, true)
+end
+
+def input_large?(input)
+  !input || input.size > 5000 
+end
+
+def workers_running?
+  !Resque.redis.smembers('workers').select {|w| w.index("name_finder")}.empty?
 end
 
 def name_finder_presentation(name_finder_instance, format, do_redirect = false) 

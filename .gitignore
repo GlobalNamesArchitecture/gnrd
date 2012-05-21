@@ -9,3 +9,4 @@ config/database.yml
 log/*.log
 .DS_Store
 config.yml
+.sass_cache
