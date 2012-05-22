@@ -25,8 +25,6 @@ def find(params)
     FileUtils.mv(upload_path, file_path)
   end
   sha = file ? Digest::SHA1.file(file_path).hexdigest : nil
-  
-
   token = "_"
   while token.match(/[_-]/) 
     token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
@@ -55,6 +53,7 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
   @header = "Discovered Names"
   @output = name_finder_instance.output
   flash.sweep
+  flash.now[:warning] = "That URL was inaccessible." if @output[:status] == "NOT FOUND"
   flash.now[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == "FAILED"
   case format
   when 'json'

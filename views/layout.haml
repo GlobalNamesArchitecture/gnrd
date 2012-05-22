@@ -27,6 +27,8 @@
           #content-wrapper
             - if flash[:error]
               #flash_error= flash[:error]
+            - if flash[:warning]
+              #flash_warning= flash[:warning]
             - if !@tagline.nil?
               %p{:class => 'tagline'}= @tagline
             - if !@header.nil?

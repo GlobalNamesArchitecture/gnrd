@@ -55,8 +55,8 @@ class NameFinder < ActiveRecord::Base
       begin
         head = new_agent.head input_url
         @agent = { :code => head.code, :content_type => head.response["content-type"], :filename => head.filename }
-      rescue
-        @agent = { :code => "500", :content_type => "" }
+      rescue Mechanize::ResponseCodeError => e
+        @agent = { :code => e.response_code, :content_type => "" }
       end
     end
   end
@@ -93,21 +93,27 @@ class NameFinder < ActiveRecord::Base
   
   def find_names(content)
     content.gsub!("_", " ")
+    names = []
     start_execution = Time.now
-    if @engines.size == 2
-      names = @tf_name_spotter.find(content)[:names] | @neti_name_spotter.find(content)[:names]
-    else
-      names = (@engines[0] == 'TaxonFinder') ? @tf_name_spotter.find(content)[:names] : @neti_name_spotter.find(content)[:names]
+    begin
+      if @engines.size == 2
+        names = @tf_name_spotter.find(content)[:names] | @neti_name_spotter.find(content)[:names]
+      else
+        names = (@engines[0] == 'TaxonFinder') ? @tf_name_spotter.find(content)[:names] : @neti_name_spotter.find(content)[:names]
+      end
+      names.each { |name| name[:scientificName].gsub!(/[\[\]]/, "") }
+      @status = "OK" if @status.nil?
+    rescue
+      @status = "FAILED"
     end
-    names.each { |name| name[:scientificName].gsub!(/[\[\]]/, "") }
     @end_execution = (Time.now - start_execution)
     names
   end
   
   def get_content
     content = ""
-    if @agent && @agent[:code] == "500"
-      flash[:error] = "That URL was inaccessible."
+    if @agent && @agent[:code] != "200"
+      @status = "NOT FOUND"
       return content
     end
     save_file_from_url if !input_url.blank?
@@ -129,24 +135,24 @@ class NameFinder < ActiveRecord::Base
         end
       end
       self.output.merge!(
-        :status  => "OK",
-        :input_url     => self.input_url,
-        :file    => self.file_path,
-        :agent   => @agent,
-        :execution_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
-        :total   => self.unique ? names.uniq.count : names.count,
-        :engines => @engines,
-        :names   => self.unique ? names.uniq : names
+        :status    => @status,
+        :input_url => self.input_url,
+        :file      => self.file_name,
+        :agent     => @agent,
+        :exec_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
+        :total     => self.unique ? names.uniq.count : names.count,
+        :engines   => @engines,
+        :names     => self.unique ? names.uniq : names
       )
     rescue
       self.output.merge!(
-        :status  => "FAILED",
-        :input_url     => self.input_url,
-        :file    => self.file_path,
-        :agent   => @agent,
-        :total   => 0,
-        :engines => @engines,
-        :names   => [],
+        :status    => @status,
+        :input_url => self.input_url,
+        :file      => self.file_name,
+        :agent     => @agent,
+        :total     => 0,
+        :engines   => @engines,
+        :names     => names,
       )
     end
     save!

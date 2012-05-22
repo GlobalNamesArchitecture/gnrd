@@ -11,11 +11,10 @@
     %li
       %strong URL:
       = @output[:input_url]
-  - if !@output[:file_path].blank?
+  - if !@output[:file].blank?
     %li
       %strong File:
-      - file_name = @output[:file_path].split("/").last
-      = file_name
+      = @output[:file]
   - if !@output[:total].blank?
     %li
       %strong Total:
@@ -23,11 +22,11 @@
   %li
     %strong Engine(s):
     = @output[:engines].join(", ")
-  - if @output[:execution_time]
+  - if @output[:exec_time]
     %li
       %strong Time:
-      = @output[:execution_time][:find_names_duration].to_s
-      s to find names, #{@output[:execution_time][:total_duration].to_s} s for entire process
+      = @output[:exec_time][:find_names_duration].to_s
+      s to find names, #{@output[:exec_time][:total_duration].to_s} s for entire process
 - if @output[:total] && @output[:total] > 0
   %table#found-names-grid
     %thead
