@@ -1,6 +1,6 @@
 %h3 Base URL
 #base-url
-  - base_url = "http://#{SiteConfig.url_base}/name_finder.json"
+  - base_url = "#{SiteConfig.url_base}/name_finder.json"
   %p= base_url
 %h3 Parameters (GET or POST)
 %p
@@ -22,10 +22,10 @@
     =  base_url + "?input=A+spider+named+Pardosa+moesta+Banks,+1892"
   %dt engine
   %dd
-    Optional; either "TaxonFinder" or "NetiNeti". If absent, both engines are used.
+    Optional; either 1 for "TaxonFinder", 2 for "NetiNeti", or 0 for both. If absent, both engines are used.
     %br/
     %em e.g.
-    = base_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;engine=NetiNeti"
+    = base_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;engine=1"
   %dt unique
   %dd
     Optional. If present, will produce a list of unique names
