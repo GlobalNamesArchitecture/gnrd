@@ -6,22 +6,21 @@
 %ul#found-names-summary
   - if !@output[:input_url].blank?
     %li
-      URL:
       %strong= @output[:input_url]
   - if !@output[:file].blank?
     %li
-      File:
       %strong= @output[:file]
-  - if !@output[:total].blank?
+  - if !@output[:total].blank? && @output[:status] == "OK"
     %li
-      Total:
       %strong= @output[:total]
-  %li
-    Engine(s):
-    %strong= @output[:engines].join(", ")
-  - if @output[:execution_time]
+      - if @output[:total] == 1
+        name
+      - else
+        names
+      found using
+      %strong #{@output[:engines].join(" and ")}
+  - if @output[:execution_time] && @output[:status] == "OK"
     %li
-      Time:
       = @output[:execution_time][:find_names_duration].to_s
       s to find names, #{@output[:execution_time][:total_duration].to_s} s for entire process
 - if @output[:total] && @output[:total] > 0

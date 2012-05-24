@@ -34,7 +34,7 @@ describe "/name_finder" do
     follow_redirect!
     r = last_response
     r.status.should == 200
-    r.body.match("NOT FOUND").should be_true
+    r.body.match("That URL was inaccessible.").should be_true
   end
   
   it "should be able to find names in a URL as a parameter" do
