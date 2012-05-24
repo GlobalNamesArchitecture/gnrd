@@ -1,9 +1,10 @@
 xml.instruct!
 xml.result do
   xml.status @output[:status]
-  xml.total @output[:total] unless @output[:total].nil?
-  xml.url @output[:url] unless @output[:url].nil?
-  xml.agent @output[:agent] unless @output[:agent].nil?
+  xml.total @output[:total] if @output[:total]
+  xml.input_url @output[:input_url] if @output[:input_url]
+  xml.url @output[:url] if @output[:url]
+  xml.agent @output[:agent] if @output[:agent]
   xml.execution_time do
     xml.find_names_duration @output[:execution_time][:find_names_duration]
     xml.total_duration @output[:execution_time][:total_duration]

@@ -92,7 +92,6 @@ class NameFinder < ActiveRecord::Base
   end
   
   def find_names(content)
-    content.gsub!("_", " ")
     names = []
     start_execution = Time.now
     begin
@@ -139,7 +138,7 @@ class NameFinder < ActiveRecord::Base
         :input_url => self.input_url,
         :file      => self.file_name,
         :agent     => @agent,
-        :exec_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
+        :execution_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
         :total     => self.unique ? names.uniq.count : names.count,
         :engines   => @engines,
         :names     => self.unique ? names.uniq : names
