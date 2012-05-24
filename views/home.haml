@@ -24,7 +24,7 @@
     %input.gnrd-file{:type => :file, :name => "find[file]", :id => :find_file, :accept => "application/x-gzip;application/zip", :size => 30}
     %p.separator -- OR --
     %label{ :for => :find_text } Freeform Text
-    %textarea.gnrd-text{ :cols => 25, :rows => 12, :name => "find[text]", :id => :find_text }
+    %textarea.gnrd-input{ :cols => 25, :rows => 12, :name => "find[text]", :id => :find_text }
     %fieldset 
       %legend Name-Finding Engine
       - {'Both' => 0, 'TaxonFinder' => 1, 'NetiNeti' => 2}.each do |key, value|
