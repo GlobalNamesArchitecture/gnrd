@@ -13,7 +13,7 @@ set :haml, :format => :html5
 def find(params)
   input_url = params[:url] || (params[:find] && params[:find][:url]) || nil
   file = params[:file] || (params[:find] && params[:find][:file]) || nil
-  input = params[:input] || (params[:find] && params[:find][:input]) || nil
+  input = params[:text] || (params[:find] && params[:find][:text]) || nil
 
   unique = params[:unique] || false
   format = params[:format] || "html"
