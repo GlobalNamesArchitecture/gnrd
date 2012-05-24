@@ -105,6 +105,11 @@ describe "/name_finder" do
     r.status.should == 200
     r.body.match('Passiflora pilosicorona').should be_true
   end
+
+  it "API should return correct http respsonse code if there are no parameters" do
+    get "/name_finder.json"
+    last_response.status.should == 400
+  end
   
   it "API should be able to find names in a small submitted utf-8 text" do
     text = 'Betula alba Beçem'

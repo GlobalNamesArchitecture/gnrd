@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 require 'sinatra'
 require 'sinatra/base'
-# require "sinatra/reloader" if development?
 require 'sinatra/flash'
 require 'builder'
 require File.join(File.dirname(__FILE__), 'environment')
@@ -20,9 +19,10 @@ def find(params)
   engine = params[:engine] || 0
   
   if input_url.blank? && file.blank? && input.blank?
-    @output = { :status => "NO PARAMETERS" }
+    @output = { :status => 400, :message => "No parameters were supplied"  }
+    status @output[:status]
     flash.sweep
-    flash.now[:warning] = "No parameters were supplied"
+    flash.now[:warning] = @output[:message]
     case format
     when 'json'
       content_type 'application/json', :charset => 'utf-8'
@@ -62,7 +62,7 @@ def find(params)
 end
 
 def input_large?(input)
-  !input || input.size > 5000 
+  !input || input.size > 5000
 end
 
 def workers_running?
@@ -76,7 +76,10 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
   @output = name_finder_instance.output
   flash.sweep
   flash.now[:warning] = "That URL was inaccessible." if @output[:status] == 404
-  flash.now[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == 500
+  if @output[:status] == 500
+    status 500
+    flash.now[:error] = "The name engines failed. Administrators have been notified."
+  end
   case format
   when 'json'
     content_type 'application/json', :charset => 'utf-8'

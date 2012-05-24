@@ -1,6 +1,7 @@
 xml.instruct!
 xml.result do
   xml.status @output[:status]
+  xml.message @output[:message] if @output[:message]
   xml.total @output[:total] if @output[:total]
   xml.input_url @output[:input_url] if @output[:input_url]
   xml.url @output[:url] if @output[:url]
