@@ -73,15 +73,14 @@ class NameFinder < ActiveRecord::Base
   def read_file
     content = ""
     file_type = `file #{self.file_path}`
-    if file_type.match /text/ 
-      content = open(self.file_path).read
+    if file_type.match /text/
+      content = File.open(self.file_path, 'r') { |f| f.read }
     else
-      Dir.mktmpdir do |dir|
-        Docsplit.extract_text(self.file_path, :output => dir, :clean => true)
-        Dir.entries(dir).each do |name|
-          if name.match /\.txt$/
-            content << open(File.join(dir, name), 'r').read 
-          end
+      dir = File.dirname(self.file_path)
+      Docsplit.extract_text(self.file_path, :output => dir, :clean => true)
+      Dir.entries(dir).each do |name|
+        if name.match /\.txt$/
+          content << File.open(File.join(dir, name), 'r') { |f| f.read }
         end
       end
     end
