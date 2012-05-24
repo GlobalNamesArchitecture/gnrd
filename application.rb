@@ -39,7 +39,8 @@ def find(params)
     file_path = nil
 
     if upload_path && file_name
-      file_path = File.join(File.split(upload_path)[0..-2] + [file_name])
+      temp_dir = Dir.mktmpdir
+      file_path = File.join([temp_dir] + [file_name])
       FileUtils.mv(upload_path, file_path)
     end
     sha = file ? Digest::SHA1.file(file_path).hexdigest : nil
