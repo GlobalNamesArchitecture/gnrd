@@ -12,46 +12,33 @@ set :haml, :format => :html5
 def find(params)
   input_url = params[:url] || (params[:find] && params[:find][:url]) || nil
   file = params[:file] || (params[:find] && params[:find][:file]) || nil
-  input = params[:text] || (params[:find] && params[:find][:text]) || nil
+  text = params[:text] || (params[:find] && params[:find][:text]) || nil
 
   unique = params[:unique] || false
   format = params[:format] || "html"
   engine = params[:engine] || 0
+  file_name = nil
+  file_path = nil
+  sha = nil
+  token = "_"
   
-  if input_url.blank? && file.blank? && input.blank?
-    @output = { :status => 400, :message => "No parameters were supplied"  }
-    status @output[:status]
-    flash.sweep
-    flash.now[:warning] = @output[:message]
-    case format
-    when 'json'
-      content_type 'application/json', :charset => 'utf-8'
-      JSON.dump(@output)
-    when 'xml'
-      content_type 'text/xml', :charset => 'utf-8'
-      builder :namefinder
-    else
-      redirect "/"
-    end
+  if input_url.blank? && file.blank? && text.blank?
+    missing_params_presentation(format)
   else
-    file_name = file ? file[:filename] : nil
-    upload_path = file ? file[:tempfile].path : nil
-    file_path = nil
-
-    if upload_path && file_name
-      temp_dir = Dir.mktmpdir
-      file_path = File.join([temp_dir] + [file_name])
-      FileUtils.mv(upload_path, file_path)
+    if file
+      file_name = file[:filename]
+      file_path = File.join([Dir.mktmpdir] + [file_name])
+      FileUtils.mv(file[:tempfile].path, file_path)
+      sha = Digest::SHA1.file(file_path).hexdigest
     end
-    sha = file ? Digest::SHA1.file(file_path).hexdigest : nil
-    token = "_"
-    while token.match(/[_-]/) 
+
+    while token.match(/[_-]/)
       token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
     end
-  
-    nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :token => token, :document_sha => sha, :unique => unique, :input => input, :file_path => file_path, :file_name => file_name)
 
-    if ['xml', 'json'].include?(format) && workers_running? && input_large?(input)
+    nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :token => token, :document_sha => sha, :unique => unique, :input => text, :file_path => file_path, :file_name => file_name)
+
+    if ['xml', 'json'].include?(format) && workers_running? && text_large?(text)
       Resque.enqueue(NameFinder, nf.id)
     else
       nf.name_find
@@ -61,8 +48,8 @@ def find(params)
   end
 end
 
-def input_large?(input)
-  !input || input.size > 5000
+def text_large?(text)
+  !text || text.size > 5000
 end
 
 def workers_running?
@@ -78,7 +65,8 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
   flash.now[:warning] = "That URL was inaccessible." if @output[:status] == 404
   if @output[:status] == 500
     status 500
-    flash.now[:error] = "The name engines failed. Administrators have been notified."
+    @output[:message] = "The name engines failed. Administrators have been notified."
+    flash.now[:error] = @output[:message]
   end
   case format
   when 'json'
@@ -97,6 +85,23 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
     else
       haml :name_finder
     end
+  end
+end
+
+def missing_params_presentation(format)
+  @output = { :status => 400, :message => "No parameters were supplied"  }
+  status @output[:status]
+  flash.sweep
+  flash.now[:warning] = @output[:message]
+  case format
+  when 'json'
+    content_type 'application/json', :charset => 'utf-8'
+    JSON.dump(@output)
+  when 'xml'
+    content_type 'text/xml', :charset => 'utf-8'
+    builder :namefinder
+  else
+    redirect "/"
   end
 end
 
