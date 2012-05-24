@@ -75,8 +75,8 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
   @header = "Discovered Names"
   @output = name_finder_instance.output
   flash.sweep
-  flash.now[:warning] = "That URL was inaccessible." if @output[:status] == "NOT FOUND"
-  flash.now[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == "FAILED"
+  flash.now[:warning] = "That URL was inaccessible." if @output[:status] == 404
+  flash.now[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == 500
   case format
   when 'json'
     content_type 'application/json', :charset => 'utf-8'

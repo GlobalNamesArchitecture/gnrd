@@ -32,6 +32,7 @@ class NameFinder < ActiveRecord::Base
     @engines = ENGINES[engine]
     @agent = nil
     @output = nil
+    @status = nil
   end
 
   def setup_name_spotter
@@ -72,19 +73,19 @@ class NameFinder < ActiveRecord::Base
 
   def read_file
     content = ""
+    dir = File.dirname(self.file_path)
     file_type = `file #{self.file_path}`
     if file_type.match /text/
-      content = File.open(self.file_path, 'r') { |f| f.read }
+      content = open(self.file_path, 'r').read
     else
-      dir = File.dirname(self.file_path)
       Docsplit.extract_text(self.file_path, :output => dir, :clean => true)
       Dir.entries(dir).each do |name|
         if name.match /\.txt$/
-          content << File.open(File.join(dir, name), 'r') { |f| f.read }
+          content << open(File.join(dir, name), 'r').read
         end
       end
     end
-    FileUtils.remove_entry_secure File.dirname(self.file_path)
+    FileUtils.remove_entry_secure dir
     self.file_path = nil
     save!
     content
@@ -100,9 +101,9 @@ class NameFinder < ActiveRecord::Base
         names = (@engines[0] == 'TaxonFinder') ? @tf_name_spotter.find(content)[:names] : @neti_name_spotter.find(content)[:names]
       end
       names.each { |name| name[:scientificName].gsub!(/[\[\]]/, "") }
-      @status = "OK" if @status.nil?
+      @status = 200 if !content.blank?
     rescue
-      @status = "FAILED"
+      @status = 500
     end
     @end_execution = (Time.now - start_execution)
     names
@@ -111,14 +112,14 @@ class NameFinder < ActiveRecord::Base
   def get_content
     content = ""
     if @agent && @agent[:code] != "200"
-      @status = "NOT FOUND"
-      return content
-    end
-    save_file_from_url if !input_url.blank?
-    if !input.blank?
-      content = input
+      @status = 404
     else
-      content = read_file
+      save_file_from_url if !input_url.blank?
+      if !input.blank?
+        content = input
+      else
+        content = read_file
+      end
     end
     content
   end

@@ -11,7 +11,7 @@
   - if !@output[:file].blank?
     %li
       %strong= @output[:file]
-  - if !@output[:total].blank? && @output[:status] == "OK"
+  - if !@output[:total].blank? && @output[:status] == 200
     %li
       %strong= @output[:total]
       - if @output[:total] == 1
@@ -20,7 +20,7 @@
         names
       found using
       %strong #{@output[:engines].join(" and ")}
-  - if @output[:execution_time] && @output[:status] == "OK"
+  - if @output[:execution_time] && @output[:status] == 200
     %li
       = @output[:execution_time][:find_names_duration].to_s
       s to find names, #{@output[:execution_time][:total_duration].to_s} s for entire process
