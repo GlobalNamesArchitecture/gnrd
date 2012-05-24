@@ -12,31 +12,52 @@ set :haml, :format => :html5
 
 def find(params)
   input_url = params[:url] || (params[:find] && params[:find][:url]) || nil
+  file = params[:file] || (params[:find] && params[:find][:file]) || nil
   input = params[:input] || (params[:find] && params[:find][:input]) || nil
+
   unique = params[:unique] || false
   format = params[:format] || "html"
-  engine = params[:engine] || "Both"
-  file = params[:file] || (params[:find] && params[:find][:file]) || nil
-  file_name = file ? file[:filename] : nil
-  upload_path = file ? file[:tempfile].path : nil
-  file_path = nil
-  if upload_path && file_name
-    file_path = File.join(File.split(upload_path)[0..-2] + [file_name])
-    FileUtils.mv(upload_path, file_path)
-  end
-  sha = file ? Digest::SHA1.file(file_path).hexdigest : nil
-  token = "_"
-  while token.match(/[_-]/) 
-    token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
-  end
+  engine = params[:engine] || 0
   
-  nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :token => token, :document_sha => sha, :unique => unique, :input => input, :file_path => file_path, :file_name => file_name)
-  if ['xml', 'json'].include?(format) && workers_running? && input_large?(input)
-    Resque.enqueue(NameFinder, nf.id)
+  if input_url.blank? && file.blank? && input.blank?
+    @output = { :status => "NO PARAMETERS" }
+    flash.sweep
+    flash.now[:warning] = "No parameters were supplied"
+    case format
+    when 'json'
+      content_type 'application/json', :charset => 'utf-8'
+      JSON.dump(@output)
+    when 'xml'
+      content_type 'text/xml', :charset => 'utf-8'
+      builder :namefinder
+    else
+      redirect "/"
+    end
   else
-    nf.name_find
+    file_name = file ? file[:filename] : nil
+    upload_path = file ? file[:tempfile].path : nil
+    file_path = nil
+
+    if upload_path && file_name
+      file_path = File.join(File.split(upload_path)[0..-2] + [file_name])
+      FileUtils.mv(upload_path, file_path)
+    end
+    sha = file ? Digest::SHA1.file(file_path).hexdigest : nil
+    token = "_"
+    while token.match(/[_-]/) 
+      token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
+    end
+  
+    nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :token => token, :document_sha => sha, :unique => unique, :input => input, :file_path => file_path, :file_name => file_name)
+
+    if ['xml', 'json'].include?(format) && workers_running? && input_large?(input)
+      Resque.enqueue(NameFinder, nf.id)
+    else
+      nf.name_find
+    end
+
+    name_finder_presentation(nf, format, true)
   end
-  name_finder_presentation(nf, format, true)
 end
 
 def input_large?(input)
@@ -68,7 +89,7 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
     builder :namefinder
   else
     if do_redirect
-      redirect  name_finder_instance.url
+      redirect name_finder_instance.url
     else
       haml :name_finder
     end

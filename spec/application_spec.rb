@@ -20,7 +20,13 @@ describe "/name_finder" do
     end
   end
 
-  it "should redirect/point to API page, if there are no parameters"
+  it "should redirect if there are no parameters" do
+    get "/name_finder"
+    last_response.status.should == 302
+    follow_redirect!
+    r = last_response
+    r.status.should == 200
+  end
   
   it "should give warning when a URL is not found" do
     url = URI.encode("http://eol.org/pages/a/overview")
