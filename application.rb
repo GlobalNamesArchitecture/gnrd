@@ -48,8 +48,8 @@ def find(params)
   end
 end
 
-def input_large?(input)
-  !input || input.size > 5000
+def text_large?(text)
+  !text || text.size > 5000
 end
 
 def workers_running?
