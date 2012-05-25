@@ -5,6 +5,7 @@ xml.result do
   xml.total @output[:total] if @output[:total]
   xml.input_url @output[:input_url] if @output[:input_url]
   xml.url @output[:url] if @output[:url]
+  xml.file @output[:file] if @output[:file]
   xml.agent @output[:agent] if @output[:agent]
   xml.execution_time do
     xml.find_names_duration @output[:execution_time][:find_names_duration]
