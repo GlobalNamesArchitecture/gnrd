@@ -124,9 +124,6 @@ class NameFinder < ActiveRecord::Base
         content = read_file
       end
     end
-    self.file_path = nil
-    self.input = nil
-    save!
     content
   end
   
@@ -160,6 +157,8 @@ class NameFinder < ActiveRecord::Base
         :names     => names,
       )
     end
+    self.file_path = nil
+    self.input = nil
     save!
   end
 end
