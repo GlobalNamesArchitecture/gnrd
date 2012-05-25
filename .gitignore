@@ -10,3 +10,4 @@ log/*.log
 .DS_Store
 config.yml
 .sass_cache
+.sass_cache/*

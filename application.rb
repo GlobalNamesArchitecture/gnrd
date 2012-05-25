@@ -40,7 +40,7 @@ def find(params)
 end
 
 def input_large?(input)
-  !input || input.size > 5000 
+  !input || input.size > 5000
 end
 
 def workers_running?
