@@ -1,32 +1,29 @@
+%p#found-names-duration Results are accessible at this URL for 7 days
 - if @output[:agent] && @output[:agent][:content_type] && @output[:agent][:content_type].include?("image")
   %h3
-    %strong Source Image
+    Source Image
   #found-names-preview
     %img{:src => @output[:input_url]}
 %ul#found-names-summary
-  %li
-    %strong Status:
-    = @output[:status]
   - if !@output[:input_url].blank?
     %li
-      %strong URL:
-      = @output[:input_url]
+      %strong= @output[:input_url]
   - if !@output[:file].blank?
     %li
-      %strong File:
-      = @output[:file]
-  - if !@output[:total].blank?
+      %strong= @output[:file]
+  - if !@output[:total].blank? && @output[:status] == 200
     %li
-      %strong Total:
-      = @output[:total]
-  %li
-    %strong Engine(s):
-    = @output[:engines].join(", ")
-  - if @output[:exec_time]
+      %strong= @output[:total]
+      - if @output[:total] == 1
+        name
+      - else
+        names
+      found using
+      %strong #{@output[:engines].join(" and ")}
+  - if @output[:execution_time] && @output[:status] == 200
     %li
-      %strong Time:
-      = @output[:exec_time][:find_names_duration].to_s
-      s to find names, #{@output[:exec_time][:total_duration].to_s} s for entire process
+      = @output[:execution_time][:find_names_duration].to_s
+      s to find names, #{@output[:execution_time][:total_duration].to_s} s for entire process
 - if @output[:total] && @output[:total] > 0
   %table#found-names-grid
     %thead

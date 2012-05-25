@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 require 'sinatra'
 require 'sinatra/base'
-# require "sinatra/reloader" if development?
 require 'sinatra/flash'
 require 'builder'
 require File.join(File.dirname(__FILE__), 'environment')
@@ -12,31 +11,41 @@ set :haml, :format => :html5
 
 def find(params)
   input_url = params[:url] || (params[:find] && params[:find][:url]) || nil
-  input = params[:input] || (params[:find] && params[:find][:input]) || nil
+  file = params[:file] || (params[:find] && params[:find][:file]) || nil
+  text = params[:text] || (params[:find] && params[:find][:text]) || nil
+
   unique = params[:unique] || false
   format = params[:format] || "html"
-  engine = params[:engine] || "Both"
-  file = params[:file] || (params[:find] && params[:find][:file]) || nil
-  file_name = file ? file[:filename] : nil
-  upload_path = file ? file[:tempfile].path : nil
+  engine = params[:engine] || 0
+  file_name = nil
   file_path = nil
-  if upload_path && file_name
-    file_path = File.join(File.split(upload_path)[0..-2] + [file_name])
-    FileUtils.mv(upload_path, file_path)
-  end
-  sha = file ? Digest::SHA1.file(file_path).hexdigest : nil
+  sha = nil
   token = "_"
-  while token.match(/[_-]/) 
-    token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
-  end
   
-  nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :token => token, :document_sha => sha, :unique => unique, :input => input, :file_path => file_path, :file_name => file_name)
-  if ['xml', 'json'].include?(format) && workers_running? && input_large?(input)
-    Resque.enqueue(NameFinder, nf.id)
+  if input_url.blank? && file.blank? && text.blank?
+    missing_params_presentation(format)
   else
-    nf.name_find
+    if file
+      file_name = file[:filename]
+      file_path = File.join([Dir.mktmpdir] + [file_name])
+      FileUtils.mv(file[:tempfile].path, file_path)
+      sha = Digest::SHA1.file(file_path).hexdigest
+    end
+
+    while token.match(/[_-]/)
+      token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
+    end
+
+    nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :token => token, :document_sha => sha, :unique => unique, :input => text, :file_path => file_path, :file_name => file_name)
+
+    if ['xml', 'json'].include?(format) && workers_running? && text_large?(text)
+      Resque.enqueue(NameFinder, nf.id)
+    else
+      nf.name_find
+    end
+
+    name_finder_presentation(nf, format, true)
   end
-  name_finder_presentation(nf, format, true)
 end
 
 def input_large?(input)
@@ -53,8 +62,12 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
   @header = "Discovered Names"
   @output = name_finder_instance.output
   flash.sweep
-  flash.now[:warning] = "That URL was inaccessible." if @output[:status] == "NOT FOUND"
-  flash.now[:error] = "The name engines failed. Administrators have been notified." if @output[:status] == "FAILED"
+  flash.now[:warning] = "That URL was inaccessible." if @output[:status] == 404
+  if @output[:status] == 500
+    status 500
+    @output[:message] = "The name engines failed. Administrators have been notified."
+    flash.now[:error] = @output[:message]
+  end
   case format
   when 'json'
     content_type 'application/json', :charset => 'utf-8'
@@ -68,10 +81,27 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
     builder :namefinder
   else
     if do_redirect
-      redirect  name_finder_instance.url
+      redirect name_finder_instance.url
     else
       haml :name_finder
     end
+  end
+end
+
+def missing_params_presentation(format)
+  @output = { :status => 400, :message => "No parameters were supplied"  }
+  status @output[:status]
+  flash.sweep
+  flash.now[:warning] = @output[:message]
+  case format
+  when 'json'
+    content_type 'application/json', :charset => 'utf-8'
+    JSON.dump(@output)
+  when 'xml'
+    content_type 'text/xml', :charset => 'utf-8'
+    builder :namefinder
+  else
+    redirect "/"
   end
 end
 

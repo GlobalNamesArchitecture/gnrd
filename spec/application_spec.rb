@@ -20,7 +20,13 @@ describe "/name_finder" do
     end
   end
 
-  it "should redirect/point to API page, if there are no parameters"
+  it "should redirect if there are no parameters" do
+    get "/name_finder"
+    last_response.status.should == 302
+    follow_redirect!
+    r = last_response
+    r.status.should == 200
+  end
   
   it "should give warning when a URL is not found" do
     url = URI.encode("http://eol.org/pages/a/overview")
@@ -28,7 +34,7 @@ describe "/name_finder" do
     follow_redirect!
     r = last_response
     r.status.should == 200
-    r.body.match("NOT FOUND").should be_true
+    r.body.match("That URL was inaccessible.").should be_true
   end
   
   it "should be able to find names in a URL as a parameter" do
@@ -42,7 +48,7 @@ describe "/name_finder" do
 
   it "should be able to find names in text as a parameter" do
     text = URI.encode('Betula alba Beçem')
-    get "/name_finder?input=#{text}"
+    get "/name_finder?text=#{text}"
     follow_redirect!
     r = last_response
     r.status.should == 200
@@ -61,7 +67,7 @@ describe "/name_finder" do
   
   it "should be able to find names in a submitted utf-8 text" do
     text = 'Betula alba Beçem'
-    post("/name_finder", :input => text, :engine => 0)
+    post("/name_finder", :text => text, :engine => 0)
     follow_redirect!
     r = last_response
     r.status.should == 200
@@ -99,11 +105,16 @@ describe "/name_finder" do
     r.status.should == 200
     r.body.match('Passiflora pilosicorona').should be_true
   end
+
+  it "API should return correct http respsonse code if there are no parameters" do
+    get "/name_finder.json"
+    last_response.status.should == 400
+  end
   
   it "API should be able to find names in a small submitted utf-8 text" do
     text = 'Betula alba Beçem'
     ['xml', 'json'].each do |format|
-      post("/name_finder", :format => format, :input => text, :engine => 0)
+      post("/name_finder", :format => format, :text => text, :engine => 0)
       r = last_response
       r.status.should == 200
       r.body.match("Betula alba").should be_true
@@ -113,7 +124,7 @@ describe "/name_finder" do
   it "API should be able to find names in a BIG submitted utf-8 text" do
     text = open(File.join(File.dirname(__FILE__), 'files', 'big.txt')).read
     ['xml', 'json'].each do |format|
-      post("/name_finder", :format => format, :input => text, :engine => 0)
+      post("/name_finder", :format => format, :text => text, :engine => 0)
       r = last_response
       url = get_url(r.body)
       r.status.should == 200

@@ -1,4 +1,4 @@
-require 'application'
+require './application.rb'
 
 set :run, false
 set :environment, :production

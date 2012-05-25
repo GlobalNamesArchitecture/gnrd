@@ -1,8 +1,8 @@
 %p
-  Find scientific names on web pages, online PDF documents, images, or in freeform text. Encrypted or image-based PDFs and image files first pass through an OCR routine using 
+  Find scientific names on web pages, PDFs, Microsoft Office documents, images, or in freeform text. Encrypted or image-based PDFs and image files first pass through an OCR routine using 
   %a{:href =>"http://code.google.com/p/tesseract-ocr/"} Tesseract
   prior to using the excellent 
-  %a{:htre => "http://code.google.com/p/taxon-finder/"} TaxonFinder 
+  %a{:htre => "http://code.google.com/p/taxon-finder/"} TaxonFinder
   and 
   %a{:href => "https://github.com/mbl-cli/NetiNeti"} NetiNeti
   names discovery engines.
@@ -16,15 +16,15 @@
         %a{:href => "https://chrome.google.com/webstore/detail/pogmooobpbggadhlleijfpjgnpkjdnhn", :target => "_blank"} Chrome NameSpotter Extension
       %span Make scientific names actionable.
 #form-panel.panel
-  %form{:action => "/name_finder", :method => "post", :enctype=>"multipart/form-data"}
-    %label{:for => 'find_url'} URL to web page, PDF, or image
+  %form{:action => "/name_finder", :method => "post", :enctype=>"multipart/form-data", "accept-charset"=>"UTF-8"}
+    %label{:for => 'find_url'} URL to web page, PDF, Microsoft Office document or image
     %input.gnrd-input{:type => :text, :name => "find[url]", :id => :find_url, :placeholder => "http://example.com", :size => 30}
     %p.separator -- OR --
     %label{:for => 'find_file'} File
-    %input.gnrd-file{:type => :file, :name => "find[file]", :id => :find_file, :accept => "application/x-gzip;application/zip", :size => 30}
+    %input.gnrd-file{:type => :file, :name => "find[file]", :id => :find_file, :size => 30}
     %p.separator -- OR --
-    %label{ :for => :find_input } Freeform Text
-    %textarea.gnrd-input{ :cols => 25, :rows => 12, :name => "find[input]", :id => :find_input }
+    %label{ :for => :find_text } Freeform Text
+    %textarea.gnrd-input{ :cols => 25, :rows => 12, :name => "find[text]", :id => :find_text }
     %fieldset 
       %legend Name-Finding Engine
       - {'Both' => 0, 'TaxonFinder' => 1, 'NetiNeti' => 2}.each do |key, value|
