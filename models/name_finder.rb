@@ -90,8 +90,6 @@ class NameFinder < ActiveRecord::Base
       end
     end
     FileUtils.remove_entry_secure dir
-    self.file_path = nil
-    save!
     content
   end
   
@@ -126,6 +124,9 @@ class NameFinder < ActiveRecord::Base
         content = read_file
       end
     end
+    self.file_path = nil
+    self.input = nil
+    save!
     content
   end
   
