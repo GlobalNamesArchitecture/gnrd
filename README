@@ -1,3 +1,9 @@
 == GNRD
 
 Alpha-level app to find names in web pages and documents
+
+=== Running Specs
+
+To be able to run specs there both TaxonFinder and NetiNeti need to be run locally. For testing API calls we need resque worker running:
+
+    QUEUE=name_finder rake resque:work
