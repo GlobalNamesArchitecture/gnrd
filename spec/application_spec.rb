@@ -28,6 +28,13 @@ describe "/name_finder" do
     r.status.should == 200
   end
   
+  it "should give error when a token does not exist" do
+    get "/name_finder?token=9999999"
+    r = last_response
+    r.status.should == 200
+    r.body.match("That result no longer exists")
+  end
+  
   it "should give warning when a URL is not found" do
     url = URI.encode("http://eol.org/pages/a/overview")
     get "/name_finder?url=#{url}"
@@ -104,6 +111,13 @@ describe "/name_finder" do
     r = last_response
     r.status.should == 200
     r.body.match('Passiflora pilosicorona').should be_true
+  end
+
+  it "API should give error when a token does not exist" do
+    get "/name_finder.json?token=9999999"
+    r = last_response
+    r.status.should == 404
+    r.body.match("That result no longer exists")
   end
 
   it "API should return correct http respsonse code if there are no parameters" do

@@ -23,7 +23,7 @@ def find(params)
   token = "_"
   
   if input_url.blank? && file.blank? && text.blank?
-    missing_params_presentation(format)
+    error_presentation(format, 400)
   else
     if file
       file_name = file[:filename]
@@ -88,20 +88,35 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
   end
 end
 
-def missing_params_presentation(format)
-  @output = { :status => 400, :message => "No parameters were supplied"  }
-  status @output[:status]
-  flash.sweep
-  flash.now[:warning] = @output[:message]
+def error_presentation(format, output_status = 404)
+  @output = { :status => output_status, :message => nil }
+
+  case output_status
+  when 400
+     @output[:message] = "Bad Request. Parameters missing."
+  when 404
+    @output[:message] = "Not Found. That result no longer exists."
+  when 500
+    @output[:message] = "Internal Server Error. Name-finding engines are offline."
+  end
+
   case format
   when 'json'
+    status output_status
     content_type 'application/json', :charset => 'utf-8'
     JSON.dump(@output)
   when 'xml'
+    status output_status
     content_type 'text/xml', :charset => 'utf-8'
     builder :namefinder
   else
-    redirect "/"
+    flash.sweep
+    flash.now[:error] = @output[:message]
+    if output_status == 400
+      redirect "/"
+    else
+      haml :fail
+    end
   end
 end
 
@@ -132,8 +147,12 @@ end
 
 get "/name_finder.?:format?" do
   if params[:token]
-    nf = NameFinder.find_by_token(params[:token])
-    name_finder_presentation(nf, params[:format])
+    begin
+      nf = NameFinder.find_by_token(params[:token])
+      name_finder_presentation(nf, params[:format])
+    rescue
+      error_presentation(params[:format])
+    end
   else
     find(params)
   end
@@ -141,4 +160,12 @@ end
 
 post "/name_finder.?:format?" do
   find(params)
+end
+
+not_found do
+  if @output.nil?
+    status 404
+    flash.sweep
+    haml :'404'
+  end
 end
