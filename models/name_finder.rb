@@ -76,14 +76,14 @@ class NameFinder < ActiveRecord::Base
     dir = File.dirname(self.file_path)
     file_type = `file #{self.file_path}`
     if file_type.match /text/
-      file = File.open(self.file_path, 'rb')
+      file = File.open(self.file_path, 'r')
       content << file.read
       file.close
     else
       Docsplit.extract_text(self.file_path, :output => dir, :clean => true)
       Dir.entries(dir).each do |name|
         if name.match /\.txt$/
-          file = File.open(File.join(dir, name), 'rb')
+          file = File.open(File.join(dir, name), 'r')
           content << file.read
           file.close
         end
@@ -97,6 +97,7 @@ class NameFinder < ActiveRecord::Base
   
   def find_names(content)
     names = []
+    content.gsub!("_", " ")
     start_execution = Time.now
     begin
       if @engines.size == 2
