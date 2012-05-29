@@ -12,3 +12,4 @@ log/*.log
 config.yml
 .sass_cache
 .sass_cache/*
+.sass_cache/**/*
