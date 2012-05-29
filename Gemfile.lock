@@ -63,6 +63,7 @@ GEM
     nokogiri (1.5.2)
     ntlm-http (0.1.1)
     rack (1.4.1)
+    rack-google-analytics (0.10.0)
     rack-protection (1.2.0)
       rack
     rack-test (0.6.1)
@@ -149,6 +150,7 @@ DEPENDENCIES
   mysql2
   name-spotter
   rack
+  rack-google-analytics
   rack-test
   resque
   rspec

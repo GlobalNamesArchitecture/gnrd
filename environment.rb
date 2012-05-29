@@ -12,6 +12,7 @@ require 'tmpdir'
 require 'mechanize'
 require 'docsplit'
 require 'resque'
+require 'rack/google-analytics'
 require 'digest/sha1'
 
 #set environment
@@ -45,6 +46,12 @@ configure do
   $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'models'))
   Dir.glob(File.join(File.dirname(__FILE__), 'lib', '**', '*.rb')) { |lib|   require File.basename(lib, '.*') }
   Dir.glob(File.join(File.dirname(__FILE__), 'models', '*.rb')) { |model| require File.basename(model, '.*') }
+end
+
+#production-specific
+if environment == "production"
+  site_specific_file =  File.join(File.dirname(__FILE__), 'config', 'production_site_specific')
+  require site_specific_file if File.exists?(site_specific_file + ".rb")
 end
 
 after do

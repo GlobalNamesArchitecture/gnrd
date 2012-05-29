@@ -23,6 +23,7 @@ end
 
 group :production do
   gem 'thin'
+  gem 'rack-google-analytics'
 end
 
 group :test do

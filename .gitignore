@@ -6,6 +6,7 @@
 .bundle
 tags
 config/database.yml
+config/production_site_specific.rb
 log/*.log
 .DS_Store
 config.yml

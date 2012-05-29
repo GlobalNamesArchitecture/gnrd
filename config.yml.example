@@ -22,7 +22,7 @@ production:
   user: root
   password:
   database: gnrd_test
-  url_base: 'http://localhost:4567'
+  url_base: 'http://gnrd.globalnames.org'
   salt: substitute_with_your_secret_salt_string
   
   
