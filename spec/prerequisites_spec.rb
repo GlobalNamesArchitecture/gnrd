@@ -8,7 +8,8 @@ describe "TaxonFinder Connector" do
     tf_client = NameSpotter::TaxonFinderClient.new()
     tf_client.should_not be_nil
     tf_client.class.should == NameSpotter::TaxonFinderClient
-    tf_client.socket.class.should == TCPSocket
+    names = tf_client.find("Plantago major foreva!!!")
+    names[0].verbatim.should == "Plantago major" 
   end
 end
 
