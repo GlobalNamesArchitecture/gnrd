@@ -148,7 +148,7 @@ DEPENDENCIES
   haml
   mechanize
   mysql2
-  name-spotter
+  name-spotter (~> 0.1.0)
   rack
   rack-google-analytics
   rack-test
