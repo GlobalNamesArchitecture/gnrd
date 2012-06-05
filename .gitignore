@@ -10,6 +10,6 @@ config/production_site_specific.rb
 log/*.log
 .DS_Store
 config.yml
-.sass_cache
-.sass_cache/*
-.sass_cache/**/*
+.sass-cache
+.sass-cache/*
+.sass-cache/**/*
