@@ -53,11 +53,12 @@ GEM
     mime-types (1.18)
     multi_json (1.3.6)
     mysql2 (0.3.11)
-    name-spotter (0.1.1)
+    name-spotter (0.1.2)
       builder
       json
       rake
       rest-client
+      unicode_utils
     net-http-digest_auth (1.2.1)
     net-http-persistent (2.6)
     nokogiri (1.5.3)
@@ -131,6 +132,7 @@ GEM
     unf (0.0.5)
       unf_ext
     unf_ext (0.0.5)
+    unicode_utils (1.3.0)
     vegas (0.1.11)
       rack (>= 1.0.0)
     webrobots (0.0.13)
@@ -148,7 +150,7 @@ DEPENDENCIES
   haml
   mechanize
   mysql2
-  name-spotter (~> 0.1.1)
+  name-spotter (= 0.1.2)
   rack
   rack-google-analytics
   rack-test
