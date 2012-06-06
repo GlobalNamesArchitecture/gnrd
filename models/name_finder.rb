@@ -1,5 +1,5 @@
 class NameFinder < ActiveRecord::Base
-  after_create :make_output
+  after_create :add_fields_data
 
   @queue = :name_finder
 
@@ -20,7 +20,12 @@ class NameFinder < ActiveRecord::Base
     
   private
 
-  def make_output
+  def add_fields_data
+    token = "_"
+    while token.match(/[_-]/)
+      token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
+    end
+    unique ||= false
     url_format = ['xml', 'json'].include?(format) ? ".#{format}" : ''
     self.url = SiteConfig.url_base + "/name_finder" + url_format + "?token=" + token 
     self.output = {:url => url, :input_url => input_url, :status => 'In Progress', :engines => ENGINES[engine]}

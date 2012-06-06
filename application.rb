@@ -20,7 +20,6 @@ def find(params)
   file_name = nil
   file_path = nil
   sha = nil
-  token = "_"
   
   if input_url.blank? && file.blank? && text.blank?
     error_presentation(format, 400)
@@ -32,11 +31,7 @@ def find(params)
       sha = Digest::SHA1.file(file_path).hexdigest
     end
 
-    while token.match(/[_-]/)
-      token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
-    end
-
-    nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :token => token, :document_sha => sha, :unique => unique, :input => text, :file_path => file_path, :file_name => file_name)
+    nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :document_sha => sha, :unique => unique, :input => text, :file_path => file_path, :file_name => file_name)
 
     if ['xml', 'json'].include?(format) && workers_running? && text_large?(text)
       Resque.enqueue(NameFinder, nf.id)
