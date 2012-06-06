@@ -1,5 +1,7 @@
+# encoding: utf-8
 class NameFinder < ActiveRecord::Base
   after_create :add_fields_data
+  attr_reader :process_netineti_names
 
   @queue = :name_finder
 
@@ -18,6 +20,25 @@ class NameFinder < ActiveRecord::Base
     build_output
   end
     
+  def process_taxon_finder_names(names)
+    names.each do |name|
+      process_name(name)
+    end
+    names
+  end
+
+  def process_netineti_names(names)
+        require 'ruby-debug'; debugger
+    names.each do |name|
+      process_name(name)
+    end
+    names
+  end
+
+  def process_combined_names(names)
+    names = names.sort_by { |n| n[:offsetStart] }
+  end
+
   private
 
   def add_fields_data
@@ -104,17 +125,42 @@ class NameFinder < ActiveRecord::Base
     start_execution = Time.now
     begin
       if @engines.size == 2
-        names = @tf_name_spotter.find(content)[:names] | @neti_name_spotter.find(content)[:names]
+        names = process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) | process_netineti_names(@neti_name_spotter.find(content)[:names])
+        names = process_combined_names(names)
       else
-        names = (@engines[0] == 'TaxonFinder') ? @tf_name_spotter.find(content)[:names] : @neti_name_spotter.find(content)[:names]
+        names = (@engines[0] == 'TaxonFinder') ? process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) : process_netineti_names(@neti_name_spotter.find(content)[:names])
       end
-      names.each { |name| name[:scientificName].gsub!(/[\[\]]/, "") }
       @status = 200 if !content.blank?
     rescue
       @status = 500
     end
     @end_execution = (Time.now - start_execution)
     names
+  end
+
+  def process_name(name)
+    ranks ={"morph" => 1, "f" => 1, "ssp" => 1, "mut" => 1, "nothosubsp" => 1, "convar" => 1, "pseudovar" => 1, "sp" => 1, "sect" => 1, "ser" => 1, "var" => 1, "subvar" => 1, "subsp" => 1, "subf" => 1, "a" => 1, "b" => 1, "c" => 1, "d" => 1, "e" => 1, "d" => 1, "e" => 1, "g" => 1, "k" => 1, "form" => 1, "fo" => 1}
+    n = name[:scientificName]
+    return if n.size < 2
+    n = n.strip
+    n.gsub!(/^\.+/, '')
+    n.gsub!(/[\[\]]/, "") 
+    n = n.gsub(/[^\.\d\w\-\p{Latin}]/, ' ').gsub(/_/, ' ').strip
+    if tail = n[2..-1]
+      tail.gsub!(/\.+([^\s])/, ' \1')
+      tail.gsub!(/ \. /, ' ')
+      tail.gsub!(/([^\s]+)\.\s/) do
+        ranks[$1] ? "#{$1}." : $1
+      end
+      n = n[1] == '.' ? n[0..1] + ' ' + tail : n[0..1] + tail
+    end
+    name[:scientificName] = n.gsub(/\s+/, ' ').strip
+  end
+
+  def proces_netineti_names(names)
+    names.each do |name|
+      process_name(name)
+    end
   end
   
   def get_content
