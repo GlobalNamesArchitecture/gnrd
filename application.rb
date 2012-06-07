@@ -53,6 +53,7 @@ end
 
 def name_finder_presentation(name_finder_instance, format, do_redirect = false) 
   @title = "Discovered Names"
+  require 'ruby-debug'; debugger
   @page = "home"
   @header = "Discovered Names"
   @output = name_finder_instance.output

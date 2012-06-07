@@ -1,9 +1,11 @@
 # encoding: utf-8
 class NameFinder < ActiveRecord::Base
-  after_create :add_fields_data
+  after_create :initiate_data
   attr_reader :process_netineti_names
 
   @queue = :name_finder
+  RANKS = { "morph" => 1, "f" => 1, "ssp" => 1, "mut" => 1, "nothosubsp" => 1, "convar" => 1, "pseudovar" => 1, "sp" => 1, "sect" => 1, "ser" => 1, "var" => 1, "subvar" => 1, "subsp" => 1, "subf" => 1, "a" => 1, "b" => 1, "c" => 1, "d" => 1, "e" => 1, "d" => 1, "e" => 1, "g" => 1, "k" => 1, "form" => 1, "fo" => 1 }
+  REGEX = { leftmost_dot: Regexp.new(/^\.+/), square_brackets: Regexp.new(/[\[\]]/), non_name_chars: Regexp.new(/[^\.\d\w\-\p{Latin}]/), dot_before_word: Regexp.new(/\.+([^\s])/), dot_after_word: Regexp.new(/([^\s]+)\.\s/), multiple_spaces: Regexp.new(/\s+/)}    
 
   serialize :output, Hash
   ENGINES = { 0 => ["TaxonFinder", "NetiNeti"], 1 => ["TaxonFinder"], 2 => ["NetiNeti"] } 
@@ -28,7 +30,6 @@ class NameFinder < ActiveRecord::Base
   end
 
   def process_netineti_names(names)
-        require 'ruby-debug'; debugger
     names.each do |name|
       process_name(name)
     end
@@ -41,7 +42,7 @@ class NameFinder < ActiveRecord::Base
 
   private
 
-  def add_fields_data
+  def initiate_data
     token = "_"
     while token.match(/[_-]/)
       token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
@@ -139,22 +140,21 @@ class NameFinder < ActiveRecord::Base
   end
 
   def process_name(name)
-    ranks ={"morph" => 1, "f" => 1, "ssp" => 1, "mut" => 1, "nothosubsp" => 1, "convar" => 1, "pseudovar" => 1, "sp" => 1, "sect" => 1, "ser" => 1, "var" => 1, "subvar" => 1, "subsp" => 1, "subf" => 1, "a" => 1, "b" => 1, "c" => 1, "d" => 1, "e" => 1, "d" => 1, "e" => 1, "g" => 1, "k" => 1, "form" => 1, "fo" => 1}
     n = name[:scientificName]
     return if n.size < 2
     n = n.strip
-    n.gsub!(/^\.+/, '')
-    n.gsub!(/[\[\]]/, "") 
-    n = n.gsub(/[^\.\d\w\-\p{Latin}]/, ' ').gsub(/_/, ' ').strip
+    n.gsub!(NameFinder::REGEX[:leftmost_dot], '')
+    n.gsub!(NameFinder::REGEX[:square_brackets], "") 
+    n = n.gsub(NameFinder::REGEX[:non_name_chars], ' ').gsub("_", " ").strip
     if tail = n[2..-1]
-      tail.gsub!(/\.+([^\s])/, ' \1')
-      tail.gsub!(/ \. /, ' ')
-      tail.gsub!(/([^\s]+)\.\s/) do
-        ranks[$1] ? "#{$1}." : $1
+      tail.gsub!(NameFinder::REGEX[:dot_before_word], ' \1')
+      tail.gsub!(' . ', ' ')
+      tail.gsub!(NameFinder::REGEX[:dot_after_word]) do
+        NameFinder::RANKS[$1] ? "#{$1}." : $1
       end
       n = n[1] == '.' ? n[0..1] + ' ' + tail : n[0..1] + tail
     end
-    name[:scientificName] = n.gsub(/\s+/, ' ').strip
+    name[:scientificName] = n.gsub(NameFinder::REGEX[:multiple_spaces], ' ').strip
   end
 
   def proces_netineti_names(names)
