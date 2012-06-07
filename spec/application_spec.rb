@@ -40,7 +40,6 @@ describe "/name_finder" do
     get "/name_finder?url=#{url}"
     follow_redirect!
     r = last_response
-    require 'ruby-debug'; debugger
     r.status.should == 200
     r.body.match("That URL was inaccessible.").should be_true
   end
