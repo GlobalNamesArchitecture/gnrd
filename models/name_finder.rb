@@ -1,7 +1,11 @@
+# encoding: utf-8
 class NameFinder < ActiveRecord::Base
-  after_create :make_output
+  after_create :initiate_data
+  attr_reader :process_netineti_names
 
   @queue = :name_finder
+  RANKS = { "morph" => 1, "f" => 1, "ssp" => 1, "mut" => 1, "nothosubsp" => 1, "convar" => 1, "pseudovar" => 1, "sp" => 1, "sect" => 1, "ser" => 1, "var" => 1, "subvar" => 1, "subsp" => 1, "subf" => 1, "a" => 1, "b" => 1, "c" => 1, "d" => 1, "e" => 1, "d" => 1, "e" => 1, "g" => 1, "k" => 1, "form" => 1, "fo" => 1 }
+  REGEX = { leftmost_dot: Regexp.new(/^\.+/), square_brackets: Regexp.new(/[\[\]]/), non_name_chars: Regexp.new(/[^\.\d\w\-\p{Latin}]/), dot_before_word: Regexp.new(/\.+([^\s])/), dot_after_word: Regexp.new(/([^\s]+)\.\s/), multiple_spaces: Regexp.new(/\s+/)}    
 
   serialize :output, Hash
   ENGINES = { 0 => ["TaxonFinder", "NetiNeti"], 1 => ["TaxonFinder"], 2 => ["NetiNeti"] } 
@@ -18,13 +22,37 @@ class NameFinder < ActiveRecord::Base
     build_output
   end
     
+  def process_taxon_finder_names(names)
+    names.each do |name|
+      process_name(name)
+    end
+    names
+  end
+
+  def process_netineti_names(names)
+    names.each do |name|
+      process_name(name)
+    end
+    names
+  end
+
+  def process_combined_names(names)
+    names = names.sort_by { |n| n[:offsetStart] }
+  end
+
   private
 
-  def make_output
+  def initiate_data
+    self.token = "_"
+    while token.match(/[_-]/)
+      self.token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
+    end
+    unique ||= false
     url_format = ['xml', 'json'].include?(format) ? ".#{format}" : ''
     self.url = SiteConfig.url_base + "/name_finder" + url_format + "?token=" + token 
     self.output = {:url => url, :input_url => input_url, :status => 'In Progress', :engines => ENGINES[engine]}
     self.save!
+    self.reload
   end
 
   def set_instance_vars
@@ -99,17 +127,41 @@ class NameFinder < ActiveRecord::Base
     start_execution = Time.now
     begin
       if @engines.size == 2
-        names = @tf_name_spotter.find(content)[:names] | @neti_name_spotter.find(content)[:names]
+        names = process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) | process_netineti_names(@neti_name_spotter.find(content)[:names])
+        names = process_combined_names(names)
       else
-        names = (@engines[0] == 'TaxonFinder') ? @tf_name_spotter.find(content)[:names] : @neti_name_spotter.find(content)[:names]
+        names = (@engines[0] == 'TaxonFinder') ? process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) : process_netineti_names(@neti_name_spotter.find(content)[:names])
       end
-      names.each { |name| name[:scientificName].gsub!(/[\[\]]/, "") }
       @status = 200 if !content.blank?
     rescue
       @status = 500
     end
     @end_execution = (Time.now - start_execution)
     names
+  end
+
+  def process_name(name)
+    n = name[:scientificName]
+    return if n.size < 2
+    n = n.strip
+    n.gsub!(NameFinder::REGEX[:leftmost_dot], '')
+    n.gsub!(NameFinder::REGEX[:square_brackets], "") 
+    n = n.gsub(NameFinder::REGEX[:non_name_chars], ' ').gsub("_", " ").strip
+    if tail = n[2..-1]
+      tail.gsub!(NameFinder::REGEX[:dot_before_word], ' \1')
+      tail.gsub!(' . ', ' ')
+      tail.gsub!(NameFinder::REGEX[:dot_after_word]) do
+        NameFinder::RANKS[$1] ? "#{$1}." : $1
+      end
+      n = n[1] == '.' ? n[0..1] + ' ' + tail : n[0..1] + tail
+    end
+    name[:scientificName] = n.gsub(NameFinder::REGEX[:multiple_spaces], ' ').strip
+  end
+
+  def proces_netineti_names(names)
+    names.each do |name|
+      process_name(name)
+    end
   end
   
   def get_content
