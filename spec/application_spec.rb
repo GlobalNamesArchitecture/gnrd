@@ -202,18 +202,15 @@ describe "/name_finder" do
     end
   end
   
-  it "API should be able to find names with all offsets in a text file" do
-    text = "We have to be sure that Betula\n alba and PSEUDOSCORPIONIDA and Aranea röselii and capitalized ARANEA RÖSELII and Pardosa\n moesta f. moesta Banks, 1892 all get their offsets"
-    ['json'].each do |format|
-      post("/name_finder", :format => format, :text => text, :engine => 0)
-      r = last_response
-      url = get_url(r.body)
-      r.status.should == 200
-      r.body.match('Aranea').should be_true
-      res = JSON.parse(r.body, :symbolize_names => true)
-      res[:names].select {|n| n[:offsetStart] == nil}.size.should == 0
-    end
-  end
+#  it "API should be able to find names with all offsets in content with unusual characters" do
+#    text = "Passiflora sect.\n×Inkea consists of the hybrid Passiflora ×rosea. Four names are\nlectotypified.\n\nDurante la compilación de las Passifloraceae. A subgenus might look like Sophophora (Drosophila) melanogaster. We have to be sure that Betula\n alba and PSEUDOSCORPIONIDA and Aranea röselii and capitalized ARANEA RÖSELII and Pardosa\n moesta f. moesta Banks, 1892 all get their offsets. Xysticus canadensis is a name immediately after a sentence. P. modica is another one."
+#    post("/name_finder", :format => "json", :text => text, :engine => 0)
+#    r = last_response
+#    url = get_url(r.body)
+#    r.status.should == 200
+#    res = JSON.parse(r.body, :symbolize_names => true)
+#    res[:names].select {|n| n[:offsetStart] == nil}.size.should == 0
+#  end
 
   it "API should be able to find names in a image file" do
     file = File.join(File.dirname(__FILE__), 'files', 'image.jpg')
