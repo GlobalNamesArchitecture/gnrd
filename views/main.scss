@@ -279,7 +279,7 @@ label{
   width:70%;
 }
 p.separator{text-align:center;font-size:1.2em;font-weight:bold;}
-#form-panel{width:75%;margin:0px auto;}
+#form-panel{width:85%;margin:0px auto;}
 input[type="text"], input[type="email"], input[type="file"], textarea {
   color: #000000;
   font-size: 1em;
@@ -324,6 +324,10 @@ form span {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   border-radius: 6px;
 }
+#advanced_options{margin-top:20px;}
+#advanced_selections{display:none;}
+#advanced_selections fieldset{background-color:#fafafa;display:inline;width:40%;}
+#advanced_selections label{font-size:1em;}
 .submit-button {
   background: #5aa52b;
   background: -moz-linear-gradient(center bottom , #1B7004 4%, #5AA52B 58%, #90CF4C 98%) repeat scroll 0 0 transparent;
@@ -363,3 +367,58 @@ form span {
 #found-names-grid td{padding-left:5px;}
 
 #base-url{margin:20px;padding:10px;border:1px solid #ccc;border-radius:6px;width:525px;background-color:#fafafa;}
+
+ul.tabs {
+    list-style:none;
+    margin:0 !important;
+    padding:0 0 0 20%;
+    height:40px;
+}
+ul.tabs li {
+    float:left;
+    position:relative;
+    bottom:1px;
+    padding:0;
+    margin-right:2px;
+    list-style-type:none;
+    border-width:1px 1px 0px 1px;
+    border-color:#ccc;
+    border-style:solid;
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+}
+ul.tabs a {
+    display:block;
+    height: 40px;
+    line-height:40px;
+    width: 150px;
+    text-align:center;
+    text-decoration:none;
+    color:#000;
+    padding:0px;
+    margin:0px;
+    position:relative;
+    background-color:#fafafa;
+    border:1px transparent #ccc;
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+}
+
+ul.tabs a:active {outline:none;}
+ul.tabs a.current, ul.tabs a.current:hover, ul.tabs li.current a{
+    background-color:#fff;
+    cursor:default;
+    color:#000;
+    height:41px;
+}
+ul.tabs a:hover{
+    background-color:#eee;
+}
+
+.panes{
+    padding:30px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+.panes .pane{display:none;}
+.panes div{display:none;border-top:0;}

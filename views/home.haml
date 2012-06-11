@@ -17,21 +17,48 @@
       %span Make scientific names actionable.
 #form-panel.panel
   %form{:action => "/name_finder", :method => "post", :enctype=>"multipart/form-data", "accept-charset"=>"UTF-8"}
-    %label{:for => 'find_url'} URL to web page, PDF, Microsoft Office document or image
-    %input.gnrd-input{:type => :text, :name => "find[url]", :id => :find_url, :placeholder => "http://example.com", :size => 30}
-    %p.separator -- OR --
-    %label{:for => 'find_file'} File
-    %input.gnrd-file{:type => :file, :name => "find[file]", :id => :find_file, :size => 30}
-    %p.separator -- OR --
-    %label{ :for => :find_text } Freeform Text
-    %textarea.gnrd-input{ :cols => 25, :rows => 12, :name => "find[text]", :id => :find_text }
-    %fieldset 
-      %legend Name-Finding Engine
-      - {'Both' => 0, 'TaxonFinder' => 1, 'NetiNeti' => 2}.each do |key, value|
-        - checked = (key == 'Both') ? true : nil
-        %input{:type => :radio, :name => "engine", :id => "engine_#{key}", :value => value, :checked =>  checked}
-        %label{:for => "engine_#{key}"}= key
-    %input{:type => :hidden,  :name => :unique, :value => :true}
+    %ul.tabs
+      %li
+        %a{:href => "#"} File
+      %li
+        %a{:href => "#"} URL
+      %li
+        %a{:href => "#" } Freeform Text
+
+    %div.panes
+      %div
+        %label{:for => 'find_file'} File
+        %input.gnrd-file{:type => :file, :name => "find[file]", :id => :find_file, :size => 30}
+      %div
+        %label{:for => 'find_url'} URL to web page, PDF, Microsoft Office document or image
+        %input.gnrd-input{:type => :text, :name => "find[url]", :id => :find_url, :placeholder => "http://example.com", :size => 30}
+      %div
+        %label{ :for => :find_text } Freeform Text
+        %textarea.gnrd-input{ :cols => 25, :rows => 12, :name => "find[text]", :id => :find_text }
+
+    #advanced_options
+      %a{:href => "#"} Advanced Options &gt;&gt;
+    #advanced_selections
+      %fieldset 
+        %legend Name-Finding Engine
+        - {'Both' => 0, 'TaxonFinder' => 1, 'NetiNeti' => 2}.each do |key, value|
+          - checked = (key == 'Both') ? true : nil
+          %input{:type => :radio, :name => "engine", :id => "engine_#{key}", :value => value, :checked =>  checked}
+          %label{:for => "engine_#{key}"}= key
+      %fieldset
+        %legend Options
+        - {'Unique list' => 1, 'All instances' => 0}.each do |key, value|
+          - checked = (key == 'Unique list') ? true : nil
+          - id = key.gsub(" ", "_").downcase
+          %input{:type => :radio,  :name => :unique, :id => "unique_#{id}", :value => value, :checked => checked}
+          %label{:for => "unique_#{id}"}= key
+      %fieldset
+        %legend Output format
+        - ['html', 'json', 'xml'].each do |format|
+          - checked = (format == 'html') ? true : nil
+          %input{:type => :radio,  :name => :format, :id => "format_#{format}", :value => format, :checked => checked}
+          %label{:for => "format_#{format}"}= format
+
     %div
       %input.form-button.submit-button{:type => :submit, :value => "Find Names"}
 %p
