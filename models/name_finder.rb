@@ -147,7 +147,7 @@ class NameFinder < ActiveRecord::Base
     n.gsub!(NameFinder::REGEX[:leftmost_dot], "")
     n = n.gsub(NameFinder::REGEX[:non_name_chars], " ").gsub("_", " ").strip
     if tail = n[2..-1]
-      tail.gsub!(NameFinder::REGEX[:dot_before_word], " \1")
+      tail.gsub!(NameFinder::REGEX[:dot_before_word], ' \1')
       tail.gsub!(' . ', ' ')
       tail.gsub!(NameFinder::REGEX[:dot_after_word]) do
         NameFinder::RANKS[$1] ? "#{$1}." : $1
