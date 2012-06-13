@@ -201,16 +201,6 @@ describe "/name_finder" do
       end
     end
   end
-  
-#  it "API should be able to find names with all offsets in content with unusual characters" do
-#    text = "Passiflora sect.\n×Inkea consists of the hybrid Passiflora ×rosea. Four names are\nlectotypified.\n\nDurante la compilación de las Passifloraceae. A subgenus might look like Sophophora (Drosophila) melanogaster. We have to be sure that Betula\n alba and PSEUDOSCORPIONIDA and Aranea röselii and capitalized ARANEA RÖSELII and Pardosa\n moesta f. moesta Banks, 1892 all get their offsets. Xysticus canadensis is a name immediately after a sentence. P. modica is another one."
-#    post("/name_finder", :format => "json", :text => text, :engine => 0)
-#    r = last_response
-#    url = get_url(r.body)
-#    r.status.should == 200
-#    res = JSON.parse(r.body, :symbolize_names => true)
-#    res[:names].select {|n| n[:offsetStart] == nil}.size.should == 0
-#  end
 
   it "API should be able to find names in a image file" do
     file = File.join(File.dirname(__FILE__), 'files', 'image.jpg')
@@ -251,6 +241,25 @@ describe "/name_finder" do
         sleep(5)
         count -= 1
       end
+    end
+  end
+
+  it "should properly handle abbreviations" do
+    text = 'Pardosa moesta is the name of the spider and the abbreviation is P. moesta.'
+    post("/name_finder", :format => 'json', :text => text, :engine => 0)
+    r = last_response
+    url = get_url(r.body)
+    r.status.should == 200
+    count = 10
+    while count > 0
+      get(url)
+      r = last_response
+      r.status.should == 200
+      abbrev = JSON.parse(r.body, :symbolize_names => true)[:names][1][:scientificName] rescue nil
+      abbrev.should == "Pardosa moesta" if count == 1
+      break if abbrev == "Pardosa moesta"
+      sleep(5)
+      count -= 1
     end
   end
 

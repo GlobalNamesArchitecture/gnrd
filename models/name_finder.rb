@@ -144,8 +144,7 @@ class NameFinder < ActiveRecord::Base
     n = name[:scientificName]
     return if n.size < 2
     n = n.strip
-    n.gsub!(NameFinder::REGEX[:leftmost_dot], "")
-    n = n.gsub(NameFinder::REGEX[:non_name_chars], " ").gsub("_", " ").strip
+    n = n.gsub(NameFinder::REGEX[:leftmost_dot], "").gsub(NameFinder::REGEX[:square_brackets], "").gsub("_", " ").gsub(NameFinder::REGEX[:non_name_chars], " ").strip
     if tail = n[2..-1]
       tail.gsub!(NameFinder::REGEX[:dot_before_word], ' \1')
       tail.gsub!(' . ', ' ')
