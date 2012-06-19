@@ -47,7 +47,8 @@ class NameFinder < ActiveRecord::Base
     while token.match(/[_-]/)
       self.token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
     end
-    unique ||= false
+    self.unique ||= false
+    self.verbatim ||= true
     url_format = ['xml', 'json'].include?(format) ? ".#{format}" : ''
     self.url = SiteConfig.url_base + "/name_finder" + url_format + "?token=" + token 
     self.output = {:url => url, :input_url => input_url, :status => 'In Progress', :engines => ENGINES[engine]}
@@ -172,8 +173,10 @@ class NameFinder < ActiveRecord::Base
   def build_output
     begin
       names = find_names(get_content)
-      if unique
+      self.unique = true if !self.verbatim
+      if self.unique
         names.each do |name|
+          name.delete :verbatim if !self.verbatim
           name.delete :offsetStart
           name.delete :offsetEnd
         end
@@ -186,6 +189,7 @@ class NameFinder < ActiveRecord::Base
         :execution_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
         :total     => self.unique ? names.uniq.count : names.count,
         :engines   => @engines,
+        :verbatim  => self.verbatim,
         :names     => self.unique ? names.uniq : names
       )
     rescue
@@ -196,6 +200,7 @@ class NameFinder < ActiveRecord::Base
         :agent     => @agent,
         :total     => 0,
         :engines   => @engines,
+        :verbatim  => self.verbatim,
         :names     => names,
       )
     end

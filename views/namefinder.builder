@@ -19,7 +19,7 @@ xml.result do
   xml.names 'xmlns:dwc' => 'http://rs.tdwg.org/dwc/terms/' do
     @output[:names].each do |name|
       xml.name do
-        xml.verbatim name[:verbatim]
+        xml.verbatim name[:verbatim] if @output[:verbatim]
         xml.dwc :scientificName, name[:scientificName]
         if name[:offsetStart] && name[:offsetEnd]
           xml.offset 'start' => name[:offsetStart], 'end' => name[:offsetEnd]

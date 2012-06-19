@@ -28,12 +28,14 @@
   %table#found-names-grid
     %thead
       %tr
-        %th Verbatim
+        - if @output[:verbatim]
+          %th Verbatim
         %th Scientific
     %tbody
       - cycle = "odd"
-      - @output[:names].sort { |a,b| a[:verbatim] <=> b[:verbatim] }.each do |name|
+      - @output[:names].sort { |a,b| a[:scientificName] <=> b[:scientificName] }.each do |name|
         - cycle = (cycle == "odd") ? "even" : "odd"
         %tr{:class => cycle}
-          %td= name[:verbatim]
+          - if @output[:verbatim]
+            %td= name[:verbatim]
           %td= name[:scientificName]

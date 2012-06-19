@@ -15,6 +15,7 @@ def find(params)
   text = params[:text] || (params[:find] && params[:find][:text]) || nil
 
   unique = params[:unique] || false
+  verbatim = params[:verbatim] || true
   format = params[:format] || "html"
   engine = params[:engine] || 0
   file_name = nil
@@ -31,7 +32,7 @@ def find(params)
       sha = Digest::SHA1.file(file_path).hexdigest
     end
 
-    nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :document_sha => sha, :unique => unique, :input => text, :file_path => file_path, :file_name => file_name)
+    nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :document_sha => sha, :unique => unique, :verbatim => verbatim, :input => text, :file_path => file_path, :file_name => file_name)
 
     if ['xml', 'json'].include?(format) && workers_running? && text_large?(text)
       Resque.enqueue(NameFinder, nf.id)
