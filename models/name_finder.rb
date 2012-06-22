@@ -109,7 +109,9 @@ class NameFinder < ActiveRecord::Base
       content << file.read
       file.close
     else
-      Docsplit.extract_text(self.file_path, :output => dir, :clean => true)
+      opts = { :output => dir, :clean => true }
+      opts.merge!({ :pages => 'all' }) if file_type.match /PDF/
+      Docsplit.extract_text(self.file_path, opts)
       Dir.entries(dir).each do |name|
         if name.match /\.txt$/
           file = File.open(File.join(dir, name), 'r')

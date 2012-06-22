@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+require 'rack/timeout'
 require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/flash'
@@ -6,6 +7,9 @@ require 'builder'
 require File.join(File.dirname(__FILE__), 'environment')
 
 enable :sessions
+
+use Rack::Timeout
+Rack::Timeout.timeout = 9_000_000
 
 set :haml, :format => :html5
 
