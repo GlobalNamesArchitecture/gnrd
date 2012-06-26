@@ -1,10 +1,11 @@
 xml.instruct!
 xml.result do
   xml.status @output[:status]
+  xml.queue_size @output[:queue_size] if @output[:queue_size]
+  xml.token_url @output[:token_url] if @output[:token_url]
   xml.message @output[:message] if @output[:message]
   xml.total @output[:total] if @output[:total]
   xml.input_url @output[:input_url] if @output[:input_url]
-  xml.url @output[:url] if @output[:url]
   xml.file @output[:file] if @output[:file]
   xml.agent @output[:agent] if @output[:agent]
   xml.execution_time do

@@ -72,6 +72,7 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
   @redirect_url = nil
   queue_size = workers_running? ? Resque.size(:name_finder) : nil
   if @output[:status] == 'In Progress'
+    @output[:queue_size] = queue_size
     if queue_size > 0
       flash.now[:notice] = "Your submission is queued for processing. There #{queue_size == 1 ? 'is' : 'are'} #{help.pluralize(queue_size, "job")} in the queue."
     else
@@ -98,9 +99,9 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
     builder :namefinder
   else
     if do_redirect
-      redirect name_finder_instance.url
+      redirect name_finder_instance.token_url
     else
-      redirect_with_delay(name_finder_instance.url) if @output[:status] == 'In Progress'
+      redirect_with_delay(name_finder_instance.token_url) if @output[:status] == 'In Progress'
       haml :name_finder
     end
   end

@@ -14,9 +14,9 @@ describe "/name_finder" do
   def get_url(text)
     is_xml = !!text.match(/<\?xml.*version.*>/)
     if is_xml
-      text.match(/<url>([^<]*)<\/url>/)[1]
+      text.match(/<token_url>([^<]*)<\/token_url>/)[1]
     else
-      JSON.load(text)["url"]
+      JSON.load(text)["token_url"]
     end
   end
 
