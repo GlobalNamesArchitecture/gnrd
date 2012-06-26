@@ -1,4 +1,4 @@
-- if @queue_size && @queue_size > 0
+- if @output[:status] == 'In Progress'
   #found-names-loader Waiting in the queue...
 - else
   %p#found-names-duration Results are accessible at this URL for 7 days

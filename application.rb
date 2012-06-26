@@ -70,9 +70,9 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
   @header = "Discovered Names"
   @output = name_finder_instance.output
   @redirect_url = nil
-  @queue_size = workers_running? ? Resque.size(:name_finder) : nil
-  if @queue_size && @queue_size > 0
-    queue_status = "There #{@queue_size == 1 ? 'is' : 'are'} #{help.pluralize(@queue_size, "job")} in the queue. "
+  queue_size = workers_running? ? Resque.size(:name_finder) : nil
+  if queue_size && @output[:status] == 'In Progress'
+    queue_status = "There #{queue_size == 1 ? 'is' : 'are'} #{help.pluralize(queue_size, "job")} in the queue. "
     flash.now[:notice] = "Your submission is queued for processing. #{queue_status}This page will refresh every #{SiteConfig.redirect_timer} seconds."
   end
   flash.now[:warning] = "That URL was inaccessible." if @output[:status] == 404
