@@ -87,6 +87,8 @@ class NameFinder < ActiveRecord::Base
         @agent = { :code => head.code, :content_type => head.response["content-type"], :filename => head.filename }
       rescue Mechanize::ResponseCodeError => e
         @agent = { :code => e.response_code, :content_type => "" }
+      rescue SocketError => e
+        @agent = { :code => 404, :content_type => ""}
       end
     end
   end

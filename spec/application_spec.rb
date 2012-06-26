@@ -41,7 +41,17 @@ describe "/name_finder" do
     follow_redirect!
     r = last_response
     r.status.should == 200
-    r.body.match("That URL was inaccessible.").should be_true
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      if r.body.match("That URL was inaccessible.")
+        r.body.match("That URL was inaccessible.").should be_true
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
   end
   
   it "should be able to find names in a URL as a parameter" do
@@ -50,7 +60,17 @@ describe "/name_finder" do
     follow_redirect!
     r = last_response
     r.status.should == 200
-    r.body.match("Epinephelus drummondhayi").should be_true
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      if r.body.match("Epinephelus drummondhayi")
+        r.body.match("Epinephelus drummondhayi").should be_true
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
   end
 
   it "should be able to find names in text as a parameter" do
@@ -59,7 +79,17 @@ describe "/name_finder" do
     follow_redirect!
     r = last_response
     r.status.should == 200
-    r.body.match("Betula alba").should be_true
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      if r.body.match("Betula alba")
+        r.body.match("Betula alba").should be_true
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
   end
 
   it "should be able to find names in a URL" do 
@@ -68,8 +98,18 @@ describe "/name_finder" do
     follow_redirect!
     r = last_response
     r.status.should == 200
-    r.body.match("Epinephelus drummondhayi").should be_true
-    r.body.match("http://eol.org/pages/207212/overview").should be_true
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      if r.body.match("Epinephelus drummondhayi")
+        r.body.match("Epinephelus drummondhayi").should be_true
+        r.body.match("http://eol.org/pages/207212/overview").should be_true
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
   end
   
   it "should be able to find names in a submitted utf-8 text" do
@@ -78,7 +118,17 @@ describe "/name_finder" do
     follow_redirect!
     r = last_response
     r.status.should == 200
-    r.body.match("Betula alba").should be_true
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      if r.body.match("Betula alba")
+        r.body.match("Betula alba").should be_true
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
   end
 
   it "should be able to find names in an uploaded file" do
@@ -88,8 +138,18 @@ describe "/name_finder" do
     follow_redirect!
     r = last_response
     r.status.should == 200
-    r.body.match("Plantago major").should be_true
-    r.body.match("Pomatomus saltator").should be_true
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      if r.body.match("Plantago major")
+        r.body.match("Plantago major").should be_true
+        r.body.match("Pomatomus saltator").should be_true
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
   end
 
   it "should be able to find names in image" do
@@ -99,8 +159,18 @@ describe "/name_finder" do
     follow_redirect!
     r = last_response
     r.status.should == 200
-    r.body.match('Pseudodoros').should be_true
-    r.body.match('Ocyptamus').should be_true
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      if r.body.match('Pseudodoros')
+        r.body.match('Pseudodoros').should be_true
+        r.body.match('Ocyptamus').should be_true
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
   end
   
   it "should be able to find names in PDF" do
@@ -110,7 +180,17 @@ describe "/name_finder" do
     follow_redirect!
     r = last_response
     r.status.should == 200
-    r.body.match('Passiflora pilosicorona').should be_true
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      if r.body.match('Passiflora pilosicorona')
+        r.body.match('Passiflora pilosicorona').should be_true
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
   end
 
   it "API should give error when a token does not exist" do
@@ -125,17 +205,7 @@ describe "/name_finder" do
     last_response.status.should == 400
   end
   
-  it "API should be able to find names in a small submitted utf-8 text" do
-    text = 'Betula alba Beçem'
-    ['xml', 'json'].each do |format|
-      post("/name_finder", :format => format, :text => text, :engine => 0)
-      r = last_response
-      r.status.should == 200
-      r.body.match("Betula alba").should be_true
-    end
-  end
-  
-  it "API should be able to find names in a BIG submitted utf-8 text" do
+  it "API should be able to find names in submitted utf-8 text" do
     text = open(File.join(File.dirname(__FILE__), 'files', 'big.txt')).read
     ['xml', 'json'].each do |format|
       post("/name_finder", :format => format, :text => text, :engine => 0)

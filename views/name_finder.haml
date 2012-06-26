@@ -1,41 +1,44 @@
-%p#found-names-duration Results are accessible at this URL for 7 days
-- if @output[:agent] && @output[:agent][:content_type] && @output[:agent][:content_type].include?("image")
-  %h3
-    Source Image
-  #found-names-preview
-    %img{:src => @output[:input_url]}
-%ul#found-names-summary
-  - if !@output[:input_url].blank?
-    %li
-      %strong= @output[:input_url]
-  - if !@output[:file].blank?
-    %li
-      %strong= @output[:file]
-  - if !@output[:total].blank? && @output[:status] == 200
-    %li
-      %strong= @output[:total]
-      - if @output[:total] == 1
-        name
-      - else
-        names
-      found using
-      %strong #{@output[:engines].join(" and ")}
-  - if @output[:execution_time] && @output[:status] == 200
-    %li
-      = @output[:execution_time][:find_names_duration].to_s
-      s to find names, #{@output[:execution_time][:total_duration].to_s} s for entire process
-- if @output[:total] && @output[:total] > 0
-  %table#found-names-grid
-    %thead
-      %tr
-        - if @output[:verbatim]
-          %th Verbatim
-        %th Scientific
-    %tbody
-      - cycle = "odd"
-      - @output[:names].sort { |a,b| a[:scientificName] <=> b[:scientificName] }.each do |name|
-        - cycle = (cycle == "odd") ? "even" : "odd"
-        %tr{:class => cycle}
+- if @queue_size && @queue_size > 0
+  #found-names-loader Waiting in the queue...
+- else
+  %p#found-names-duration Results are accessible at this URL for 7 days
+  - if @output[:agent] && @output[:agent][:content_type] && @output[:agent][:content_type].include?("image")
+    %h3
+      Source Image
+    #found-names-preview
+      %img{:src => @output[:input_url]}
+  %ul#found-names-summary
+    - if !@output[:input_url].blank?
+      %li
+        %strong= @output[:input_url]
+    - if !@output[:file].blank?
+      %li
+        %strong= @output[:file]
+    - if !@output[:total].blank? && @output[:status] == 200
+      %li
+        %strong= @output[:total]
+        - if @output[:total] == 1
+          name
+        - else
+          names
+        found using
+        %strong #{@output[:engines].join(" and ")}
+    - if @output[:execution_time] && @output[:status] == 200
+      %li
+        = @output[:execution_time][:find_names_duration].to_s
+        s to find names, #{@output[:execution_time][:total_duration].to_s} s for entire process
+  - if @output[:total] && @output[:total] > 0
+    %table#found-names-grid
+      %thead
+        %tr
           - if @output[:verbatim]
-            %td= name[:verbatim]
-          %td= name[:scientificName]
+            %th Verbatim
+          %th Scientific
+      %tbody
+        - cycle = "odd"
+        - @output[:names].sort { |a,b| a[:scientificName] <=> b[:scientificName] }.each do |name|
+          - cycle = (cycle == "odd") ? "even" : "odd"
+          %tr{:class => cycle}
+            - if @output[:verbatim]
+              %td= name[:verbatim]
+            %td= name[:scientificName]

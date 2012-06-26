@@ -38,7 +38,7 @@ def find(params)
 
     nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :document_sha => sha, :unique => unique, :verbatim => verbatim, :input => text, :file_path => file_path, :file_name => file_name)
 
-    if ['xml', 'json'].include?(format) && workers_running? && text_large?(text)
+    if workers_running?
       Resque.enqueue(NameFinder, nf.id)
     else
       nf.name_find
@@ -55,12 +55,26 @@ def workers_running?
   !Resque.redis.smembers('workers').select {|w| w.index("name_finder")}.empty?
 end
 
-def name_finder_presentation(name_finder_instance, format, do_redirect = false) 
+def help
+  Helper.instance
+end
+
+def redirect_with_delay(url)
+  @redirect_url, @redirect_delay = url, SiteConfig.redirect_timer
+end
+
+def name_finder_presentation(name_finder_instance, format, do_redirect = false)
+  flash.sweep
   @title = "Discovered Names"
   @page = "home"
   @header = "Discovered Names"
   @output = name_finder_instance.output
-  flash.sweep
+  @redirect_url = nil
+  @queue_size = workers_running? ? Resque.size(:name_finder) : nil
+  if @queue_size && @queue_size > 0
+    queue_status = "There #{@queue_size == 1 ? 'is' : 'are'} #{help.pluralize(@queue_size, "job")} in the queue. "
+    flash.now[:notice] = "Your submission is queued for processing. #{queue_status}This page will refresh every #{SiteConfig.redirect_timer} seconds."
+  end
   flash.now[:warning] = "That URL was inaccessible." if @output[:status] == 404
   if @output[:status] == 500
     status 500
@@ -82,6 +96,7 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
     if do_redirect
       redirect name_finder_instance.url
     else
+      redirect_with_delay(name_finder_instance.url) if @output[:status] == 'In Progress'
       haml :name_finder
     end
   end

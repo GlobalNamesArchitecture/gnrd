@@ -33,6 +33,7 @@ configure do
                  :root_path => root_path,
                  :salt => conf.delete('salt'),
                  :disqus_shortname => 'globalnames-rd',
+                 :redirect_timer => 10,
                )
 
   # to see sql during tests uncomment next line
@@ -44,7 +45,7 @@ configure do
   $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'lib'))
   $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'lib', 'gnrd'))
   $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'models'))
-  Dir.glob(File.join(File.dirname(__FILE__), 'lib', '**', '*.rb')) { |lib|   require File.basename(lib, '.*') }
+  Dir.glob(File.join(File.dirname(__FILE__), 'lib', '**', '*.rb')) { |lib| require File.basename(lib, '.*') }
   Dir.glob(File.join(File.dirname(__FILE__), 'models', '*.rb')) { |model| require File.basename(model, '.*') }
 end
 
