@@ -71,9 +71,13 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
   @output = name_finder_instance.output
   @redirect_url = nil
   queue_size = workers_running? ? Resque.size(:name_finder) : nil
-  if queue_size && @output[:status] == 'In Progress'
-    queue_status = "There #{queue_size == 1 ? 'is' : 'are'} #{help.pluralize(queue_size, "job")} in the queue. "
-    flash.now[:notice] = "Your submission is queued for processing. #{queue_status}This page will refresh every #{SiteConfig.redirect_timer} seconds."
+  if @output[:status] == 'In Progress'
+    if queue_size > 0
+      flash.now[:notice] = "Your submission is queued for processing. There #{queue_size == 1 ? 'is' : 'are'} #{help.pluralize(queue_size, "job")} in the queue."
+    else
+      flash.now[:notice] = "Names are being found in your submission."
+    end
+    flash.now[:notice] += " This page will refresh every #{SiteConfig.redirect_timer} seconds."
   end
   flash.now[:warning] = "That URL was inaccessible." if @output[:status] == 404
   if @output[:status] == 500
