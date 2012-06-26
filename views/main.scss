@@ -355,11 +355,10 @@ form span {
 #chrome-description span{display:block;}
 
 #found-names-loader{
-  width:200px;
   height:100px;
   line-height:100px;
-  margin:0px auto;
   padding-left:50px;
+  font-size:1.2em;
   background-position:0px 50%;
   background-repeat:no-repeat;
   background-image: url('/images/ajax-loader.gif');

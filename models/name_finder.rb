@@ -51,7 +51,7 @@ class NameFinder < ActiveRecord::Base
     self.verbatim ||= true
     url_format = ['xml', 'json'].include?(format) ? ".#{format}" : ''
     self.token_url = SiteConfig.url_base + "/name_finder" + url_format + "?token=" + token 
-    self.output = {:token_url => token_url, :input_url => input_url, :status => 'In Progress', :engines => ENGINES[engine]}
+    self.output = {:token_url => token_url, :input_url => input_url, :status => 102, :engines => ENGINES[engine]}
     self.save!
     self.reload
   end

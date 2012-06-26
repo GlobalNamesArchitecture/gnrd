@@ -1,5 +1,8 @@
-- if @output[:status] == 'In Progress'
-  #found-names-loader Waiting in the queue...
+- if @output[:status] == 102
+  - if @output[:queue_size] > 0
+    #found-names-loader Waiting in the queue...
+  - else
+    #found-names-loader Processing...
 - else
   %p#found-names-duration Results are accessible at this URL for 7 days
   - if @output[:agent] && @output[:agent][:content_type] && @output[:agent][:content_type].include?("image")
