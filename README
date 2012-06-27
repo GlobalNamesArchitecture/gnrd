@@ -1,9 +1,14 @@
-== GNRD
+== Global Names Recognition and Discovery (GNRD)
 
-Alpha-level app to find names in web pages and documents
+Sinatra application to find scientific names in web pages and documents.
+
+See http://gnrd.globalnames.org/
 
 === Running Specs
 
-To be able to run specs there both TaxonFinder and NetiNeti need to be run locally. For testing API calls we need resque worker running:
+To be able to run specs, both TaxonFinder and NetiNeti need to be run locally.
+Get these at http://code.google.com/p/taxon-finder/ and https://github.com/mbl-cli/NetiNeti, respectively.
+
+For testing API calls, a resque worker needs to be running:
 
     QUEUE=name_finder rake resque:work
