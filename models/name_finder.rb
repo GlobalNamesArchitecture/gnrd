@@ -107,18 +107,19 @@ class NameFinder < ActiveRecord::Base
     dir = File.dirname(self.file_path)
     file_type = `file #{self.file_path}`
     if file_type.match /text/
-      file = File.open(self.file_path, 'r')
-      content << file.read
-      file.close
+      File.open(self.file_path, 'r') do |f|
+        content = f.read
+        content.encode!("UTF-8", :invalid => :replace, :undef => :replace, :replace => "")
+      end
     else
       opts = { :output => dir, :clean => true }
       opts.merge!({ :pages => 'all' }) if file_type.match /PDF/
       Docsplit.extract_text(self.file_path, opts)
       Dir.entries(dir).each do |name|
         if name.match /\.txt$/
-          file = File.open(File.join(dir, name), 'r')
-          content << file.read
-          file.close
+          File.open(File.join(dir, name), 'r') do |f|
+            content << f.read
+          end
         end
       end
     end
@@ -165,11 +166,7 @@ class NameFinder < ActiveRecord::Base
       @status = 404
     else
       save_file_from_url if !input_url.blank?
-      if !input.blank?
-        content = input
-      else
-        content = read_file
-      end
+      content = !input.blank? ? input : read_file
     end
     content
   end

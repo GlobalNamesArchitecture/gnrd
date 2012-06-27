@@ -1,9 +1,9 @@
+%p.api-warning This API produces an immediate response containing a token URL to be polled. See the example below.
+
 %h3 Base URL
 #base-url
   - base_url = "#{SiteConfig.url_base}/name_finder.json"
   %p= base_url
-
-%p This API produces an immediate response that contains a token URL to be polled for the eventual response.
 
 %h3 Parameters (GET or POST)
 
@@ -47,3 +47,58 @@
   %dd
     %em e.g.
     = base_url.sub(/json/,'xml') + "?url=http://en.wikipedia.org/wiki/Animalia"
+
+%h3 Example
+%p
+  %em e.g.
+  = base_url + "?url=http://en.wikipedia.org/wiki/Animalia"
+
+%h4 Initial Response With Token URL
+
+%pre.code
+  :escaped
+    {
+      "token_url" : "#{base_url}?token=VmuYurv3QLyMXLABnqU1vg",
+      "input_url" : "http://en.wikipedia.org/wiki/Animalia",
+      "status"    : 102,
+      "engines"   : ["TaxonFinder"],
+      "queue_size": 1
+    }
+
+%h4 Final Response Using Token URL
+
+%pre.code
+  :escaped
+    {
+      "token_url" : "#{base_url}?token=VmuYurv3QLyMXLABnqU1vg",
+      "input_url" : "http://en.wikipedia.org/wiki/Animalia",
+      "status"    : 200,
+      "engines"   : ["TaxonFinder"],
+      "file"      : null,
+      "agent"     : {
+        "code"         : "200",
+        "content_type" : "text/html; charset=UTF-8",
+        "filename"     : "Animalia.html"
+      },
+      "execution_time" : {
+        "find_names_duration" : 1.54374,
+        "total_duration"      : 5.689187
+      },
+      "total"    : 34,
+      "verbatim" :true,
+      "names":[
+        {
+          "verbatim"       : "Radiata",
+          "scientificName" : "Radiata",
+          "offsetStart"    : 20864,
+          "offsetEnd"      : 20870
+        },
+        {
+          "verbatim"       : "Radiata",
+          "scientificName" : "Radiata",
+          "offsetStart"    : 20960,
+          "offsetEnd"      : 20966
+        },
+        ...etc...
+      ]
+    }
