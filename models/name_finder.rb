@@ -97,7 +97,9 @@ class NameFinder < ActiveRecord::Base
     temp_dir = Dir.mktmpdir
     file_path = File.join(temp_dir, @agent[:filename])
     new_agent.pluggable_parser.default = Mechanize::Download
-    new_agent.get(input_url).save(file_path)
+    page = new_agent.get(input_url)
+    page.content.encode!("UTF-8", page.detected_encoding, :invalid => :replace, :undef => :replace, :replace => "")
+    page.save(file_path)
     document_sha = Digest::SHA1.hexdigest(file_path)
     self.update_attributes :file_path => file_path, :document_sha => document_sha
   end
@@ -109,7 +111,14 @@ class NameFinder < ActiveRecord::Base
     if file_type.match /text/
       File.open(self.file_path, 'r') do |f|
         content = f.read
-        content.encode!("UTF-8", :invalid => :replace, :undef => :replace, :replace => "")
+        if file_type.match /html/
+          begin
+            content = Sanitize.clean(content)
+            content.gsub!("\n", "")
+          rescue
+            @status = 500
+          end
+        end
       end
     else
       opts = { :output => dir, :clean => true }

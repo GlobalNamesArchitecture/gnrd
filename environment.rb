@@ -14,6 +14,7 @@ require 'docsplit'
 require 'resque'
 require 'rack/google-analytics'
 require 'digest/sha1'
+require 'sanitize'
 
 #set environment
 environment = ENV["RACK_ENV"] || ENV["RAILS_ENV"]

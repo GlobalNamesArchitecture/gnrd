@@ -1,4 +1,7 @@
-%p.api-warning This API produces an immediate response containing a token URL to be polled. See the example below.
+%p.api-warning<
+  This API produces an immediate response containing a token URL to be polled. See the
+  %a{:href => '#api-example'} example below
+  ='.'
 
 %h3 Base URL
 #base-url
@@ -48,7 +51,9 @@
     %em e.g.
     = base_url.sub(/json/,'xml') + "?url=http://en.wikipedia.org/wiki/Animalia"
 
-%h3 Example
+%h3
+  %a{:name => "api-example"} Example
+
 %p
   %em e.g.
   = base_url + "?url=http://en.wikipedia.org/wiki/Animalia"

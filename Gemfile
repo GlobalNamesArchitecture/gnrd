@@ -17,6 +17,7 @@ gem "rack-timeout"
 gem "rack-test"
 gem "builder"
 gem "actionpack"
+gem "sanitize"
 
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
