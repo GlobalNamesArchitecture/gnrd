@@ -18,7 +18,7 @@
           %a{:href => @output[:input_url] } #{ellipsis}
     - if !@output[:file].blank?
       %li
-        %strong= #{@output[:file]}
+        %strong #{@output[:file]}
     - if !@output[:total].blank? && @output[:status] == 200
       %li
         %strong #{@output[:total]}
