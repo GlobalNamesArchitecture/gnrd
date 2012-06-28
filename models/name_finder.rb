@@ -193,6 +193,7 @@ class NameFinder < ActiveRecord::Base
       end
       self.output.merge!(
         :status    => @status || "",
+        :unique    => self.unique,
         :agent     => @agent || "",
         :created   => self.created_at,
         :execution_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
@@ -202,6 +203,7 @@ class NameFinder < ActiveRecord::Base
     rescue
       self.output.merge!(
         :status    => @status || "",
+        :unique   => self.unique,
         :agent     => @agent || "",
         :created   => self.created_at,
         :total     => 0,

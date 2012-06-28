@@ -38,6 +38,7 @@ describe "/name_finder" do
   it "should give warning when a URL is not found" do
     url = URI.encode("http://eol.org/pages/a/overview")
     get "/name_finder?url=#{url}"
+    last_response.status.should == 302
     follow_redirect!
     r = last_response
     r.status.should == 200
@@ -45,8 +46,9 @@ describe "/name_finder" do
     while count > 0
       get(last_request.url)
       r = last_response
-      if r.body.match("That URL was inaccessible.")
-        r.body.match("That URL was inaccessible.").should be_true
+      r.body.match('That URL was inaccessible').should be_true if count == 1
+      if r.body.match("That URL was inaccessible")
+        r.body.match("That URL was inaccessible").should be_true
         break
       end
       sleep(5)
@@ -57,6 +59,7 @@ describe "/name_finder" do
   it "should be able to find names in a URL as a parameter" do
     url = URI.encode("http://eol.org/pages/207212/overview")
     get "/name_finder?url=#{url}"
+    last_response.status.should == 302
     follow_redirect!
     r = last_response
     r.status.should == 200
@@ -64,6 +67,7 @@ describe "/name_finder" do
     while count > 0
       get(last_request.url)
       r = last_response
+      r.body.match('Epinephelus drummondhayi').should be_true if count == 1
       if r.body.match("Epinephelus drummondhayi")
         r.body.match("Epinephelus drummondhayi").should be_true
         break
@@ -76,6 +80,7 @@ describe "/name_finder" do
   it "should be able to find names in text as a parameter" do
     text = URI.encode('Betula alba Beçem')
     get "/name_finder?text=#{text}"
+    last_response.status.should == 302
     follow_redirect!
     r = last_response
     r.status.should == 200
@@ -83,6 +88,7 @@ describe "/name_finder" do
     while count > 0
       get(last_request.url)
       r = last_response
+      r.body.match('Betula alba').should be_true if count == 1
       if r.body.match("Betula alba")
         r.body.match("Betula alba").should be_true
         break
@@ -95,6 +101,7 @@ describe "/name_finder" do
   it "should be able to find names in a URL" do 
     url = "http://eol.org/pages/207212/overview"
     post("/name_finder", :engine => 0, :unique => true, :url => url)
+    last_response.status.should == 302
     follow_redirect!
     r = last_response
     r.status.should == 200
@@ -102,6 +109,7 @@ describe "/name_finder" do
     while count > 0
       get(last_request.url)
       r = last_response
+      r.body.match('Epinephelus drummondhayi').should be_true if count == 1
       if r.body.match("Epinephelus drummondhayi")
         r.body.match("Epinephelus drummondhayi").should be_true
         r.body.match("http://eol.org/pages/207212/overview").should be_true
@@ -115,6 +123,7 @@ describe "/name_finder" do
   it "should be able to find names in a submitted utf-8 text" do
     text = 'Betula alba Beçem'
     post("/name_finder", :text => text, :engine => 0)
+    last_response.status.should == 302
     follow_redirect!
     r = last_response
     r.status.should == 200
@@ -122,6 +131,7 @@ describe "/name_finder" do
     while count > 0
       get(last_request.url)
       r = last_response
+      r.body.match('Betula alba').should be_true if count == 1
       if r.body.match("Betula alba")
         r.body.match("Betula alba").should be_true
         break
@@ -142,6 +152,7 @@ describe "/name_finder" do
     while count > 0
       get(last_request.url)
       r = last_response
+      r.body.match('Plantago major').should be_true if count == 1
       if r.body.match("Plantago major")
         r.body.match("Plantago major").should be_true
         r.body.match("Pomatomus saltator").should be_true
@@ -163,6 +174,7 @@ describe "/name_finder" do
     while count > 0
       get(last_request.url)
       r = last_response
+      r.body.match('Pseudodoros').should be_true if count == 1
       if r.body.match('Pseudodoros')
         r.body.match('Pseudodoros').should be_true
         r.body.match('Ocyptamus').should be_true
@@ -184,6 +196,7 @@ describe "/name_finder" do
     while count > 0
       get(last_request.url)
       r = last_response
+      r.body.match('Passiflora pilosicorona').should be_true if count == 1
       if r.body.match('Passiflora pilosicorona')
         r.body.match('Passiflora pilosicorona').should be_true
         break
@@ -209,13 +222,14 @@ describe "/name_finder" do
     text = open(File.join(File.dirname(__FILE__), 'files', 'big.txt')).read
     ['xml', 'json'].each do |format|
       post("/name_finder", :format => format, :text => text, :engine => 0)
+      last_response.status.should == 303
+      last_response.body.match('Passiflora acutissima').should be_false
+      follow_redirect!
       r = last_response
-      url = get_url(r.body)
-      r.status.should == 200
       r.body.match('Passiflora acutissima').should be_false
       count = 10
       while count > 0
-        get(url)
+        get(last_request.url)
         r = last_response
         r.body.match('Passiflora acutissima').should be_true if count == 1
         if r.body.match('Passiflora acutissima')
@@ -232,19 +246,14 @@ describe "/name_finder" do
     url = URI.encode("http://eol.org/pages/207212/overview")
     ['xml', 'json'].each do |format|
       post("/name_finder", :format => format, :url => url, :engine => 0)
-      r = last_response
-      status_url = get_url(r.body)
-      r.status.should == 200
-      r.body.match('Epinephelus drummondhayi').should be_false
+      last_response.status.should == 303
+      follow_redirect!
       count = 10
       while count > 0
-        get(status_url)
+        get(last_request.url)
         r = last_response
         r.body.match('Epinephelus drummondhayi').should be_true if count == 1
-        if r.body.match('Epinephelus drummondhayi')
-          r.body.match('Epinephelus drummondhayi').should be_true
-          break
-        end
+        break if r.body.match('Epinephelus drummondhayi')
         sleep(5)
         count -= 1
       end
@@ -255,15 +264,13 @@ describe "/name_finder" do
     file = File.join(File.dirname(__FILE__), 'files', 'big.txt')
     ['xml', 'json'].each do |format|
       post("/name_finder", :format => format, :file => Rack::Test::UploadedFile.new(file, 'text/plain'), :engine => 0)
-      r = last_response
-      url = get_url(r.body)
-      r.status.should == 200
-      r.body.match('Passiflora acutissima').should be_false
+      last_response.status.should == 303
+      follow_redirect!
+      last_response.body.match('Passiflora acutissima').should be_false
       count = 10
       while count > 0
-        get(url)
+        get(last_request.url)
         r = last_response
-        r.status.should == 200
         r.body.match('Passiflora acutissima').should be_true if count == 1
         break if r.body.match('Passiflora acutissima')
         sleep(5)
@@ -276,13 +283,12 @@ describe "/name_finder" do
     file = File.join(File.dirname(__FILE__), 'files', 'image.jpg')
     ['xml', 'json'].each do |format|
       post("/name_finder", :format => format, :file => Rack::Test::UploadedFile.new(file, 'image/jpeg'), :engine => 0)
-      r = last_response
-      url = get_url(r.body)
-      r.status.should == 200
-      r.body.match('Pseudodoros').should be_false
+      last_response.status.should == 303
+      follow_redirect!
+      last_response.body.match('Pseudodoros').should be_false
       count = 10
       while count > 0
-        get(url)
+        get(last_request.url)
         r = last_response
         r.status.should == 200
         r.body.match('Pseudodoros').should be_true if count == 1
@@ -297,13 +303,12 @@ describe "/name_finder" do
     file = File.join(File.dirname(__FILE__), 'files', 'file.pdf')
     ['xml', 'json'].each do |format|
       post("/name_finder", :format => format, :file => Rack::Test::UploadedFile.new(file, 'text/plain'), :engine => 0)
-      r = last_response
-      url = get_url(r.body)
-      r.status.should == 200
-      r.body.match('Passiflora acutissima').should be_false
+      last_response.status.should == 303
+      follow_redirect!
+      last_response.body.match('Passiflora acutissima').should be_false
       count = 10
       while count > 0
-        get(url)
+        get(last_request.url)
         r = last_response
         r.status.should == 200
         r.body.match('Passiflora acutissima').should be_true if count == 1
@@ -317,12 +322,11 @@ describe "/name_finder" do
   it "should properly handle abbreviations" do
     text = 'Pardosa moesta is the name of the spider and the abbreviation is P. moesta.'
     post("/name_finder", :format => 'json', :text => text, :engine => 0)
-    r = last_response
-    url = get_url(r.body)
-    r.status.should == 200
+    last_response.status.should == 303
+    follow_redirect!
     count = 10
     while count > 0
-      get(url)
+      get(last_request.url)
       r = last_response
       r.status.should == 200
       abbrev = JSON.parse(r.body, :symbolize_names => true)[:names][1][:scientificName] rescue nil
