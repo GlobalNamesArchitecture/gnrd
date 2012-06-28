@@ -5,7 +5,7 @@
     #found-names-loader Processing...
 - else
   %p#found-names-duration Results are accessible at this URL for 7 days
-  - if @output[:agent] && @output[:agent][:content_type] && @output[:agent][:content_type].include?("image")
+  - if !@output[:agent].blank? && @output[:agent][:content_type] && @output[:agent][:content_type].include?("image")
     %h3
       Source Image
     #found-names-preview
@@ -13,17 +13,23 @@
   %ul#found-names-summary
     - if !@output[:input_url].blank?
       %li
-        %strong= @output[:input_url]
+        %strong
+          - ellipsis = (@output[:input_url].length > 120) ? @output[:input_url][0..115] + "..." : @output[:input_url]
+          %a{:href => @output[:input_url] } #{ellipsis}
     - if !@output[:file].blank?
       %li
-        %strong= @output[:file]
+        %strong= #{@output[:file]}
     - if !@output[:total].blank? && @output[:status] == 200
       %li
-        %strong= @output[:total]
-        - if @output[:total] == 1
+        %strong #{@output[:total]}
+        - if @output[:unique]
+          %strong unique
+        - if @output[:total] == 1 || !@output[:unique]
           name
         - else
           names
+        - if !@output[:unique]
+          %strong instances
         found using
         %strong #{@output[:engines].join(" and ")}
     - if @output[:execution_time] && @output[:status] == 200
@@ -35,8 +41,8 @@
       %thead
         %tr
           - if @output[:verbatim]
-            %th Verbatim
-          %th Scientific
+            %th Verbatim Strings
+          %th Scientific Names
       %tbody
         - cycle = "odd"
         - @output[:names].sort { |a,b| a[:scientificName] <=> b[:scientificName] }.each do |name|

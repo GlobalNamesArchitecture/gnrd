@@ -64,46 +64,52 @@ def redirect_with_delay(url)
 end
 
 def name_finder_presentation(name_finder_instance, format, do_redirect = false)
-  flash.sweep
   @title = "Discovered Names"
   @page = "home"
   @header = "Discovered Names"
   @output = name_finder_instance.output
   @redirect_url = nil
-  queue_size = workers_running? ? Resque.size(:name_finder) : nil
-  if @output[:status] == 102
-    @output[:queue_size] = queue_size
-    if queue_size > 0
-      flash.now[:notice] = "Your submission is queued for processing. There #{queue_size == 1 ? 'is' : 'are'} #{help.pluralize(queue_size, "job")} in the queue."
-    else
-      flash.now[:notice] = "Names are being found in your submission."
-    end
-    flash.now[:notice] += " This page will refresh every #{SiteConfig.redirect_timer} seconds."
-  end
-  flash.now[:warning] = "That URL was inaccessible." if @output[:status] == 404
-  if @output[:status] == 500
-    status 500
-    @output[:message] = "The name engines failed. Administrators have been notified."
-    flash.now[:error] = @output[:message]
-  end
+
   case format
-  when 'json'
-    content_type 'application/json', :charset => 'utf-8'
-    json_data = JSON.dump(@output)
-    if params[:callback]
-      json_data = "%s(%s)" % [params[:callback], json_data]
-    end
-    json_data
-  when 'xml'
-    content_type 'text/xml', :charset => 'utf-8'
-    builder :namefinder
-  else
-    if do_redirect
-      redirect name_finder_instance.token_url
+    when 'json'
+      content_type 'application/json', :charset => 'utf-8'
+      json_data = JSON.dump(@output)
+      if params[:callback]
+        json_data = "%s(%s)" % [params[:callback], json_data]
+      end
+      json_data
+    when 'xml'
+      content_type 'text/xml', :charset => 'utf-8'
+      builder :namefinder
     else
-      redirect_with_delay(name_finder_instance.token_url) if @output[:status] == 102
-      haml :name_finder
+      flash_messages
+      if do_redirect
+        redirect name_finder_instance.token_url
+      else
+        redirect_with_delay(name_finder_instance.token_url) if @output[:status] == 102
+        haml :name_finder
+      end
     end
+end
+
+def flash_messages
+  flash.sweep
+  queue_size = workers_running? ? Resque.size(:name_finder) : nil
+
+  case @output[:status]
+    when 102
+      @output[:queue_size] = queue_size
+      if queue_size > 0
+        flash.now[:notice] = "Your submission is queued for processing. There #{queue_size == 1 ? 'is' : 'are'} #{help.pluralize(queue_size, "job")} in the queue."
+      else
+        flash.now[:notice] = "Names are being found in your submission."
+      end
+      flash.now[:notice] += " This page will refresh every #{SiteConfig.redirect_timer} seconds."
+    when 404
+      flash.now[:warning] = "That URL was inaccessible."
+    when 500
+      status 500
+      flash.now[:error] = "The name engines failed. Administrators have been notified."
   end
 end
 
@@ -111,31 +117,31 @@ def error_presentation(format, output_status = 404)
   @output = { :status => output_status, :message => nil }
 
   case output_status
-  when 400
-     @output[:message] = "Bad Request. Parameters missing."
-  when 404
-    @output[:message] = "Not Found. That result no longer exists."
-  when 500
-    @output[:message] = "Internal Server Error. Name-finding engines are offline."
+    when 400
+      @output[:message] = "Bad Request. Parameters missing."
+    when 404
+      @output[:message] = "Not Found. That result no longer exists."
+    when 500
+      @output[:message] = "The name engines failed. Administrators have been notified."
   end
 
   case format
-  when 'json'
-    status output_status
-    content_type 'application/json', :charset => 'utf-8'
-    JSON.dump(@output)
-  when 'xml'
-    status output_status
-    content_type 'text/xml', :charset => 'utf-8'
-    builder :namefinder
-  else
-    flash.sweep
-    flash.now[:error] = @output[:message]
-    if output_status == 400
-      redirect "/"
+    when 'json'
+      status output_status
+      content_type 'application/json', :charset => 'utf-8'
+      JSON.dump(@output)
+    when 'xml'
+      status output_status
+      content_type 'text/xml', :charset => 'utf-8'
+      builder :namefinder
     else
-      haml :fail
-    end
+      flash.sweep
+      flash.now[:error] = @output[:message]
+      if output_status == 400
+        redirect "/"
+      else
+        haml :fail
+      end
   end
 end
 
