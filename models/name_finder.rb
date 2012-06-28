@@ -51,7 +51,7 @@ class NameFinder < ActiveRecord::Base
     self.verbatim ||= true
     url_format = ['xml', 'json'].include?(format) ? ".#{format}" : ''
     self.token_url = SiteConfig.url_base + "/name_finder" + url_format + "?token=" + token 
-    self.output = { :token_url => token_url, :input_url => input_url || "", :file => file_name || "", :status => 102, :engines => ENGINES[engine], :unique => unique, :verbatim => verbatim }
+    self.output = { :token_url => token_url, :input_url => input_url || "", :file => file_name || "", :status => 303, :engines => ENGINES[engine], :unique => unique, :verbatim => verbatim }
     self.save!
     self.reload
   end
@@ -193,25 +193,19 @@ class NameFinder < ActiveRecord::Base
       end
       self.output.merge!(
         :status    => @status || "",
-        :input_url => self.input_url || "",
-        :file      => self.file_name || "",
         :agent     => @agent || "",
+        :created   => self.created_at,
         :execution_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
         :total     => self.unique ? names.uniq.count : names.count,
-        :engines   => @engines,
-        :verbatim  => self.verbatim,
         :names     => self.unique ? names.uniq : names
       )
     rescue
       self.output.merge!(
         :status    => @status || "",
-        :input_url => self.input_url || "",
-        :file      => self.file_name || "",
         :agent     => @agent || "",
+        :created   => self.created_at,
         :total     => 0,
-        :engines   => @engines,
-        :verbatim  => self.verbatim,
-        :names     => names,
+        :names     => [],
       )
     end
     self.file_path = nil

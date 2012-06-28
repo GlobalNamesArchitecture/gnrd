@@ -58,7 +58,9 @@
   %em e.g.
   = base_url + "?url=http://en.wikipedia.org/wiki/Animalia"
 
-%h4 Initial Response With Token URL
+%h4 Initial Response Containing Token URL
+
+%p An HTTP status code of 303 "See Other" will be sent and the Location will be the token URL.
 
 %pre.code
   :escaped
@@ -66,14 +68,14 @@
       "token_url" : "#{base_url}?token=VmuYurv3QLyMXLABnqU1vg",
       "input_url" : "http://en.wikipedia.org/wiki/Animalia",
       "file"      : "",
-      "status"    : 102,
+      "status"    : 303,
       "engines"   : ["TaxonFinder", "NetiNeti"],
       "unique"    : false,
       "verbatim"  : true,
       "queue_size": 1
     }
 
-%h4 Final Response Using Token URL
+%h4 Final Response After Having Polled Token URL
 
 %pre.code
   :escaped

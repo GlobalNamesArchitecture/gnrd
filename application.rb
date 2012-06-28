@@ -72,23 +72,20 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
 
   case format
     when 'json'
-      content_type 'application/json', :charset => 'utf-8'
+      redirect name_finder_instance.token_url, 303 if do_redirect
       json_data = JSON.dump(@output)
-      if params[:callback]
-        json_data = "%s(%s)" % [params[:callback], json_data]
-      end
+      json_data = "%s(%s)" % [params[:callback], json_data] if params[:callback]
+      content_type 'application/json', :charset => 'utf-8'
       json_data
     when 'xml'
+      redirect name_finder_instance.token_url, 303 if do_redirect
       content_type 'text/xml', :charset => 'utf-8'
       builder :namefinder
     else
       flash_messages
-      if do_redirect
-        redirect name_finder_instance.token_url
-      else
-        redirect_with_delay(name_finder_instance.token_url) if @output[:status] == 102
-        haml :name_finder
-      end
+      redirect name_finder_instance.token_url if do_redirect
+      redirect_with_delay(name_finder_instance.token_url) if @output[:status] == 303
+      haml :name_finder
     end
 end
 
@@ -97,7 +94,7 @@ def flash_messages
   queue_size = workers_running? ? Resque.size(:name_finder) : nil
 
   case @output[:status]
-    when 102
+    when 303
       @output[:queue_size] = queue_size
       if queue_size > 0
         flash.now[:notice] = "Your submission is queued for processing. There #{queue_size == 1 ? 'is' : 'are'} #{help.pluralize(queue_size, "job")} in the queue."
@@ -108,7 +105,6 @@ def flash_messages
     when 404
       flash.now[:warning] = "That URL was inaccessible."
     when 500
-      status 500
       flash.now[:error] = "The name engines failed. Administrators have been notified."
   end
 end
@@ -137,12 +133,15 @@ def error_presentation(format, output_status = 404)
     else
       flash.sweep
       flash.now[:error] = @output[:message]
-      if output_status == 400
-        redirect "/"
-      else
-        haml :fail
-      end
+      redirect "/" if output_status == 400
+      haml :fail
   end
+end
+
+get "/" do
+  @page = "home"
+  @tagline = "Global Names recognition and discovery tools and services"
+  haml :home
 end
 
 get '/api' do
@@ -162,12 +161,6 @@ end
 get '/main.css' do
   content_type 'text/css', :charset => 'utf-8'
   scss :main
-end
-
-get "/" do
-  @page = "home"
-  @tagline = "Global Names recognition and discovery tools and services"
-  haml :home
 end
 
 get "/name_finder.?:format?" do
