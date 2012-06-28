@@ -185,6 +185,28 @@ describe "/name_finder" do
     end
   end
   
+  it "should produce a non result when no names are in an image" do
+    image_file = File.join(SiteConfig.root_path, 'spec', 'files', 'no_names.jpg')
+    post('/name_finder', :file => Rack::Test::UploadedFile.new(image_file, 'image/jpeg'), :unique => true)
+    last_response.status.should == 302
+    follow_redirect!
+    r = last_response
+    r.status.should == 200
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      content = Sanitize.clean(r.body).gsub!("\n", "").gsub!(/\s\s+/,' ')
+      content.match('0 unique names').should be_true if count == 1
+      if content.match('0 unique names')
+        content.match('0 unique names').should be_true
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
+  end
+  
   it "should be able to find names in PDF" do
     pdf_file = File.join(SiteConfig.root_path, 'spec', 'files', 'file.pdf')
     post('/name_finder', :file => Rack::Test::UploadedFile.new(pdf_file, 'application/pdf'), :engine => 2)

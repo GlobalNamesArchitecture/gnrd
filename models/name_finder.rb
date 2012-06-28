@@ -59,7 +59,7 @@ class NameFinder < ActiveRecord::Base
     @engines = ENGINES[engine]
     @agent = nil
     @output = nil
-    @status = nil
+    @status = 200
   end
 
   def setup_name_spotter
@@ -145,7 +145,6 @@ class NameFinder < ActiveRecord::Base
       else
         names = (@engines[0] == 'TaxonFinder') ? process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) : process_netineti_names(@neti_name_spotter.find(content)[:names])
       end
-      @status = 200 if !content.blank?
     rescue
       @status = 500
     end
@@ -190,7 +189,7 @@ class NameFinder < ActiveRecord::Base
         end
       end
       self.output.merge!(
-        :status    => @status || "",
+        :status    => @status,
         :unique    => self.unique,
         :agent     => @agent || "",
         :created   => self.created_at,
@@ -200,8 +199,8 @@ class NameFinder < ActiveRecord::Base
       )
     rescue
       self.output.merge!(
-        :status    => @status || "",
-        :unique   => self.unique,
+        :status    => @status,
+        :unique    => self.unique,
         :agent     => @agent || "",
         :created   => self.created_at,
         :total     => 0,
