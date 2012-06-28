@@ -47,8 +47,6 @@ class NameFinder < ActiveRecord::Base
     while token.match(/[_-]/)
       self.token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
     end
-    self.unique ||= false
-    self.verbatim ||= true
     url_format = ['xml', 'json'].include?(format) ? ".#{format}" : ''
     self.token_url = SiteConfig.url_base + "/name_finder" + url_format + "?token=" + token 
     self.output = { :token_url => token_url, :input_url => input_url || "", :file => file_name || "", :status => 303, :engines => ENGINES[engine], :unique => unique, :verbatim => verbatim }
