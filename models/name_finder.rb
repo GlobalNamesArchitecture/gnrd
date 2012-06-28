@@ -98,7 +98,7 @@ class NameFinder < ActiveRecord::Base
     file_path = File.join(temp_dir, @agent[:filename])
     new_agent.pluggable_parser.default = Mechanize::Download
     page = new_agent.get(input_url)
-    page.content.encode!("UTF-8", page.detected_encoding, :invalid => :replace, :undef => :replace, :replace => "")
+    page.content.encode!("UTF-8", page.detected_encoding, :invalid => :replace, :undef => :replace, :replace => "") if @agent[:content_type].match /html/
     page.save(file_path)
     document_sha = Digest::SHA1.hexdigest(file_path)
     self.update_attributes :file_path => file_path, :document_sha => document_sha
