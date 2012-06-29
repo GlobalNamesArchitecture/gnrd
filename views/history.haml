@@ -10,7 +10,7 @@
     - @records.each do |record|
       - cycle = (cycle == "odd") ? "even" : "odd"
       - item = record.input_url? ? record.input_url : record.file_name
-      - ellipsis = (item.length > 105) ? item[0..102] + "..." : item
+      - ellipsis = (item.length > 75) ? item[0..72] + "..." : item
       %tr{:class => cycle}
         %td
           %a{:href => "#{SiteConfig.url_base}/name_finder?token=#{record.token}" } #{ellipsis}
