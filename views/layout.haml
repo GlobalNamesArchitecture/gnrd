@@ -24,6 +24,9 @@
             - klass = @page == "feedback" ? :active : nil
             %li{:class => klass}
               %a{:href => "/feedback"} Feedback
+            - klass = @page == "history" ? :active : nil
+            %li{:class => klass}
+              %a{:href => "/history"} History
             - klass = @page == "api" ? :active : nil
             %li{:class => klass}
               %a{:href => "/api"} API

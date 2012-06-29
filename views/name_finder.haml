@@ -4,7 +4,7 @@
   - else
     #found-names-loader Processing...
 - else
-  %p#found-names-duration Results are accessible at this URL for 7 days
+  %p#found-names-duration Results are accessible at this URL for #{SiteConfig.cleaner_period} days
   - if !@output[:agent].blank? && @output[:agent][:content_type] && @output[:agent][:content_type].include?("image")
     %h3
       Source Image

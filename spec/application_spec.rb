@@ -10,6 +10,35 @@ describe "/" do
   end
 end
 
+describe "/api" do 
+  it "should open api page" do
+    get "/api"
+    r = last_response
+    r.status.should == 200
+    r.body.match("Application Programming Interface").should be_true
+    r.body.match("This API produces an immediate response containing a token URL to be polled.").should be_true
+  end
+end
+
+describe "/feedback" do 
+  it "should open the feedback page" do
+    get "/feedback"
+    r = last_response
+    r.status.should == 200
+    r.body.match("Feedback").should be_true
+  end
+end
+
+describe "/history" do 
+  it "should open the history page" do
+    get "/history"
+    r = last_response
+    r.status.should == 200
+    r.body.match("History").should be_true
+    r.body.match("Results are limited to files and URLs for the last 7 days").should be_true
+  end
+end
+
 describe "/name_finder" do
   def get_url(text)
     is_xml = !!text.match(/<\?xml.*version.*>/)

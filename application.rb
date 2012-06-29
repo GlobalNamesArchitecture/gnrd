@@ -17,11 +17,11 @@ def find(params)
   input_url = params[:url] || (params[:find] && params[:find][:url]) || nil
   file = params[:file] || (params[:find] && params[:find][:file]) || nil
   text = params[:text] || (params[:find] && params[:find][:text]) || nil
-
   unique = params[:unique] || false
   verbatim = params[:verbatim] || true
   format = params[:format] || "html"
   engine = params[:engine] || 0
+
   file_name = nil
   file_path = nil
   sha = nil
@@ -35,20 +35,10 @@ def find(params)
       FileUtils.mv(file[:tempfile].path, file_path)
       sha = Digest::SHA1.file(file_path).hexdigest
     end
-
     nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :document_sha => sha, :unique => unique, :verbatim => verbatim, :input => text, :file_path => file_path, :file_name => file_name)
-
-    if workers_running?
-      Resque.enqueue(NameFinder, nf.id)
-    else
-      nf.name_find
-    end
+    workers_running? ? Resque.enqueue(NameFinder, nf.id) : nf.name_find
     name_finder_presentation(nf, format, true)
   end
-end
-
-def text_large?(text)
-  !text || text.size > 5000
 end
 
 def workers_running?
@@ -61,6 +51,26 @@ end
 
 def redirect_with_delay(url)
   @redirect_url, @redirect_delay = url, SiteConfig.redirect_timer
+end
+
+def flash_messages
+  flash.sweep
+  queue_size = workers_running? ? Resque.size(:name_finder) : nil
+
+  case @output[:status]
+    when 303
+      @output[:queue_size] = queue_size
+      if queue_size > 0
+        flash.now[:notice] = "Your submission is queued for processing. There #{queue_size == 1 ? 'is' : 'are'} #{help.pluralize(queue_size, "job")} in the queue."
+      else
+        flash.now[:notice] = "Names are being found in your submission."
+      end
+      flash.now[:notice] += " This page will refresh every #{SiteConfig.redirect_timer} seconds."
+    when 404
+      flash.now[:warning] = "That URL was inaccessible."
+    when 500
+      flash.now[:error] = "The name engines failed. Administrators have been notified."
+  end
 end
 
 def name_finder_presentation(name_finder_instance, format, do_redirect = false)
@@ -87,26 +97,6 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
       redirect_with_delay(name_finder_instance.token_url) if @output[:status] == 303
       haml :name_finder
     end
-end
-
-def flash_messages
-  flash.sweep
-  queue_size = workers_running? ? Resque.size(:name_finder) : nil
-
-  case @output[:status]
-    when 303
-      @output[:queue_size] = queue_size
-      if queue_size > 0
-        flash.now[:notice] = "Your submission is queued for processing. There #{queue_size == 1 ? 'is' : 'are'} #{help.pluralize(queue_size, "job")} in the queue."
-      else
-        flash.now[:notice] = "Names are being found in your submission."
-      end
-      flash.now[:notice] += " This page will refresh every #{SiteConfig.redirect_timer} seconds."
-    when 404
-      flash.now[:warning] = "That URL was inaccessible."
-    when 500
-      flash.now[:error] = "The name engines failed. Administrators have been notified."
-  end
 end
 
 def error_presentation(format, output_status = 404)
@@ -156,6 +146,14 @@ get '/feedback' do
   @title = "Feedback"
   @header = "Feedback"
   haml :feedback
+end
+
+get '/history' do
+  @page = "history"
+  @title = "History"
+  @header = "History"
+  @records = NameFinder.find(:all, :select => ["token", "input_url", "file_name", "created_at"], :conditions => "input_url <> '' OR file_name <> ''", :order => "created_at DESC")
+  haml :history
 end
 
 get '/main.css' do

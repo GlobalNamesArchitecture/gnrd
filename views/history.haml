@@ -1,0 +1,17 @@
+%p#found-names-duration Results are limited to files and URLs for the last 7 days
+
+%table#found-names-grid
+  %thead
+    %tr
+      %th Item
+      %th.created Created
+  %tbody
+    - cycle = "odd"
+    - @records.each do |record|
+      - cycle = (cycle == "odd") ? "even" : "odd"
+      - item = record.input_url? ? record.input_url : record.file_name
+      - ellipsis = (item.length > 105) ? item[0..102] + "..." : item
+      %tr{:class => cycle}
+        %td
+          %a{:href => "#{SiteConfig.url_base}/name_finder?token=#{record.token}" } #{ellipsis}
+        %td.created= record.created_at

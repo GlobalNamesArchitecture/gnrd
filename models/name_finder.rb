@@ -72,6 +72,7 @@ class NameFinder < ActiveRecord::Base
   def new_agent
     agent = Mechanize.new
     agent.user_agent_alias = 'Linux Mozilla'
+    agent.pluggable_parser.default = Mechanize::Download
     agent
   end
 
@@ -94,7 +95,6 @@ class NameFinder < ActiveRecord::Base
   def save_file_from_url
     temp_dir = Dir.mktmpdir
     file_path = File.join(temp_dir, @agent[:filename])
-    new_agent.pluggable_parser.default = Mechanize::Download
     page = new_agent.get(input_url)
     page.content.encode!("UTF-8", page.detected_encoding, :invalid => :replace, :undef => :replace, :replace => "") if @agent[:content_type].match /html/
     page.save(file_path)
@@ -180,14 +180,14 @@ class NameFinder < ActiveRecord::Base
   def build_output
     begin
       names = find_names(get_content)
+
       self.unique = true if !self.verbatim
-      if self.unique
-        names.each do |name|
-          name.delete :verbatim if !self.verbatim
-          name.delete :offsetStart
-          name.delete :offsetEnd
-        end
-      end
+      names.each do |name|
+        name.delete :verbatim if !self.verbatim
+        name.delete :offsetStart
+        name.delete :offsetEnd
+      end if self.unique
+
       self.output.merge!(
         :status    => @status,
         :unique    => self.unique,

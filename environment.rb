@@ -34,6 +34,7 @@ configure do
                  :root_path => root_path,
                  :salt => conf.delete('salt'),
                  :disqus_shortname => 'globalnames-rd',
+                 :cleaner_period => 7,
                  :redirect_timer => 10,
                )
 
