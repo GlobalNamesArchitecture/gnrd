@@ -369,6 +369,27 @@ describe "/name_finder" do
       end
     end
   end
+  
+  it "API should return an identifiedName element for found abbreviations" do
+    file = File.join(File.dirname(__FILE__), 'files', 'abbreviations.txt')
+    ['xml', 'json'].each do |format|
+      post("/name_finder", :format => format, :file => Rack::Test::UploadedFile.new(file, 'text/plain'), :engine => 0)
+      last_response.status.should == 303
+      follow_redirect!
+      last_response.body.match('identifiedName').should be_false
+      count = 10
+      while count > 0
+        get(last_request.url)
+        r = last_response
+        r.body.match('identifiedName').should be_true if count == 1
+        r.body.match('Pardosa distincta').should be_true if count == 1
+        r.body.match('P. distincta').should be_true if count == 1
+        break if r.body.match('identifiedName')
+        sleep(5)
+        count -= 1
+      end
+    end
+  end
 
   it "should properly handle abbreviations" do
     text = 'Pardosa moesta is the name of the spider and the abbreviation is P. moesta.'

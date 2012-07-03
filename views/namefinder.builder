@@ -21,6 +21,7 @@ xml.result do
     @output[:names].each do |name|
       xml.name do
         xml.verbatim name[:verbatim] if @output[:verbatim]
+        xml.identifiedName name[:identifiedName] if name[:identifiedName]
         xml.dwc :scientificName, name[:scientificName]
         if name[:offsetStart] && name[:offsetEnd]
           xml.offset 'start' => name[:offsetStart], 'end' => name[:offsetEnd]

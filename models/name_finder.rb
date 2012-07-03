@@ -24,6 +24,7 @@ class NameFinder < ActiveRecord::Base
     
   def process_taxon_finder_names(names)
     names.each do |name|
+      name[:identifiedName] = name[:scientificName].gsub(/\[[^()]*\]/,".")
       process_name(name)
     end
     names
@@ -31,6 +32,7 @@ class NameFinder < ActiveRecord::Base
 
   def process_netineti_names(names)
     names.each do |name|
+      name[:identifiedName] = name[:scientificName]
       process_name(name)
     end
     names
