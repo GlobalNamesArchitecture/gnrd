@@ -63,7 +63,7 @@
 
 %p
   %em e.g.
-  = base_url + "?url=http://en.wikipedia.org/wiki/Animalia"
+  = base_url + "?url=http://en.wikipedia.org/wiki/Araneae"
 
 %h4 Initial Response Containing Token URL
 
@@ -73,7 +73,7 @@
   :escaped
     {
       "token_url" : "#{base_url}?token=VmuYurv3QLyMXLABnqU1vg",
-      "input_url" : "http://en.wikipedia.org/wiki/Animalia",
+      "input_url" : "http://en.wikipedia.org/wiki/Araneae",
       "file"      : "",
       "status"    : 303,
       "engines"   : ["TaxonFinder", "NetiNeti"],
@@ -88,7 +88,7 @@
   :escaped
     {
       "token_url" : "#{base_url}?token=VmuYurv3QLyMXLABnqU1vg",
-      "input_url" : "http://en.wikipedia.org/wiki/Animalia",
+      "input_url" : "http://en.wikipedia.org/wiki/Araneae",
       "file"      : "",
       "status"    : 200,
       "engines"   : ["TaxonFinder", "NetiNeti"],
@@ -97,26 +97,28 @@
       "agent"     : {
         "code"         : "200",
         "content_type" : "text/html; charset=UTF-8",
-        "filename"     : "Animalia.html"
+        "filename"     : "Araneae.html"
       },
       "created"   : "2012-06-28T03:21:28-04:00",
       "execution_time" : {
-        "find_names_duration" : 1.54374,
-        "total_duration"      : 5.689187
+        "find_names_duration" : 1.935246,
+        "total_duration"      : 4.051854
       },
-      "total"    : 34,
+      "total"    : 347,
       "names":[
         {
-          "verbatim"       : "Radiata",
-          "scientificName" : "Radiata",
-          "offsetStart"    : 20864,
-          "offsetEnd"      : 20870
+          "verbatim"       : "T. nigroannulatum build",
+          "scientificName" : "Theridion nigroannulatum",
+          "identifiedName" : "T. nigroannulatum",
+          "offsetStart"    : 39686,
+          "offsetEnd"      : 39708,
         },
         {
-          "verbatim"       : "Radiata",
-          "scientificName" : "Radiata",
-          "offsetStart"    : 20960,
-          "offsetEnd"      : 20966
+          "verbatim"       : "Uloboridae)",
+          "identifiedName" : "Uloboridae"
+          "scientificName" : "Uloboridae",
+          "offsetStart"    : 39885,
+          "offsetEnd"      : 39896,
         },
         ...etc...
       ]
