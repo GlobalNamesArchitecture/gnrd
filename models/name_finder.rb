@@ -40,6 +40,16 @@ class NameFinder < ActiveRecord::Base
 
   def process_combined_names(names)
     names = names.sort_by { |n| n[:offsetStart] }
+    names.each_with_index do |name,i|
+      range = name[:offsetStart]..name[:offsetEnd]
+      if names[i-1] && range.intersection(names[i-1][:offsetStart]..names[i-1][:offsetEnd])
+        names.delete_at(i) if names[i-1][:scientificName].length > name[:scientificName].length
+        names.delete_at(i) if names[i-1][:scientificName].length > names[i-1][:identifiedName].length
+        names.delete_at(i) if names[i-1][:scientificName] == name[:scientificName]
+        names.delete_at(i-1) if name[:scientificName].length > name[:identifiedName].length
+      end
+    end if names.size > 1
+    names
   end
 
   private
