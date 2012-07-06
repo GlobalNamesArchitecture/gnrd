@@ -25,6 +25,7 @@ class NameFinder < ActiveRecord::Base
   def process_taxon_finder_names(names)
     names.each do |name|
       name[:identifiedName] = name[:scientificName].gsub(/\[[^()]*\]/,".")
+      name[:engine] = 1
       process_name(name)
     end
     names
@@ -33,6 +34,7 @@ class NameFinder < ActiveRecord::Base
   def process_netineti_names(names)
     names.each do |name|
       name[:identifiedName] = name[:scientificName]
+      name[:engine] = 2
       process_name(name)
     end
     names
@@ -41,14 +43,47 @@ class NameFinder < ActiveRecord::Base
   def process_combined_names(names)
     names = names.sort_by { |n| n[:offsetStart] }
     names.each_with_index do |name,i|
-      range = name[:offsetStart]..name[:offsetEnd]
-      if names[i-1] && range.intersection(names[i-1][:offsetStart]..names[i-1][:offsetEnd])
-        names.delete_at(i) if names[i-1][:scientificName].length > name[:scientificName].length
-        names.delete_at(i) if names[i-1][:scientificName].length > names[i-1][:identifiedName].length
-        names.delete_at(i) if names[i-1][:scientificName] == name[:scientificName]
-        names.delete_at(i-1) if name[:scientificName].length > name[:identifiedName].length
+      curr_range = names[i][:offsetStart]..names[i][:offsetEnd]
+      prev_range = names[i-1] ? names[i-1][:offsetStart]..names[i-1][:offsetEnd] : nil
+      prev_range2 = names[i-2] ? names[i-2][:offsetStart]..names[i-2][:offsetEnd] : nil
+
+      if prev_range && curr_range.intersection(prev_range)
+
+        #remove true duplicates
+        names[i] = nil if names[i-1][:scientificName] == name[:scientificName]
+
+        #prefer TaxonFinder expansion over NetiNeti abbreviation
+        names[i] = nil if names[i] && names[i-1][:scientificName].length > names[i-1][:identifiedName].length && names[i-1][:engine] == 1
+        names[i-1] = nil if names[i] && name[:scientificName].length > name[:identifiedName].length && ( (names[i-1][:engine] == 1 && name[:engine] == 2) || (names[i-1][:identifiedName] == name[:identifiedName] && name[:engine] == 1) )
+
+        #prefer TaxonFinder over NetiNeti if latter is less inclusive
+        names[i] = nil if names[i] && names[i-1] && names[i-1][:scientificName].length > name[:scientificName].length && names[i-1][:engine] == 1 && name[:engine] == 2
+        names[i-1] = nil if names[i] && names[i-1] && name[:scientificName].length > names[i-1][:scientificName].length && names[i-1][:engine] == 2 && name[:engine] == 1
+
+        #prefer largest NetiNeti if followed by another NetiNeti (eliminates some subgeneric issues)
+        if names[i] && names[i-1] && names[i-1][:engine] == 2 && name[:engine] == 2
+          names[i] = nil if prev_range.count > curr_range.count
+          names[i-1] = nil if curr_range.count > prev_range.count
+        end
+        
+        #prefer name without single preceding bracket
+        if names[i] && names[i-1]
+          names[i] = nil if name[:scientificName].start_with?("(") && name[:scientificName].gsub("(", "") == names[i-1][:scientificName]
+          names[i-1] = nil if names[i] && names[i-1][:scientificName].start_with?("(") && names[i-1][:scientificName].gsub("(", "") == name[:scientificName]
+        end
       end
-    end if names.size > 1
+
+      #mop-up additional issues two steps prior to current namestring
+      if names[i-1] == nil && prev_range2 && curr_range.intersection(prev_range2)
+        names[i] = nil if names[i-2][:scientificName].length > name[:scientificName].length && names[i-2][:engine] == 1 && name[:engine] == 2
+        if names[i] && names[i-2][:engine] == 2 && name[:engine] == 2
+          names[i] = nil if prev_range2.count > curr_range.count
+          names[i-2] = nil if curr_range.count > prev_range2.count
+        end
+      end
+    end
+    names.delete_if { |x| x == nil }
+    names.each { |x| x.delete :engine }
     names
   end
 
@@ -60,7 +95,7 @@ class NameFinder < ActiveRecord::Base
       self.token = Base64.urlsafe_encode64(UUID.create_v4.raw_bytes)[0..-3]
     end
     url_format = ['xml', 'json'].include?(format) ? ".#{format}" : ''
-    self.token_url = SiteConfig.url_base + "/name_finder" + url_format + "?token=" + token 
+    self.token_url = SiteConfig.url_base + "/name_finder" + url_format + "?token=" + token
     self.output = { :token_url => token_url, :input_url => input_url || "", :file => file_name || "", :status => 303, :engines => ENGINES[engine], :unique => unique, :verbatim => verbatim }
     self.save!
     self.reload
@@ -152,11 +187,11 @@ class NameFinder < ActiveRecord::Base
     start_execution = Time.now
     begin
       if @engines.size == 2
-        names = process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) | process_netineti_names(@neti_name_spotter.find(content)[:names])
-        names = process_combined_names(names)
+        names = process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) + process_netineti_names(@neti_name_spotter.find(content)[:names])
       else
         names = (@engines[0] == 'TaxonFinder') ? process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) : process_netineti_names(@neti_name_spotter.find(content)[:names])
       end
+      names = process_combined_names(names)
     rescue
       @status = 500
     end
