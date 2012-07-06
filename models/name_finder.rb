@@ -230,7 +230,10 @@ class NameFinder < ActiveRecord::Base
 
       self.unique = true if !self.verbatim
       names.each do |name|
-        name.delete :verbatim if !self.verbatim
+        if !self.verbatim
+          name.delete :verbatim
+          name.delete :identifiedName
+        end
         name.delete :offsetStart
         name.delete :offsetEnd
       end if self.unique
