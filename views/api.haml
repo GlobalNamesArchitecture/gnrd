@@ -3,10 +3,12 @@
   %a{:href => '#api-example'} example below
   ='.'
 
-%h3 Base URL
+%h3 Resource URI
 #base-url
-  - base_url = "#{SiteConfig.url_base}/name_finder.json"
-  %p= base_url
+  - json_url = "#{SiteConfig.url_base}/name_finder.json"
+  - xml_url  = "#{SiteConfig.url_base}/name_finder.xml"
+  %p= "#{json_url} (JSON output)"
+  %p= "#{xml_url} (XML output)"
 
 %h3 Parameters (GET or POST)
 
@@ -16,7 +18,7 @@
     An encoded URL for a web page, PDF, Microsoft Office document, or image file
     %br/
     %em e.g.
-    = base_url + "?url=http://en.wikipedia.org/wiki/Animalia"
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia"
   %dt file
   %dd
     When using multipart/form-data as the content-type, a file may be sent.
@@ -25,45 +27,38 @@
     Text content; best used with a POST request
     %br/
     %em e.g.
-    =  base_url + "?text=A+spider+named+Pardosa+moesta+Banks,+1892"
+    =  json_url + "?text=A+spider+named+Pardosa+moesta+Banks,+1892"
   %dt engine
   %dd
     Optional. Either 1 for TaxonFinder, 2 for NetiNeti, or 0 for both. If absent, both engines are used.
     %br/
     %em e.g.
-    = base_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;engine=1"
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;engine=1"
   %dt unique
   %dd
     Optional. If present, response has unique names without offsets.
     %br/
     %em e.g.
-    = base_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;unique=true"
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;unique=true"
   %dt verbatim
   %dd
     Optional. If present, response excludes verbatim strings.
     %br/
     %em e.g.
-    = base_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;verbatim=false"
-
-%h3 Output Format
-%dl
-  %dt JSON (default)
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;verbatim=false"
+  %dt callback
   %dd
-    With optional callback parameter
+    Optional. Can be used for cross-domain JavaScript integration.
     %br/
     %em e.g.
-    = base_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;callback=MyCoolCallback"
-  %dt XML
-  %dd
-    %em e.g.
-    = base_url.sub(/json/,'xml') + "?url=http://en.wikipedia.org/wiki/Animalia"
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;callback=MyCoolCallBack"
 
 %h3
   %a{:name => "api-example"} Example
 
 %p
   %em e.g.
-  = base_url + "?url=http://en.wikipedia.org/wiki/Araneae"
+  = json_url + "?url=http://en.wikipedia.org/wiki/Araneae"
 
 %h4 Initial Response Containing Token URL
 
@@ -72,7 +67,7 @@
 %pre.code
   :escaped
     {
-      "token_url" : "#{base_url}?token=VmuYurv3QLyMXLABnqU1vg",
+      "token_url" : "#{json_url}?token=VmuYurv3QLyMXLABnqU1vg",
       "input_url" : "http://en.wikipedia.org/wiki/Araneae",
       "file"      : "",
       "status"    : 303,
@@ -87,7 +82,7 @@
 %pre.code
   :escaped
     {
-      "token_url" : "#{base_url}?token=VmuYurv3QLyMXLABnqU1vg",
+      "token_url" : "#{json_url}?token=VmuYurv3QLyMXLABnqU1vg",
       "input_url" : "http://en.wikipedia.org/wiki/Araneae",
       "file"      : "",
       "status"    : 200,
