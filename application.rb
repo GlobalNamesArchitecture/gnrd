@@ -95,6 +95,7 @@ def name_finder_presentation(name_finder_instance, format, do_redirect = false)
       flash_messages
       redirect name_finder_instance.token_url if do_redirect
       redirect_with_delay(name_finder_instance.token_url) if @output[:status] == 303
+      @output[:token] = name_finder_instance.token
       haml :name_finder
     end
 end

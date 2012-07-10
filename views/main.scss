@@ -364,6 +364,10 @@ form span {
   background-image: url('/images/ajax-loader.gif');
 }
 
+#output-format{position:absolute; right:2em; top:-2.5em; text-align:right;}
+#output-format span{background-color:#fafafa;border:1px solid #ccc;padding:5px;border-radius:6px;margin-right:5px;}
+#output-format span:hover{background-color:#eee;}
+
 #found-names-duration{text-align:right;font-size:0.8em;font-style:italic;}
 #found-names-preview{max-width:85%;min-width:40%;margin:0px auto;text-align:center;padding:10px;border:1px solid gray;border-radius:6px;}
 #found-names-preview img{max-width:800px;}

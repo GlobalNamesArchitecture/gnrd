@@ -4,6 +4,12 @@
   - else
     #found-names-loader Processing...
 - else
+  #output-format
+    %span
+      %a{:href => "#{SiteConfig.url_base}/name_finder.json?token=#{@output[:token]}" } JSON
+    %span
+      %a{:href => "#{SiteConfig.url_base}/name_finder.xml?token=#{@output[:token]}" } XML
+
   %p#found-names-duration Results are accessible at this URL for #{SiteConfig.cleaner_period} days
   - if !@output[:agent].blank? && @output[:agent][:content_type] && @output[:agent][:content_type].include?("image")
     %h3

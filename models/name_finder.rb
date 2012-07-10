@@ -42,13 +42,12 @@ class NameFinder < ActiveRecord::Base
 
   def process_combined_names(names)
     names = names.sort_by { |n| n[:offsetStart] }
-    names.each_with_index do |name,i|
+    names.each_with_index do |name, i|
       curr_range = names[i][:offsetStart]..names[i][:offsetEnd]
       prev_range = names[i-1] ? names[i-1][:offsetStart]..names[i-1][:offsetEnd] : nil
       prev_range2 = names[i-2] ? names[i-2][:offsetStart]..names[i-2][:offsetEnd] : nil
 
       if prev_range && curr_range.intersection(prev_range)
-
         #remove true duplicates
         names[i] = nil if names[i-1][:scientificName] == name[:scientificName]
 
@@ -82,6 +81,7 @@ class NameFinder < ActiveRecord::Base
         end
       end
     end
+
     names.delete_if { |x| x == nil }
     names.each { |x| x.delete :engine }
     names
