@@ -49,11 +49,11 @@ class NameFinder < ActiveRecord::Base
 
       if prev_range && curr_range.intersection(prev_range)
         #remove true duplicates
-        names[i] = nil if names[i-1][:scientificName] == name[:scientificName]
+        names[i] = nil if UnicodeUtils.downcase(names[i-1][:scientificName]) == UnicodeUtils.downcase(name[:scientificName])
 
         #prefer TaxonFinder expansion over NetiNeti abbreviation
         names[i] = nil if names[i] && names[i-1][:scientificName].length > names[i-1][:identifiedName].length && names[i-1][:engine] == 1
-        names[i-1] = nil if names[i] && name[:scientificName].length > name[:identifiedName].length && ( (names[i-1][:engine] == 1 && name[:engine] == 2) || (names[i-1][:identifiedName] == name[:identifiedName] && name[:engine] == 1) )
+        names[i-1] = nil if names[i] && name[:scientificName].length > name[:identifiedName].length && ( (names[i-1][:engine] == 1 && name[:engine] == 2) || (UnicodeUtils.downcase(names[i-1][:identifiedName]) == UnicodeUtils.downcase(name[:identifiedName]) && name[:engine] == 1) )
 
         #prefer TaxonFinder over NetiNeti if latter is less inclusive
         names[i] = nil if names[i] && names[i-1] && names[i-1][:scientificName].length > name[:scientificName].length && names[i-1][:engine] == 1 && name[:engine] == 2
