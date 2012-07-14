@@ -408,5 +408,26 @@ describe "/name_finder" do
       count -= 1
     end
   end
+  
+  it "should properly handle abbreviations" do
+    text = 'The Structure of Meteridium (Actinoloba) marginata Milne-Edw. with special reference to its neuro-muscular mechanism. Jour.'
+    post("/name_finder", :format => 'json', :text => text, :unique => true)
+    last_response.status.should == 303
+    follow_redirect!
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      r.status.should == 200
+      res = JSON.parse(r.body, :symbolize_names => true)[:names]
+      if res
+        res.size.should == 1
+        res[0].should == {:verbatim=>"Meteridium (Actinoloba) marginata", :scientificName=>"Meteridium (Actinoloba) marginata", :identifiedName=>"Meteridium (Actinoloba) marginata"}
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
+  end
 
 end

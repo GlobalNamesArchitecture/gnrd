@@ -39,55 +39,141 @@ class NameFinder < ActiveRecord::Base
     end
     names
   end
+  
+  private
+
+
+  # def process_combined_names(names)
+  #   names = names.sort_by { |n| [n[:offsetStart], n[:engine]] }
+  #   names.each_with_index do |name, i|
+  #     next if i == 0
+  #     curr_range = names[i] ? names[i][:offsetStart]..names[i][:offsetEnd] : nil
+  #     prev_range = names[i-1] ? names[i-1][:offsetStart]..names[i-1][:offsetEnd] : nil
+  #     prev_range2 = i > 1 ? names[i-2][:offsetStart]..names[i-2][:offsetEnd] : nil
+
+  #     if prev_range && curr_range.intersection(prev_range)
+  #       #remove true duplicates
+  #       names[i] = nil if UnicodeUtils.downcase(names[i-1][:scientificName]) == UnicodeUtils.downcase(name[:scientificName])
+
+  #       #prefer TaxonFinder expansion over NetiNeti abbreviation
+  #       names[i] = nil if names[i] && names[i-1][:scientificName].length > names[i-1][:identifiedName].length && names[i-1][:engine] == 1
+  #       names[i-1] = nil if names[i] && name[:scientificName].length > name[:identifiedName].length && ( (names[i-1][:engine] == 1 && name[:engine] == 2) || (UnicodeUtils.downcase(names[i-1][:identifiedName]) == UnicodeUtils.downcase(name[:identifiedName]) && name[:engine] == 1) )
+
+  #       #prefer TaxonFinder over NetiNeti if latter is less inclusive
+  #       names[i] = nil if names[i] && names[i-1] && names[i-1][:scientificName].length > name[:scientificName].length && names[i-1][:engine] == 1 && name[:engine] == 2
+  #       names[i-1] = nil if names[i] && names[i-1] && name[:scientificName].length > names[i-1][:scientificName].length && names[i-1][:engine] == 2 && name[:engine] == 1
+
+  #       #prefer largest NetiNeti if followed by another NetiNeti (eliminates some subgeneric issues)
+  #       if names[i] && names[i-1] && names[i-1][:engine] == 2 && name[:engine] == 2
+  #         names[i] = nil if prev_range.count > curr_range.count
+  #         names[i-1] = nil if curr_range.count > prev_range.count
+  #       end
+  #       
+  #       #prefer name without single preceding bracket
+  #       if names[i] && names[i-1]
+  #         names[i] = nil if name[:scientificName].start_with?("(") && name[:scientificName].gsub("(", "") == names[i-1][:scientificName]
+  #         names[i-1] = nil if names[i] && names[i-1][:scientificName].start_with?("(") && names[i-1][:scientificName].gsub("(", "") == name[:scientificName]
+  #       end
+  #     end
+
+  #     #mop-up additional issues two steps prior to current namestring
+  #     if i > 1 && names[i-1] == nil && prev_range2 && curr_range.intersection(prev_range2)
+  #       names[i] = nil if names[i-2][:scientificName].length > name[:scientificName].length && names[i-2][:engine] == 1 && name[:engine] == 2
+  #       if names[i] && names[i-2][:engine] == 2 && name[:engine] == 2
+  #         names[i] = nil if prev_range2.count > curr_range.count
+  #         names[i-2] = nil if curr_range.count > prev_range2.count
+  #       end
+  #     end
+  #   end
+  # 
+  #   names.delete_if { |x| x == nil }
+  #   names.each { |x| x.delete :engine }
+  #   names
+  # end
 
   def process_combined_names(names)
+    return [] if names.empty?
     names = names.sort_by { |n| n[:offsetStart] }
-    names.each_with_index do |name, i|
-      curr_range = names[i][:offsetStart]..names[i][:offsetEnd]
-      prev_range = names[i-1] ? names[i-1][:offsetStart]..names[i-1][:offsetEnd] : nil
-      prev_range2 = names[i-2] ? names[i-2][:offsetStart]..names[i-2][:offsetEnd] : nil
-
-      if prev_range && curr_range.intersection(prev_range)
-        #remove true duplicates
-        names[i] = nil if UnicodeUtils.downcase(names[i-1][:scientificName]) == UnicodeUtils.downcase(name[:scientificName])
-
-        #prefer TaxonFinder expansion over NetiNeti abbreviation
-        names[i] = nil if names[i] && names[i-1][:scientificName].length > names[i-1][:identifiedName].length && names[i-1][:engine] == 1
-        names[i-1] = nil if names[i] && name[:scientificName].length > name[:identifiedName].length && ( (names[i-1][:engine] == 1 && name[:engine] == 2) || (UnicodeUtils.downcase(names[i-1][:identifiedName]) == UnicodeUtils.downcase(name[:identifiedName]) && name[:engine] == 1) )
-
-        #prefer TaxonFinder over NetiNeti if latter is less inclusive
-        names[i] = nil if names[i] && names[i-1] && names[i-1][:scientificName].length > name[:scientificName].length && names[i-1][:engine] == 1 && name[:engine] == 2
-        names[i-1] = nil if names[i] && names[i-1] && name[:scientificName].length > names[i-1][:scientificName].length && names[i-1][:engine] == 2 && name[:engine] == 1
-
-        #prefer largest NetiNeti if followed by another NetiNeti (eliminates some subgeneric issues)
-        if names[i] && names[i-1] && names[i-1][:engine] == 2 && name[:engine] == 2
-          names[i] = nil if prev_range.count > curr_range.count
-          names[i-1] = nil if curr_range.count > prev_range.count
-        end
-        
-        #prefer name without single preceding bracket
-        if names[i] && names[i-1]
-          names[i] = nil if name[:scientificName].start_with?("(") && name[:scientificName].gsub("(", "") == names[i-1][:scientificName]
-          names[i-1] = nil if names[i] && names[i-1][:scientificName].start_with?("(") && names[i-1][:scientificName].gsub("(", "") == name[:scientificName]
-        end
-      end
-
-      #mop-up additional issues two steps prior to current namestring
-      if names[i-1] == nil && prev_range2 && curr_range.intersection(prev_range2)
-        names[i] = nil if names[i-2][:scientificName].length > name[:scientificName].length && names[i-2][:engine] == 1 && name[:engine] == 2
-        if names[i] && names[i-2][:engine] == 2 && name[:engine] == 2
-          names[i] = nil if prev_range2.count > curr_range.count
-          names[i-2] = nil if curr_range.count > prev_range2.count
-        end
+    @deduped_names = []
+    name = names.shift
+    name_group = start_name_group(name)
+    until names.empty?
+      name = names.shift
+      if name[:offsetStart].between?(name_group[:start], name_group[:end])
+        name_group = update_name_group(name, name_group)
+      else
+        add_deduped_name(name_group)
+        name_group = start_name_group(name)
       end
     end
-
-    names.delete_if { |x| x == nil }
-    names.each { |x| x.delete :engine }
-    names
+    add_deduped_name(name_group)
+    @deduped_names.each { |x| x.delete :engine }
   end
 
-  private
+  def add_deduped_name(name_group)
+    deduped_name = name_group[:preferred_name] == 1 ? name_group[:taxon_finder_name] : name_group[:neti_neti_names].shift
+    @deduped_names << deduped_name
+  end
+
+  def find_preferred_name(name, name_group)
+    name_group[:end] = name[:offsetEnd] if name_group[:end] < name[:offsetEnd]
+    name_size = name[:offsetEnd] - name[:offsetStart]
+    if name[:engine] == 1
+      name_group[:taxon_finder_name] = name
+      if name[:offsetStart] == name_group[:start]
+        name_group[:preferred_name] = 1
+      else
+        #should never happen probably
+        name_group[:preferred_name] = 1 if name_size > name_group[:neti_neti_size]
+      end
+    else
+      if name_size > name_group[:neti_neti_size]
+        name_group[:neti_neti_names].unshift(name)
+        name_group[:neti_neti_size] = name_size
+      else
+        name_group[:neti_neti_names].push(name)
+      end
+      #add logic like this if you want less concervative results
+      # if name_group[:preferred_name] == 1
+      #   if name[:offsetStart] == name_group[:offsetStart]
+      #     name_group[:preferred_name] = 2 if name_size > name_group[:neti_neti_size]
+      #   end
+      # end
+    end
+    name_group
+  end
+
+  def update_name_group(name, name_group)
+    if name[:engine] == 1
+      if name_group[:taxon_finder_name]
+        add_deduped_name(name_group)
+        name_group = start_name_group(name)
+      else
+        name_group = find_preferred_name(name, name_group)
+      end
+    else
+      if name_group[:neti_neti_names].size > 2
+        add_deduped_name(name_group)
+        name_group = start_name_group(name)
+      else
+        name_group = find_preferred_name(name, name_group)
+      end
+    end
+    name_group
+  end
+
+  def start_name_group(name)
+    name_group = {:start => name[:offsetStart], :end => name[:offsetEnd], :preferred_name => nil, :taxon_finder_name => nil, :neti_neti_names => [], :neti_neti_size => 0}
+    if name[:engine] == 1
+      name_group[:taxon_finder_name] = name
+      name_group[:preferred_name] = 1
+    else
+      name_group[:neti_neti_names] << name
+      name_group[:neti_neti_size] = name[:offsetEnd] - name[:offsetStart]
+      name_group[:preferred_name] = 2
+    end
+    name_group
+  end
 
   def initiate_data
     self.token = "_"
@@ -192,7 +278,7 @@ class NameFinder < ActiveRecord::Base
         names = (@engines[0] == 'TaxonFinder') ? process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) : process_netineti_names(@neti_name_spotter.find(content)[:names])
       end
       names = process_combined_names(names)
-    rescue
+    rescue => e
       @status = 500
     end
     @end_execution = (Time.now - start_execution)
