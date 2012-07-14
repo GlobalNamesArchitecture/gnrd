@@ -409,7 +409,7 @@ describe "/name_finder" do
     end
   end
   
-  it "should properly handle abbreviations" do
+  it "should properly dedup names when both engines are used" do
     text = 'The Structure of Meteridium (Actinoloba) marginata Milne-Edw. with special reference to its neuro-muscular mechanism. Jour.'
     post("/name_finder", :format => 'json', :text => text, :unique => true)
     last_response.status.should == 303
