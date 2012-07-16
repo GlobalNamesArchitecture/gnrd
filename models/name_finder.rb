@@ -24,6 +24,7 @@ class NameFinder < ActiveRecord::Base
     
   def process_taxon_finder_names(names)
     names.each do |name|
+      name[:scientificName].gsub!(/\[[^()]*\]/,".") if !expand
       name[:identifiedName] = name[:scientificName].gsub(/\[[^()]*\]/,".")
       name[:engine] = 1
       process_name(name)
@@ -225,7 +226,21 @@ class NameFinder < ActiveRecord::Base
       end
     end
     add_deduped_name(name_group)
+    expand_abbreviations if expand
     @deduped_names.each { |x| x.delete :engine }
+  end
+
+  def start_name_group(name)
+    name_group = {:start => name[:offsetStart], :end => name[:offsetEnd], :preferred_name => nil, :taxon_finder_name => nil, :neti_neti_names => [], :neti_neti_size => 0}
+    if name[:engine] == 1
+      name_group[:taxon_finder_name] = name
+      name_group[:preferred_name] = 1
+    else
+      name_group[:neti_neti_names] << name
+      name_group[:neti_neti_size] = name[:offsetEnd] - name[:offsetStart]
+      name_group[:preferred_name] = 2
+    end
+    name_group
   end
 
   def add_deduped_name(name_group)
@@ -236,15 +251,18 @@ class NameFinder < ActiveRecord::Base
   def find_preferred_name(name, name_group)
     name_group[:end] = name[:offsetEnd] if name_group[:end] < name[:offsetEnd]
     name_size = name[:offsetEnd] - name[:offsetStart]
+    #when incoming name is found through TaxonFinder
     if name[:engine] == 1
       name_group[:taxon_finder_name] = name
       if name[:offsetStart] == name_group[:start]
+        #prefer incoming TaxonFinder name if it and name in existing group start at same offset
         name_group[:preferred_name] = 1
       else
-        #should never happen probably
+        #prefer incoming TaxonFinder name if it is larger than the largest NetiNeti name already in the group
         name_group[:preferred_name] = 1 if name_size > name_group[:neti_neti_size]
       end
     else
+      #when incoming name is found through NetiNeti, put largest at start of NetiNeti collection in group
       if name_size > name_group[:neti_neti_size]
         name_group[:neti_neti_names].unshift(name)
         name_group[:neti_neti_size] = name_size
@@ -279,18 +297,26 @@ class NameFinder < ActiveRecord::Base
     end
     name_group
   end
-
-  def start_name_group(name)
-    name_group = {:start => name[:offsetStart], :end => name[:offsetEnd], :preferred_name => nil, :taxon_finder_name => nil, :neti_neti_names => [], :neti_neti_size => 0}
-    if name[:engine] == 1
-      name_group[:taxon_finder_name] = name
-      name_group[:preferred_name] = 1
-    else
-      name_group[:neti_neti_names] << name
-      name_group[:neti_neti_size] = name[:offsetEnd] - name[:offsetStart]
-      name_group[:preferred_name] = 2
+  
+  def expand_abbreviations
+    @deduped_names.each_with_index do |name, index|
+      abbrev = name[:scientificName].match(/^([A-Z-][a-z]?\.)/)
+      if abbrev && index > 0
+        expanded = closest_expansion(abbrev.to_s[0..-2], index-1)
+        name[:scientificName].gsub!(abbrev.to_s, expanded)
+      end
     end
-    name_group
+  end
+  
+  def closest_expansion(abbrev, index)
+    expanded = nil
+    @deduped_names[0..index].reverse.each do |name|
+      if name[:scientificName].start_with?(abbrev) && name[:scientificName].include?(" ")
+        expanded = name[:scientificName].split[0]
+        break
+      end
+    end
+    expanded
   end
 
 # AFTER_CREATE
@@ -302,7 +328,7 @@ class NameFinder < ActiveRecord::Base
     end
     url_format = ['xml', 'json'].include?(format) ? ".#{format}" : ''
     self.token_url = SiteConfig.url_base + "/name_finder" + url_format + "?token=" + token
-    self.output = { :token_url => token_url, :input_url => input_url || "", :file => file_name || "", :status => 303, :engines => ENGINES[engine], :unique => unique, :verbatim => verbatim }
+    self.output = { :token_url => token_url, :input_url => input_url || "", :file => file_name || "", :status => 303, :engines => ENGINES[engine], :unique => unique, :verbatim => verbatim, :expand => expand }
     self.save!
     self.reload
   end

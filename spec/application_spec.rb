@@ -391,8 +391,8 @@ describe "/name_finder" do
     end
   end
 
-  it "should properly handle abbreviations" do
-    text = 'Pardosa moesta is the name of the spider and the abbreviation is P. moesta.'
+  it "should properly handle abbreviations if requested" do
+    text = 'Pardosa moesta is the name of the spider and the abbreviation is P. moesta. A few more spiders are called P. distincta, P. moiica, and P. xerampelina. Another genus is Plexippus and its species are P. purpuratus.'
     post("/name_finder", :format => 'json', :text => text, :engine => 0)
     last_response.status.should == 303
     follow_redirect!
@@ -401,9 +401,31 @@ describe "/name_finder" do
       get(last_request.url)
       r = last_response
       r.status.should == 200
-      abbrev = JSON.parse(r.body, :symbolize_names => true)[:names][1][:scientificName] rescue nil
-      abbrev.should == "Pardosa moesta" if count == 1
-      break if abbrev == "Pardosa moesta"
+      res = JSON.parse(r.body, :symbolize_names => true)[:names]
+      if res
+        res.should == [{:verbatim=>"Pardosa moesta", :scientificName=>"Pardosa moesta", :offsetStart=>0, :offsetEnd=>13, :identifiedName=>"Pardosa moesta"}, {:verbatim=>"P. moesta", :scientificName=>"Pardosa moesta", :offsetStart=>65, :offsetEnd=>73, :identifiedName=>"P. moesta"}, {:verbatim=>"P. distincta", :scientificName=>"Pardosa distincta", :offsetStart=>106, :offsetEnd=>117, :identifiedName=>"P. distincta"}, {:verbatim=>"P. moiica", :scientificName=>"Pardosa moiica", :offsetStart=>120, :offsetEnd=>128, :identifiedName=>"P. moiica"}, {:verbatim=>"P. xerampelina", :scientificName=>"Pardosa xerampelina", :offsetStart=>135, :offsetEnd=>148, :identifiedName=>"P. xerampelina"}, {:verbatim=>"Plexippus", :scientificName=>"Plexippus", :offsetStart=>168, :offsetEnd=>176, :identifiedName=>"Plexippus"}, {:verbatim=>"P. purpuratus", :scientificName=>"Plexippus purpuratus", :offsetStart=>198, :offsetEnd=>210, :identifiedName=>"P. purpuratus"}]
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
+  end
+  
+  it "should not expand abbreviations if requested not to" do
+    text = 'Pardosa moesta is the name of the spider and the abbreviation is P. moesta. A few more spiders are called P. distincta, P. moiica, and P. xerampelina. Another genus is Plexippus and its species are P. purpuratus.'
+    post("/name_finder", :format => 'json', :text => text, :engine => 0, :expand => false)
+    last_response.status.should == 303
+    follow_redirect!
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      r.status.should == 200
+      res = JSON.parse(r.body, :symbolize_names => true)[:names]
+      if res
+        res.should == [{:verbatim=>"Pardosa moesta", :scientificName=>"Pardosa moesta", :offsetStart=>0, :offsetEnd=>13, :identifiedName=>"Pardosa moesta"}, {:verbatim=>"P. moesta", :scientificName=>"P. moesta", :offsetStart=>65, :offsetEnd=>73, :identifiedName=>"P. moesta"}, {:verbatim=>"P. distincta", :scientificName=>"P. distincta", :offsetStart=>106, :offsetEnd=>117, :identifiedName=>"P. distincta"}, {:verbatim=>"P. moiica", :scientificName=>"P. moiica", :offsetStart=>120, :offsetEnd=>128, :identifiedName=>"P. moiica"}, {:verbatim=>"P. xerampelina", :scientificName=>"P. xerampelina", :offsetStart=>135, :offsetEnd=>148, :identifiedName=>"P. xerampelina"}, {:verbatim=>"Plexippus", :scientificName=>"Plexippus", :offsetStart=>168, :offsetEnd=>176, :identifiedName=>"Plexippus"}, {:verbatim=>"P. purpuratus", :scientificName=>"P. purpuratus", :offsetStart=>198, :offsetEnd=>210, :identifiedName=>"P. purpuratus"}]
+        break
+      end
       sleep(5)
       count -= 1
     end

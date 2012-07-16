@@ -60,6 +60,13 @@
           %input{:type => :radio,  :name => :verbatim, :id => "verbatim_#{id}", :value => value, :checked => checked}
           %label{:for => "verbatim_#{id}"}= key
       %fieldset
+        %legend Expand abbreviated names
+        - {'Yes' => 1, 'No' => 0}.each do |key, value|
+          - checked = (key == 'Yes') ? true : nil
+          - id = key.gsub(" ", "_").downcase
+          %input{:type => :radio,  :name => :expand, :id => "expand_#{id}", :value => value, :checked => checked}
+          %label{:for => "expand_#{id}"}= key
+      %fieldset
         %legend Output format
         - ['html', 'json', 'xml'].each do |format|
           - checked = (format == 'html') ? true : nil

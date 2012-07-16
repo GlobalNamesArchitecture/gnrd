@@ -15,7 +15,7 @@
 %dl
   %dt url
   %dd
-    An encoded URL for a web page, PDF, Microsoft Office document, or image file
+    Type: string. An encoded URL for a web page, PDF, Microsoft Office document, or image file
     %br/
     %em e.g.
     = json_url + "?url=http://en.wikipedia.org/wiki/Animalia"
@@ -24,31 +24,37 @@
     When using multipart/form-data as the content-type, a file may be sent.
   %dt text
   %dd
-    Text content; best used with a POST request
+    Type: string. Text content; best used with a POST request
     %br/
     %em e.g.
     =  json_url + "?text=A+spider+named+Pardosa+moesta+Banks,+1892"
-  %dt engine
+  %dt engine (optional)
   %dd
-    Optional. Either 1 for TaxonFinder, 2 for NetiNeti, or 0 for both. If absent, both engines are used.
+    Type: integer, Default: 0. Either 1 for TaxonFinder, 2 for NetiNeti, or 0 for both. If absent, both engines are used.
     %br/
     %em e.g.
     = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;engine=1"
-  %dt unique
+  %dt unique (optional)
   %dd
-    Optional. If present, response has unique names without offsets.
+    Type: boolean (true/false), Default: true. If 'true', response has unique names without offsets.
     %br/
     %em e.g.
     = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;unique=true"
-  %dt verbatim
+  %dt verbatim (optional)
   %dd
-    Optional. If present, response excludes verbatim strings.
+    Type: boolean (true/false), Default: false. If 'true', response excludes verbatim strings.
     %br/
     %em e.g.
     = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;verbatim=false"
-  %dt callback
+  %dt expand (optional)
   %dd
-    Optional. Can be used for cross-domain JavaScript integration.
+    Type: boolean (true/false), Default: true. If 'false', abbreviated scientific names are not expanded.
+    %br/
+    %em e.g.
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;expanded=false"
+  %dt callback (optional)
+  %dd
+    Type: string. Can be used for cross-domain JavaScript integration.
     %br/
     %em e.g.
     = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;callback=MyCoolCallBack"
@@ -74,6 +80,7 @@
       "engines"   : ["TaxonFinder", "NetiNeti"],
       "unique"    : false,
       "verbatim"  : true,
+      "expand"    : true,
       "queue_size": 1
     }
 
@@ -89,6 +96,7 @@
       "engines"   : ["TaxonFinder", "NetiNeti"],
       "unique"    : false,
       "verbatim"  : true,
+      "expand"    : true,
       "agent"     : {
         "code"         : "200",
         "content_type" : "text/html; charset=UTF-8",
@@ -109,7 +117,7 @@
           "offsetEnd"      : 39708,
         },
         {
-          "verbatim"       : "Uloboridae)",
+          "verbatim"       : "Uloboridae",
           "identifiedName" : "Uloboridae"
           "scientificName" : "Uloboridae",
           "offsetStart"    : 39885,
