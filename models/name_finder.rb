@@ -302,21 +302,21 @@ class NameFinder < ActiveRecord::Base
     @deduped_names.each_with_index do |name, index|
       abbrev = name[:scientificName].match(/^([A-Z-][a-z]?\.)/)
       if abbrev && index > 0
-        expanded = closest_expansion(abbrev.to_s[0..-2], index-1)
-        name[:scientificName].gsub!(abbrev.to_s, expanded)
+        expanded_name = closest_expansion(abbrev.to_s[0..-2], index-1)
+        name[:scientificName].gsub!(abbrev.to_s, expanded_name) if expanded_name
       end
     end
   end
   
   def closest_expansion(abbrev, index)
-    expanded = nil
+    expanded_name = nil
     @deduped_names[0..index].reverse.each do |name|
       if name[:scientificName].start_with?(abbrev) && name[:scientificName].include?(" ")
-        expanded = name[:scientificName].split[0]
+        expanded_name = name[:scientificName].split[0]
         break
       end
     end
-    expanded
+    expanded_name
   end
 
 # AFTER_CREATE

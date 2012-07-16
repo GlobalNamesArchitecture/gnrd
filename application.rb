@@ -12,6 +12,7 @@ use Rack::Timeout
 Rack::Timeout.timeout = 9_000_000
 
 set :haml, :format => :html5
+set :protection, :except => :json_csrf
 
 def find(params)
   input_url = params[:url] || (params[:find] && params[:find][:url]) || nil
