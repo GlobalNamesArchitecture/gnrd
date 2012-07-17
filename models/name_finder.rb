@@ -311,8 +311,8 @@ class NameFinder < ActiveRecord::Base
   def closest_expansion(abbrev, index)
     expanded_name = nil
     @deduped_names[0..index].reverse.each do |name|
-      if name[:scientificName].start_with?(abbrev) && name[:scientificName].include?(" ")
-        expanded_name = name[:scientificName].split[0]
+      if name[:scientificName].start_with?(abbrev)
+        expanded_name = name[:scientificName].split(" ")[0]
         break
       end
     end
