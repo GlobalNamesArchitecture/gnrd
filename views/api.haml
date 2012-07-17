@@ -46,12 +46,6 @@
     %br/
     %em e.g.
     = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;verbatim=false"
-  %dt expand (optional)
-  %dd
-    Type: boolean (true/false), Default: true. If 'false', abbreviated scientific names are not expanded.
-    %br/
-    %em e.g.
-    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;expanded=false"
   %dt callback (optional)
   %dd
     Type: string. Can be used for cross-domain JavaScript integration.
@@ -80,7 +74,6 @@
       "engines"   : ["TaxonFinder", "NetiNeti"],
       "unique"    : false,
       "verbatim"  : true,
-      "expand"    : true,
       "queue_size": 1
     }
 
@@ -96,7 +89,6 @@
       "engines"   : ["TaxonFinder", "NetiNeti"],
       "unique"    : false,
       "verbatim"  : true,
-      "expand"    : true,
       "agent"     : {
         "code"         : "200",
         "content_type" : "text/html; charset=UTF-8",

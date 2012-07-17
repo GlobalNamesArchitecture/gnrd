@@ -24,7 +24,6 @@ class NameFinder < ActiveRecord::Base
     
   def process_taxon_finder_names(names)
     names.each do |name|
-      name[:scientificName].gsub!(/\[[^()]*\]/,".") if !expand
       name[:identifiedName] = name[:scientificName].gsub(/\[[^()]*\]/,".")
       name[:engine] = 1
       process_name(name)
@@ -226,7 +225,6 @@ class NameFinder < ActiveRecord::Base
       end
     end
     add_deduped_name(name_group)
-    expand_abbreviations if expand
     @deduped_names.each { |x| x.delete :engine }
   end
 
@@ -297,27 +295,6 @@ class NameFinder < ActiveRecord::Base
     end
     name_group
   end
-  
-  def expand_abbreviations
-    @deduped_names.each_with_index do |name, index|
-      abbrev = name[:scientificName].match(/^([A-Z-][a-z]?\.)/)
-      if abbrev && index > 0
-        expanded_name = closest_expansion(abbrev.to_s[0..-2], index-1)
-        name[:scientificName].gsub!(abbrev.to_s, expanded_name) if expanded_name
-      end
-    end
-  end
-  
-  def closest_expansion(abbrev, index)
-    expanded_name = nil
-    @deduped_names[0..index].reverse.each do |name|
-      if name[:scientificName].start_with?(abbrev)
-        expanded_name = name[:scientificName].split(" ")[0]
-        break
-      end
-    end
-    expanded_name
-  end
 
 # AFTER_CREATE
 
@@ -328,7 +305,7 @@ class NameFinder < ActiveRecord::Base
     end
     url_format = ['xml', 'json'].include?(format) ? ".#{format}" : ''
     self.token_url = SiteConfig.url_base + "/name_finder" + url_format + "?token=" + token
-    self.output = { :token_url => token_url, :input_url => input_url || "", :file => file_name || "", :status => 303, :engines => ENGINES[engine], :unique => unique, :verbatim => verbatim, :expand => expand }
+    self.output = { :token_url => token_url, :input_url => input_url || "", :file => file_name || "", :status => 303, :engines => ENGINES[engine], :unique => unique, :verbatim => verbatim }
     self.save!
     self.reload
   end
