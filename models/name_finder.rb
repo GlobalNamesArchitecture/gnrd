@@ -17,6 +17,7 @@ class NameFinder < ActiveRecord::Base
   
   def name_find
     setup_instance_vars
+    setup_language_detection
     setup_name_engines
     get_agent_response
     build_output
@@ -49,6 +50,10 @@ class NameFinder < ActiveRecord::Base
     @output = nil
     @status = 200
   end
+  
+  def setup_language_detection
+    @wl = WhatLanguage.new(:large)
+  end
 
   def setup_name_engines
     neti_client        = NameSpotter::NetiNetiClient.new()
@@ -75,7 +80,9 @@ class NameFinder < ActiveRecord::Base
 
   def build_output
     begin
-      names = find_names(get_content)
+      content = get_content
+      language = @wl.language content
+      names = find_names(content, language)
 
       self.unique = true if !self.verbatim
       names.each do |name|
@@ -88,6 +95,7 @@ class NameFinder < ActiveRecord::Base
       end if self.unique
 
       self.output.merge!(
+        :engines   => @engines,
         :status    => @status,
         :unique    => self.unique,
         :agent     => @agent || "",
@@ -111,13 +119,18 @@ class NameFinder < ActiveRecord::Base
     save!
   end
 
-  def find_names(content)
+  def find_names(content, language)
     names = []
     content.gsub!("_", " ")
     start_execution = Time.now
     begin
       if @engines.size == 2
-        names = process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) + process_netineti_names(@neti_name_spotter.find(content)[:names])
+        if language != :english && content.length > 1_000
+          names = process_taxon_finder_names(@tf_name_spotter.find(content)[:names])
+          @engines = [@engines.shift]
+        else
+          names = process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) + process_netineti_names(@neti_name_spotter.find(content)[:names])
+        end
       else
         names = (@engines[0] == 'TaxonFinder') ? process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) : process_netineti_names(@neti_name_spotter.find(content)[:names])
       end

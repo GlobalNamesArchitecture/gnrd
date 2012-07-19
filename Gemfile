@@ -18,6 +18,7 @@ gem "rack-test"
 gem "builder"
 gem "actionpack"
 gem "sanitize"
+gem "kenwaln-whatlanguage"
 
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'

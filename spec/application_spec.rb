@@ -431,5 +431,26 @@ describe "/name_finder" do
       count -= 1
     end
   end
+  
+  it "should use TaxonFinder exclusively if language of large text is not English" do
+    text = open(File.join(File.dirname(__FILE__), 'files', 'french.txt')).read
+    post("/name_finder", :format => 'json', :text => text, :engine => 0)
+    last_response.status.should == 303
+    follow_redirect!
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      r.status.should == 200
+      res = JSON.parse(r.body, :symbolize_names => true)
+      if res[:names]
+        res[:names].size.should == 1
+        res[:engines].should == ['TaxonFinder']
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
+  end
 
 end
