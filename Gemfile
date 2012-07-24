@@ -7,7 +7,7 @@ gem 'mysql2'
 gem "activerecord", "~> 3.2.3"
 gem "haml"
 gem "sass"
-gem "name-spotter", "= 0.2.1"
+gem "name-spotter", "= 0.2.3"
 gem "mechanize"
 gem "docsplit"
 gem "rspec"
@@ -18,7 +18,6 @@ gem "rack-test"
 gem "builder"
 gem "actionpack"
 gem "sanitize"
-gem "kenwaln-whatlanguage"
 
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'

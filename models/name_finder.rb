@@ -17,7 +17,6 @@ class NameFinder < ActiveRecord::Base
   
   def name_find
     setup_instance_vars
-    setup_language_detection
     setup_name_engines
     get_agent_response
     build_output
@@ -51,10 +50,6 @@ class NameFinder < ActiveRecord::Base
     @status = 200
   end
   
-  def setup_language_detection
-    @wl = WhatLanguage.new(:large)
-  end
-
   def setup_name_engines
     neti_client        = NameSpotter::NetiNetiClient.new()
     tf_client          = NameSpotter::TaxonFinderClient.new()
@@ -81,7 +76,7 @@ class NameFinder < ActiveRecord::Base
   def build_output
     begin
       content = get_content
-      language = @wl.language content
+      language = NameSpotter.english?(content) ? :english : :not_english
       names = find_names(content, language)
 
       self.unique = true if !self.verbatim
