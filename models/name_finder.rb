@@ -99,6 +99,7 @@ class NameFinder < ActiveRecord::Base
         :status    => @status,
         :unique    => self.unique,
         :agent     => @agent || "",
+        :english   => (language == :english) ? true : false,
         :created   => self.created_at,
         :execution_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
         :total     => self.unique ? names.uniq.count : names.count,

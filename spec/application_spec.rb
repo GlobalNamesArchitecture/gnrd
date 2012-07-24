@@ -446,6 +446,7 @@ describe "/name_finder" do
       if res[:names]
         res[:names].size.should == 1
         res[:engines].should == ['TaxonFinder']
+        res[:english].should == false
         break
       end
       sleep(5)
