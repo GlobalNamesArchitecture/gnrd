@@ -8,6 +8,7 @@ xml.result do
   xml.input_url @output[:input_url] if @output[:input_url]
   xml.file @output[:file] if @output[:file]
   xml.agent @output[:agent] if @output[:agent]
+  xml.english @output[:english] if @output[:english]
   xml.execution_time do
     xml.find_names_duration @output[:execution_time][:find_names_duration]
     xml.total_duration @output[:execution_time][:total_duration]

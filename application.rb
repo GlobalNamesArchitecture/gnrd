@@ -20,6 +20,7 @@ def find(params)
   text = params[:text] || (params[:find] && params[:find][:text]) || nil
   unique = params[:unique] || false
   verbatim = params[:verbatim] || true
+  detect_language = params[:detect_language] || (params[:find] && params[:find][:detect_language]) || true
   format = params[:format] || "html"
   engine = params[:engine] || 0
 
@@ -36,7 +37,7 @@ def find(params)
       FileUtils.mv(file[:tempfile].path, file_path)
       sha = Digest::SHA1.file(file_path).hexdigest
     end
-    nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :document_sha => sha, :unique => unique, :verbatim => verbatim, :input => text, :file_path => file_path, :file_name => file_name)
+    nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :document_sha => sha, :unique => unique, :verbatim => verbatim, :detect_language => detect_language, :input => text, :file_path => file_path, :file_name => file_name)
     workers_running? ? Resque.enqueue(NameFinder, nf.id) : nf.name_find
     name_finder_presentation(nf, format, true)
   end

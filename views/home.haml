@@ -47,6 +47,13 @@
           - checked = (key == 'Both') ? true : nil
           %input{:type => :radio, :name => "engine", :id => "engine_#{key}", :value => value, :checked =>  checked}
           %label{:for => "engine_#{key}"}= key
+      %fieldset 
+        %legend Detect Language
+        - {'Yes' => 1, 'No' => 0}.each do |key, value|
+          - checked = (key == 'Yes') ? true : nil
+          - id = key.gsub(" ", "_").downcase
+          %input{:type => :radio,  :name => :detect_language, :id => "detect_language_#{id}", :value => value, :checked => checked}
+          %label{:for => "detect_language_#{id}"}= key
       %fieldset
         %legend Name Instances
         - {'Unique list' => 1, 'All instances' => 0}.each do |key, value|

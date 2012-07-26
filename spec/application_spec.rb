@@ -476,6 +476,28 @@ describe "/name_finder" do
     end
   end
 
+  it "should use both engines if language detection is disabled" do
+    text = open(File.join(File.dirname(__FILE__), 'files', 'french.txt')).read
+    post("/name_finder", :format => 'json', :text => text, :engine => 0, :detect_language => false)
+    last_response.status.should == 303
+    follow_redirect!
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      r.status.should == 200
+      res = JSON.parse(r.body, :symbolize_names => true)
+      if res[:names]
+        res[:names].size.should == 2
+        res[:engines].should == ["TaxonFinder", "NetiNeti"]
+        res[:english].should be_nil
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
+  end
+
   it "should use both engines as requested if language of text is English" do
     text = open(File.join(File.dirname(__FILE__), 'files', 'abbreviations.txt')).read
     post("/name_finder", :format => 'json', :text => text, :engine => 0)
