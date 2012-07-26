@@ -60,7 +60,7 @@ class NameFinder < ActiveRecord::Base
   def get_agent_response
     if !input_url.blank?
       if URI(input_url).scheme.nil?
-        input_url.insert(0, "http://")
+        self.input_url = input_url.insert(0, "http://")
       end rescue nil
       begin
         head = new_agent.head input_url
@@ -93,6 +93,7 @@ class NameFinder < ActiveRecord::Base
         :engines   => @engines,
         :status    => @status,
         :unique    => self.unique,
+        :input_url => self.input_url,
         :agent     => @agent || "",
         :english   => is_english,
         :created   => self.created_at,
@@ -104,6 +105,7 @@ class NameFinder < ActiveRecord::Base
       self.output.merge!(
         :status    => @status,
         :unique    => self.unique,
+        :input_url => self.input_url,
         :agent     => @agent || "",
         :created   => self.created_at,
         :total     => 0,

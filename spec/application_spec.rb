@@ -105,6 +105,28 @@ describe "/name_finder" do
       count -= 1
     end
   end
+  
+  it "should expand URL as a parameter to include http:// if absent" do
+    url = URI.encode("eol.org/pages/207212/overview")
+    get "/name_finder?url=#{url}"
+    last_response.status.should == 302
+    follow_redirect!
+    r = last_response
+    r.status.should == 200
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      r.body.match('Epinephelus drummondhayi').should be_true if count == 1
+      if r.body.match("Epinephelus drummondhayi")
+        r.body.match("Epinephelus drummondhayi").should be_true
+        r.body.match("http://eol.org/pages/207212/overview").should be_true
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
+  end
 
   it "should be able to find names in text as a parameter" do
     text = URI.encode('Betula alba Beçem')
