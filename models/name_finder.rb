@@ -76,8 +76,8 @@ class NameFinder < ActiveRecord::Base
   def build_output
     begin
       content = get_content
-      language = NameSpotter.english?(content) ? :english : :not_english
-      names = find_names(content, language)
+      is_english = NameSpotter.english? content
+      names = find_names(content, is_english)
 
       self.unique = true if !self.verbatim
       names.each do |name|
@@ -94,7 +94,7 @@ class NameFinder < ActiveRecord::Base
         :status    => @status,
         :unique    => self.unique,
         :agent     => @agent || "",
-        :english   => (language == :english) ? true : false,
+        :english   => is_english,
         :created   => self.created_at,
         :execution_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
         :total     => self.unique ? names.uniq.count : names.count,
@@ -115,13 +115,13 @@ class NameFinder < ActiveRecord::Base
     save!
   end
 
-  def find_names(content, language)
+  def find_names(content, is_english)
     names = []
-    content.gsub!("_", " ")
     start_execution = Time.now
+    content.gsub!("_", " ")
     begin
       if @engines.size == 2
-        if language != :english && content.length > 1_000
+        if !is_english && content.length > 1_000
           names = process_taxon_finder_names(@tf_name_spotter.find(content)[:names])
           @engines = [@engines.shift]
         else
