@@ -490,7 +490,7 @@ describe "/name_finder" do
       if res[:names]
         res[:names].size.should == 2
         res[:engines].should == ["TaxonFinder", "NetiNeti"]
-        res[:english].should be_nil
+        res[:english].should == false
         break
       end
       sleep(5)

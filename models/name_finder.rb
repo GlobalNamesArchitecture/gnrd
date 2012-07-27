@@ -78,10 +78,8 @@ class NameFinder < ActiveRecord::Base
     begin
       content = get_content
 
-      if self.detect_language
-        @is_english = NameSpotter.english? content
-        self.output.merge!(:english => @is_english)
-      end
+      @is_english = NameSpotter.english? content
+      self.output.merge!(:english => @is_english)
 
       names = find_names(content)
 
