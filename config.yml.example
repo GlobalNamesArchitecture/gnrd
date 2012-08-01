@@ -9,7 +9,7 @@ development:
   neti_neti_host: 0.0.0.0
   neti_neti_port: 6384
   taxon_finder_host: 0.0.0.0
-  neti_neti_port: 1234
+  taxon_finder_port: 1234
 
 test:
   adapter: mysql2
@@ -22,7 +22,7 @@ test:
   neti_neti_host: 0.0.0.0
   neti_neti_port: 6384
   taxon_finder_host: 0.0.0.0
-  neti_neti_port: 1234
+  taxon_finder_port: 1234
 
 production:
   adapter: mysql2
@@ -35,7 +35,7 @@ production:
   neti_neti_host: 0.0.0.0
   neti_neti_port: 6384
   taxon_finder_host: 0.0.0.0
-  neti_neti_port: 1234
+  taxon_finder_port: 1234
   
   
   
