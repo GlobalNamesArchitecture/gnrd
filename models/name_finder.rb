@@ -52,8 +52,8 @@ class NameFinder < ActiveRecord::Base
   end
   
   def setup_name_engines
-    neti_client        = NameSpotter::NetiNetiClient.new()
-    tf_client          = NameSpotter::TaxonFinderClient.new()
+    neti_client        = NameSpotter::NetiNetiClient.new(host: SiteConfig.neti_neti_host, port: SiteConfig.neti_neti_port)
+    tf_client          = NameSpotter::TaxonFinderClient.new(host: SiteConfig.taxon_finder_host, port: SiteConfig.taxon_finder_port)
     @neti_name_spotter = NameSpotter.new(neti_client)
     @tf_name_spotter   = NameSpotter.new(tf_client)
   end

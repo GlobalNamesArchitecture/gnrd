@@ -36,6 +36,10 @@ configure do
                  :disqus_shortname => 'globalnames-rd',
                  :cleaner_period => 7,
                  :redirect_timer => 10,
+                 :neti_neti_host => conf.delete('neti_neti_host') || '0.0.0.0',
+                 :neti_neti_port => conf.delete('neti_neti_port') || '6384',
+                 :taxon_finder_host => conf.delete('taxon_finder_host') || '0.0.0.0',
+                 :taxon_finder_port => conf.delete('taxon_finder_port') || '1234',
                )
 
   # to see sql during tests uncomment next line
