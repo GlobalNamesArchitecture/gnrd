@@ -12,3 +12,6 @@ Get these at http://code.google.com/p/taxon-finder/ and https://github.com/mbl-c
 For testing API calls, a resque worker needs to be running:
 
     QUEUE=name_finder rake resque:work
+
+If multiple instances of TaxonFinder and NetiNeti are desirable, these can be made available via HAProxy.
+See config.yml.example for configuration of hosts and ports.
