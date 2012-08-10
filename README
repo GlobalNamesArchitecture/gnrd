@@ -14,4 +14,8 @@ For testing API calls, a resque worker needs to be running:
     QUEUE=name_finder rake resque:work
 
 If multiple instances of TaxonFinder and NetiNeti are desirable, these can be made available via HAProxy.
-See config.yml.example for configuration of hosts and ports.
+See config.yml.example for configuration of hosts and ports. Multiple workers can be used be specifying COUNT.
+
+In production:
+
+    RACK_ENV=production RAKE_ENV=production COUNT=5 QUEUE=name_finder rake resque:workers
