@@ -4,7 +4,7 @@ gem 'sinatra'
 gem 'sinatra-flash'
 gem 'sinatra-reloader'
 gem 'mysql2'
-gem "activerecord", "~> 3.2.3"
+gem "activerecord"
 gem "haml"
 gem "sass"
 gem "name-spotter", "= 0.2.3"

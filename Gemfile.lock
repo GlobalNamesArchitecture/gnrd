@@ -162,7 +162,7 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack
-  activerecord (~> 3.2.3)
+  activerecord
   builder
   capybara
   debugger
