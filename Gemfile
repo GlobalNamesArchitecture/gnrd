@@ -20,7 +20,7 @@ gem "actionpack"
 gem "sanitize"
 
 group :development, :test do
-  gem 'debugger',
+  gem 'debugger'
   gem 'capybara'
 end
 
