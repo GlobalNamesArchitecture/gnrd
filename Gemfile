@@ -20,7 +20,7 @@ gem "actionpack"
 gem "sanitize"
 
 group :development, :test do
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'debugger',
   gem 'capybara'
 end
 
