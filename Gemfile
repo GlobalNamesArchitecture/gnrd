@@ -22,6 +22,7 @@ gem "sanitize"
 group :development, :test do
   gem 'debugger'
   gem 'capybara'
+  gem 'rdp-ruby-prof'
 end
 
 group :production do

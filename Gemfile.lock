@@ -91,6 +91,7 @@ GEM
       rack (>= 1.0)
     rack-timeout (0.0.3)
     rake (0.9.2.2)
+    rdp-ruby-prof (0.7.4)
     redis (2.2.2)
     redis-namespace (1.0.3)
       redis (< 3.0.0)
@@ -175,6 +176,7 @@ DEPENDENCIES
   rack-google-analytics
   rack-test
   rack-timeout
+  rdp-ruby-prof
   resque
   rspec
   sanitize
