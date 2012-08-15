@@ -14,6 +14,12 @@ Rack::Timeout.timeout = 9_000_000
 set :haml, :format => :html5
 set :protection, :except => :json_csrf
 
+helpers do
+  def base_url
+    @base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
+  end
+end
+
 def find(params)
   input_url = params[:url] || (params[:find] && params[:find][:url]) || nil
   file = params[:file] || (params[:find] && params[:find][:file]) || nil
@@ -37,7 +43,7 @@ def find(params)
       FileUtils.mv(file[:tempfile].path, file_path)
       sha = Digest::SHA1.file(file_path).hexdigest
     end
-    nf = NameFinder.create(:engine => engine, :input_url => input_url, :format => format, :document_sha => sha, :unique => unique, :verbatim => verbatim, :detect_language => detect_language, :input => text, :file_path => file_path, :file_name => file_name)
+    nf = NameFinder.create(:token_url => base_url, :engine => engine, :input_url => input_url, :format => format, :document_sha => sha, :unique => unique, :verbatim => verbatim, :detect_language => detect_language, :input => text, :file_path => file_path, :file_name => file_name)
     workers_running? ? Resque.enqueue(NameFinder, nf.id) : nf.name_find
     name_finder_presentation(nf, format, true)
   end

@@ -519,5 +519,32 @@ describe "/name_finder" do
       count -= 1
     end
   end
+  
+  it "should produce a token url that matches the requested URI" do
+    text = 'The Structure of Meteridium (Actinoloba) marginata Milne-Edw. with special reference to its neuro-muscular mechanism. Jour.'
+    ['http://0.0.0.0:4567', 'http://localhost:4567'].each do |base_url|
+      post(base_url + "/name_finder", :format => 'json', :text => text, :unique => true)
+      last_response.status.should == 303
+      uri = URI.parse last_response.location
+      base_uri = URI.parse base_url
+      uri.port.should == base_uri.port
+      uri.host.should == base_uri.host
+      token_uri = last_response.location
+      follow_redirect!
+      count = 10
+      while count > 0
+        get(last_request.url)
+        r = last_response
+        r.status.should == 200
+        res = JSON.parse(r.body, :symbolize_names => true)
+        if res[:names]
+          res[:token_url].should == token_uri
+          break
+        end
+        sleep(5)
+        count -= 1
+      end
+    end
+  end
 
 end

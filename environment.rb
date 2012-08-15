@@ -30,7 +30,6 @@ conf = YAML.load(open(File.join(root_path, 'config.yml')).read)[Sinatra::Base.en
 configure do
   SiteConfig = OpenStruct.new(
                  :title => 'Global Names Recognition and Discovery',
-                 :url_base => conf.delete('url_base'),
                  :root_path => root_path,
                  :salt => conf.delete('salt'),
                  :disqus_shortname => 'globalnames-rd',
