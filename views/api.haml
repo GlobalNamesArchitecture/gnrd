@@ -141,7 +141,7 @@
     addressable.query_values = { :text => really_big_text }
     gz_payload = ActiveSupport::Gzip.compress(addressable.query)
 
-    uri = URI(url)
+    uri = URI('#{json_url}')
     req = Net::HTTP::Post.new(uri.path)
     req["Content-Encoding"] = "gzip"
     req["Content-Length"] = gz_payload.size
