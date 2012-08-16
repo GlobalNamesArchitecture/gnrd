@@ -147,6 +147,7 @@ get '/api' do
   @page = "api"
   @title = "API"
   @header = "Application Programming Interface"
+  base_url
   haml :api
 end
 

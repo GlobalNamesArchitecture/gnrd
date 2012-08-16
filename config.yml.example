@@ -4,7 +4,6 @@ development:
   user: root
   password:
   database: gnrd_dev
-  url_base: 'http://localhost:4567'
   salt: substitute_with_your_secret_salt_string
   neti_neti_host: 0.0.0.0
   neti_neti_port: 6384
@@ -17,7 +16,6 @@ test:
   user: root
   password:
   database: gnrd_test
-  url_base: 'http://localhost:4567'
   salt: substitute_with_your_secret_salt_string
   neti_neti_host: 0.0.0.0
   neti_neti_port: 6384
@@ -30,7 +28,6 @@ production:
   user: root
   password:
   database: gnrd_test
-  url_base: 'http://gnrd.globalnames.org'
   salt: substitute_with_your_secret_salt_string
   neti_neti_host: 0.0.0.0
   neti_neti_port: 6384
