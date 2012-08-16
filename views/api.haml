@@ -124,3 +124,28 @@
         ...etc...
       ]
     }
+
+%h3 Advanced
+
+%p
+  If you have many large documents to send or experience long network delays, you can gzip compress your POST body and set the request header, Content-Encoding : gzip.
+
+%pre.code
+  :escaped
+    require 'active_support/all'
+    require 'addressable/uri'
+
+    addressable = Addressable::URI.new
+    addressable.query_values = { :text => really_big_text }
+    gz_payload = ActiveSupport::Gzip.compress(addressable.query)
+
+    uri = URI(url)
+    req = Net::HTTP::Post.new(uri.path)
+    req["Content-Encoding"] = "gzip"
+    req["Content-Length"] = gz_payload.size
+    req["X-Uncompressed-Length"] = addressable.query.size
+    req.body = gz_payload
+
+    res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+      http.request(req)
+    end
