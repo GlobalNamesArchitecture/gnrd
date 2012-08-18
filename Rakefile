@@ -1,3 +1,4 @@
+require 'rake'
 require 'bundler/setup'
 require 'rspec/core/rake_task'
 # require 'escape'

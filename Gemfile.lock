@@ -176,6 +176,7 @@ DEPENDENCIES
   rack-google-analytics
   rack-test
   rack-timeout
+  rake
   rdp-ruby-prof
   resque
   rspec

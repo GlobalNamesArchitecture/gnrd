@@ -32,5 +32,6 @@ end
 
 group :test do
   # Pretty printed test output
+  gem 'rake'
   gem 'turn', '0.8.2', :require => false
 end
