@@ -7,7 +7,7 @@ gem 'mysql2'
 gem "activerecord"
 gem "haml"
 gem "sass"
-gem "name-spotter", "= 0.2.3"
+gem "name-spotter", "= 0.2.4"
 gem "mechanize"
 gem "docsplit"
 gem "rspec"
