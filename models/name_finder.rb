@@ -153,8 +153,7 @@ class NameFinder < ActiveRecord::Base
       save_file_from_url if !input_url.blank?
       content = !input.blank? ? input : read_file
     end
-    content.encode!('UTF-16', 'UTF-8',  :invalid => :replace, :undef => :replace, :replace => '?')
-    content.encode('UTF-8', 'UTF-16')
+    content
   end
 
   def save_file_from_url
