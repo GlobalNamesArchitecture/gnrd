@@ -19,6 +19,7 @@ require 'sanitize'
 #set environment
 environment = ENV["RACK_ENV"] || ENV["RAILS_ENV"]
 environment = (environment && ["production", "test", "development"].include?(environment.downcase)) ? environment.downcase.to_sym : :development
+
 Sinatra::Base.environment = environment
 
 #set encoding

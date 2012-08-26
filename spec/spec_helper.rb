@@ -4,7 +4,7 @@ require_relative '../application.rb'
 
 module RSpecMixin
   include Rack::Test::Methods
-  def app() Sinatra::Application end
+  def app() GNRD end
 end
 
 def profile_start
