@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'sinatra'
 gem 'sinatra-flash'
+gem 'sinatra-redirect-with-flash'
 gem 'sinatra-reloader'
 gem 'mysql2'
 gem "activerecord"

@@ -55,7 +55,7 @@ configure do
 end
 
 #production-specific
-site_specific_file =  File.join(File.dirname(__FILE__), 'config', 'production_site_specific')
+site_specific_file = File.join(File.dirname(__FILE__), 'config', 'production_site_specific')
 require site_specific_file if File.exists?(site_specific_file + ".rb")
 
 after do
