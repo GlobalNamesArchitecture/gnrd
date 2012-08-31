@@ -1,5 +1,7 @@
 == Global Names Recognition and Discovery (GNRD)
 
+{<img src="https://secure.travis-ci.org/GlobalNamesArchitecture/gnrd.png" />}[http://travis-ci.org/GlobalNamesArchitecture/gnrd]
+
 Sinatra application to find scientific names in web pages and documents.
 
 See http://gnrd.globalnames.org/
