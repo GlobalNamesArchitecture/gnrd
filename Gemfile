@@ -19,6 +19,7 @@ gem "rack-test"
 gem "builder"
 gem "actionpack"
 gem "sanitize"
+gem "mail"
 
 group :development, :test do
   gem 'debugger'

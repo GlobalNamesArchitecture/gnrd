@@ -15,6 +15,7 @@ require 'resque'
 require 'rack/google-analytics'
 require 'digest/sha1'
 require 'sanitize'
+require 'mail'
 
 #set environment
 environment = ENV["RACK_ENV"] || ENV["RAILS_ENV"]
@@ -28,14 +29,18 @@ root_path = File.expand_path(File.dirname(__FILE__))
 conf = YAML.load(open(File.join(root_path, 'config.yml')).read)[environment.to_s]
 configure do
   SiteConfig = OpenStruct.new(
-                 :title => 'Global Names Recognition and Discovery',
-                 :root_path => root_path,
-                 :salt => conf.delete('salt'),
-                 :disqus_shortname => 'globalnames-rd',
-                 :cleaner_period => 7,
-                 :redirect_timer => 10,
-                 :neti_neti_host => conf.delete('neti_neti_host') || '0.0.0.0',
-                 :neti_neti_port => conf.delete('neti_neti_port') || '6384',
+                 :title             => 'Global Names Recognition and Discovery',
+                 :root_path         => root_path,
+                 :salt              => conf.delete('salt'),
+                 :smtp_address      => conf.delete('smtp_address') || '0.0.0.0',
+                 :smtp_port         => conf.delete('smtp_port') || 25,
+                 :smtp_domain       => conf.delete('smtp_domain') || '0.0.0.0',
+                 :admin_email       => conf.delete('admin_email') || 'admin@nowhere.com',
+                 :disqus_shortname  => 'globalnames-rd',
+                 :cleaner_period    => 7,
+                 :redirect_timer    => 10,
+                 :neti_neti_host    => conf.delete('neti_neti_host') || '0.0.0.0',
+                 :neti_neti_port    => conf.delete('neti_neti_port') || '6384',
                  :taxon_finder_host => conf.delete('taxon_finder_host') || '0.0.0.0',
                  :taxon_finder_port => conf.delete('taxon_finder_port') || '1234',
                )

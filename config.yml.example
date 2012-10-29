@@ -33,6 +33,10 @@ production:
   neti_neti_port: 6384
   taxon_finder_host: 0.0.0.0
   taxon_finder_port: 1234
+  smtp_address: smtp.somewhere.com
+  smtp_port: 25
+  smtp_domain: somwhere.com
+  admin_email: admin@somewhere.com
   
   
   

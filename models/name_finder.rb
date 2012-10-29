@@ -17,6 +17,7 @@ class NameFinder < ActiveRecord::Base
   
   def name_find
     setup_instance_vars
+    setup_mailer
     setup_name_engines
     get_agent_response
     build_output
@@ -49,6 +50,15 @@ class NameFinder < ActiveRecord::Base
     @is_english = nil
     @output = nil
     @status = 200
+  end
+  
+  def setup_mailer
+    options = { :address => SiteConfig.smtp_address,
+                :port    => SiteConfig.smtp_port,
+                :domain  => SiteConfig.smtp_domain }
+    Mail.defaults do
+      delivery_method :smtp, options
+    end
   end
   
   def setup_name_engines
@@ -138,9 +148,19 @@ class NameFinder < ActiveRecord::Base
       names = process_combined_names(names)
     rescue => e
       @status = 500
+      email_failure
     end
     @end_execution = (Time.now - start_execution)
     names
+  end
+  
+  def email_failure
+    Mail.deliver do
+      from    'donotreply@globalnames.org'
+      to      SiteConfig.admin_email
+      subject 'GNRD engines have failed'
+      body    'The GlobalNames Recognition and Discovery name-finding engines have failed'
+    end
   end
 
 # CONTENT HANDLING METHODS
