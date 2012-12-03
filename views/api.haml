@@ -59,6 +59,14 @@
     %em e.g.
     = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;callback=MyCoolCallBack"
 
+  %h4 Optional resolution parameters
+
+  %dt data_source_ids (optional)
+  %dd
+    Type: string. Pipe separated list of data sources to resolve found names against. See list of
+    = succeed '.' do
+      %a{:href => 'http://resolver.globalnames.org/data_sources'} Data Sources
+
 %h3
   %a{:name => "api-example"} Example
 

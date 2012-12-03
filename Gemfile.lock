@@ -190,6 +190,7 @@ DEPENDENCIES
   rake
   rdp-ruby-prof
   resque
+  rest-client
   rspec
   sanitize
   sass

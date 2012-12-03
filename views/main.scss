@@ -68,8 +68,8 @@ label{
   font-weight: normal;
   line-height: normal;
   padding-right: 10px;
-  padding-top: 0.6em;
   text-align: right;
+  vertical-align:middle;
   width: 200px;
 }
 .required abbr{
@@ -326,8 +326,8 @@ form span {
 }
 #advanced_options{margin-top:20px;}
 #advanced_selections{display:none;}
-#advanced_selections fieldset{background-color:#fafafa;display:inline;width:44%;}
-#advanced_selections label{font-size:1em;}
+#advanced_selections fieldset{background-color:#fafafa;display:inline;width:44%;vertical-align:top;}
+#advanced_selections label{font-size:1em;line-height:1.5em;}
 .submit-button {
   background: #5aa52b;
   background: -moz-linear-gradient(center bottom , #1B7004 4%, #5AA52B 58%, #90CF4C 98%) repeat scroll 0 0 transparent;

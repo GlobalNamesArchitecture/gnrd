@@ -16,6 +16,7 @@ require 'rack/google-analytics'
 require 'digest/sha1'
 require 'sanitize'
 require 'mail'
+require 'rest-client'
 
 #set environment
 environment = ENV["RACK_ENV"] || ENV["RAILS_ENV"]
@@ -43,6 +44,7 @@ configure do
                  :neti_neti_port    => conf.delete('neti_neti_port') || '6384',
                  :taxon_finder_host => conf.delete('taxon_finder_host') || '0.0.0.0',
                  :taxon_finder_port => conf.delete('taxon_finder_port') || '1234',
+                 :resolver_url      => conf.delete('resolver_url') || 'http://resolver.globalnames.org/data_sources.json'
                )
 
   # to see sql during tests uncomment next line

@@ -42,8 +42,10 @@
           (NetiNeti was not used)
     - if @output[:execution_time] && @output[:status] == 200
       %li
-        = @output[:execution_time][:find_names_duration].to_s
-        s to find names, #{@output[:execution_time][:total_duration].to_s} s for entire process
+        #{@output[:execution_time][:find_names_duration].to_s} s to find names, 
+        - if @output[:execution_time][:resolve_names_duration]
+          #{@output[:execution_time][:resolve_names_duration].to_s} s to resolve names, 
+        #{@output[:execution_time][:total_duration].to_s} s for entire process
   - if @output[:total] && @output[:total] > 0
     %table#found-names-grid
       %thead

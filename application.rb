@@ -36,11 +36,19 @@ class GNRD < Sinatra::Base
     detect_language = params[:detect_language] || (params[:find] && params[:find][:detect_language]) || true
     format = params[:format] || "html"
     engine = params[:engine] || 0
+    data_source_ids = nil
+    if params[:data_source_ids]
+      if params[:data_source_ids].is_a?(Hash)
+        data_source_ids = params[:data_source_ids].keys.map { |i| i.to_i }
+      else
+        data_source_ids = params[:data_source_ids].split("|").map { |i| i.to_i } 
+      end
+    end
 
     file_name = nil
     file_path = nil
     sha = nil
-  
+
     if input_url.blank? && file.blank? && text.blank?
       error_presentation(format, 400)
     else
@@ -50,7 +58,21 @@ class GNRD < Sinatra::Base
         FileUtils.mv(file[:tempfile].path, file_path)
         sha = Digest::SHA1.file(file_path).hexdigest
       end
-      nf = NameFinder.create(:token_url => base_url, :engine => engine, :input_url => input_url, :format => format, :document_sha => sha, :unique => unique, :verbatim => verbatim, :detect_language => detect_language, :input => text, :file_path => file_path, :file_name => file_name)
+      all_params = {
+        :token_url => base_url,
+        :engine => engine,
+        :input_url => input_url,
+        :format => format,
+        :document_sha => sha,
+        :unique => unique,
+        :verbatim => verbatim,
+        :detect_language => detect_language,
+        :input => text,
+        :file_path => file_path,
+        :file_name => file_name,
+        :data_source_ids => data_source_ids
+      }
+      nf = NameFinder.create(all_params)
       workers_running? ? Resque.enqueue(NameFinder, nf.id) : nf.name_find
       name_finder_presentation(nf, format, true)
     end

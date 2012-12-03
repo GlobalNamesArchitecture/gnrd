@@ -11,6 +11,7 @@ xml.result do
   xml.english @output[:english] if @output[:english]
   xml.execution_time do
     xml.find_names_duration @output[:execution_time][:find_names_duration]
+    xml.resolve_names_duration @output[:execution_time][:resolve_names_duration] if @output[:execution_time][:resolve_names_duration]
     xml.total_duration @output[:execution_time][:total_duration]
   end unless !@output[:execution_time]
   xml.engines do

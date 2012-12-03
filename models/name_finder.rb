@@ -8,6 +8,8 @@ class NameFinder < ActiveRecord::Base
   REGEX = { leftmost_dot: Regexp.new(/^\.+/), square_brackets: Regexp.new(/[\[\]]/), non_name_chars: Regexp.new(/[^\(\)\=\.\d\w\-\p{Latin}]/), dot_before_word: Regexp.new(/\.+([^\s])/), dot_after_word: Regexp.new(/([^\s]+)\.\s/), multiple_spaces: Regexp.new(/\s+/) }
 
   serialize :output, Hash
+  serialize :data_source_ids, Array
+
   ENGINES = { 0 => ["TaxonFinder", "NetiNeti"], 1 => ["TaxonFinder"], 2 => ["NetiNeti"] } 
 
   def self.perform(name_finder_id)
@@ -89,19 +91,24 @@ class NameFinder < ActiveRecord::Base
       content = get_content
 
       @is_english = NameSpotter.english? content
-      self.output.merge!(:english => @is_english)
+      self.output.merge!(:english => @is_english, :execution_time => {})
 
       names = find_names(content)
 
       self.unique = true if !self.verbatim
-      names.each do |name|
-        if !self.verbatim
-          name.delete :verbatim
-          name.delete :identifiedName
+      self.unique = true if self.data_source_ids.any?
+
+      if self.unique
+        names.each do |name|
+          if !self.verbatim
+            name.delete :verbatim
+            name.delete :identifiedName
+          end
+          name.delete :offsetStart
+          name.delete :offsetEnd
         end
-        name.delete :offsetStart
-        name.delete :offsetEnd
-      end if self.unique
+        names = names.uniq
+      end
 
       self.output.merge!(
         :engines   => @engines,
@@ -110,10 +117,14 @@ class NameFinder < ActiveRecord::Base
         :input_url => self.input_url,
         :agent     => @agent || "",
         :created   => self.created_at,
-        :execution_time => { :find_names_duration => @end_execution, :total_duration => (Time.now - @start_process) },
-        :total     => self.unique ? names.uniq.count : names.count,
-        :names     => self.unique ? names.uniq : names
+        :total     => names.count,
+        :names     => names
       )
+      
+      self.output[:execution_time].merge!(:total_duration => (Time.now - @start_process))
+
+      resolve_names(names) if self.data_source_ids.any?
+
     rescue
       self.output.merge!(
         :status    => @status,
@@ -150,8 +161,33 @@ class NameFinder < ActiveRecord::Base
       @status = 500
       email_failure
     end
-    @end_execution = (Time.now - start_execution)
+    self.output[:execution_time].merge!(:find_names_duration => (Time.now - start_execution))
     names
+  end
+  
+  def resolve_names(names)
+    start_execution = Time.now
+    resource = RestClient::Resource.new(SiteConfig.resolver_url, timeout: 9_000_000, open_timeout: 9_000_000, connection: "Keep-Alive")
+    r = resource.post :data => names.map{|t| t[:scientificName]}.join("\n"), :data_source_ids => self.data_source_ids.join("|")
+    r = JSON.parse(r, :symbolize_names => true) rescue nil
+    if r
+      if !r[:data] && r[:url]
+        res = nil
+        until res
+          sleep(2)
+          res = JSON.parse(RestClient.get(r[:url]), :symbolize_names => true)[:data]
+        end
+        r[:data] = res
+      end
+      if r[:data]
+        self.output.merge!(
+          :data_sources => r[:data_sources],
+          :context => r[:context],
+          :resolved_names => r[:data]
+        )
+        self.output[:execution_time].merge!(:resolve_names_duration => (Time.now - start_execution))
+      end
+    end
   end
   
   def email_failure

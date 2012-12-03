@@ -5,21 +5,22 @@ gem 'sinatra-flash'
 gem 'sinatra-redirect-with-flash'
 gem 'sinatra-reloader'
 gem 'mysql2'
-gem "activerecord"
-gem "haml"
-gem "sass"
-gem "name-spotter", "= 0.2.4"
-gem "mechanize"
-gem "docsplit"
-gem "rspec"
-gem "resque"
-gem "rack"
-gem "rack-timeout"
-gem "rack-test"
-gem "builder"
-gem "actionpack"
-gem "sanitize"
-gem "mail"
+gem 'activerecord'
+gem 'haml'
+gem 'sass'
+gem 'name-spotter', '= 0.2.4'
+gem 'mechanize'
+gem 'docsplit'
+gem 'rspec'
+gem 'resque'
+gem 'rack'
+gem 'rack-timeout'
+gem 'rack-test'
+gem 'builder'
+gem 'actionpack'
+gem 'sanitize'
+gem 'mail'
+gem 'rest-client'
 
 group :development, :test do
   gem 'debugger'
