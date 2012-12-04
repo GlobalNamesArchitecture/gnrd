@@ -36,6 +36,7 @@ class GNRD < Sinatra::Base
     detect_language = params[:detect_language] || (params[:find] && params[:find][:detect_language]) || true
     format = params[:format] || "html"
     engine = params[:engine] || 0
+    all_data_sources = params[:all_data_sources] || nil
     data_source_ids = nil
     if params[:data_source_ids]
       if params[:data_source_ids].is_a?(Hash)
@@ -70,6 +71,7 @@ class GNRD < Sinatra::Base
         :input => text,
         :file_path => file_path,
         :file_name => file_name,
+        :all_data_sources => all_data_sources,
         :data_source_ids => data_source_ids
       }
       nf = NameFinder.create(all_params)

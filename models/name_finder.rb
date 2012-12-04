@@ -96,7 +96,7 @@ class NameFinder < ActiveRecord::Base
       names = find_names(content)
 
       self.unique = true if !self.verbatim
-      self.unique = true if self.data_source_ids.any?
+      self.unique = true if (self.data_source_ids.any? || self.all_data_sources)
 
       if self.unique
         names.each do |name|
@@ -120,10 +120,9 @@ class NameFinder < ActiveRecord::Base
         :total     => names.count,
         :names     => names
       )
-      
-      self.output[:execution_time].merge!(:total_duration => (Time.now - @start_process))
 
-      resolve_names(names) if self.data_source_ids.any?
+      resolve_names(names) if (self.data_source_ids.any? || self.all_data_sources)
+      self.output[:execution_time].merge!(:total_duration => (Time.now - @start_process))
 
     rescue
       self.output.merge!(
@@ -168,7 +167,12 @@ class NameFinder < ActiveRecord::Base
   def resolve_names(names)
     start_execution = Time.now
     resource = RestClient::Resource.new(SiteConfig.resolver_url, timeout: 9_000_000, open_timeout: 9_000_000, connection: "Keep-Alive")
-    r = resource.post :data => names.map{|t| t[:scientificName]}.join("\n"), :data_source_ids => self.data_source_ids.join("|")
+    if self.all_data_sources
+      r = resource.post :data => names.map{|t| t[:scientificName]}.join("\n")
+    else
+      r = resource.post :data => names.map{|t| t[:scientificName]}.join("\n"), :data_source_ids => self.data_source_ids.join("|")
+    end
+    
     r = JSON.parse(r, :symbolize_names => true) rescue nil
     if r
       if !r[:data] && r[:url]

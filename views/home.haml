@@ -70,6 +70,8 @@
           %label{:for => "verbatim_#{id}"}= key
       %fieldset
         %legend Resolve Against
+        %input{:type => :checkbox, :id => "all_data_sources", :name => "all_data_sources"}
+        %label{:for => "all_data_sources"}= "All data sources"
         - { 'Catalogue of Life' => 1, 'ITIS' => 3, 'Index Fungorum' => 5, 'GBIF' => 11, 'IPNI' => 167, 'EOL' => 12, 'Union' => 7, 'uBio NameBank' => 169 }.each do |key, value|
           %div
             %input{:type => :checkbox, :id => "data_source_ids_#{value}", :name => "data_source_ids[#{value}]"}

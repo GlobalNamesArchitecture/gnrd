@@ -547,4 +547,72 @@ describe "/name_finder" do
     end
   end
 
+  it "should resolve names against all data sources" do
+    text = 'Pardosa moesta is the name of the spider and the abbreviation is P. moesta. A few more spiders are called P. distincta, P. moiica, and P. xerampelina. Another genus is Plexippus and its species are P. purpuratus.'
+    post("/name_finder", :format => 'json', :text => text, :engine => 0, :all_data_sources => true)
+    last_response.status.should == 303
+    follow_redirect!
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      r.status.should == 200
+      res = JSON.parse(r.body, :symbolize_names => true)[:resolved_names]
+      if res
+        res.size.should == 7
+        res[0][:results].size.should > 1
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
+  end
+
+  it "should resolve names only against the Catalog of Life" do
+    text = 'Pardosa moesta is the name of the spider.'
+    post("/name_finder", :format => 'json', :text => text, :engine => 0, :data_source_ids => 1)
+    last_response.status.should == 303
+    follow_redirect!
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      r.status.should == 200
+      res = JSON.parse(r.body, :symbolize_names => true)[:resolved_names]
+      if res
+        res.size.should == 1
+        sources = JSON.parse(r.body, :symbolize_names => true)[:data_sources]
+        sources.size.should == 1
+        sources[0][:id].should == 1
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
+  end
+
+  it "should resolve names only against the Catalog of Life and Union" do
+    text = 'Pardosa moesta is the name of the spider.'
+    post("/name_finder", :format => 'json', :text => text, :engine => 0, :data_source_ids => "1|7")
+    last_response.status.should == 303
+    follow_redirect!
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      r.status.should == 200
+      res = JSON.parse(r.body, :symbolize_names => true)[:resolved_names]
+      if res
+        res.size.should == 1
+        sources = JSON.parse(r.body, :symbolize_names => true)[:data_sources]
+        sources.size.should == 2
+        sources[0].should == { :id => 1, :title => 'Catalogue of Life' }
+        sources[1].should == { :id => 7, :title => 'Union 4' }
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
+  end
+
 end
