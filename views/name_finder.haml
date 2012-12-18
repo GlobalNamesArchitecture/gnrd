@@ -47,12 +47,22 @@
           #{@output[:execution_time][:resolve_names_duration].to_s} s to resolve names, 
         #{@output[:execution_time][:total_duration].to_s} s for entire process
   - if @output[:total] && @output[:total] > 0
+
+    -# COMMENTED OUT FOR NOW
+    -# if @output[:resolved_names]
+      #names-lists
+        %span
+          %a{:href => "#found-names" } Found Names
+        %span
+          %a{:href => "#resolved-names" } Resolved Names
+
     %table#found-names-grid
       %thead
         %tr
           - if @output[:verbatim]
-            %th Verbatim Strings
-          %th Scientific Names
+            %th Found Verbatim Strings
+          %th
+            %a{:name => "found-names"} Found Scientific Names
       %tbody
         - cycle = "odd"
         - @output[:names].sort { |a,b| a[:scientificName] <=> b[:scientificName] }.each do |name|
@@ -61,3 +71,24 @@
             - if @output[:verbatim]
               %td= name[:verbatim]
             %td= name[:scientificName]
+
+    -# COMMENTED OUT FOR NOW
+    -# if @output[:resolved_names]
+      - @output[:resolved_names].sort { |a,b| a[:supplied_name_string] <=> b[:supplied_name_string] }.each do |result|
+        .section
+          .searched-name
+            %h4= h result[:supplied_name_string]
+            - num_matches = (result[:results] && result[:results].size > 0) ? result[:results].size : 0
+            %span.number-matches= "Number of matches: #{num_matches}"
+
+          .results
+            - if result[:results]
+              - result[:results].each do |source|
+                .source-match
+                  .source-names-score
+                    %span.source-name-string= source[:name_string]
+                  - if source[:current_name_string]
+                    .source-names-score
+                      Current name:
+                      %span.source-current-name-string= source[:current_name_string]
+                    .source-classification-path= source[:classification_path].gsub('|', ' >> ')

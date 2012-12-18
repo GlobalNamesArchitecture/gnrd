@@ -559,7 +559,7 @@ describe "/name_finder" do
       r.status.should == 200
       res = JSON.parse(r.body, :symbolize_names => true)[:resolved_names]
       if res
-        res.size.should == 7
+        res.size.should == 6
         res[0][:results].size.should > 1
         break
       end

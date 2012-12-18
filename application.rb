@@ -22,9 +22,17 @@ class GNRD < Sinatra::Base
   set :protection, :except => :json_csrf
 
   helpers do
+    include Rack::Utils
+    alias_method :h, :escape_html
+
     def base_url
       @base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
     end
+  end
+
+  after do
+    Cleaner.run
+    ActiveRecord::Base.clear_active_connections!
   end
 
   def find(params)

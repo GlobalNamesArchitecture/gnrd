@@ -33,12 +33,16 @@ xml.result do
   end if @output[:names]
   xml.data_sources do
     @output[:data_sources].each do |data_source|
-      xml.data_source data_source[:title], :id => data_source[:id]
+      xml.data_source do
+        xml.data_source_id data_source[:id] if data_source[:id]
+        xml.title data_source[:title] if data_source[:title]
+      end
     end
   end if @output[:data_sources]
   xml.context do
     @output[:context].each do |context|
-      xml.data_source context[:context_clade], :id => context[:context_data_source_id]
+      xml.context_data_source_id context[:context_data_source_id] if context[:context_data_source_id]
+      xml.context_clade context[:context_clade] if context[:context_clade]
     end
   end if @output[:context]
   xml.resolved_names 'xmlns:dwc' => 'http://rs.tdwg.org/dwc/terms/' do
@@ -47,7 +51,23 @@ xml.result do
         xml.dwc :scientificName, name[:supplied_name_string]
         xml.results do
           name[:results].each do |r|
-            xml.result r[:name_string], :canonical_form => r[:canonical_form], :data_source_id => r[:data_source_id], :taxon_id => r[:taxon_id], :gni_uuid => r[:gni_uuid], :score => r[:score], :match_type => r[:match_type]
+            xml.result do
+              xml.data_source_id r[:data_source_id] if r[:data_source_id]
+              xml.gni_uuid r[:gni_uuid] if r[:gni_uuid]
+              xml.name_string r[:name_string] if r[:name_string]
+              xml.canonical_form r[:canonical_form] if r[:canonical_form]
+              xml.classification_path r[:classification_path] if r[:classification_path]
+              xml.classification_path_ids r[:classification_path_ids] if r[:classification_path_ids]
+              xml.taxon_id r[:taxon_id] if r[:taxon_id]
+              xml.current_taxon_id r[:current_taxon_id] if r[:current_taxon_id]
+              xml.current_name_string r[:current_name_string] if r[:current_name_string]
+              xml.local_id r[:local_id] if r[:local_id]
+              xml.global_id r[:global_id] if r[:global_id]
+              xml.url r[:url] if r[:url]
+              xml.match_type r[:match_type] if r[:match_type]
+              xml.prescore r[:prescore] if r[:prescore]
+              xml.score r[:score] if r[:score]
+            end
           end if name[:results]
         end
       end

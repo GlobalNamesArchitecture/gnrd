@@ -88,6 +88,10 @@ class NameFinder < ActiveRecord::Base
 
   def build_output
     begin
+      self.unique = true if !self.verbatim
+      self.unique = true if (self.data_source_ids.any? || self.all_data_sources)
+      self.verbatim = false if (self.data_source_ids.any? || self.all_data_sources)
+
       content = get_content
 
       @is_english = NameSpotter.english? content
@@ -95,12 +99,9 @@ class NameFinder < ActiveRecord::Base
 
       names = find_names(content)
 
-      self.unique = true if !self.verbatim
-      self.unique = true if (self.data_source_ids.any? || self.all_data_sources)
-
       if self.unique
         names.each do |name|
-          if !self.verbatim
+          if !self.verbatim || (self.data_source_ids.any? || self.all_data_sources)
             name.delete :verbatim
             name.delete :identifiedName
           end
@@ -114,6 +115,7 @@ class NameFinder < ActiveRecord::Base
         :engines   => @engines,
         :status    => @status,
         :unique    => self.unique,
+        :verbatim  => self.verbatim,
         :input_url => self.input_url,
         :agent     => @agent || "",
         :created   => self.created_at,
@@ -128,6 +130,7 @@ class NameFinder < ActiveRecord::Base
       self.output.merge!(
         :status    => @status,
         :unique    => self.unique,
+        :verbatim  => self.verbatim,
         :input_url => self.input_url,
         :agent     => @agent || "",
         :created   => self.created_at,
@@ -167,12 +170,12 @@ class NameFinder < ActiveRecord::Base
   def resolve_names(names)
     start_execution = Time.now
     resource = RestClient::Resource.new(SiteConfig.resolver_url, timeout: 9_000_000, open_timeout: 9_000_000, connection: "Keep-Alive")
-    if self.all_data_sources
-      r = resource.post :data => names.map{|t| t[:scientificName]}.join("\n")
-    else
-      r = resource.post :data => names.map{|t| t[:scientificName]}.join("\n"), :data_source_ids => self.data_source_ids.join("|")
+    params = { :data => names.map{|t| t[:scientificName]}.join("\n"), :resolve_once => false, :with_context => false }
+    if self.data_source_ids
+      params.merge!(:data_source_ids => self.data_source_ids.join("|"))
     end
-    
+
+    r = resource.post params
     r = JSON.parse(r, :symbolize_names => true) rescue nil
     if r
       if !r[:data] && r[:url]

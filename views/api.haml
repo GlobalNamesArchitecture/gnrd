@@ -66,12 +66,18 @@
     Type: bolean (true/false). Resolve found names against all available
     = succeed '.' do
       %a{:href => 'http://resolver.globalnames.org/data_sources'} Data Sources
+    %br/
+    %em e.g.
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;all_data_sources=true"
 
   %dt data_source_ids (optional)
   %dd
-    Type: string. Pipe separated list of data sources to resolve found names against. See list of
+    Type: string. Pipe separated list of data source ids to resolve found names against. See list of
     = succeed '.' do
       %a{:href => 'http://resolver.globalnames.org/data_sources'} Data Sources
+    %br/
+    %em e.g.
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;data_source_ids=1|169"
 
 %h3
   %a{:name => "api-example"} Example
