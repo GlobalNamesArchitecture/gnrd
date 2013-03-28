@@ -179,7 +179,9 @@ class NameFinder < ActiveRecord::Base
                preferred_data_sources: self.preferred_data_sources,
     }
     if self.data_source_ids
-      params.merge!(:data_source_ids => self.data_source_ids.join("|"))
+      params.merge!(:data_source_ids => self.data_source_ids.join("|"),
+                    :best_match_only => self.best_match_only,
+                    :preferred_data_sources => self.preferred_data_sources)
     end
 
     r = resource.post params
