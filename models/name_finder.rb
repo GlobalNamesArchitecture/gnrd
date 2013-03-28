@@ -122,7 +122,8 @@ class NameFinder < ActiveRecord::Base
         :total     => names.count,
         :names     => names
       )
-      resolve_names(names) if (self.data_source_ids.any? || self.all_data_sources)
+      resolve_names(names) if names.size > 0 &&
+        (self.data_source_ids.any? || self.all_data_sources)
       self.output[:execution_time].merge!(:total_duration => (Time.now - @start_process))
 
     rescue
