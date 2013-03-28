@@ -277,6 +277,7 @@ describe "/name_finder" do
       sleep(5)
       count -= 1
     end
+    count.should > 0
   end
 
   it "API should give error when a token does not exist" do
@@ -312,6 +313,7 @@ describe "/name_finder" do
         sleep(5)
         count -= 1
       end
+      (count > 0).should be_true
     end
   end
   
@@ -330,6 +332,7 @@ describe "/name_finder" do
         sleep(5)
         count -= 1
       end
+      (count > 0).should be_true
     end
   end
   
@@ -349,6 +352,7 @@ describe "/name_finder" do
         sleep(5)
         count -= 1
       end
+      (count > 0).should be_true
     end
   end
 
@@ -369,6 +373,7 @@ describe "/name_finder" do
         sleep(5)
         count -= 1
       end
+      (count > 0).should be_true
     end
   end
 
@@ -389,6 +394,7 @@ describe "/name_finder" do
         sleep(5)
         count -= 1
       end
+      (count > 0).should be_true
     end
   end
   
@@ -410,6 +416,7 @@ describe "/name_finder" do
         sleep(5)
         count -= 1
       end
+      (count > 0).should be_true
     end
   end
 
@@ -431,6 +438,7 @@ describe "/name_finder" do
       sleep(5)
       count -= 1
     end
+    (count > 0).should be_true
   end
 
   it "should properly dedup names when both engines are used" do
@@ -452,6 +460,7 @@ describe "/name_finder" do
       sleep(5)
       count -= 1
     end
+    (count > 0).should be_true
   end
   
   it "should use TaxonFinder exclusively if language of large text is not English" do
@@ -474,6 +483,7 @@ describe "/name_finder" do
       sleep(5)
       count -= 1
     end
+    (count > 0).should be_true
   end
 
   it "should use both engines if language detection is disabled" do
@@ -496,6 +506,7 @@ describe "/name_finder" do
       sleep(5)
       count -= 1
     end
+    (count > 0).should be_true
   end
 
   it "should use both engines as requested if language of text is English" do
@@ -518,6 +529,7 @@ describe "/name_finder" do
       sleep(5)
       count -= 1
     end
+    (count > 0).should be_true
   end
   
   it "should produce a token url that matches the requested URI" do
@@ -544,6 +556,7 @@ describe "/name_finder" do
         sleep(5)
         count -= 1
       end
+      (count > 0).should be_true
     end
   end
 
@@ -566,6 +579,7 @@ describe "/name_finder" do
       sleep(5)
       count -= 1
     end
+    (count > 0).should be_true
   end
 
   it "should resolve names only against the Catalog of Life" do
@@ -589,6 +603,7 @@ describe "/name_finder" do
       sleep(5)
       count -= 1
     end
+    (count > 0).should be_true
   end
 
   it "should resolve names only against the Catalog of Life and Union" do
@@ -613,6 +628,32 @@ describe "/name_finder" do
       sleep(5)
       count -= 1
     end
+    (count > 0).should be_true
+  end
+  
+  it "should resolve names returning only best match" do
+    text = 'Pardosa moesta is the name of the spider.'
+    post("/name_finder", :format => 'json', :text => text, :engine => 0)
+    last_response.status.should == 303
+    follow_redirect!
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      r.status.should == 200
+      res = JSON.parse(r.body, :symbolize_names => true)[:resolved_names]
+      if res
+        res.size.should == 1
+        sources = JSON.parse(r.body, :symbolize_names => true)[:data_sources]
+        sources.size.should == 2
+        sources[0].should == { :id => 1, :title => 'Catalogue of Life' }
+        sources[1].should == { :id => 7, :title => 'Union 4' }
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
+    (count > 0).should be_true
   end
 
 end

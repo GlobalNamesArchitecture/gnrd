@@ -122,7 +122,6 @@ class NameFinder < ActiveRecord::Base
         :total     => names.count,
         :names     => names
       )
-
       resolve_names(names) if (self.data_source_ids.any? || self.all_data_sources)
       self.output[:execution_time].merge!(:total_duration => (Time.now - @start_process))
 
@@ -169,8 +168,16 @@ class NameFinder < ActiveRecord::Base
   
   def resolve_names(names)
     start_execution = Time.now
-    resource = RestClient::Resource.new(SiteConfig.resolver_url, timeout: 9_000_000, open_timeout: 9_000_000, connection: "Keep-Alive")
-    params = { :data => names.map{|t| t[:scientificName]}.join("\n"), :resolve_once => false, :with_context => false }
+    resource = RestClient::Resource.new(SiteConfig.resolver_url, 
+                                        timeout: 9_000_000, 
+                                        open_timeout: 9_000_000, 
+                                        connection: "Keep-Alive")
+    params = { data: names.map { |t| t[:scientificName] }.join("\n"), 
+               resolve_once: false, 
+               with_context: false,
+               best_match_only: self.best_match_only,
+               preferred_data_sources: self.preferred_data_sources,
+    }
     if self.data_source_ids
       params.merge!(:data_source_ids => self.data_source_ids.join("|"))
     end

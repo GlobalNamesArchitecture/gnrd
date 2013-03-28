@@ -46,6 +46,8 @@ class GNRD < Sinatra::Base
     engine = params[:engine] || 0
     all_data_sources = params[:all_data_sources] || nil
     data_source_ids = nil
+    preferred_data_sources = params[:preferred_data_sources] || nil
+    best_match_only = params[:best_match_only] || false
     if params[:data_source_ids]
       if params[:data_source_ids].is_a?(Hash)
         data_source_ids = params[:data_source_ids].keys.map { |i| i.to_i }
@@ -80,7 +82,9 @@ class GNRD < Sinatra::Base
         :file_path => file_path,
         :file_name => file_name,
         :all_data_sources => all_data_sources,
-        :data_source_ids => data_source_ids
+        :data_source_ids => data_source_ids,
+        :preferred_data_sources => preferred_data_sources,
+        :best_match_only => best_match_only,
       }
       nf = NameFinder.create(all_params)
       workers_running? ? Resque.enqueue(NameFinder, nf.id) : nf.name_find
