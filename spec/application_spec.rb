@@ -633,7 +633,7 @@ describe "/name_finder" do
   
   it "should resolve names returning only best match" do
     text = 'Pardosa moesta is the name of the spider.'
-    post("/name_finder", :format => 'json', :text => text, :engine => 0)
+    post("/name_finder", :format => 'json', :text => text, :all_data_sources => true, :best_match_only => true)
     last_response.status.should == 303
     follow_redirect!
     count = 10
@@ -644,10 +644,7 @@ describe "/name_finder" do
       res = JSON.parse(r.body, :symbolize_names => true)[:resolved_names]
       if res
         res.size.should == 1
-        sources = JSON.parse(r.body, :symbolize_names => true)[:data_sources]
-        sources.size.should == 2
-        sources[0].should == { :id => 1, :title => 'Catalogue of Life' }
-        sources[1].should == { :id => 7, :title => 'Union 4' }
+        res[0][:results].size.should == 1
         break
       end
       sleep(5)
