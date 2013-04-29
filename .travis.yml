@@ -4,7 +4,8 @@ rvm:
 bundler_args: --without development 
 before_install:
   - sudo apt-get install graphicsmagick
-  - sudo apt-get install poppler-utils poppler-data
+  - sudo apt-get install poppler-utils 
+  - sudo apt-get install poppler-data
   - sudo apt-get install ghostscript
   - sudo apt-get install tesseract-ocr
   - sudo apt-get install pdftk
