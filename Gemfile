@@ -22,10 +22,8 @@ gem 'sanitize'
 gem 'mail'
 gem 'rest-client'
 
-group :development, :test do
+group :development do
   gem 'debugger'
-  gem 'capybara'
-  gem 'rdp-ruby-prof'
 end
 
 group :production do
@@ -35,6 +33,8 @@ end
 
 group :test do
   # Pretty printed test output
+  gem 'capybara'
+  gem 'rdp-ruby-prof'
   gem 'rake'
   gem 'turn', '0.8.2', :require => false
 end
