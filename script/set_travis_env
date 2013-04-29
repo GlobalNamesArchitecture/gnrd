@@ -4,7 +4,7 @@ require 'fileutils'
 
 TF_URL = 'http://taxon-finder.googlecode.com/files/taxon-finder.tar.gz'
 NN_URL = 'git://github.com/mbl-cli/NetiNeti.git'
-SRC_DIR = File.join(File.dirname(__FILE__), '..', 'src')
+SRC_DIR = File.expand_path File.join(File.dirname(__FILE__), '..', 'src')
 TF_DIR = File.join(SRC_DIR, 'taxon-finder')
 NN_DIR = File.join(SRC_DIR, 'neti_neti')
 
