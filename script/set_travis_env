@@ -25,5 +25,5 @@ end
 
 unless File.exists?(SRC_DIR) then FileUtils.mkdir(SRC_DIR) end
 get_taxon_finder
-get_neti_neti
+#get_neti_neti
 
