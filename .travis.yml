@@ -16,10 +16,11 @@ before_install:
   - sudo easy_install tornado
   - sudo easy_install nltk
   - sudo easy_install nose
-  - ./scripts/set_travis_env
 before_script:
+  - ./scripts/set_travis_env
   - cp config.yml.example config.yml
   - rake db:create:all
   - RACK_ENV=test rake db:migrate
+  - exec perl ./src/taxon-finder/server.pl &
 
 
