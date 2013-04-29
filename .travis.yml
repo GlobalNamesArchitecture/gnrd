@@ -21,6 +21,6 @@ before_script:
   - cp config.yml.example config.yml
   - rake db:create:all
   - RACK_ENV=test rake db:migrate
-  - exec perl ./src/taxon-finder/server.pl &
+  - exec perl -l ./src/taxon-finder ./src/taxon-finder/server.pl &
 
 
