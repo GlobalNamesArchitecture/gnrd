@@ -11,8 +11,15 @@ before_install:
   - sudo apt-get install tesseract-ocr
   - sudo apt-get install pdftk
   - sudo apt-get install libreoffice
+  - sudo apt-get install wget
+  - sudo easy_install virtualenv
+  - sudo easy_install tornado
+  - sudo easy_install nltk
+  - sudo easy_install nose
+  - ./scripts/set_travis_env
 before_script:
   - cp config.yml.example config.yml
   - rake db:create:all
   - RACK_ENV=test rake db:migrate
+
 

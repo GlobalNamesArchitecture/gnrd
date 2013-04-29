@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+TF_URL = 'http://taxon-finder.googlecode.com/files/taxon-finder.tar.gz'
+NN_URL = 'git://github.com/mbl-cli/NetiNeti.git'
+SRC_DIR = File.join(File.dirname(__FILE__), '..', 'src')
+TF_DIR = File.join(SRC_DIR, 'taxon-finder')
+NN_DIR = File.join(SRC_DIR, 'neti_neti')
+
+def get_taxon_finder
+  Dir.chdir(SRC_DIR)
+  FileUtils.rm_rf(TF_DIR) if File.exists?(TF_DIR)
+  `wget #{TF_URL}`
+  `tar zxvf taxon-finder.tar.gz`
+end
+
+def get_neti_neti
+  Dir.chdir(SRC_DIR)
+  FileUtils.rm_rf(NN_DIR) if File.exists?(NN_DIR)
+  `git clone #{NN_URL} neti_neti` 
+  Dir.chdir(NN_DIR)
+  `cp config/neti_http_config.example config/neti_http_config.cfg`
+end
+
+unless File.exists?(SRC_DIR) then FileUtils.mkdir(SRC_DIR) end
+get_taxon_finder
+get_neti_neti
+
