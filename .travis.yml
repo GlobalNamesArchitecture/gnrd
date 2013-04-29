@@ -17,7 +17,7 @@ before_install:
   - sudo easy_install nltk
   - sudo easy_install nose
 before_script:
-  - ./scripts/set_travis_env
+  - ./script/set_travis_env
   - cp config.yml.example config.yml
   - rake db:create:all
   - RACK_ENV=test rake db:migrate

@@ -20,7 +20,7 @@ def get_neti_neti
   FileUtils.rm_rf(NN_DIR) if File.exists?(NN_DIR)
   `git clone #{NN_URL} neti_neti` 
   Dir.chdir(NN_DIR)
-  `cp config/neti_http_config.example config/neti_http_config.cfg`
+  `cp ./config/neti_http_config.cfg.example config/neti_http_config.cfg`
 end
 
 unless File.exists?(SRC_DIR) then FileUtils.mkdir(SRC_DIR) end
