@@ -22,5 +22,7 @@ before_script:
   - rake db:create:all
   - RACK_ENV=test rake db:migrate
   - exec perl -l ./src/taxon-finder ./src/taxon-finder/server.pl &
+  - exec python ./src/neti_neti/neti_tornado_server.py &
+  - QUEUE=name_finder rake resque:work &
 
 
