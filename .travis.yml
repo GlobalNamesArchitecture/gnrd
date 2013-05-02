@@ -21,7 +21,9 @@ before_script:
   - cp config.yml.example config.yml
   - rake db:create:all
   - RACK_ENV=test rake db:migrate
-  - perl -l ./src/taxon-finder ./src/taxon-finder/server.pl &
+  - cd src/taxon-finder
+  - perl server.pl &
+  - cd ../..
   - python ./src/neti_neti/neti_tornado_server.py &
   - QUEUE=name_finder rake resque:work &
   - sleep 300
