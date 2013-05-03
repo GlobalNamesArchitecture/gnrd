@@ -26,6 +26,6 @@ before_script:
   - cd ../..
   - python ./src/neti_neti/neti_tornado_server.py &
   - QUEUE=name_finder rake resque:work &
-  - sleep 300
+  - sleep 100
 
 
