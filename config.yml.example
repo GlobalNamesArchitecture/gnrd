@@ -1,7 +1,7 @@
 development:
   adapter: mysql2
   host: localhost
-  user: root
+  username: root
   password:
   database: gnrd_dev
   salt: substitute_with_your_secret_salt_string
@@ -14,7 +14,7 @@ development:
 test:
   adapter: mysql2
   host: localhost
-  user: root
+  username: root
   password:
   database: gnrd_test
   salt: substitute_with_your_secret_salt_string
@@ -27,7 +27,7 @@ test:
 production:
   adapter: mysql2
   host: localhost
-  user: root
+  username: root
   password:
   database: gnrd_test
   salt: substitute_with_your_secret_salt_string
