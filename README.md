@@ -25,6 +25,20 @@ for details.
 You can also check continuous integration server configuration file .travis.yml
 for more information on setting up testing environment.
 
+Server example via Vagrant
+--------------------------
+
+[Vagrant][3] allows us to create an example server configuration in minutes. 
+To make it to work [install Vagrant][4] and [Oracle's VirtualBox][5], run 
+  
+    vagrant box add precise32 http://files.vagrantup.com/precise32.box
+    
+Then from the directory where this file is located run 
+
+    vagrant up
+    
+    
+
 In production:
 --------------
 
@@ -37,3 +51,6 @@ and ports. Multiple workers can be used by specifying COUNT.
 
 [1]: https://secure.travis-ci.org/GlobalNamesArchitecture/gnrd.png
 [2]: http://travis-ci.org/GlobalNamesArchitecture/gnrd
+[3]: http://docs.vagrantup.com/v2/getting-started/index.html
+[4]: http://docs.vagrantup.com/v2/installation/
+[5]: https://www.virtualbox.org/wiki/Downloads
