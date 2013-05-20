@@ -32,7 +32,8 @@ Server example via Vagrant
 To make it to work [install Vagrant][4] version 1.2.2 or later 
 and [Oracle's VirtualBox][5], run 
   
-    vagrant box add precise32 http://files.vagrantup.com/precise32.box
+   vagrant box add precise32 http://files.vagrantup.com/precise32.box
+   git submodule update --init --recursive
     
 Then from the directory where this file is located run 
 

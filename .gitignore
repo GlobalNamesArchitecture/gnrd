@@ -4,6 +4,7 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 .bundle
+.vagrant
 tags
 config/database.yml
 config/production_site_specific.rb

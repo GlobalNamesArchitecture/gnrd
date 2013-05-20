@@ -27,8 +27,8 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'openssl'
     chef.add_recipe 'apache2'
     chef.add_recipe 'mysql'
-    chef.add_recipe 'NetiNeti-cookbook'
-    chef.add_recipe 'taxonfinder-cookbook'
+    chef.add_recipe 'NetiNeti'
+    chef.add_recipe 'taxonfinder'
     chef.add_recipe 'gnrd'
   end
   
