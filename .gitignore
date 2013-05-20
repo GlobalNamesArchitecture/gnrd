@@ -10,6 +10,9 @@ config/production_site_specific.rb
 log/*.log
 .DS_Store
 config.yml
+tmp
+src
+cookbooks
 .sass-cache
 .sass-cache/*
 .sass-cache/**/*

@@ -1,0 +1,30 @@
+[submodule "cookbooks/apache2"]
+	path = cookbooks/apache2
+	url = git://github.com/opscode-cookbooks/apache2.git
+[submodule "cookbooks/taxonfinder"]
+	path = cookbooks/taxonfinder
+	url = git://github.com/mbl-cli/taxonfinder-cookbook.git
+[submodule "cookbooks/NetiNeti"]
+	path = cookbooks/NetiNeti
+	url = git://github.com/mbl-cli/NetiNeti-cookbook.git
+[submodule "cookbooks/build-essential"]
+	path = cookbooks/build-essential
+	url = git://github.com/opscode-cookbooks/build-essential.git
+[submodule "cookbooks/git"]
+	path = cookbooks/git
+	url = git://github.com/opscode-cookbooks/git.git
+[submodule "cookbooks/haproxy"]
+	path = cookbooks/haproxy
+	url = git://github.com/opscode-cookbooks/haproxy.git
+[submodule "cookbooks/mysql"]
+	path = cookbooks/mysql
+	url = git://github.com/opscode-cookbooks/mysql.git
+[submodule "cookbooks/openssl"]
+	path = cookbooks/openssl
+	url = git://github.com/opscode-cookbooks/openssl.git
+[submodule "cookbooks/python"]
+	path = cookbooks/python
+	url = git://github.com/opscode-cookbooks/python.git
+[submodule "cookbooks/gnrd"]
+	path = cookbooks/gnrd
+	url = git://github.com/GlobalNamesArchitecture/gnrd-cookbook.git
