@@ -23,11 +23,23 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :path => "cookbooks/bootstrap.sh"
   
   config.vm.provision :chef_solo do |chef|
+    chef.json = {
+      mysql: {
+        gnrd_user: 'gnrd',
+        gnrd_user_password: 'gnrd_pass',
+        server_debian_password: 'aadafy35dfs', 
+        server_root_password: '',
+        server_repl_password: 'aslljm48098'
+      }
+    }
+    chef.log_level = 'debug'
+    chef.add_recipe 'apt'
     chef.add_recipe 'build-essential'
     chef.add_recipe 'vim'
     chef.add_recipe 'openssl'
     chef.add_recipe 'apache2'
-    chef.add_recipe 'mysql'
+    chef.add_recipe "mysql::client"
+    chef.add_recipe "mysql::server"
     chef.add_recipe 'NetiNeti'
     chef.add_recipe 'taxonfinder'
     chef.add_recipe 'gnrd'

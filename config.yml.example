@@ -29,7 +29,7 @@ production:
   host: localhost
   username: root
   password:
-  database: gnrd_test
+  database: gnrd
   salt: substitute_with_your_secret_salt_string
   neti_neti_host: 0.0.0.0
   neti_neti_port: 6384
