@@ -32,9 +32,15 @@ Server example via Vagrant
 To make it to work [install Vagrant][4] version 1.2.2 or later 
 and [Oracle's VirtualBox][5], then from gnrd 'root' directory run 
   
-   git submodule update --init --recursive
-   vagrant up
-    
+    git submodule update --init --recursive
+    vagrant up
+   
+after initial install (it will take a while) is done you cann access 
+virtual vagrant server via
+vagrant ssh
+and GNRD service can be found at
+
+    http://localhost:4567
     
 
 In production:
