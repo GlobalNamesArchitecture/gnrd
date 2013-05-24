@@ -37,7 +37,9 @@ and [Oracle's VirtualBox][5], then from gnrd 'root' directory run
    
 after initial install (it will take a while) is done you cann access 
 virtual vagrant server via
-vagrant ssh
+
+    vagrant ssh
+
 and GNRD service can be found at
 
     http://localhost:4567
