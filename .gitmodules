@@ -37,3 +37,12 @@
 [submodule "cookbooks/database"]
 	path = cookbooks/database
 	url = git://github.com/opscode-cookbooks/database.git
+[submodule "cookbooks/ruby_build"]
+	path = cookbooks/ruby_build
+	url = git://github.com/fnichol/chef-ruby_build.git
+[submodule "cookbooks/rbenv"]
+	path = cookbooks/rbenv
+	url = git://github.com/fnichol/chef-rbenv.git
+[submodule "cookbooks/ruby-build"]
+	path = cookbooks/ruby-build
+	url = git://github.com/sstephenson/ruby-build.git

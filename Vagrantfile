@@ -7,23 +7,37 @@ Vagrant.configure("2") do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = 'precise32'
+  config.vm.box = 'precise64'
   # config.vm.provision :shell, :path => "cookbooks/bootstrap.sh"
   # config.berkshelf.enabled = true
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = 'http://files.vagrantup.com/precise32.box'
+  config.vm.box_url = 'http://files.vagrantup.com/precise64.box'
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   config.vm.network :forwarded_port, guest: 80, host: 4567
 
-  config.vm.provision :shell, :path => "cookbooks/bootstrap.sh"
-  
   config.vm.provision :chef_solo do |chef|
     chef.json = {
+      gnrd: {
+        server_name: 'gnrd',
+        directory: '/vagrant',
+        worker_count: 2,
+        salt: '15h7j7g4j3k4j5h6g7ngjgh',
+         
+      },
+      rbenv: {
+        'global' => '1.9.3-p429',
+        'rubies' => [ '1.9.3-p429' ],
+        'gems'   => {
+        '1.9.3-p429' => [
+          { 'name'   => 'bundler' },
+          ]
+        }
+      },
       mysql: {
         gnrd_user: 'gnrd',
         gnrd_user_password: 'gnrd_pass',
@@ -33,8 +47,12 @@ Vagrant.configure("2") do |config|
       }
     }
     chef.log_level = 'debug'
+
     chef.add_recipe 'apt'
     chef.add_recipe 'build-essential'
+    chef.add_recipe 'git'
+    chef.add_recipe 'ruby_build'
+    chef.add_recipe 'rbenv::system'
     chef.add_recipe 'vim'
     chef.add_recipe 'openssl'
     chef.add_recipe 'apache2'
@@ -45,6 +63,7 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'gnrd'
   end
   
+  # config.vm.provision :shell, :path => "cookbooks/post_chef.sh"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
