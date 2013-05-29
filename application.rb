@@ -147,6 +147,7 @@ class GNRD < Sinatra::Base
         redirect name_finder_instance.token_url if do_redirect
         redirect_with_delay(name_finder_instance.token_url) if @output[:status] == 303
         @output[:token] = name_finder_instance.token
+        @meta_norobots = true
         haml :name_finder
       end
   end
@@ -206,6 +207,7 @@ class GNRD < Sinatra::Base
     @title = "History"
     @header = "History"
     @records = NameFinder.find(:all, :select => ["token", "input_url", "file_name", "created_at"], :conditions => "input_url <> '' OR file_name <> ''", :order => "created_at DESC")
+    @meta_norobots = true
     haml :history
   end
 

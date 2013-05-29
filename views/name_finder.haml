@@ -21,7 +21,7 @@
       %li
         %strong
           - ellipsis = (@output[:input_url].length > 105) ? @output[:input_url][0..102] + "..." : @output[:input_url]
-          %a{:href => @output[:input_url] } #{ellipsis}
+          #{ellipsis}
     - if !@output[:file].blank?
       %li
         %strong #{@output[:file]}

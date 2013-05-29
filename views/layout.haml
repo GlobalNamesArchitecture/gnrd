@@ -2,9 +2,11 @@
 %html
   %head
     %meta{ :charset => "UTF-8" }/
-    %title= @title || SiteConfig.title
     -if @redirect_url
       %meta{ 'http-equiv' => "refresh", :content => "#{@redirect_delay};url=#{@redirect_url}" }
+    -if @meta_norobots
+      %meta{ :content => "noindex,nofollow", :name => "robots" }/
+    %title= @title || SiteConfig.title
     %link{ :href => '/main.css', :rel => 'stylesheet', :type => 'text/css' }
     %script{ :src => 'javascript/jquery-1.7.2.min.js', :type => 'text/javascript' }
     %script{ :src => 'javascript/jquery.tools.min.js', :type => 'text/javascript' }
