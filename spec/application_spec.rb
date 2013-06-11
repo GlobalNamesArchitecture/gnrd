@@ -1,7 +1,7 @@
 # encoding: utf-8
 require_relative "./spec_helper"
 
-describe "/" do 
+describe "/" do
   it "should open home page" do
     get "/"
     r = last_response
@@ -10,7 +10,7 @@ describe "/" do
   end
 end
 
-describe "/api" do 
+describe "/api" do
   it "should open api page" do
     get "/api"
     r = last_response
@@ -20,7 +20,7 @@ describe "/api" do
   end
 end
 
-describe "/feedback" do 
+describe "/feedback" do
   it "should open the feedback page" do
     get "/feedback"
     r = last_response
@@ -29,7 +29,7 @@ describe "/feedback" do
   end
 end
 
-describe "/history" do 
+describe "/history" do
   it "should open the history page" do
     get "/history"
     r = last_response
@@ -56,14 +56,14 @@ describe "/name_finder" do
     r = last_response
     r.status.should == 200
   end
-  
+
   it "should give error when a token does not exist" do
     get "/name_finder?token=9999999"
     r = last_response
     r.status.should == 200
     r.body.match("That result no longer exists")
   end
-  
+
   it "should give warning when a URL is not found" do
     url = URI.encode("http://eol.org/pages/a/overview")
     get "/name_finder?url=#{url}"
@@ -84,7 +84,7 @@ describe "/name_finder" do
       count -= 1
     end
   end
-  
+
   it "should be able to find names in a URL as a parameter" do
     url = URI.encode("http://eol.org/pages/207212/overview")
     get "/name_finder?url=#{url}"
@@ -105,7 +105,7 @@ describe "/name_finder" do
       count -= 1
     end
   end
-  
+
   it "should expand URL as a parameter to include http:// if absent" do
     url = URI.encode("eol.org/pages/207212/overview")
     get "/name_finder?url=#{url}"
@@ -149,7 +149,7 @@ describe "/name_finder" do
     end
   end
 
-  it "should be able to find names in a URL" do 
+  it "should be able to find names in a URL" do
     url = "http://eol.org/pages/207212/overview"
     post("/name_finder", :engine => 0, :unique => true, :url => url)
     last_response.status.should == 302
@@ -170,7 +170,7 @@ describe "/name_finder" do
       count -= 1
     end
   end
-  
+
   it "should be able to find names in a submitted utf-8 text" do
     text = 'Betula alba Beçem'
     post("/name_finder", :text => text, :engine => 0)
@@ -235,7 +235,30 @@ describe "/name_finder" do
       count -= 1
     end
   end
-  
+
+  it "should be able to return ocr from an image" do
+    image_file = File.join(SiteConfig.root_path, 'spec', 'files', 'image.jpg')
+    post('/name_finder',
+         file: Rack::Test::UploadedFile.new(image_file, 'image/jpeg'),
+         return_context: true)
+    last_response.status.should == 302
+    follow_redirect!
+    r = last_response
+    r.status.should == 200
+    count = 10
+    while count > 0
+      get(last_request.url)
+      r = last_response
+      r.body.match('uuencoded_content').should be_true if count == 1
+      if r.body.match('Pseudodoros')
+        r.body.match('uuencoded_content').should be_true
+        break
+      end
+      sleep(5)
+      count -= 1
+    end
+  end
+
   it "should produce a non result when no names are in an image" do
     image_file = File.join(SiteConfig.root_path, 'spec', 'files', 'no_names.jpg')
     post('/name_finder', :file => Rack::Test::UploadedFile.new(image_file, 'image/jpeg'), :unique => true)
@@ -257,7 +280,7 @@ describe "/name_finder" do
       count -= 1
     end
   end
-  
+
   it "should be able to find names in PDF" do
     pdf_file = File.join(SiteConfig.root_path, 'spec', 'files', 'file.pdf')
     post('/name_finder', :file => Rack::Test::UploadedFile.new(pdf_file, 'application/pdf'), :engine => 2)
@@ -291,7 +314,7 @@ describe "/name_finder" do
     get "/name_finder.json"
     last_response.status.should == 400
   end
-  
+
   it "API should be able to find names in submitted utf-8 text" do
     text = open(File.join(File.dirname(__FILE__), 'files', 'big.txt')).read
     ['xml', 'json'].each do |format|
@@ -316,7 +339,7 @@ describe "/name_finder" do
       (count > 0).should be_true
     end
   end
-  
+
   it "API should be able to find names from submitted url" do
     url = URI.encode("http://eol.org/pages/207212/overview")
     ['xml', 'json'].each do |format|
@@ -335,7 +358,7 @@ describe "/name_finder" do
       (count > 0).should be_true
     end
   end
-  
+
   it "API should be able to find names in a text file" do
     file = File.join(File.dirname(__FILE__), 'files', 'big.txt')
     ['xml', 'json'].each do |format|
@@ -397,7 +420,7 @@ describe "/name_finder" do
       (count > 0).should be_true
     end
   end
-  
+
   it "API should return an identifiedName element for found abbreviations" do
     file = File.join(File.dirname(__FILE__), 'files', 'abbreviations.txt')
     ['xml', 'json'].each do |format|
@@ -462,7 +485,7 @@ describe "/name_finder" do
     end
     (count > 0).should be_true
   end
-  
+
   it "should use TaxonFinder exclusively if language of large text is not English" do
     text = open(File.join(File.dirname(__FILE__), 'files', 'french.txt')).read
     post("/name_finder", :format => 'json', :text => text, :engine => 0)
@@ -531,7 +554,7 @@ describe "/name_finder" do
     end
     (count > 0).should be_true
   end
-  
+
   it "should produce a token url that matches the requested URI" do
     text = 'The Structure of Meteridium (Actinoloba) marginata Milne-Edw. with special reference to its neuro-muscular mechanism. Jour.'
     ['http://0.0.0.0:4567', 'http://localhost:4567'].each do |base_url|
@@ -630,10 +653,11 @@ describe "/name_finder" do
     end
     (count > 0).should be_true
   end
-  
+
   it "should resolve names returning only best match" do
     text = 'Pardosa moesta is the name of the spider.'
-    post("/name_finder", :format => 'json', :text => text, :all_data_sources => true, :best_match_only => true)
+    post("/name_finder", format: 'json', text: text,
+         all_data_sources: true, best_match_only: true)
     last_response.status.should == 303
     follow_redirect!
     count = 10

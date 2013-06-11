@@ -7,12 +7,12 @@ require 'sinatra/redirect_with_flash'
 require 'builder'
 
 class GNRD < Sinatra::Base
-  
+
   require File.join(File.dirname(__FILE__), 'environment')
-  
+
   register Sinatra::Flash
   helpers Sinatra::RedirectWithFlash
-  
+
   enable :sessions
 
   use Rack::Timeout
@@ -26,7 +26,8 @@ class GNRD < Sinatra::Base
     alias_method :h, :escape_html
 
     def base_url
-      @base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
+      burl = "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
+      @base_url ||= burl
     end
   end
 
@@ -41,18 +42,20 @@ class GNRD < Sinatra::Base
     text = params[:text] || (params[:find] && params[:find][:text]) || nil
     unique = params[:unique] || false
     verbatim = params[:verbatim] || true
-    detect_language = params[:detect_language] || (params[:find] && params[:find][:detect_language]) || true
+    detect_language = params[:detect_language] ||
+      (params[:find] && params[:find][:detect_language]) || true
     format = params[:format] || "html"
     engine = params[:engine] || 0
     all_data_sources = params[:all_data_sources] || nil
     data_source_ids = nil
     preferred_data_sources = params[:preferred_data_sources] || nil
     best_match_only = params[:best_match_only] || false
+    return_content = params[:return_content] || false
     if params[:data_source_ids]
       if params[:data_source_ids].is_a?(Hash)
         data_source_ids = params[:data_source_ids].keys.map { |i| i.to_i }
       else
-        data_source_ids = params[:data_source_ids].split("|").map { |i| i.to_i } 
+        data_source_ids = params[:data_source_ids].split("|").map { |i| i.to_i }
       end
     end
 
@@ -65,26 +68,28 @@ class GNRD < Sinatra::Base
     else
       if file
         file_name = file[:filename]
-        file_path = File.join([Dir.mktmpdir] + [file_name.gsub( /[^a-zA-Z0-9_\.]/, '_')])
+        file_path = File.join([Dir.mktmpdir] +
+                              [file_name.gsub( /[^a-zA-Z0-9_\.]/, '_')])
         FileUtils.mv(file[:tempfile].path, file_path)
         sha = Digest::SHA1.file(file_path).hexdigest
       end
       all_params = {
-        :token_url => base_url,
-        :engine => engine,
-        :input_url => input_url,
-        :format => format,
-        :document_sha => sha,
-        :unique => unique,
-        :verbatim => verbatim,
-        :detect_language => detect_language,
-        :input => text,
-        :file_path => file_path,
-        :file_name => file_name,
-        :all_data_sources => all_data_sources,
-        :data_source_ids => data_source_ids,
-        :preferred_data_sources => preferred_data_sources,
-        :best_match_only => best_match_only,
+        token_url: base_url,
+        engine: engine,
+        input_url: input_url,
+        format: format,
+        document_sha: sha,
+        unique: unique,
+        verbatim: verbatim,
+        detect_language: detect_language,
+        input: text,
+        file_path: file_path,
+        file_name: file_name,
+        all_data_sources: all_data_sources,
+        data_source_ids: data_source_ids,
+        preferred_data_sources: preferred_data_sources,
+        best_match_only: best_match_only,
+        return_content: return_content,
       }
       nf = NameFinder.create(all_params)
       workers_running? ? Resque.enqueue(NameFinder, nf.id) : nf.name_find
@@ -112,19 +117,24 @@ class GNRD < Sinatra::Base
       when 303
         @output[:queue_size] = queue_size
         if queue_size > 0
-          flash.now[:notice] = "Your submission is queued for processing. There #{queue_size == 1 ? 'is' : 'are'} #{help.pluralize(queue_size, "job")} in the queue."
+          flash.now[:notice] = 'Your submission is queued for processing. ' +
+            "There #{queue_size == 1 ? 'is' : 'are'} " +
+            "#{help.pluralize(queue_size, "job")} in the queue."
         else
           flash.now[:notice] = "Names are being found in your submission."
         end
-        flash.now[:notice] += " This page will refresh every #{SiteConfig.redirect_timer} seconds."
+        flash.now[:notice] += ' This page will refresh every ' +
+          "#{SiteConfig.redirect_timer} seconds."
       when 404
         flash.now[:warning] = "That URL was inaccessible."
       when 500
-        flash.now[:error] = "The name engines failed. Administrators have been notified."
+        flash.now[:error] = 'The name engines failed. ' +
+          'Administrators have been notified.'
     end
   end
 
-  def name_finder_presentation(name_finder_instance, format, do_redirect = false)
+  def name_finder_presentation(name_finder_instance, format,
+                               do_redirect = false)
     @title = "Discovered Names"
     @page = "home"
     @header = "Discovered Names"
@@ -135,7 +145,9 @@ class GNRD < Sinatra::Base
       when 'json'
         redirect name_finder_instance.token_url, 303 if do_redirect
         json_data = JSON.dump(@output)
-        json_data = "%s(%s)" % [params[:callback], json_data] if params[:callback]
+        if params[:callback]
+          json_data = "%s(%s)" % [params[:callback], json_data]
+        end
         content_type 'application/json', :charset => 'utf-8'
         json_data
       when 'xml'
@@ -145,7 +157,9 @@ class GNRD < Sinatra::Base
       else
         flash_messages
         redirect name_finder_instance.token_url if do_redirect
-        redirect_with_delay(name_finder_instance.token_url) if @output[:status] == 303
+        if @output[:status] == 303
+          redirect_with_delay(name_finder_instance.token_url)
+        end
         @output[:token] = name_finder_instance.token
         @meta_norobots = true
         haml :name_finder
@@ -157,21 +171,22 @@ class GNRD < Sinatra::Base
 
     case output_status
       when 400
-        @output[:message] = "Bad Request. Parameters missing."
+        @output[:message] = 'Bad Request. Parameters missing.'
       when 404
-        @output[:message] = "Not Found. That result no longer exists."
+        @output[:message] = 'Not Found. That result no longer exists.'
       when 500
-        @output[:message] = "The name engines failed. Administrators have been notified."
+        @output[:message] = 'The name engines failed. ' +
+          'Administrators have been notified.'
     end
 
     case format
       when 'json'
         status output_status
-        content_type 'application/json', :charset => 'utf-8'
+        content_type 'application/json', charset: 'utf-8'
         JSON.dump(@output)
       when 'xml'
         status output_status
-        content_type 'text/xml', :charset => 'utf-8'
+        content_type 'text/xml', charset: 'utf-8'
         builder :namefinder
       else
         flash.sweep
@@ -206,13 +221,17 @@ class GNRD < Sinatra::Base
     @page = "history"
     @title = "History"
     @header = "History"
-    @records = NameFinder.find(:all, :select => ["token", "input_url", "file_name", "created_at"], :conditions => "input_url <> '' OR file_name <> ''", :order => "created_at DESC")
+    @records = NameFinder.find(:all, select: [
+                               "token", "input_url",
+                               "file_name", "created_at"],
+                               conditions: "input_url <> '' OR file_name <> ''",
+                               order: 'created_at DESC')
     @meta_norobots = true
     haml :history
   end
 
   get '/main.css' do
-    content_type 'text/css', :charset => 'utf-8'
+    content_type 'text/css', charset: 'utf-8'
     scss :main
   end
 

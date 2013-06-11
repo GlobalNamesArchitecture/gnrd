@@ -4,19 +4,32 @@ class NameFinder < ActiveRecord::Base
   attr_reader :process_netineti_names
 
   @queue = :name_finder
-  RANKS = { "morph" => 1, "f" => 1, "ssp" => 1, "mut" => 1, "nothosubsp" => 1, "convar" => 1, "pseudovar" => 1, "sp" => 1, "sect" => 1, "ser" => 1, "var" => 1, "subvar" => 1, "subsp" => 1, "subf" => 1, "a" => 1, "b" => 1, "c" => 1, "d" => 1, "e" => 1, "d" => 1, "e" => 1, "g" => 1, "k" => 1, "form" => 1, "fo" => 1 }
-  REGEX = { leftmost_dot: Regexp.new(/^\.+/), square_brackets: Regexp.new(/[\[\]]/), non_name_chars: Regexp.new(/[^\(\)\=\.\d\w\-\p{Latin}]/), dot_before_word: Regexp.new(/\.+([^\s])/), dot_after_word: Regexp.new(/([^\s]+)\.\s/), multiple_spaces: Regexp.new(/\s+/) }
+  RANKS = { "morph" => 1, "f" => 1, "ssp" => 1, "mut" => 1,
+    "nothosubsp" => 1, "convar" => 1, "pseudovar" => 1, "sp" => 1,
+    "sect" => 1, "ser" => 1, "var" => 1, "subvar" => 1, "subsp" => 1,
+    "subf" => 1, "a" => 1, "b" => 1, "c" => 1, "d" => 1, "e" => 1,
+    "d" => 1, "e" => 1, "g" => 1, "k" => 1, "form" => 1, "fo" => 1 }
+  REGEX = {
+    leftmost_dot: Regexp.new(/^\.+/),
+    square_brackets: Regexp.new(/[\[\]]/),
+    non_name_chars: Regexp.new(/[^\(\)\=\.\d\w\-\p{Latin}]/),
+    dot_before_word: Regexp.new(/\.+([^\s])/),
+    dot_after_word: Regexp.new(/([^\s]+)\.\s/),
+    multiple_spaces: Regexp.new(/\s+/) }
 
   serialize :output, Hash
   serialize :data_source_ids, Array
 
-  ENGINES = { 0 => ["TaxonFinder", "NetiNeti"], 1 => ["TaxonFinder"], 2 => ["NetiNeti"] } 
+  ENGINES = {
+    0 => ["TaxonFinder", "NetiNeti"],
+    1 => ["TaxonFinder"],
+    2 => ["NetiNeti"] }
 
   def self.perform(name_finder_id)
     nf = NameFinder.find(name_finder_id)
     nf.name_find
   end
-  
+
   def name_find
     setup_instance_vars
     setup_mailer
@@ -24,7 +37,7 @@ class NameFinder < ActiveRecord::Base
     get_agent_response
     build_output
   end
-    
+
   def process_taxon_finder_names(names)
     names.each do |name|
       name[:identifiedName] = name[:scientificName].gsub(/\[[^()]*\]/,".")
@@ -42,7 +55,7 @@ class NameFinder < ActiveRecord::Base
     end
     names
   end
-  
+
   private
 
   def setup_instance_vars
@@ -53,19 +66,23 @@ class NameFinder < ActiveRecord::Base
     @output = nil
     @status = 200
   end
-  
+
   def setup_mailer
-    options = { :address => SiteConfig.smtp_address,
-                :port    => SiteConfig.smtp_port,
-                :domain  => SiteConfig.smtp_domain }
+    options = { address: SiteConfig.smtp_address,
+                port: SiteConfig.smtp_port,
+                domain: SiteConfig.smtp_domain }
     Mail.defaults do
       delivery_method :smtp, options
     end
   end
-  
+
   def setup_name_engines
-    neti_client        = NameSpotter::NetiNetiClient.new(host: SiteConfig.neti_neti_host, port: SiteConfig.neti_neti_port)
-    tf_client          = NameSpotter::TaxonFinderClient.new(host: SiteConfig.taxon_finder_host, port: SiteConfig.taxon_finder_port)
+    neti_client        = NameSpotter::NetiNetiClient.new(
+      host: SiteConfig.neti_neti_host,
+      port: SiteConfig.neti_neti_port)
+    tf_client          = NameSpotter::TaxonFinderClient.new(
+      host: SiteConfig.taxon_finder_host,
+      port: SiteConfig.taxon_finder_port)
     @neti_name_spotter = NameSpotter.new(neti_client)
     @tf_name_spotter   = NameSpotter.new(tf_client)
   end
@@ -77,11 +94,13 @@ class NameFinder < ActiveRecord::Base
       end rescue nil
       begin
         head = new_agent.head input_url
-        @agent = { :code => head.code, :content_type => head.response["content-type"], :filename => head.filename }
+        @agent = {
+          code: head.code,
+          content_type: head.response["content-type"], filename: head.filename }
       rescue Mechanize::ResponseCodeError => e
-        @agent = { :code => e.response_code, :content_type => "" }
+        @agent = { code: e.response_code, content_type: '' }
       rescue SocketError => e
-        @agent = { :code => 404, :content_type => ""}
+        @agent = { code: 404, content_type: ''}
       end
     end
   end
@@ -90,18 +109,20 @@ class NameFinder < ActiveRecord::Base
     begin
       self.unique = true if !self.verbatim
       self.unique = true if (self.data_source_ids.any? || self.all_data_sources)
-      self.verbatim = false if (self.data_source_ids.any? || self.all_data_sources)
+      self.verbatim = false if (self.data_source_ids.any? ||
+                                self.all_data_sources)
 
       content = get_content
 
       @is_english = NameSpotter.english? content
-      self.output.merge!(:english => @is_english, :execution_time => {})
+      self.output.merge!(english: @is_english, execution_time: {})
 
       names = find_names(content)
 
       if self.unique
         names.each do |name|
-          if !self.verbatim || (self.data_source_ids.any? || self.all_data_sources)
+          if !self.verbatim || (self.data_source_ids.any? ||
+                                self.all_data_sources)
             name.delete :verbatim
             name.delete :identifiedName
           end
@@ -112,30 +133,33 @@ class NameFinder < ActiveRecord::Base
       end
 
       self.output.merge!(
-        :engines   => @engines,
-        :status    => @status,
-        :unique    => self.unique,
-        :verbatim  => self.verbatim,
-        :input_url => self.input_url,
-        :agent     => @agent || "",
-        :created   => self.created_at,
-        :total     => names.count,
-        :names     => names
+        engines: @engines,
+        status: @status,
+        unique: self.unique,
+        verbatim: self.verbatim,
+        input_url: self.input_url,
+        agent: @agent || '',
+        created: self.created_at,
+        total: names.count,
+        names: names
       )
+
+      self.output.merge!{ content: content.pack("u") } if self.return_content
       resolve_names(names) if names.size > 0 &&
         (self.data_source_ids.any? || self.all_data_sources)
-      self.output[:execution_time].merge!(:total_duration => (Time.now - @start_process))
+      self.output[:execution_time].merge!( total_duration:
+                                          (Time.now - @start_process))
 
     rescue
       self.output.merge!(
-        :status    => @status,
-        :unique    => self.unique,
-        :verbatim  => self.verbatim,
-        :input_url => self.input_url,
-        :agent     => @agent || "",
-        :created   => self.created_at,
-        :total     => 0,
-        :names     => [],
+        status: @status,
+        unique: self.unique,
+        verbatim: self.verbatim,
+        input_url: self.input_url,
+        agent: @agent || '',
+        created: self.created_at,
+        total: 0,
+        names: [],
       )
     end
     self.file_path = nil
@@ -146,81 +170,90 @@ class NameFinder < ActiveRecord::Base
   def find_names(content)
     names = []
     start_execution = Time.now
-    content.gsub!("_", " ")
+    content.gsub!('_', ' ')
     begin
       if @engines.size == 2
         if self.detect_language && !@is_english && content.length > 1_000
-          names = process_taxon_finder_names(@tf_name_spotter.find(content)[:names])
+          names = process_taxon_finder_names(
+            @tf_name_spotter.find(content)[:names])
           @engines = [@engines.shift]
         else
-          names = process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) + process_netineti_names(@neti_name_spotter.find(content)[:names])
+          names = process_taxon_finder_names(
+            @tf_name_spotter.find(content)[:names]) +
+            process_netineti_names(@neti_name_spotter.find(content)[:names])
         end
       else
-        names = (@engines[0] == 'TaxonFinder') ? process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) : process_netineti_names(@neti_name_spotter.find(content)[:names])
+        names = (@engines[0] == 'TaxonFinder') ?
+          process_taxon_finder_names(@tf_name_spotter.find(content)[:names]) :
+          process_netineti_names(@neti_name_spotter.find(content)[:names])
       end
       names = process_combined_names(names)
     rescue => e
       @status = 500
       email_failure
     end
-    self.output[:execution_time].merge!(:find_names_duration => (Time.now - start_execution))
+    self.output[:execution_time].merge!(find_names_duration:
+                                        (Time.now - start_execution))
     names
   end
-  
+
   def resolve_names(names)
     start_execution = Time.now
-    resource = RestClient::Resource.new(SiteConfig.resolver_url, 
-                                        timeout: 9_000_000, 
-                                        open_timeout: 9_000_000, 
-                                        connection: "Keep-Alive")
-    params = { data: names.map { |t| t[:scientificName] }.join("\n"), 
-               resolve_once: false, 
+    resource = RestClient::Resource.new(SiteConfig.resolver_url,
+                                        timeout: 9_000_000,
+                                        open_timeout: 9_000_000,
+                                        connection: 'Keep-Alive')
+    params = { data: names.map { |t| t[:scientificName] }.join("\n"),
+               resolve_once: false,
                with_context: false,
                best_match_only: self.best_match_only,
                preferred_data_sources: self.preferred_data_sources,
     }
     if self.data_source_ids
-      params.merge!(:data_source_ids => self.data_source_ids.join("|"),
-                    :best_match_only => self.best_match_only,
-                    :preferred_data_sources => self.preferred_data_sources)
+      params.merge!(data_source_ids: self.data_source_ids.join('|'),
+                    best_match_only: self.best_match_only,
+                    preferred_data_sources: self.preferred_data_sources)
     end
 
     r = resource.post params
-    r = JSON.parse(r, :symbolize_names => true) rescue nil
+    r = JSON.parse(r, symbolize_names: true) rescue nil
     if r
       if !r[:data] && r[:url]
         res = nil
         until res
           sleep(2)
-          res = JSON.parse(RestClient.get(r[:url]), :symbolize_names => true)[:data]
+          res = JSON.parse(RestClient.get(r[:url]),
+                           symbolize_names: true)[:data]
         end
         r[:data] = res
       end
       if r[:data]
         self.output.merge!(
-          :data_sources => r[:data_sources],
-          :context => r[:context],
-          :resolved_names => r[:data]
+          data_sources: r[:data_sources],
+          context: r[:context],
+          resolved_names: r[:data]
         )
-        self.output[:execution_time].merge!(:resolve_names_duration => (Time.now - start_execution))
+        self.output[:execution_time].merge!(
+          resolve_names_duration: (Time.now - start_execution))
       end
     end
   end
-  
+
   def email_failure
     Mail.deliver do
       from    'donotreply@globalnames.org'
       to      SiteConfig.admin_email
       subject 'GNRD engines have failed'
-      body    'The GlobalNames Recognition and Discovery name-finding engines have failed'
+      body    'The GlobalNames Recognition and Discovery ' +
+              'name-finding engines have failed'
     end
   end
 
 # CONTENT HANDLING METHODS
 
   def get_content
-    content = ""
-    if @agent && @agent[:code] != "200"
+    content = ''
+    if @agent && @agent[:code] != '200'
       @status = 404
     else
       save_file_from_url if !input_url.blank?
@@ -233,14 +266,18 @@ class NameFinder < ActiveRecord::Base
     temp_dir = Dir.mktmpdir
     file_path = File.join(temp_dir, @agent[:filename])
     page = new_agent.get(input_url)
-    page.content.encode!("UTF-8", page.detected_encoding, :invalid => :replace, :undef => :replace, :replace => "") if @agent[:content_type].match /html/
+    if @agent[:content_type].match /html/
+      page.content.encode!('UTF-8', page.detected_encoding,
+                         invalid: :replace,
+                         undef: :replace, replace: '')
+    end
     page.save(file_path)
     document_sha = Digest::SHA1.hexdigest(file_path)
-    self.update_attributes :file_path => file_path, :document_sha => document_sha
+    self.update_attributes file_path: file_path, document_sha: document_sha
   end
 
   def read_file
-    content = ""
+    content = ''
     dir = File.dirname(self.file_path)
     file_type = `file #{self.file_path}`
     if file_type.match /text/
@@ -284,7 +321,9 @@ class NameFinder < ActiveRecord::Base
 
   def process_name(name)
     n = name[:scientificName]
-    n = n.gsub(NameFinder::REGEX[:leftmost_dot], "").gsub(NameFinder::REGEX[:square_brackets], "").gsub("_", " ").gsub(NameFinder::REGEX[:non_name_chars], " ").strip
+    n = n.gsub(NameFinder::REGEX[:leftmost_dot], '').
+      gsub(NameFinder::REGEX[:square_brackets], "").
+      gsub("_", " ").gsub(NameFinder::REGEX[:non_name_chars], " ").strip
     if tail = n[2..-1]
       tail.gsub!(NameFinder::REGEX[:dot_before_word], ' \1')
       tail.gsub!(' . ', ' ')
@@ -293,7 +332,8 @@ class NameFinder < ActiveRecord::Base
       end
       n = n[1] == '.' ? n[0..1] + ' ' + tail : n[0..1] + tail
     end
-    name[:scientificName] = n.gsub(NameFinder::REGEX[:multiple_spaces], ' ').strip
+    name[:scientificName] = n.gsub(NameFinder::REGEX[:multiple_spaces],
+                                   ' ').strip
   end
 
   def process_combined_names(names)
@@ -316,7 +356,9 @@ class NameFinder < ActiveRecord::Base
   end
 
   def start_name_group(name)
-    name_group = {:start => name[:offsetStart], :end => name[:offsetEnd], :preferred_name => nil, :taxon_finder_name => nil, :neti_neti_names => [], :neti_neti_size => 0}
+    name_group = {start: name[:offsetStart], end: name[:offsetEnd],
+      preferred_name: nil, taxon_finder_name: nil, neti_neti_names: [],
+      neti_neti_size: 0}
     if name[:engine] == 1
       name_group[:taxon_finder_name] = name
       name_group[:preferred_name] = 1
@@ -329,7 +371,9 @@ class NameFinder < ActiveRecord::Base
   end
 
   def add_deduped_name(name_group)
-    deduped_name = name_group[:preferred_name] == 1 ? name_group[:taxon_finder_name] : name_group[:neti_neti_names].shift
+    deduped_name = name_group[:preferred_name] == 1 ?
+      name_group[:taxon_finder_name] :
+      name_group[:neti_neti_names].shift
     @deduped_names << deduped_name
   end
 
@@ -340,14 +384,19 @@ class NameFinder < ActiveRecord::Base
     if name[:engine] == 1
       name_group[:taxon_finder_name] = name
       if name[:offsetStart] == name_group[:start]
-        #prefer incoming TaxonFinder name if it and name in existing group start at same offset
+        #prefer incoming TaxonFinder name
+        #if it and name in existing group start at same offset
         name_group[:preferred_name] = 1
       else
-        #prefer incoming TaxonFinder name if it is larger than the largest NetiNeti name already in the group
-        name_group[:preferred_name] = 1 if name_size > name_group[:neti_neti_size]
+        #prefer incoming TaxonFinder name if it is larger
+        #than the largest NetiNeti name already in the group
+        if name_size > name_group[:neti_neti_size]
+          name_group[:preferred_name] = 1
+        end
       end
     else
-      #when incoming name is found through NetiNeti, put largest at start of NetiNeti collection in group
+      #when incoming name is found through NetiNeti,
+      #put largest at start of NetiNeti collection in group
       if name_size > name_group[:neti_neti_size]
         name_group[:neti_neti_names].unshift(name)
         name_group[:neti_neti_size] = name_size
@@ -357,7 +406,9 @@ class NameFinder < ActiveRecord::Base
       #add logic like this if you want less conservative results
       # if name_group[:preferred_name] == 1
       #   if name[:offsetStart] == name_group[:offsetStart]
-      #     name_group[:preferred_name] = 2 if name_size > name_group[:neti_neti_size]
+      #     if name_size > name_group[:neti_neti_size]
+      #       name_group[:preferred_name] = 2
+      #     end
       #   end
       # end
     end
@@ -392,7 +443,14 @@ class NameFinder < ActiveRecord::Base
     end
     url_format = ['xml', 'json'].include?(format) ? ".#{format}" : ''
     self.token_url = token_url + "/name_finder" + url_format + "?token=" + token
-    self.output = { :token_url => token_url, :input_url => input_url || "", :file => file_name || "", :status => 303, :engines => ENGINES[engine], :unique => unique, :verbatim => verbatim }
+    self.output = {
+      token_url: token_url,
+      input_url: input_url || '',
+      file: file_name || '',
+      status: 303,
+      engines: ENGINES[engine],
+      unique: unique,
+      verbatim: verbatim }
     self.save!
     self.reload
   end
