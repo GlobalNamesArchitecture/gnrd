@@ -228,32 +228,8 @@ describe "/name_finder" do
       puts r.body if count ==1
       r.body.match('Pseudodoros').should be_true if count == 1
       if r.body.match('Pseudodoros')
-        puts r.body=1
         r.body.match('Pseudodoros').should be_true
         r.body.match('Ocyptamus').should be_true
-        break
-      end
-      sleep(5)
-      count -= 1
-    end
-  end
-
-  it "should be able to return ocr from an image" do
-    image_file = File.join(SiteConfig.root_path, 'spec', 'files', 'image.jpg')
-    post('/name_finder',
-         file: Rack::Test::UploadedFile.new(image_file, 'image/jpeg'),
-         return_content: true)
-    last_response.status.should == 302
-    follow_redirect!
-    r = last_response
-    r.status.should == 200
-    count = 10
-    while count > 0
-      get(last_request.url)
-      r = last_response
-      r.body.match('content').should be_true if count == 1
-      if r.body.match('Pseudodoros')
-        r.body.match('uuencoded_content').should be_true
         break
       end
       sleep(5)
@@ -381,7 +357,7 @@ describe "/name_finder" do
     end
   end
 
-  it "API should be able to find names in a image file" do
+  it "API should be able to find names in an image file" do
     file = File.join(File.dirname(__FILE__), 'files', 'image.jpg')
     ['xml', 'json'].each do |format|
       post("/name_finder", :format => format, :file => Rack::Test::UploadedFile.new(file, 'image/jpeg'), :engine => 0)
@@ -395,6 +371,29 @@ describe "/name_finder" do
         r.status.should == 200
         r.body.match('Pseudodoros').should be_true if count == 1
         break if r.body.match('Pseudodoros')
+        sleep(5)
+        count -= 1
+      end
+      (count > 0).should be_true
+    end
+  end
+
+  it "API should be able to return ocr from an image file" do
+    file = File.join(File.dirname(__FILE__), 'files', 'image.jpg')
+    ['xml', 'json'].each do |format|
+      post("/name_finder", :format => format,
+           file: Rack::Test::UploadedFile.new(file, 'image/jpeg'),
+           engine: 0, return_content: true)
+      last_response.status.should == 303
+      follow_redirect!
+      last_response.body.match('Pseudodoros').should be_false
+      count = 10
+      while count > 0
+        get(last_request.url)
+        r = last_response
+        r.status.should == 200
+        r.body.match('content').should be_true if count == 1
+        break if r.body.match('content')
         sleep(5)
         count -= 1
       end
