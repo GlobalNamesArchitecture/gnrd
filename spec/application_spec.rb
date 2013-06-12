@@ -225,8 +225,10 @@ describe "/name_finder" do
     while count > 0
       get(last_request.url)
       r = last_response
+      puts r.body if count ==1
       r.body.match('Pseudodoros').should be_true if count == 1
       if r.body.match('Pseudodoros')
+        puts r.body=1
         r.body.match('Pseudodoros').should be_true
         r.body.match('Ocyptamus').should be_true
         break
@@ -240,7 +242,7 @@ describe "/name_finder" do
     image_file = File.join(SiteConfig.root_path, 'spec', 'files', 'image.jpg')
     post('/name_finder',
          file: Rack::Test::UploadedFile.new(image_file, 'image/jpeg'),
-         return_context: true)
+         return_content: true)
     last_response.status.should == 302
     follow_redirect!
     r = last_response
@@ -249,7 +251,7 @@ describe "/name_finder" do
     while count > 0
       get(last_request.url)
       r = last_response
-      r.body.match('uuencoded_content').should be_true if count == 1
+      r.body.match('content').should be_true if count == 1
       if r.body.match('Pseudodoros')
         r.body.match('uuencoded_content').should be_true
         break

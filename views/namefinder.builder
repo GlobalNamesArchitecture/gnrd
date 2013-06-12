@@ -19,6 +19,7 @@ xml.result do
       xml.engine engine
     end
   end if @output[:engines]
+  xml.content @output[:content] if @output[:content]
   xml.names 'xmlns:dwc' => 'http://rs.tdwg.org/dwc/terms/' do
     @output[:names].each do |name|
       xml.name do

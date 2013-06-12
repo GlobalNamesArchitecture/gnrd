@@ -108,9 +108,9 @@ class NameFinder < ActiveRecord::Base
   def build_output
     begin
       self.unique = true if !self.verbatim
-      self.unique = true if (self.data_source_ids.any? || self.all_data_sources)
-      self.verbatim = false if (self.data_source_ids.any? ||
-                                self.all_data_sources)
+      # self.unique = true if (self.data_source_ids.any? || self.all_data_sources)
+      # self.verbatim = false if (self.data_source_ids.any? ||
+                                # self.all_data_sources)
 
       content = get_content
 
@@ -144,7 +144,7 @@ class NameFinder < ActiveRecord::Base
         names: names
       )
 
-      self.output.merge!{ content: content.pack("u") } if self.return_content
+      self.output.merge!( content: content ) if self.return_content
       resolve_names(names) if names.size > 0 &&
         (self.data_source_ids.any? || self.all_data_sources)
       self.output[:execution_time].merge!( total_duration:
@@ -198,12 +198,13 @@ class NameFinder < ActiveRecord::Base
   end
 
   def resolve_names(names)
+    uniq_names = names.map { |n| n[:scientificName] }.uniq
     start_execution = Time.now
     resource = RestClient::Resource.new(SiteConfig.resolver_url,
                                         timeout: 9_000_000,
                                         open_timeout: 9_000_000,
                                         connection: 'Keep-Alive')
-    params = { data: names.map { |t| t[:scientificName] }.join("\n"),
+    params = { data: uniq_names.join("\n"),
                resolve_once: false,
                with_context: false,
                best_match_only: self.best_match_only,
