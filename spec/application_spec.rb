@@ -375,6 +375,7 @@ describe "/name_finder" do
         count -= 1
       end
       (count > 0).should be_true
+      last_response.body.match('content').should be_false
     end
   end
 
