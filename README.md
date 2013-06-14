@@ -2,6 +2,7 @@ Global Names Recognition and Discovery (GNRD)
 =============================================
 
 [![Continuous Integration Status][1]][2]
+[![Dependency Status][3]][4]
 
 Sinatra application to find scientific names in web pages and documents.
 
@@ -28,9 +29,9 @@ for more information on setting up testing environment.
 Server example via Vagrant
 --------------------------
 
-[Vagrant][3] allows us to create an example server configuration in minutes. 
-To make it to work [install Vagrant][4] version 1.2.2 or later 
-and [Oracle's VirtualBox][5], then from gnrd 'root' directory run 
+[Vagrant][5] allows us to create an example server configuration in minutes. 
+To make it to work [install Vagrant][6] version 1.2.2 or later 
+and [Oracle's VirtualBox][7], then from gnrd 'root' directory run 
   
     git submodule update --init --recursive
     vagrant up
@@ -57,6 +58,8 @@ and ports. Multiple workers can be used by specifying COUNT.
 
 [1]: https://secure.travis-ci.org/GlobalNamesArchitecture/gnrd.png
 [2]: http://travis-ci.org/GlobalNamesArchitecture/gnrd
-[3]: http://docs.vagrantup.com/v2/getting-started/index.html
-[4]: http://docs.vagrantup.com/v2/installation/
-[5]: https://www.virtualbox.org/wiki/Downloads
+[3]: https://gemnasium.com/GlobalNamesArchitecture/gnrd.png
+[4]: https://gemnasium.com/GlobalNamesArchitecture/gnrd
+[5]: http://docs.vagrantup.com/v2/getting-started/index.html
+[6]: http://docs.vagrantup.com/v2/installation/
+[7]: https://www.virtualbox.org/wiki/Downloads
