@@ -50,6 +50,7 @@ class GNRD < Sinatra::Base
     data_source_ids = nil
     preferred_data_sources = params[:preferred_data_sources] || nil
     best_match_only = params[:best_match_only] || false
+    api_key = params[:key] || nil
     return_content = params[:return_content] || false
     if params[:data_source_ids]
       if params[:data_source_ids].is_a?(Hash)
@@ -89,16 +90,17 @@ class GNRD < Sinatra::Base
         data_source_ids: data_source_ids,
         preferred_data_sources: preferred_data_sources,
         best_match_only: best_match_only,
+        api_key: api_key,
         return_content: return_content,
       }
       nf = NameFinder.create(all_params)
-      workers_running? ? Resque.enqueue(NameFinder, nf.id) : nf.name_find
+      workers_running? ? NameFinder.enqueue(nf) : nf.name_find
       name_finder_presentation(nf, format, true)
     end
   end
 
   def workers_running?
-    !Resque.redis.smembers('workers').select {|w| w.index("name_finder")}.empty?
+    !Resque.redis.smembers('workers').select {|w| w.index(NameFinder::QUEUES.values.join(","))}.empty?
   end
 
   def help

@@ -1,9 +1,10 @@
 # encoding: utf-8
+
 class NameFinder < ActiveRecord::Base
+  
   after_create :initiate_data
   attr_reader :process_netineti_names
 
-  @queue = :name_finder
   RANKS = { "morph" => 1, "f" => 1, "ssp" => 1, "mut" => 1,
     "nothosubsp" => 1, "convar" => 1, "pseudovar" => 1, "sp" => 1,
     "sect" => 1, "ser" => 1, "var" => 1, "subvar" => 1, "subsp" => 1,
@@ -16,14 +17,26 @@ class NameFinder < ActiveRecord::Base
     dot_before_word: Regexp.new(/\.+([^\s])/),
     dot_after_word: Regexp.new(/([^\s]+)\.\s/),
     multiple_spaces: Regexp.new(/\s+/) }
-
-  serialize :output, Hash
-  serialize :data_source_ids, Array
-
+  QUEUES = {
+    high: "name_finder_high",
+    normal: "name_finder",
+    low: "name_finder_low" }
   ENGINES = {
     0 => ["TaxonFinder", "NetiNeti"],
     1 => ["TaxonFinder"],
     2 => ["NetiNeti"] }
+  
+  serialize :output, Hash
+  serialize :data_source_ids, Array
+
+  def self.enqueue(resource)
+    Resque::Job.create(select_queue(resource), self, resource.id)
+  end
+
+  def self.select_queue(nf)
+    agent = ApiAgent.find_by_key(nf.api_key)
+    agent.nil? ? NameFinder::QUEUES[:normal] : NameFinder::QUEUES[agent.priority.to_sym]
+  end
 
   def self.perform(name_finder_id)
     nf = NameFinder.find(name_finder_id)
