@@ -1,5 +1,4 @@
 # encoding: utf-8
-
 class NameFinder < ActiveRecord::Base
   
   after_create :initiate_data

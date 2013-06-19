@@ -28,7 +28,7 @@ before_script:
   - perl server.pl &
   - cd ../..
   - python ./src/neti_neti/neti_tornado_server.py &
-  - QUEUE=name_finder rake resque:work &
+  - QUEUE=name_finder_high,name_finder,name_finder_low rake resque:work &
   - sleep 100
 
 

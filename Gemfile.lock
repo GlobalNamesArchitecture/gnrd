@@ -193,7 +193,6 @@ DEPENDENCIES
   rake (~> 0.9.2.2)
   rdp-ruby-prof (~> 0.7.4)
   resque (~> 1.20.0)
-  resque-priority (~> 0.1.1)
   rest-client (~> 1.6.7)
   rspec (~> 2.10.0)
   sanitize (~> 2.0.4)
