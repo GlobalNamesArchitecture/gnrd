@@ -1,40 +1,38 @@
 source 'http://rubygems.org'
 
-gem 'sinatra', '~> 1.4.2'
-gem 'sinatra-flash', '~> 0.3.0'
-gem 'sinatra-redirect-with-flash', '~> 0.2.0'
+gem 'sinatra', '~> 1.4'
+gem 'sinatra-flash', '~> 0.3'
+gem 'sinatra-redirect-with-flash', '~> 0.2'
 gem 'sinatra-reloader', '~> 1.0'
-gem 'mysql2', '~> 0.3.11'
-gem 'activerecord', '~> 3.2.13'
-gem 'haml', '~> 4.0.3'
-gem 'sass', '~>3.1.19'
-gem 'name-spotter', '0.2.4'
-gem 'mechanize', '~> 2.7.1'
-gem 'docsplit', '~> 0.7.2'
-gem 'rspec', '~> 2.10.0'
-gem 'resque', '~> 1.20.0'
-gem 'rack', '~> 1.4.5'
-gem 'rack-timeout', '~> 0.0.3'
-gem 'rack-test', '~> 0.6.2'
-gem 'builder', '~> 3.0.0'
-gem 'actionpack', '~> 3.2.13'
-gem 'sanitize', '~> 2.0.4'
-gem 'mail', '~> 2.5.4'
-gem 'rest-client', '~> 1.6.7'
+gem 'mysql2', '~> 0.3'
+gem 'activerecord', '~> 4.0'
+gem 'haml', '~> 4.0'
+gem 'sass', '~>3.2'
+gem 'name-spotter', '0.2'
+gem 'mechanize', '~> 2.7'
+gem 'docsplit', '~> 0.7'
+gem 'rspec', '~> 2.14'
+gem 'resque', '~> 1.24'
+gem 'rack', '~> 1.5'
+gem 'rack-timeout', '~> 0.0.4'
+gem 'rack-test', '~> 0.6'
+gem 'actionpack', '~> 4.0'
+gem 'sanitize', '~> 2.0'
+gem 'mail', '~> 2.5'
+gem 'rest-client', '~> 1.6'
 
 group :development do
-  gem 'debugger', '~> 1.2.0'
+  gem 'debugger', '~> 1.6'
 end
 
 group :production do
-  gem 'thin', '~> 1.5.1'
-  gem 'rack-google-analytics', '~> 0.11.0'
+  gem 'thin', '~> 1.5'
+  gem 'rack-google-analytics', '~> 0.12'
 end
 
 group :test do
   # Pretty printed test output
-  gem 'capybara', '~> 1.1.2'
-  gem 'rdp-ruby-prof', '~> 0.7.4'
-  gem 'rake', '~> 0.9.2.2'
-  gem 'turn', '0.8.2', :require => false
+  gem 'capybara', '~> 2.1'
+  gem 'rake', '~> 10.1'
+  gem 'turn', '0.9', :require => false
 end
