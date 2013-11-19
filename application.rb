@@ -223,10 +223,10 @@ class GNRD < Sinatra::Base
     @page = "history"
     @title = "History"
     @header = "History"
-    @records = NameFinder.find(:all, select: [
+    @records = NameFinder.all(select: [
                                "token", "input_url",
                                "file_name", "created_at"],
-                               conditions: "input_url <> '' OR file_name <> ''",
+                               conditions: "file_name <> ''",
                                order: 'created_at DESC')
     @meta_norobots = true
     haml :history

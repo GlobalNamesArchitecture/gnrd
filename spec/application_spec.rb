@@ -35,7 +35,7 @@ describe "/history" do
     r = last_response
     r.status.should == 200
     r.body.match("History").should be_true
-    r.body.match("Results are limited to files and URLs for the last 7 days").should be_true
+    r.body.match("Results are limited to files for the last 7 days").should be_true
   end
 end
 

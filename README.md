@@ -17,10 +17,10 @@ https://github.com/mbl-cli/NetiNeti, respectively.
 
 For testing API calls, a resque worker needs to be running:
 
-    QUEUE=name_finder_high,name_finder,name_finder_low rake resque:work
+    QUEUE=name_finder_high,name_finder,name_finder_low bundle exec rake resque:work
 
-Several additional packages need to be installed on the operating system to 
-satisfy docsplit dependencies. See http://documentcloud.github.io/docsplit/ 
+Several additional packages need to be installed on the operating system to
+satisfy docsplit dependencies. See http://documentcloud.github.io/docsplit/
 for details.
 
 You can also check continuous integration server configuration file .travis.yml
@@ -29,14 +29,14 @@ for more information on setting up testing environment.
 Server example via Vagrant
 --------------------------
 
-[Vagrant][5] allows us to create an example server configuration in minutes. 
-To make it to work [install Vagrant][6] version 1.2.2 or later 
-and [Oracle's VirtualBox][7], then from gnrd 'root' directory run 
+[Vagrant][5] allows us to create an example server configuration in minutes.
+To make it to work [install Vagrant][6] version 1.2.2 or later
+and [Oracle's VirtualBox][7], then from gnrd 'root' directory run
   
     git submodule update --init --recursive
     vagrant up
    
-after initial install (it will take a while) is done you cann access 
+after initial install (it will take a while) is done you can access
 virtual vagrant server via
 
     vagrant ssh
@@ -49,8 +49,8 @@ and GNRD service can be found at
 In production:
 --------------
 
-If multiple instances of TaxonFinder and NetiNeti are desirable, these can be 
-made available via HAProxy. See config.yml.example for configuration of hosts 
+If multiple instances of TaxonFinder and NetiNeti are desirable, these can be
+made available via HAProxy. See config.yml.example for configuration of hosts
 and ports. Multiple workers can be used by specifying COUNT.
 
     RACK_ENV=production COUNT=5 QUEUE=name_finder_high,name_finder,name_finder_low rake resque:workers

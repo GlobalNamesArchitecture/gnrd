@@ -8,9 +8,10 @@ gem 'mysql2', '~> 0.3'
 gem 'activerecord', '~> 4.0'
 gem 'haml', '~> 4.0'
 gem 'sass', '~>3.2'
-gem 'name-spotter', '0.2'
+gem "name-spotter", "~> 0.2.4"
 gem 'mechanize', '~> 2.7'
 gem 'docsplit', '~> 0.7'
+gem 'iconv', '~> 1.0.3' #required by docsplit
 gem 'rspec', '~> 2.14'
 gem 'resque', '~> 1.24'
 gem 'rack', '~> 1.5'

@@ -52,7 +52,8 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.6.5)
-    json (1.8.0)
+    iconv (1.0.3)
+    json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -71,12 +72,13 @@ GEM
     mono_logger (1.1.0)
     multi_json (1.8.0)
     mysql2 (0.3.13)
-    name-spotter (0.2.0)
+    name-spotter (0.2.4)
       builder
       json
       rake
       rest-client
       unicode_utils
+      unsupervised-language-detection
     net-http-digest_auth (1.4)
     net-http-persistent (2.9)
     nokogiri (1.6.0)
@@ -148,6 +150,7 @@ GEM
       unf_ext
     unf_ext (0.0.6)
     unicode_utils (1.4.0)
+    unsupervised-language-detection (0.0.6)
     vegas (0.1.11)
       rack (>= 1.0.0)
     webrobots (0.1.1)
@@ -164,10 +167,11 @@ DEPENDENCIES
   debugger (~> 1.6)
   docsplit (~> 0.7)
   haml (~> 4.0)
+  iconv (~> 1.0.3)
   mail (~> 2.5)
   mechanize (~> 2.7)
   mysql2 (~> 0.3)
-  name-spotter (= 0.2)
+  name-spotter (~> 0.2.4)
   rack (~> 1.5)
   rack-google-analytics (~> 0.12)
   rack-test (~> 0.6)
