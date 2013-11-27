@@ -53,7 +53,7 @@ If multiple instances of TaxonFinder and NetiNeti are desirable, these can be
 made available via HAProxy. See config.yml.example for configuration of hosts
 and ports. Multiple workers can be used by specifying COUNT.
 
-    RACK_ENV=production COUNT=5 QUEUE=name_finder_high,name_finder,name_finder_low rake resque:workers
+    RACK_ENV=production TERM_CHILD=1 COUNT=5 QUEUE=name_finder_high,name_finder,name_finder_low rake resque:workers
 
 
 [1]: https://secure.travis-ci.org/GlobalNamesArchitecture/gnrd.png
