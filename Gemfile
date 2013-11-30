@@ -28,6 +28,7 @@ end
 
 group :production do
   gem 'thin', '~> 1.5'
+  gem 'unicorn', '~> 4.7'
   gem 'rack-google-analytics', '~> 0.12'
 end
 
