@@ -5,6 +5,8 @@ branches:
   only:
       - master
 bundler_args: --without development
+service:
+  - redis-server
 before_install:
   - sudo apt-get update
   - sudo apt-get install graphicsmagick

@@ -17,7 +17,8 @@ https://github.com/mbl-cli/NetiNeti, respectively.
 
 For testing API calls, a resque worker needs to be running:
 
-    QUEUE=name_finder_high,name_finder,name_finder_low bundle exec rake resque:work
+    QUEUE=name_finder_high,name_finder,name_finder_low\ 
+    TERM_CHILD=1 bundle exec rake resque:work
 
 Several additional packages need to be installed on the operating system to
 satisfy docsplit dependencies. See http://documentcloud.github.io/docsplit/
@@ -53,7 +54,9 @@ If multiple instances of TaxonFinder and NetiNeti are desirable, these can be
 made available via HAProxy. See config.yml.example for configuration of hosts
 and ports. Multiple workers can be used by specifying COUNT.
 
-    RACK_ENV=production TERM_CHILD=1 COUNT=5 QUEUE=name_finder_high,name_finder,name_finder_low rake resque:workers
+    RACK_ENV=production TERM_CHILD=1 COUNT=5\
+    QUEUE=name_finder_high,name_finder,name_finder_low\
+    TERM_CHILD=1 rake resque:workers
 
 
 [1]: https://secure.travis-ci.org/GlobalNamesArchitecture/gnrd.png
