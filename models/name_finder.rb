@@ -306,7 +306,7 @@ class NameFinder < ActiveRecord::Base
         end
       end
     else
-      opts = { :output => dir, :clean => true }
+      opts = { :output => dir, :ocr => true, :clean => true }
       opts.merge!({ :pages => 'all' }) if file_type.match /PDF/
       Docsplit.extract_text(self.file_path, opts)
       Dir.entries(dir).each do |name|
