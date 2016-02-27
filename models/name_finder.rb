@@ -1,6 +1,6 @@
 # encoding: utf-8
 class NameFinder < ActiveRecord::Base
-  
+
   after_create :initiate_data
   attr_reader :process_netineti_names
 
@@ -24,7 +24,7 @@ class NameFinder < ActiveRecord::Base
     0 => ["TaxonFinder", "NetiNeti"],
     1 => ["TaxonFinder"],
     2 => ["NetiNeti"] }
-  
+
   serialize :output, Hash
   serialize :data_source_ids, Array
 
@@ -272,7 +272,7 @@ class NameFinder < ActiveRecord::Base
       save_file_from_url if !input_url.blank?
       content = !input.blank? ? input : read_file
     end
-    content
+    content + " "
   end
 
   def save_file_from_url
