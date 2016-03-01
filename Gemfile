@@ -23,7 +23,7 @@ gem 'mail', '~> 2.5'
 gem 'rest-client', '~> 1.6'
 
 group :development do
-  gem 'debugger', '~> 1.6'
+  gem 'byebug', '~> 1.8'
 end
 
 group :production do
