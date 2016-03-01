@@ -12,12 +12,12 @@ Running Specs
 -------------
 
 To be able to run specs, both TaxonFinder and NetiNeti need to be run locally.
-Get these at http://code.google.com/p/taxon-finder/ and 
+Get these at http://code.google.com/p/taxon-finder/ and
 https://github.com/mbl-cli/NetiNeti, respectively.
 
 For testing API calls, a resque worker needs to be running:
 
-    QUEUE=name_finder_high,name_finder,name_finder_low\ 
+    QUEUE=name_finder_high,name_finder,name_finder_low\
     TERM_CHILD=1 bundle exec rake resque:work
 
 Several additional packages need to be installed on the operating system to
@@ -33,10 +33,10 @@ Server example via Vagrant
 [Vagrant][5] allows us to create an example server configuration in minutes.
 To make it to work [install Vagrant][6] version 1.2.2 or later
 and [Oracle's VirtualBox][7], then from gnrd 'root' directory run
-  
+
     git submodule update --init --recursive
     vagrant up
-   
+
 after initial install (it will take a while) is done you can access
 virtual vagrant server via
 
@@ -45,7 +45,7 @@ virtual vagrant server via
 and GNRD service can be found at
 
     http://localhost:4567
-    
+
 
 In production:
 --------------
