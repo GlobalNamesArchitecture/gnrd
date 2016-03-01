@@ -206,7 +206,7 @@ DEPENDENCIES
   activerecord (~> 4.2)
   byebug (~> 1.8)
   capybara (~> 2.6)
-  coveralls
+  coveralls (~> 0.8)
   docsplit (~> 0.7)
   haml (~> 4.0)
   iconv (~> 1.0.4)
