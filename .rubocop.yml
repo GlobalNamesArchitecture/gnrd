@@ -1,0 +1,6 @@
+AllCops:
+  Exclude:
+    - db/**/*
+    - bin/**/*
+Style/StringLiterals:
+  EnforcedStyle: double_quotes

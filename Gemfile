@@ -4,7 +4,7 @@ gem "actionpack", "~> 4.2"
 gem "activerecord", "~> 4.2"
 gem "docsplit", "~> 0.7"
 gem "haml", "~> 4.0"
-gem "iconv", "~> 1.0.4" #required by docsplit
+gem "iconv", "~> 1.0.4" # required by docsplit
 gem "mail", "~> 2.6"
 gem "mechanize", "~> 2.7"
 gem "mysql2", "~> 0.4"
@@ -36,5 +36,6 @@ group :test do
   gem "coveralls", "~> 0.8"
   gem "rake", "~> 10.5"
   gem "rspec", "~> 3.4"
-  gem "turn", "0.9", :require => false
+  gem "rubocop", "~> 0.37"
+  gem "turn", "0.9", require: false
 end

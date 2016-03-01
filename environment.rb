@@ -1,3 +1,4 @@
+# Namespace module for Global Names Recognition and Discovery
 module Gnrd
   def self.env
     @env ||= ENV["RACK_ENV"] ? ENV["RACK_ENV"].to_sym : :development
@@ -7,7 +8,7 @@ module Gnrd
     if [:development, :test, :production].include(env)
       @env = env
     else
-      fail TypeError, "Wrong environment: '#{env}'"
+      raise TypeError, "Wrong environment: '#{env}'"
     end
   end
 
@@ -15,14 +16,11 @@ module Gnrd
     @conf ||= new_conf
   end
 
-  private
-
   def self.new_conf
     raw_conf = File.read(File.join(__dir__, "config", "config.yml"))
     conf = YAML.load(raw_conf)
     OpenStruct.new(
-      session_secret:   conf["session_secret"],
-     )
+      session_secret:   conf["session_secret"]
+    )
   end
 end
-
