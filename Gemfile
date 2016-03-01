@@ -1,40 +1,38 @@
-source 'http://rubygems.org'
+source "https://rubygems.org"
 
-gem 'sinatra', '~> 1.4'
-gem 'sinatra-flash', '~> 0.3'
-gem 'sinatra-redirect-with-flash', '~> 0.2'
-gem 'sinatra-reloader', '~> 1.0'
-gem 'mysql2', '~> 0.3'
-gem 'activerecord', '~> 4.0'
-gem 'haml', '~> 4.0'
-gem 'sass', '~>3.2'
-gem "name-spotter", "~> 0.2"
-gem 'mechanize', '~> 2.7'
-gem 'docsplit', '~> 0.7'
-gem 'iconv', '~> 1.0.3' #required by docsplit
-gem 'rspec', '~> 2.14'
-gem 'resque', '~> 1.24'
-gem 'rack', '~> 1.5'
-gem 'rack-timeout', '~> 0.0.4'
-gem 'rack-test', '~> 0.6'
-gem 'actionpack', '~> 4.0'
-gem 'sanitize', '~> 2.0'
-gem 'mail', '~> 2.5'
-gem 'rest-client', '~> 1.6'
+gem "actionpack", "~> 4.2"
+gem "activerecord", "~> 4.2"
+gem "docsplit", "~> 0.7"
+gem "haml", "~> 4.0"
+gem "iconv", "~> 1.0.4" #required by docsplit
+gem "mail", "~> 2.6"
+gem "mechanize", "~> 2.7"
+gem "mysql2", "~> 0.4"
+gem "name-spotter", "~> 0.3"
+gem "rack", "~> 1.6"
+gem "rack-test", "~> 0.6"
+gem "rack-timeout", "~> 0.3.2"
+gem "resque", "~> 1.25"
+gem "rest-client", "~> 1.8"
+gem "sanitize", "~> 4.0"
+gem "sass", "~> 3.4"
+gem "sinatra", "~> 1.4"
+gem "sinatra-flash", "~> 0.3"
+gem "sinatra-redirect-with-flash", "~> 0.2"
+gem "sinatra-reloader", "~> 1.0"
 
 group :development do
-  gem 'byebug', '~> 1.8'
+  gem "byebug", "~> 1.8"
 end
 
 group :production do
-  gem 'thin', '~> 1.5'
-  gem 'unicorn', '~> 4.7'
-  gem 'rack-google-analytics', '~> 0.12'
+  gem "unicorn", "~> 5.0"
+  gem "rack-google-analytics", "~> 1.2"
 end
 
 group :test do
-  # Pretty printed test output
-  gem 'capybara', '~> 2.1'
-  gem 'rake', '~> 10.1'
-  gem 'turn', '0.9', :require => false
+  gem "capybara", "~> 2.6"
+  gem "rake", "~> 10.5"
+  gem "rspec", "~> 3.4"
+  gem "turn", "0.9", :require => false
 end
