@@ -8,7 +8,7 @@ gem 'mysql2', '~> 0.3'
 gem 'activerecord', '~> 4.0'
 gem 'haml', '~> 4.0'
 gem 'sass', '~>3.2'
-gem "name-spotter", "~> 0.2"
+gem "name-spotter", "~> 0.3"
 gem 'mechanize', '~> 2.7'
 gem 'docsplit', '~> 0.7'
 gem 'iconv', '~> 1.0.3' #required by docsplit
@@ -35,6 +35,6 @@ end
 group :test do
   # Pretty printed test output
   gem 'capybara', '~> 2.1'
-  gem 'rake', '~> 10.1'
+  gem 'rake', '~> 10.5'
   gem 'turn', '0.9', :require => false
 end
