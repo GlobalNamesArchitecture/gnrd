@@ -1,6 +1,7 @@
 require "rake"
 require "bundler/setup"
 require "rspec/core/rake_task"
+require "rubocop/rake_task"
 # require "escape"
 require "resque"
 require "resque/tasks"
@@ -9,11 +10,10 @@ require "sinatra/activerecord/rake"
 
 require_relative "lib/gnrd"
 
-task default: :spec
+RSpec::Core::RakeTask.new(:spec) { |t| t.pattern = "spec/**/*.rb" }
+RuboCop::RakeTask.new
 
-RSpec::Core::RakeTask.new(:spec) do |t|
-  t.pattern = "spec/**/*.rb"
-end
+task default: [:rubocop, :spec]
 
 namespace :db do
   desc "create all the databases from config.yml"
