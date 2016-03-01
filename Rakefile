@@ -4,17 +4,34 @@ require "rspec/core/rake_task"
 # require "escape"
 require "resque"
 require "resque/tasks"
-require "yaml"
+require "active_record"
+require "sinatra/active_record/rake"
+
+require_relative "lib/gnrd"
 
 task default: :spec
 
-if !defined?(RSpec)
-  puts "spec targets require RSpec"
-else
-  desc "Run all examples"
-  RSpec::Core::RakeTask.new(:spec) do |t|
-    t.pattern = "spec/**/*.rb"
+namespace :db do
+  desc "create all the databases from config.yml"
+  namespace :create do
+    task(:all) do
+      DatabaseTasks.create_all
+    end
   end
+
+  desc "drop all the databases from config.yml"
+  namespace :drop do
+    task(:all) do
+      DatabaseTasks.drop_all
+    end
+  end
+
+  desc "redo last migration"
+  task redo: ["db:rollback", "db:migrate"]
+end
+
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.pattern = "spec/**/*.rb"
 end
 
 namespace :resque do
@@ -97,6 +114,7 @@ namespace :db do
   end
 end
 
-task :environment do
-  require_relative "./environment"
+desc "open an irb session preloaded with this library"
+task :console do
+  sh "irb -I lib -I extra -r gnrd.rb"
 end
