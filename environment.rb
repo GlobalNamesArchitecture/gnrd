@@ -1,4 +1,6 @@
+require "fileutils"
 require "filemagic"
+require "docsplit"
 
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd
@@ -22,7 +24,8 @@ module Gnrd
     raw_conf = File.read(File.join(__dir__, "config", "config.yml"))
     conf = YAML.load(raw_conf)
     OpenStruct.new(
-      session_secret:   conf["session_secret"]
+      session_secret: conf["session_secret"] || "!!change!!me!!",
+      tmp_dir:        conf["tmp_dir"] || "/tmp"
     )
   end
 end

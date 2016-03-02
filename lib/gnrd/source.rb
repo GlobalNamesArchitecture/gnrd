@@ -15,10 +15,8 @@ module Gnrd
     end
   end
 
-  # Source of a text file type. The file should be in utf-8 format.
+  # Source of a text-file type. The file should be in utf-8 encoding
   class TextFile
-    attr_reader :text
-
     def initialize(path)
       @fm = FileMagic.new
       @path = path
@@ -33,6 +31,25 @@ module Gnrd
 
     def text_file?
       File.exist?(@path) && @fm.file(@path).match(/(UTF-8|ASCII).+text/)
+    end
+  end
+
+  # Source of a pdf-file type. The text should be in utf-8 encoding
+  class PdfFile
+    def initialize(path)
+      @fm = FileMagic.new
+      @path = path
+      raise TypeError, "Not a PDF file: #{@path}" unless pdf_file?
+    end
+
+    def text
+      @text ||= TextExtractor.text(@path, "pdf")
+    end
+
+    private
+
+    def pdf_file?
+      File.exist?(@path) && @fm.file(@path).match(/PDF/)
     end
   end
 end
