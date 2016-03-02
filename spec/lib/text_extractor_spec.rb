@@ -3,6 +3,8 @@ describe Gnrd::TextExtractor do
   let(:pdf) { __dir__ + "/../files/file.pdf" }
   let(:image_pdf) { __dir__ + "/../files/image.pdf" }
   let(:jpg) { __dir__ + "/../files/image.jpg" }
+  let(:jpg_txt) { File.read(__dir__ + "/../files/txt/image.jpg.txt") }
+  let(:pdf_txt) { File.read(__dir__ + "/../files/txt/file.pdf.txt") }
 
   describe ".new" do
     it "creates instance" do
@@ -12,12 +14,18 @@ describe Gnrd::TextExtractor do
 
   describe "#text" do
     it "gets text from pdf" do
-      expect(subject.new("pdf", pdf).text).to match(/ISSN: 0211-1322/)
+      f = open("/tmp/f.txt", "w")
+      f.write(subject.new("pdf", pdf).text)
+      f.close
+      expect(subject.new("pdf", pdf).text).to eq pdf_txt
     end
 
     it "gets text from scanned pdf" do
-      expect(subject.new("pdf", image_pdf).text)
-        .to match(/Baccha elongata 7-10 mm/)
+      expect(subject.new("pdf", image_pdf).text).to eq jpg_txt
+    end
+
+    it "gets text from image" do
+      expect(subject.new("image", jpg).text).to eq jpg_txt
     end
   end
 end

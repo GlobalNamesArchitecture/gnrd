@@ -9,32 +9,16 @@ module Gnrd
     end
 
     def text
-      return @text if @text
-      @text = case @file_type
-              when "pdf"
-                extract_pdf
-              else
-                docsplit
-              end
+      @text ||= docsplit
     end
 
     private
 
-    def extract_pdf
-      docsplit(pages: "all")
-    end
-
     def docsplit(opts = {})
-      content = ""
       options = { output: @dir, clean: true }.merge(opts)
       Docsplit.extract_text(@path, options)
-      Dir.entries(@dir).each do |f|
-        if f =~ /\.txt$/
-          f_path = File.join(@dir, f)
-          content << File.read(f_path)
-        end
-      end
-      content
+      files = Dir.entries(@dir).select { |f| f =~ /\.txt$/ }
+      assemble_text(files)
     end
 
     def dir_name
