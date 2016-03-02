@@ -20,6 +20,7 @@ before_install:
   - sudo apt-get install libreoffice
   - sudo apt-get install libmagic-dev
   - sudo apt-get install wget
+  - cp config/config.yml.example config/config.yml
 # before_script:
 #   - QUEUE=name_finder_high,name_finder,name_finder_low TERM_CHILD=1 rake resque:work &
 branches:
