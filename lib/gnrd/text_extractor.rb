@@ -26,7 +26,7 @@ module Gnrd
 
     def docsplit(opts = {})
       content = ""
-      options = { output: @dir, clear: true }.merge(opts)
+      options = { output: @dir, clean: true }.merge(opts)
       Docsplit.extract_text(@path, options)
       Dir.entries(@dir).each do |f|
         if f =~ /\.txt$/
