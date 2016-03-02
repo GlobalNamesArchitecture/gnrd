@@ -8,8 +8,8 @@ Global Names Recognition and Discovery (GNRD)
 
 [ci_img]: https://secure.travis-ci.org/GlobalNamesArchitecture/gnrd.svg
 [ci]: http://travis-ci.org/GlobalNamesArchitecture/gnrd
-[coverage_img]: https://coveralls.io/repos/GlobalNamesArchitecture/gnrd.svg?branch=master
-[coverage]: https://coveralls.io/r/GlobalNamesArchitecture/gnrd?branch=master
+[coverage_img]: https://coveralls.io/repos/github/GlobalNamesArchitecture/gnrd/badge.svg?branch=master
+[coverage]: https://coveralls.io/github/GlobalNamesArchitecture/gnrd?branch=master
 [qc_img]: https://codeclimate.com/github/GlobalNamesArchitecture/gnrd.svg
 [qc]: https://codeclimate.com/github/GlobalNamesArchitecture/gnrd
 [gems_img]: https://gemnasium.com/GlobalNamesArchitecture/gnrd.svg
