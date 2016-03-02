@@ -30,7 +30,7 @@ module Gnrd
     private
 
     def text_file?
-      File.exist?(@path) && @fm.file(@path).match(/(\bUTF-8\b|\bASCII\b).+text/)
+      File.exist?(@path) && @fm.file(@path).match(RE_UTF8)
     end
   end
 
@@ -49,7 +49,7 @@ module Gnrd
     private
 
     def pdf_file?
-      File.exist?(@path) && @fm.file(@path).match(/\bPDF\b/)
+      File.exist?(@path) && @fm.file(@path).match(RE_PDF)
     end
   end
 
@@ -68,7 +68,7 @@ module Gnrd
     private
 
     def image_file?
-      File.exist?(@path) && @fm.file(@path).match(/\bimage data\b/)
+      File.exist?(@path) && @fm.file(@path).match(RE_IMAGE)
     end
   end
 end

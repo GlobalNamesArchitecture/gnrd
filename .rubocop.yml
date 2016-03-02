@@ -2,5 +2,6 @@ AllCops:
   Exclude:
     - db/**/*
     - bin/**/*
+    - lib/gnrd/source_factory.rb
 Style/StringLiterals:
   EnforcedStyle: double_quotes
