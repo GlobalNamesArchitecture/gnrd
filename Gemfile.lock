@@ -28,7 +28,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    ansi (1.5.0)
     arel (6.0.3)
     ast (2.2.0)
     backports (3.6.8)
@@ -194,9 +193,6 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.2)
     tins (1.6.0)
-    turn (0.9.0)
-      ansi
-      minitest
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     unf (0.1.4)
@@ -248,7 +244,6 @@ DEPENDENCIES
   sinatra-flash (~> 0.3)
   sinatra-redirect-with-flash (~> 0.2)
   sinatra-reloader (~> 1.0)
-  turn (= 0.9)
   unicorn (~> 5.0)
 
 BUNDLED WITH

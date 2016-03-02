@@ -31,7 +31,6 @@ module Gnrd
         m ? m[0].to_i : 0
       end
       files.each_with_object("") do |f, obj|
-        puts f
         obj << File.read(File.join(@dir, f))
       end
     end

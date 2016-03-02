@@ -14,9 +14,6 @@ describe Gnrd::TextExtractor do
 
   describe "#text" do
     it "gets text from pdf" do
-      f = open("/tmp/f.txt", "w")
-      f.write(subject.new(pdf, "pdf").text)
-      f.close
       expect(subject.new(pdf, "pdf").text).to eq pdf_txt
     end
 
