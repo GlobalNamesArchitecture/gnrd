@@ -3,6 +3,7 @@ source "https://rubygems.org"
 gem "actionpack", "~> 4.2"
 gem "activerecord", "~> 4.2"
 gem "docsplit", "~> 0.7"
+gem "ruby-filemagic", "~> 0.7" # libmagic-dev is dependency
 gem "haml", "~> 4.0"
 gem "iconv", "~> 1.0.4" # required by docsplit
 gem "mail", "~> 2.6"

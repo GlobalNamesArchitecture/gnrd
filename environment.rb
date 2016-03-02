@@ -1,3 +1,5 @@
+require "filemagic"
+
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd
   def self.env
