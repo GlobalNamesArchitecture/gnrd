@@ -7,6 +7,7 @@ describe "sources of texts" do
   let(:pdf) { __dir__ + "/../files/file.pdf" }
   let(:image_pdf) { __dir__ + "/../files/image.pdf" }
   let(:image) { __dir__ + "/../files/image.jpg" }
+  let(:pdf_txt) { File.read(__dir__ + "/../files/txt/file.pdf.txt") }
 
   describe Gnrd::TextString do
     let(:txt) { "Hello world" }
@@ -86,10 +87,10 @@ describe "sources of texts" do
       end
     end
 
-    # describe ".text" do
-    #   it "gets text from pdf" do
-    #     expect(subject.new(pdf).text).to match(/hello/)
-    #   end
-    # end
+    describe ".text" do
+      it "gets text from pdf" do
+        expect(subject.new(pdf).text).to eq pdf_txt
+      end
+    end
   end
 end

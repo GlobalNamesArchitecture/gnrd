@@ -43,7 +43,7 @@ module Gnrd
     end
 
     def text
-      @text ||= TextExtractor.text(@path, "pdf")
+      @text ||= TextExtractor.new(@path, "pdf").text
     end
 
     private
