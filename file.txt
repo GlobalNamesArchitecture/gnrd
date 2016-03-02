@@ -1,0 +1,1200 @@
+Volumen 66 N.º 1
+
+enero-junio 2009
+
+Madrid (España)
+
+ISSN: 0211-1322
+
+CONSEJO SUPERIOR DE INVESTIGACIONES CIENTÍFICAS
+
+Anales del Jardín Botánico de Madrid
+Vol. 66(1): 35-53
+enero-junio 2009
+ISSN: 0211-1322
+doi: 10.3989/ajbm.2204
+
+A revision of Passiflora sections Insignes and ×Inkea
+(Passifloraceae)
+by
+Peter Møller Jørgensen1 & Roberto Vásquez2
+1
+
+Missouri Botanical Garden, P.O. Box 299, St. Louis, Missouri 63166-0299, U.S.A. peter.jorgensen@mobot.org
+2
+Sociedad Boliviana de Botánica, Casilla 3822, Santa Cruz, Bolivia. rvasquez@cotas.com.bo
+
+Abstract
+
+Resumen
+
+Jørgensen, P.M. & Vásquez, R. 2009. A revision of Passiflora sections Insignes and ×Inkea (Passifloraceae). Anales Jard. Bot.
+Madrid 66(1): 35-53
+
+Jørgensen, P.M. & Vásquez, R. 2009. Una revisión taxonómica
+de Passiflora sect. Insignes e ×Inkea (Passifloraceae). Anales Jard.
+Bot. Madrid 66(1): 35-53 (en inglés).
+
+During the compilation of the Passifloraceae for the Catálogo de
+las Plantas Vasculares de Bolivia we found a new species belonging to Passiflora sect. Insignes, which we call Passiflora carrascoensis. We here present a taxonomic revision of the Passiflora sect. Insignes and ×Inkea and a brief outline of the history of
+the groups. The number of species in Passiflora sect. Insignes is
+now six, with four species endemic to Bolivia, one to Peru, and
+one widespread frequently cultivated species. Passiflora sect.
+×Inkea consists of the hybrid Passiflora ×rosea. Four names are
+lectotypified.
+
+Durante la compilación de las Passifloraceae para el Catálogo de
+las Plantas Vasculares de Bolivia se ha encontrado una nueva especie de Passiflora sect. Insignes, la cual describimos como Passiflora carrascoensis. Se presenta una revisión taxonómica de
+Passiflora sect. Insignes e ×Inkea y una corta relación de la historia de los grupos. El número actual de especies en Passiflora sect.
+Insignes es de seis, con cuatro especies endémicas de Bolivia,
+una de Perú y una especie ampliamente repartida y frecuentemente cultivada. Passiflora sect. ×Inkea está formada por el híbrido Passiflora ×rosea. Se lectotipifican cuatro nombres.
+
+Keywords: Passifloraceae, Passiflora, Tacsonia, Elkea, Poggendorffia, Bolivia, Andes, endemic species.
+
+Palabras clave: Passifloraceae, Passiflora, Tacsonia, Elkea, Poggendorffia, Bolivia, Andes, especies endémicas.
+
+Introduction
+
+the knowledge accumulated in conjunction with these
+discoveries we found it appropriate to convey what
+we have learned about the Passiflora sect. Insignes
+Feuillet & J.M. MacDougal and the related ×Inkea
+Feuillet & J.M. MacDougal.
+The taxonomic history of Passiflora supersect. Tacsonia (Juss.) Feuillet & J.M. MacDougal was nicely
+outlined by Escobar (1980, 1988). Escobar (1988) accepted the sections Bracteogama (DC.) L.K. Escobar,
+Colombiana L.K. Escobar, Fimbriatistipula L.K. Escobar, Parritana (Harms) L.K. Escobar, Poggendorffia
+(H. Karst.) Triana & Planch., Tacsonia (Juss.) Harms,
+and Tacsoniopsis Triana & Planch., all included in the
+subgenus Tacsonia (Juss.) Triana & Planch. more or
+less following the latest monographic work (Killip,
+1938). Nomenclatural problems with sections Poggendorffia (see below) and Bracteogama urged Feuillet
+
+Our work on Passifloraceae in Bolivia (Jørgensen &
+al., in prep.) has led to the discovery of a new species
+that we call Passiflora carrascoensis P. Jørg. & R.
+Vásquez. The species clearly belongs to Passiflora subgenus Passiflora supersection Tacsonia section Insignes
+Feuillet & J.M. MacDougal, a small group of closely
+related species, best known in the group are P. pinnatistipula Cav. and P. mandonii (Mast.) Killip. P. pilosicorona Sacco also belongs in this section, although
+originally placed in supersect. Distephana (Juss. ex
+DC.) Feuillet & J.M. MacDougal. The sect. Insignes is
+almost exclusively Bolivian, with four species endemic
+to that country, one endemic to Peru, and the last, P.
+pinnatistipula, frequently cultivated from Colombia to
+Chile, with the highest concentration of collections
+from southern Peru and northern Bolivia. Because of
+
+36
+
+P.M. Jørgensen & R. Vásquez
+
+& MacDougal (1997) to establish their replacements
+sections Insignes, Elkea Feuillet & J.M. MacDougal,
+and ×Inkea, respectively. They maintained the overall
+taxonomical view of Escobar (1980, 1988) however,
+and only the nomenclature was corrected (Feuillet &
+MacDougal, 1997, 2004).
+The sect. Insignes was known for 125 years linked
+to the generic name Poggendorffia H. Karst. Two years
+after the publication of the genus, Karsten (1859,
+http://www.botanicus.org/page/825076) included a
+beautiful colorful illustration of Poggendorffia rosea
+H. Karst. Karsten’s genus Poggendorffia and species
+Poggendorffia rosea have been treated in various ways
+and several times, and is central to understanding the
+history of the groups.
+Six years later Bentham & Hooker (1862) reduced
+Karsten’s genus to a synonym of the genus Tacsonia
+Juss. and they called Poggendorffia rosea a monstrous
+form of Tacsonia pinnatistipula (Cav.) Juss. Karsten
+(1887; see also Killip, 1938) reacted strongly to his
+genus being reduced to synonymy and his species
+called monstrous, but today it seems strange that he
+waited 25 years to publish his reaction. Was the death
+of Bentham in 1884, a coincidence or an explanation
+for his delayed reply?
+In the mean time, Masters (1872) simply placed
+Poggendorffia rosea in synonymy of Tacsonia pinnatistipula, but that was probably an over simplification.
+Studying Karsten’s illustration it is obvious that several key characteristics do not match Passiflora pinnatistipula. First, the stipules are not completely pinnatisect (if dissected at all), only the apical part of the stipule is dissected. Second, the bracts are much larger
+and may be fused at the base. Third, and most remarkably the stamens, with their odd appendages,
+have an opening on the adaxial surface at about the
+middle of the androgynophore and from that point
+upwards the stamens are free. Fourth, the basifixed
+anthers with a large apical connective are all characters not seen elsewhere in the entire genus Passiflora.
+The very different (referred to as monstrous by many)
+androecium was Karsten’s (1856, 1859) main argument for making a new genus.
+Triana & Planchon (1873) did not accept the genus
+Tacsonia and changed the status of the genus Poggendorffia to a section of Passiflora within the subg. Tacsonia. They further stated that Karsten’s genus was
+based on a monstrous specimen with some characters
+that belongs to sect. Bracteogama (now Elkea), and
+they also synonymized Poggendorffia rosea with Passiflora pinnatistipula.
+
+Triana was an eyewitness to Karsten’s discovery, and
+they (Triana & Planchon, 1873) wrote [translated from
+French] “One of us was with Mr. Karsten when, in a
+garden in Bogota, a Passifloreae caught our eyes” …
+“its five stamens had their filaments free since the middle of the column or gynophore; these filaments were
+concave like a dimple at their base and the anthers
+were deformed. This character of the androecium, described as normal by Mr. Karsten who could not have
+seen it but just in passing, was in fact nothing but accidental and monstrous. Indeed I observed that plant to
+collect seeds; at first the fruits from flowers with abnormal anthers aborted, then others became fertile because their androecium was normally built, that is:
+with filaments adherent to the column nearly to the
+ovary and with normally shaped anthers.” We believe
+that Triana’s observations come from two plants that
+may have been intertwined, one a typical P. pinnatistipula with normal stamens and anthers and the other a
+hybrid with abnormal stamens and anthers. They do
+not describe the shape or pubescence of the fertile or
+aborted fruits. Karsten (1887) observed fertile ellipsoid fruits on Poggendorffia, an intermediate character
+with species in sect. Elkea. The six species included by
+Triana & Planchon (1873) in sect. Poggendorffia are today placed in four different sections within supersect.
+Tacsonia (Juss.) Feuillet & J.M. MacDougal.
+Sodiro (1903) made the combination Tacsonia
+×rosea (H. Karst.) Sodiro and accepted the “species”,
+but was convinced that it was a hybrid between P. pinnatistipula and P. mollissima (Kunth) Bailey (today P.
+tripartita var. mollissima (Kunth) Holm-Niels. & P.
+Jørg.). Both species were, then as now, frequently cultivated and often close together. He used a multiplication sign in front of the “species” name and explained
+that he had numerous specimens that agreed with
+Karsten’s description of the androecium.
+Harms (1925) accepted seven unranked groups
+within Passiflora sect. Tacsonia (Juss.) Triana &
+Planch. (supersect. Tacsonia today). Two are of interest in this context. The fourth group was named Pinnatistipulae Harms including P. pinnatistipula. He
+also included Poggendorffia rosea here and cited
+Sodiro’s observation of it being a hybrid with P. mollissima. His fifth group was called Insignes Harms and
+was based on P. insignes (Mast.) Hook.f. The difference between Harm’s two groups was entire versus
+three-lobed leaves.
+Killip (1938) also agreed with Sodiro, maybe due
+to his own field observation of a plant of Passiflora
+×rosea (H. Karst.) Killip at Tarma in Peru growing between a plant of P. pinnatistipula and P. tripartita var.
+mollissima. Killip did not accept any subdivisions of
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322. doi: 10.3989/ajbm.2204
+
+A revision of Passiflora
+
+37
+
+the subgenus Tacsonia and listed Poggendorffia as a
+synonym of Tacsonia.
+Escobar (1980) used the name sect. Poggendorffia
+(H. Karst.) Triana & Planch. for a grouping of species
+that included Passiflora insignes, P. mandonii, P. pinnatistipula, and P. ×rosea. In 1988, she added P. pilosicorona to this section. The section has several unique
+characters and can be postulated as a monophyletic
+group within the supersect. Tacsonia if the hybrid is
+excluded.
+In summary, Bentham, Hooker, Masters, and Triana and Planchon, would apparently have liked to
+“forget” about Karsten’s plant by simply calling it a
+monstrous individual and relegating it to synonymy.
+Sodiro, Harms, Killip, Escobar, and Feuillet and MacDougal were in our opinion correct in accepting it as
+a hybrid. Strangely enough nobody has, to our knowledge, tried to cross the two parents to confirm that the
+hybrid’s F1 morphology of the stamens is as indicated
+by Karsten.
+Feuillet & MacDougal (1997) pointed out that if
+Passiflora ×rosea is a hybrid, all names based on this
+type are consequently hybrids, i.e. the genus and sect.
+Poggendorffia. The type contains genetic material
+from two species belonging to two different sections
+(now named Insignes and Elkea) and logically it cannot be restricted for use to only one of the groups, as
+done by Escobar (1980, 1988). Section Poggendorffia
+can only be the logical name if both parents are included (and then it would not be the oldest name).
+This, most logical, but unusual situation, simultaneously creates the dilemma that Passiflora ×rosea cannot be accepted within a section in a treatment that
+recognizes sect. Insignes or Elkea. The name Poggendorffia does not conform to the International Code of
+Botanical Nomenclature article H.7 (McNeill & al.
+2006) and in consequence Feuillet & MacDougal established the hybrid sect. ×Inkea with its only member Passiflora ×rosea (H. Karst.) Killip. They did not
+place Poggendorffia in synonymy of sect. ×Inkea,
+which we interpret as an omission.
+
+add a political unit to the specimen citation; and this
+information comes from either Escobar (1980) or Killip (1938). An appendix list all numbered collections
+with the species they belong to. Our emended descriptions are short and only include the most important and characteristic features. They are largely based
+on the literature, for the species Passiflora insignis, P.
+lanceolata, P. mandonii, and P. ×rosea we particularly
+consulted Escobar (1980), and for P. lanceolata and
+P. ×rosea we also included observations by Killip
+(1938). We do not know if fig. 7 was documented with
+a voucher and the photographer has not responded to
+requests for information.
+
+Materials and methods
+
+Basionym: Passiflora § Insignes Harms in Engl. &
+Prantl, Nat. Pflanzenfam. ed. 2, 21: 506. Dec. 1925
+(no rank).
+Passiflora ser. Insignes (Harms) Killip, Publ. Field
+Mus. Nat. Hist., Bot. Ser. 19: 28. 1938.
+
+A total of 233 collections have been revised from
+AAU, BM, BOLV, CUZ, G, Herbarium Vásquez,
+K, LPB, MA, MO, P, QCA, S, US, USM, and USZ.
+Herbarium Vásquez is a private collection housed in
+the residency of the junior author. We have occasionally cited specimens that we have not seen to document the entire distribution of the species as we collectively know it at present. The non revised specimens are clearly marked and only included when they
+
+Taxonomic treatment
+KEY TO THE SPECIES
+1. Lamina entire .................................................................... 2
+1. Lamina (2)3 lobed ............................................................. 3
+2. Floral tube shorter than sepals; lamina densely pubescent
+abaxially ......................................................... 1. P. insignis
+2. .F loral tube longer than sepals; lamina essentially
+glabrous.................................................... 2. P. lanceolata
+3. Floral tube longer than sepals; floral tube 5-13.5 cm long ....
+......................................................................................... 4
+3. Floral tube shorter than sepals; floral tube 2-4 cm long...... 6
+4. Lamina three-lobed, lobes triangular, lobed 1/3 to 1/4 their
+length; floral tube (6)10-13.5 cm long, dilated at base,
+densely yellow-brown pubescent outside .... 3. P. mandonii
+4. Lamina three lobed, lobes ovate-lanceolate, lobed 1/2 to 4/5
+their length; floral tube 4.4-6.7 cm long, dilated or not dilated at base, white outside ...................................................5
+5. Laminar lobes lanceolate, lobed 4/5 their length; sepals 3.36 cm long; outer corona 1.2-2 cm long; fruit spherical .........
+............................................................ 4. P. pinnatistipula
+5. Lamina lobes ovate-narrowly ovate, lobed 1/2 to 3/5 their
+length; sepals 2.5-3 cm long; outer corona 0.8-1.3 cm long;
+fruit ovoid.........................................................7. P. ×rosea
+6. Stipules 4-6 mm long; bracts 2.5-3 × 1-1.5 cm, lanceolate;
+floral tube 2.5-3(4) cm long ...................5. P. carrascoensis
+6. Stipules 9-14 mm long; bracts (3)3.5-4 × 2.5-3 cm, broadly
+ovate to almost orbicular; floral tube 2-2.2(4) cm long..........
+...............................................................6. P. pilosicorona
+
+I. Passiflora sect. Insignes (Harms) Feuillet & J.M.
+MacDougal, BioLlania ed. esp. 6: 339. 1997
+
+Type: Passiflora insignis (Mast.) Hook.f.
+Lianas, often densely pubescent; leaves entire or
+three lobed; stipules deeply pinnatisect or divided
+into filiform segments. Bracts free to base with serrate
+irregular margins; floral tube of varying length; sepals
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322.doi: 10.3989/ajbm.2204
+
+38
+
+P.M. Jørgensen & R. Vásquez
+
+carinate; petals slightly shorter than sepals; corona in
+one or two series, the outer series well developed or
+occasionally reduced to a tuberculate ring, acicular
+1-2 cm long, the inner series, reduced to few denticulate projections, placed in the floral tube, between the
+operculum and the mouth, missing in some species or
+collections, but a slight difference in coloration often
+indicating where the lost corona originally was placed.
+Fruits are spherical or almost so in all species with
+known fruits.
+Morphology and affinities. Killip (1938) placed a
+very high taxonomic value on the presence and fusion
+of a second corona row. This character was used, not
+very convincingly, to separate supersect. Distephana
+(Juss. ex DC.) Feuillet & J.M. MacDougal and sect.
+Manicata (Harms) Feuillet & J.M. MacDougal from
+sect. Tacsoniopsis Triana & Planch., Rathea (H.
+Karst.) Harms, and Tacsonia (Juss.) Harms (the last
+four names currently placed in supersect. Tacsonia,
+but were in Killip’s treatment all considered subgenera). Killip (1938) placed, for instance Passiflora callimorpha Harms in subg. Distephana while P. insignis
+was placed in subg. Tacsonia the two names are currently seen as synonyms of the same species with some
+variation in the formation and loss of a second corona
+series. There are obviously some similarities between
+supersect. Distephana and Tacsonia, in particular sect.
+Insignes. Furthermore, the presence of a well developed corona is in Tacsonia seen as a primitive character, and it is tempting to present a hypothesis that suggest that Tacsonia have originated from Distephana
+and as the group adapted to the montane environment it spread northward and became increasingly diversified in Peru, Ecuador, and particularly Colombia. The species we have left today and may support
+such a hypothesis are Passiflora buchtienii Killip and
+P. miniata Vanderplank. They are members of supersect. Distephana, but found at relatively high elevations in the Bolivian Andes. Representing an unusual
+distribution in the supersection that is elsewhere exclusively lowland. They may have shared an ancestor
+with sect. Insignes. Further adaptation took place
+while moving northward resulted in losing the well
+developed corona. Parallel to the morphological
+changes a strong diversification took place within supersect. Tacsonia that now includes about 45 additional species.
+Distribution and habitat. The sect. is almost exclusive to the northeastern slopes of the Bolivian Andes.
+One species is found in Junín, Peru, and one species is
+widely cultivated and occasionally escaped outside its
+natural occurrence in southern Peru and Bolivia.
+They are all montane forest dwellers found from
+
+(1000)2300-4000 m elevation, and they all display a
+typical hummingbird pollination syndrome.
+1. Passiflora insignis (Mast.) Hook.f., Bot. Mag. ser.
+3, 29(348), tab. 6069. 1893
+Basionym: Tacsonia insignis Mast., Gard. Chron.
+1113, fig. 239. 1873.
+Type: Backhouse s.n., grown at Sowerby House,
+Hull, England (grown from seeds collected in “Peru”
+by Yarborough Greame, specimens probably prepared by the gardener R. Anderson) (lectotype, here
+designated, K 000323343!; isolectotypes, K).
+Passiflora callimorpha Harms, Repert. Spec. Nov. Regni Veg. 18: 295. 1922.
+Type: BOLIVIA. La Paz: Mapiri, Bang 1556 (holotype B destroyed; lectotype, here designated, NY
+00110422!; isolectotypes, BM, CM, G, GH, K!, PH,
+NY 00110421!, US 00114975!).
+Liana, densely pubescent, except for adaxial surface of lamina and sepals, and the entire petals; indument yellow-brown, twisted. Stipules 1 cm, reduced
+to pinnatisect filiform segments; petiole 1-1.5 cm,
+with 2 pairs of elongate glands; lamina 8-17 × 3.7-6
+cm, entire, coriaceous; apex acute; base cordate; margin serrate; venation impressed above and slightly pubescent. Peduncle 7.2-14.5 cm, stout but flowers pendent; bracts 2.8-4 × 2-2.4 cm, elliptic, free, alternate
+(not verticillate) 1-2 mm apart; apex acute, base
+cuneate; margin irregularly serrate glandular; stipe
+1.3-2 cm; floral tube 2-4.1 × 0.5-0.9 cm, cylindrical,
+dilated to 1.7 cm at base; sepals 6.5-8 × 1.3-2.3 cm,
+narrowly elliptic-oblong, keeled and aristate; awn 1-1.8
+cm; petals 5.5-6.5 × 1.3-2.3 cm; corona in 1-2 series;
+outer corona 1 cm, filiform, incurved, at mouth of hypanthium; inner series a tubular membrane, if present, 7 mm below the outer series; margin fimbriate;
+androgynophore 5.3-7.6 cm; ovary ovoid, to 1 cm, pubescent. Fruit and seeds unknown. (Fig. 1).
+Diagnostic characters. Escobar (1980) discussed in
+detail the minor differences found between the type
+of Passiflora callimorpha and typical P. insignis showing that variation is found in several features that
+Harms used to segregate the species, notably the one
+or two corona series and the fusion of the inner series
+into a tubular membrane; see also the discussion of
+morphology and affinities of the section. The species
+is easily recognized within the section by its entire
+leaves with densely pubescent undersurface.
+Distribution and habitat. The species has so far been
+found in two valleys in northern Bolivia, in the valley below Unduavi, around the border between the provinces
+Nor and Sur Yungas, and in the valley below Sorata in
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322. doi: 10.3989/ajbm.2204
+
+A revision of Passiflora
+
+39
+
+Fig. 1. Passiflora insignis: a, leaf and terminal bud; b, stipule; c, pendent flower, normal position; d, bract; e, longitudinal section of
+flower [a-e from R. Vásquez 1921].
+
+the Province Larecaja where it grows in humid to wet
+montane forest (called Yungas in Bolivia) or remnants of
+such at (1200)2350-3400 m elevation. The species has
+been collected with flowers or fruits in January-February, May, July-October, and most specimens seem to
+have been taken in the later time period. An IUCN
+threat status of VU is here assigned to this species.
+
+Additional specimens examined
+BOLIVIA. La Paz: Yungas, 1200 m, H.H. Rusby 2465 (F n.v.,
+NY n.v., US); Franz Tamayo: Parque Nacional Madidi, entre Queara y Mojos, sector entre Chuncani y Tocoaque, 14º38’05”S
+68º57’37”W, 2850 m, 28-II-2008, A. Fuentes 12116 (LPB n.v., MO,
+USZ n.v.); Parque Nacional Madidi, bajando de Ichocorpa hacia
+Chuncani, camino entre Queara y Mojos, 14º38’18”S 68º57’47”W,
+3300 m, 21-IV-2007, A. Fuentes 11347 (LPB n.v., MO). Larecaja:
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322.doi: 10.3989/ajbm.2204
+
+40
+
+P.M. Jørgensen & R. Vásquez
+
+Mapiri, 15°19’S 68°12’W, VIII-1892, M. Bang 1556 (B destr., BM,
+CM n.v., G, GH n.v., K, NY n.v., PH n.v.); vicinity of Sorata, San
+Pedro, 15°47’S 68°39’W, II-1859, G. Mandon 609bis (P); Nor
+Yungas: Valley below Unduavi, 16°00’S 68°30’W, 3330 m, 15-X1950, W.M.A. Brooke 6887 (BM, LL n.v.); 7 km beyond Chuspipata, 16°21’S 67°47’W, 2520 m, 5-IX-1987, S.G. Beck 12925 (LPB,
+TEX n.v., US); 18 km from Unduavi, 16°19’S 67°51’W, 2600 m,
+11-IX-1989, M. Hermann 305 (LPB); near Unduavi, road to Chulumani, 16°18’S 67°53’W, 2860 m, 7-VIII-1982, X. Menhofer 1481
+(BOLV, LPB); between Puente Villa and Unduavi, 16°22’S
+67°50’W, 31-I-1988, R. Vásquez & al. 1921 (herb. Vasq.); entre
+Unduavi y Puente Villa, X-2002, R. Vásquez & al. 4695a (herb
+Vasq.); Sur Yungas: 10.1 km NE (below) Chuspipata (20.1 km
+above Yolosa), 16°16’S 67°47’W, 2400 m, 21-X-1982, J.C. Solomon 8646 (LPB); 5.7 km below Chuspipata on road to Chulumani, 16°21’S 67°47’W, 2750 m, 5-X-1984, L.K. Escobar & J.C. Solomon 4813 (LPB, MO 3193785); Chuspipata, 6.5 km towards Chulumani, 16°19’S 67°49’W, 2570 m, 13-IX-1981, S.G. Beck 4787
+(HUA n.v., LPB, M n.v., SI n.v., US); 10.6 km from Chuspipata,
+16°16’S 67°47’W, 2350 m, 7-X-1984, L.K. Escobar & J.C. Solomon
+4838 (LPB); 7.8 km Chuspipata towards Coroico, 16°13’S
+67°49’W, 2550 m, 5-X-1984, L.K. Escobar & J.C. Solomon 4814
+(LPB); road to Chulumani, 16°18’S 67°51’W, 2600 m, 15-VII1984, A. Fournet 420 (LPB); SE of Chuspipata (6.5-13.2 km),
+16°22’S 67°50’W, 2377-2820 m, 11-V-1990, J. Luteyn & L.J. Dorr
+13688 (LPB, BOLV, NY n.v., USZ); 7.5 km below Chuspipata towards Yolosa, 2550 m, 7-X-1984, L.K. Escobar & J.C. Solomon
+4842 (MO 3193807).
+
+2. Passiflora lanceolata (Mast.) Harms, Bot. Jahrb.
+18(Beibl. 46): 11. 1894 (not P. lanceolata G. Don,
+nom. nud. and an error for P. lancifolia)
+Basionym: Tacsonia lanceolata Mast. in Mart., Fl. Bras.
+13(1): 536. 1894.
+Passiflora acutissima Killip, J. Wash. Acad. Sci. 17:
+428. 1927 (nom. nov. replacing, unnecessarily, P. lanceolata (Mast.) Harms).
+Type: PERU. Junín: prov. Concepción: “Andimarca” [Andamarca], VII-1831-1834, Mathews 1252
+(lectotype, designated by Killip 1938, K!).
+Liana, glabrous, except for stems, petioles, and peduncles; indument pilose. Stipules 1-1.5 cm, reduced
+to pinnatisect filiform segments; petiole 0.3 cm, with
+2-3 glands; lamina 4.2-5.3 × 0.9-1.3 cm, entire, lustrous;
+apex attenuate acuminate; base rounded; margin revolute; venation impressed above. Peduncle 2.2-3.5 cm;
+bracts 1.5-2.5 × 0.4-0.8 cm, elliptic, free, verticillate;
+apex acute; margin irregularly serrate; stipe 0.8-1.5 cm;
+floral tube 7.5 × 1 cm, cylindrical, scarcely dilated at
+base; sepals 3.5 × 1.3 cm, narrowly elliptic-oblong,
+keeled and aristate; awn 0.4 cm; petals slightly smaller
+than sepals; corona in 1 series, appears tuberculiform.
+Diagnostic characters. Passiflora lanceolata is unusual in the section by being a more glabrous species and
+by having a corona that is reduced to a single series. In
+some ways it builds a connection to other sections
+within supersect. Tacsonia, but we know very little
+about it due to its rarity.
+
+Distribution and habitat. Only known from the type
+from what Escobar interpreted as from Andamarca in
+Junín, Peru. That interpretation is probably correct,
+the label states “Mount Allis Andimarca July” and
+Mathews 1230 (the type of Ancylogyne capitata Nees)
+is from Junín (León, pers. comm.). It is the only non
+Bolivian member of the section. An IUCN threat status of CR is here assigned to this species, but it is possible that the species is extinct.
+3. Passiflora mandonii (Mast.) Killip, J. Wash. Acad.
+Sci. 14: 213. 1924
+Basionym: Tacsonia mandonii Mast. in Mart., Fl. Bras.
+13(1): 538. 1872.
+Type: BOLIVIA. La Paz: prov. Larecaja, Mt.
+Chilieca near Sorata, X-III-1858, G. Mandon 616 (lectotype, designated by Killip 1938, K!; isolectotypes,
+G, P!, S!; MO 1680920! photo ex G).
+Passiflora steinbachii Harms, Notizbl. Bot. Gart.
+Berlin-Dahlem 10: 815. 1929.
+Type: BOLIVIA. Cochabamba: prov. Sacaba: Cerros de Incachaca, IX-1921, Steinbach 5765 (holotype,
+B, destr.; lectotype, here designated, MO!; isolectotypes, F, G, GH, K!).
+Liana, pubescent, except for adaxial surface of lamina and sepals, and the entire petals; indument transparent-brown, tangled. Stipules 0.6-2 cm, reduced to pinnatisect filiform segments; petiole 1.5-3.5 cm, with (5)
+6-8(11) glands; lamina 8-13.5 × 7.5-13 cm, three lobed;
+lobes 1-4.5 cm long, central lobe longer than lateral, triangular; apices acute; base cordate to shallowly cordate; margin serrate; venation impressed above. Peduncle 6-15 cm, flexible, flowers pendent; bracts 2.1-3
+× 1-1.5 cm, elliptic or ovate, free, verticillate; apex
+rounded, base cordate; margin irregularly serrate-fimbriate; stipe 0.3-0.8 cm; floral tube 5.5-7 × 0.8-2 cm,
+cylindrical, dilated at base; sepals 4.5-5.5 × 1.7-1.9 cm,
+narrowly elliptic-oblong, carinate, aristate; awn 0.6-1.0
+cm; petals 4.8-5.6 × 1.5-1.9 cm; corona in 1 series, 1.5-2
+cm filiform at mouth of hypanthium; androgynophore
+8-9 cm; ovary obovoid, pyriform, 1.5 cm. Mature fruits
+5-7.5 × 4.5-5.5 cm, spherical to oblong; seeds 7 × 5 mm,
+shallowly pitted. (Fig. 2).
+Diagnostic characters. Passiflora mandonii has the
+longest floral tube of all the species in the section,
+shorter sepals and petals that are not reflexed, but
+form a bell shaped structure surrounding the reproductive organs. It shares a three lobed leaf with triangular lobes with P. carrascoensis, but apart from that
+species the leaf shape is very characteristic and can not
+be mistaken for any other species.
+Distribution and habitat: Passiflora mandonii is
+known from a series of localities in the Yungas of
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322. doi: 10.3989/ajbm.2204
+
+A revision of Passiflora
+
+41
+
+Fig. 2. Passiflora mandonii: a, habit with bud and open flower; b, stipule; c, bract; d, two petals and a sepal; e, longitudital section
+of flower; f, seed [a-f from R. Vásquez 1927].
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322.doi: 10.3989/ajbm.2204
+
+42
+
+P.M. Jørgensen & R. Vásquez
+
+Bolivia from Cochabamba to La Paz. One collection
+comes from Potosí, possibly cultivated, and one from
+Puno in Peru that is also from a cultivated plant; further north a single specimen from Cuzco of a white
+form has been apparently naturalized in roadsides.
+We know of white forms of P. pinnatistipula and this
+could potentially be a hydrid. An IUCN threat status
+of NT is here assigned to this species.
+Additional specimens examined
+BOLIVIA. Without locality, T. Bridges s.n. (BM); without locality, Pearce 721 (K). Cochabamba: Locality not recorded, Saravia
+1232 (BOLV); Ayopaya: Altamachi, 16°56’S 66°23’W, R. Lara s.n.
+(BOLV, Herb. Vasq.-1927); Carrasco: Montepunco, valle 135 km
+from Cochabamba, 2250 m, 10-I-1965, Brother Adolfo 312 (P); Valle del Sajta, G. Rodriguez 20 (BOLV); Chapare: Side road to Tablas
+Monte, 2780 m, L. López & L. Guzmán 27 (LPB); Locality not recorded, L. Acevey 1 (BOLV); 23.8 km N of Colomi on road to the
+Chapare, then 7.4 km NW (left) on side road, Upper Río Cayani,
+17°09’S 65°53’W, 2400 m, 19-X-1985, J.C. Solomon 14409 (LPB,
+MO 3677742); Tablas Monte, between Villa Tunari and Cochabamba, 2660 m, 10-VIII-1990, I.G. Vargas C. 660 (LPB, NY n.v.,
+MO 4590695, USZ); Tablas Monte on the Cochabamba-Chapare
+road, 2660 m, F. Troncoso 17 (BOLV); NE of Colomi, near Aguirrre, old road Cochabamba-Villa Tunari, 17°20’S 65°50’W, 3350 m,
+25-X-1997, J. Mueller & J. Heinrichs 6653 (LPB); at 5 km from Estancia Corani, 17°09’S 65°54’W, 2400 m, 15-VII-1994, N. Ritter &
+B. Cullina 1238 (BOLV, LPB, MO 4966951, NHA n.v.); Planta Corani, 17°10’S 65°55’W, 2500 m, 5-VI-1980, S.G. Beck 4010 (LPB,
+HUA n.v., MO 2919357, SI n.v., US); El Cañadon-Corani, cerca la
+represa Corani, 65 km de Cochabamba, 17º12’41”S 65º12’18W,
+3350 m, 14-IX-2007, J. Terán & al. 863 (MO); ca. 8 km N Maycamayu, ca. 70 km from Sacaba, 17°12’S 65°57’W, 3350 m, 12-VIII1991, M. Kessler 2898 (GOET n.v., LPB); Centro Hidroeléctrico
+Corani, 17°10’S 65°55’W, 2750 m, 25-VII-1989, M. Kessler & M.
+Kelschebach 222 (GOET n.v., LPB); road to Tablas, 17°07’S
+65°58’W, 25-XI-1992, R. Vásquez 1928 (Herb. Vasq.); IncachacaSan Antonio, 2400 m, VII-1926, E. Werdermann 2068 (B destr.,
+MO 999143, S); Incachaca, small power station about 80 miles NE
+of Cochabamba, 17°00’S 65°30’W, 2665 m, 15-VIII-1950, W.M.A.
+Brooke 6743 (BM, NY n.v.); La Aduana, Chapare, 3000 m, 7-III1929, J. Steinbach 9523 (B destr., BM, G, GH n.v., NY n.v., S); road
+to Rancho Durazno, ca. 3 km from the highway to Chapare, 2650
+m, 1-V-1994, N. Ritter 892 (BOLV, MO 4966950). La Paz: Bautista Saavedra: Charazani, 15°08’S 68°55’W, 3350 m, 20-IX-1993,
+P. Gutte 490 (LPB); Charazani, XI-1992, R. Vásquez & al. 1926
+(Herb. Vasq.); Franz Tamayo: between Quera Nuevo and Quera
+Viejo, 14º41’57.47”S 69º04’03”W, 3272 m, F. Zenteno 6811 (LPB,
+MO); Apolobamba protected area, Keara Bajo, 14º42’43”S
+69º05’03”W, 3500 m, A. Fuentes & R. Cuevas 8374 (LPB); Parque
+Nacional Apolobamba, Keara Bajo, 14º42’09”S 69º04’35”W, 3500
+m, A. Araujo-Murakami & F. Canqui 3782 (LPB n.v., MO); Inquisivi: 7 km NE of Choquetanga, 14°48’S 67°17’W, 3330 m, 19-I-1994,
+N. Salinas 2220 (LPB); 9 km from Choquetanga, 16°48’S 67°19’W,
+3400 m, 20-VII-1994, N. Salinas 3163 (LPB); 10 km S of Choquetanga, Rio Calvario, 16°56’S 67°17’W, 3550-3680 m, 22-VI-1991,
+M. Lewis 39093 (LPB); Parque Nacional Choquecamiri, “Cuchiwasi”, 7 km NE of Choquetanga, 16°48’S 67°17’W, 3350 m, 12IV-1991, M. Lewis 38654 (LPB, MO 4919415); mouth of Río Calvario, 10 km S of Choquetanga, 16°56’S 67°17’W, 3550-3680 m,
+22-VI-1991, M. Lewis & V. Kuno 39093 (MO 4355551); Larecaja:
+
+Curupampa, 3450 m, 15º49’00”S 68º37’30”W, L. Guzmán 36
+(BOLV, MO 4907409); Curupampa, 15°49’S 68°37’W, 3260 m, 7III-1997, L. Guzmán 37 (BOLV, LPB, MO 4907408); vicinity of
+Sorata, Cochipata, X-1856, G. Mandon 609 (P); 6 km W of Sorata
+on road to Laripata, 3230 m, 5-V-1979, L.K. Escobar 1306 (BM, G
+n.v., HUA n.v., MO 3418902, MO 3658823, NY n.v., TEX n.v.,
+USM); near Tipuani, on road Sorata-Tipuani, 15°35’S 68°05’W,
+app. 1000 m, 30-IV-1926, G. Tate 789 (LPB, NY n.v.); 7 km Sorata-Consata, 15°45’S 68°41’W, 3150 m, 27-V-1991, S.G. Beck 19882
+(LPB); Sorata-Laripata, 2955-2985 m, 15°46’S 68°40’W, 5-V-1979,
+L.K. Escobar 1308 (MO 3418900, USM); near Sorata, 15°47’S
+68°40’W, 20-XI-1992, R. Vásquez & al. 1925 (Herb. Vasq.); road
+Sorata-Consata, 2900 m, 7-III-1982, J. Fernandez Casas & J. Molero
+6542 (MA, MO 3115828); Sorata, IV-1947, M. Cárdenas 3821 (US);
+Italaque, III-1947, H.C. Cutler & M. Cárdenas s.n. (US); Muñecas:
+Aylulaya, arroyo beyond Siete Vueltas on the Camata-Quibaja
+road, 15º19’10”S 68º46’04”W, 2800 m, 17-V-2006, A. Fuentes & al.
+10727 (LPB); Omasuyos: Warizata, 3680 m, 8-III-1997, L. Guzmán
+44 (BOLV, MO 4907407); Isla del Sol, Yumani, 3850 m, 16-IV1921, E. Asplund 3632 (S). Potosí: Nor Lipez: Calahuasi, 3700 m,
+Giroult 8 (USM). PERU. Cuzco: Prov. Urubamba, entre Ollataitambo y Huari Punco, 2835 m, 9-V-1979, L. Escobar & E. Carrillo
+1309 (USM). Puno: vicinity of Puno, VII-1965, O. Tovar 5122
+(USM); Puno, J. Rossel F. 100 (LPB).
+
+4. Passiflora pinnatistipula Cav., Icon. Pl. 16, pl. 428.
+1799
+Tacsonia pinnatistipula (Cav.) Juss., Ann. Mus. Hist.
+Nat. 6: 393. 1805.
+Passiflora pennipes Sm. in Rees Cycl. 26: Passiflora no.
+48. 1819 (nom. illeg. based on the type of P. pinnatistipula).
+Tacsonia pinnatistipula var. pennipes (Sm.) DC., Prodr. 3: 334. 1828, nom. illeg.
+Tacsonia pennipes (Sm.) M. Roem., Fam. Nat. Syn. 2:
+194. 1846, nom. illeg.
+Type: CHILE. Biobío: Talcahuano, L. Neé s.n. (lectotype, designated by Killip 1938, MA!).
+Tacsonia micradenia DC., Prodr. 3: 334. 1828.
+Tacsonia purupuru DC. ex Mast. in Mart., Fl. Bras.
+13(1): 537. 1872 (nom. nud., pro syn.).
+Type: PERU: Junín: Tarma. H. Ruiz & J.A. Pavón
+s.n. (lectotype, designated by Killip 1938, BM; isolectotype, G).
+Liana, pubescent, except for adaxial surface of lamina and internal floral parts; indument white, curly and
+tangled. Stipules 7-9(11) mm, reduced to pinnatisect
+or palmatisect filiform segments; petiole (0.8)1.5-2
+(3.5) cm, with 4-6 glands; lamina (4)6-8(11) × (3.5)7-9
+(14) cm, three lobed; lobes 9-11 cm long, central lobe
+longer than lateral, lanceolate; apices acute; base cordate, shallowly cordate to rounded; margin serrate and
+glandular; venation impressed above. Peduncle (3.2)57(9.5) cm, flexible, flowers pendent; bracts 1.2-3 × 0.81.5 cm, ovate to lanceolate, free, verticillate; apex acute
+to rounded, base rounded; margin serrate lacerate;
+stipe 0.4 cm; floral tube 4.4-6 × 0.9-2 cm, cylindrical,
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322. doi: 10.3989/ajbm.2204
+
+A revision of Passiflora
+
+43
+
+Fig. 3. Passiflora pinnatistipula: a, habit with bud and open flower; b, stipule; c, bract; d, longitudital section of flower [a-d from
+R. Vásquez 1946].
+
+slightly dilated or not dilated at base; sepals 3.3-6 × 1.22 cm, oblong, aristate; awn 0.5 cm; petals 5-5.8 cm ×
+1.5-2 cm; corona in 1 or 2 series, the outer 1.2-2 cm filiform, the inner 1 mm at mouth of hypanthium; androgynophore 7-8 cm; ovary spherical. Mature fruits 6
+
+× 6 cm, spherical; seeds 5.5 × 4 mm, obovoid, shallowly pitted. (Fig. 3).
+Diagnostic characters. Passiflora pinnatistipula
+shares a 3-lobed leaf with P. mandonii, P. carrascoensis,
+and P. pilosicorona in this section. It shares a longer
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322.doi: 10.3989/ajbm.2204
+
+44
+
+P.M. Jørgensen & R. Vásquez
+
+than 5 cm hypanthium only with P. mandonii, and is
+distinct from that species by the color of the indument, the length of the hypanthium, and the shape of
+the leaf lobes.
+Distribution and habitat. Passiflora pinnatistipula is
+widely distributed, from Chile and Bolivia to Colombia, in large part due to its frequent cultivation. Our
+best guess for its natural distribution would include
+areas in northern Bolivia and southern Peru, where it
+is most frequently collected. An IUCN threat status of
+LC is assigned to this species.
+Additional specimens examined
+BOLIVIA. Locality not recorded, X. Menhofer 1546 (LPB).
+Cochabamba: Villa Pereira, 3870 m, 24-III-1997, L. Guzmán 77
+(BOLV, MO 4907406); Illimani, Julio II.230 (US); Arani: mountains of Tiraque, 3000 m, 16-XI-1928, J. Steinbach 8722 (BM); Arque: San Miguel (40 km from Cochabamba), 17°20’S 66°16’W,
+3500 m, 18-VI-1988, D. Candia 79 (CTES n.v., LPB, MO 5743892,
+NY n.v.); 69 km road to Oruro, 3470 m, 17°40’S 66°30’W, 2-I1992, P. Ibisch 730 (BOLV, LPB, MO 5743894); Ayopaya: Chullpapampa, 17°03’S 66°50’W, 2865 m, 25-III-1997, L. Guzmán 79
+(BOLV, LPB); Ulupicani, 17°04’S 65°51’W, 3200 m, 25-III-1997,
+L. Guzmán 84 (BOLV, LPB); Comunidad Llavecita, 16°53’S
+66°53’W, 2760 m, 18-X-1996, J. Quispe 125a (LPB); Río Independencia, 17°04’S 66°49’W, 2700 m, 14-V-1990, K. Zander 14 (LPB,
+TEX n.v., US n.v., USZ); Prov. D’Ayopaya, XII-1846, H.A. Weddell 4130 (P); M. Cárdenas 3184 (US); Carrasco: Pocona, 2800 m,
+13-XI-1928, J. Steinbach 8714 (K); Cercado: Cerveceria Colón
+above Cochabamba, 2600 m, II-1944, M. Cárdenas 2384 (P); Pajcha, 3450 m, 17º19’23”S 66º07’58”W, M. Zarate 1942 (BOLV);
+Chapare: Tunari, 3600 m, 5-IV-1959, J. Cañigueral s.n. (LPB); side
+road to Tablas Monte, 2780 m, L. Guzmán & L. López 27 (BOLV);
+Quillacollo: Tawa Cruz-Quillacollo, 17º10’S 66º30’W, 3000 m, M.
+Lehnert 528 (LPB); Quillacollo-Misicuni/Cocapata, on S side of
+Tunari, 3300 m, J.R.I. Wood 17661 (LPB); San Miguel, 3700 m,
+M.C. Ramírez 178 (BOLV, LPB); Liriuni, ca. 8 km NW of Quillacollo, 4000 m, II-1947, H.C. Cutler & M. Cárdenas 9050 (F n.v.,
+US); 59 km on road to Oruro, 17°40’S 66°25’W, 3580 m, 31-III1979, S.G. Beck 972 (LPB, MO 2718716); near Pia, Thola Pujru,
+17°25’S 66°20’W, 3420 m, 15-IV-1995, E. Fernández & al. 443
+(BOLV, LPB); 30 km on road to Morochata, 17°20’S 66°17’W,
+3600 m, 29-I-1995, E. Fernández & E. Saravia 229 (BOLV, LPB);
+23 km before Piusilla, 17°27’S 66°31’W, 3425 m, 21-II-1997,
+L. Guzmán & L. López 20 (BOLV, LPB); locality not recorded,
+17°35’S 66°37’W, 3110 m, 20-II-1997, L. Guzmán & L. López 15
+(BOLV, LPB); Palca Pampa, 17°20’S 66°20’W, 3600 m, 1-IV1991, I. Hensen 2193 (BOLV, LPB); road Sipe-Sipe to Kami,
+17°30’S 66°20’W, 3800 m, 3-V-1989, I. Hensen 418 (BOLV, LPB);
+60 km on road Cochabamba-Cami, 17°30’S 66°20’W, 3900 m, 15XII-1988, M. Liberman 2318 (LPB, MO 5743893, SI n.v.);
+Cordillera Tunari, road leading north from Quillacollo, ca. 3.5 km
+beyond Estancia Liriuni, 3475 m, 16-VI-1994, N. Ritter 1169
+(BOLV, LPB, MO 4966952, NHA n.v.); Liriuni, 17°15’S
+66°18’W, 3000 m, XII-1972, R. Vásquez 1946 (Herb. Vasq., LPB);
+Cochabamba-Morochata, 3000 m, 13-X-1964, W.J. Badcock 433
+(K); Luriuni, hot springs in Tunari Range some miles above Quillacolle on rail to Cochabamba, 17°00’S 66°30’W, 3000 m, 10-IX1950, W.M.A. Brooke 6788 (BM); at Liriuni, 24-IX-1982, A.L.
+Cabrera & M.M. Gutiérez 33774 (MO 3658804); 40 km after
+Cochabamba on the road to Morochata, 3400 m, 5-I-1968, B.
+
+Vuillemier 469 (MO 3489054); Tapacari: km 69 road Cochabamba-Oruro, 3460 m, 17°40’S 66°30’W, 18-II-1992, L. Guzmán &
+L. López 1 (BOLV, LPB); Tiraque: Sacambilla Bajo, 17°29’S
+65°46’W, 2890 m, 14-III-1997, L. Guzmán 49 (BOLV, LPB). La
+Paz: Camacho: Chaguaya, 15°47’S 69°02’W, 4100 m, 18-XI-1992,
+R. Vásquez & al. 1977 (Herb. Vasq.); Inquisivi: Zamora-Iguasani,
+5 km SE from Inquisivi, 16°57’S 67°06’W, 3100 m, 13-I-1989, M.
+Lewis 35073 (MO 4037686, MO 4037685); 5 km SE (air) of Inquisivi, between Yamora and Iguazani, 16°57’S 67°06’W, 3100 m,
+13-I-1989, M. Saldías P. 630 (BOLV, MO 4267026, USZ); 7 km NE
+de Choquetanga, 16°48’S 67°17’W, 3330 m, 19-I-1994, N. Salinas
+2260 (LPB); Larecaja: Sorata, 15°47’S 68°39’W, 2800 m, 20-I1980, R. Vásquez & al. 1945 (Herb. Vasq.); Murillo: La Paz, 3800
+m, VII-1949, Araque & Barkley 19-B-004 (US). Potosi: Ckonapaya,
+3085 m, 17-III-1997, L. Guzmán 67 (BOLV, MO 4907396).
+CHILE. Without locality, Bridges s.n. (G n.v.); W.J. Hooker s.n.
+(NY n.v.); H. Cuming 50 (W n.v.). Coquimbo (Region IV):
+Aconcagua, 1876, R.A. Philippi s.n. (B destr., G n.v., W n.v.);
+Aconcagua, road between Quebrada El Tigre and Zapallar, 5-I1949, O. Boelcke 4316 (MO 2477307); Zapallar, 1-V-1975, O. Zöllner 8016 (MO 2325413); Aconcagua, between Zapallar and Papudo, 50 m, X-1948, G. Looser 5496 (US n.v.). Valparaíso (Región
+V): Valparaíso, L. Née s.n. (MA); C.L.G. Bertero s.n. (GH n.v., P);
+H. Cuming 562 (BM, G n.v.); H. Cuming 565 (BM, G n.v., NY
+n.v.). Biobío (Región VIII): Concepción, J. Miers s.n. (BM).
+Los Lagos (Región X): Valdivia, R.A. Philippi s.n. (US n.v.).
+COLOMBIA. Without Department: Huanacayo, Chavez 129 (B
+destr.). Antioquia: San Pedro: VIII-1938, Brother Daniel & al.
+1542 (US); Santa Rosa de Osos: finca La Cruz, 18-X-1981, L.
+Buitrago 4 (HUA n.v.). Boyacá: alrededores Laguna de Tota, 3-VI1958, R. Romero-Castañeda & al. 6849 (COL n.v.); Paipa, XII1939, Jiménez 4K (US); Tuta, between Tunja and Paipa, XII-1977,
+L.K. Escobar & al. 553 (HUA n.v., LL n.v.). Cundinamarca: Fontibón, XII-1875, E.-F. André 1282 (K n.v.); sabana de Bogotá,
+Yerbabuena, 16-VI-1944, A. Dugand 3556 (COL n.v.); Bogotá,
+Ciudad Universitaria, 15-XI-1966, H. García-Barriga 18782 (COL
+n.v.); carretera Ubaté-El Hato., 17-IX-1947, O.L. Haught 6191
+(COL n.v., US n.v.); Bogotá, s.d., J.J. Triana 2969 (BM); J.J. Triana 5101 (BM); sabana de Bogotá, X-1939, L. Uribe 142 (COL
+n.v.); Bogotá, H. Karsten s.n. (W n.v.); I. Holton 706 (NY n.v.);
+Guasca: IX-1954, L. Uribe 2638 (COL n.v., US); Nemocón:
+Nemocón, IX-1920, F.W. Popenoe 1078 (US n.v.); Subachoque:
+15-III-1972, L. Uribe 6643 (COL n.v.); Zipacón, I-1883, J.G.C.
+Lehmann 2509 (G n.v., GH n.v., US n.v.); municipio Zipaquirá,
+near town of Zipaquirá on road Zipaquirá to Pacho, 3000 m, 12VII-1956, H.G. Barclay & al. 80 (COL n.v., MO 3777785). Nariño:
+Volcán Azufral, Laguna del Azufral or Laguna Verde, 3200 m, 25IX-1983, O. De Benavides 4231 (MO 3528700); Túquerres, entre
+Túquerres y Sapuyes, 24-XI-1964, L.E. Mora 3422 (PSO n.v.).
+Norte de Santander: between Mutiscua and Pamplona, 2700-3400
+m, 23-II-1927, E.P. Killip & A.C. Smith 19700 (C n.v., F n.v., GH
+n.v., MO 996262, US n.v.). ECUADOR. Without Province:
+L. Mille 236 (US). Chimborazo: Alao, 01°52’S 78°30’W, 3200 m, 5V-1982, B. Øllgaard & al. 38049 (AAU, MO 3677901, QCA); Riobamba, 27-X-1979, L.K. Escobar & P. Berry 652 (HUA n.v., QCA,
+TEX n.v.). Pichincha: Tambillo, L. Mille 232 (US); Pifo, L. Mille
+135 (US); Quito: Quito, 2800-2900 m, 1930, J.G.C. Lehmann 8256
+(B destr., F n.v., GH n.v., S, US; photo: AAU). Tungurahua: Ambato, XII-1918, A. Pachano 89 (NY n.v., US). PERU. Without locality: L. Neé s.n. (MA); J. Dombey 743 (G n.v., P); Mathews s.n.
+(BM). Ayacucho: Huamanga, road from Andahuaylas to Ayacucho,
+near Ocros, ca. 3500-3700 m, 17-II-2000, M. Weigend & K. Weigend
+2000/345 (USM). Apurimac: 4 km SW of Cotaruse, 26 km SW of
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322. doi: 10.3989/ajbm.2204
+
+A revision of Passiflora
+
+Chalhuanca, along Río Cotaruse, 3220 m, 23-VI-1978, A. Gentry
+& al. 23307 (MO 2798323). Abancay, road from Curahuasi to
+Abancay, after pass, 3000 m, 14-II-2000, M. Weigend & K.
+Weigend 2000/296 (USM). Andahuaylas: Moyabamba, 3650 m, I1950, C. Vargas C. 8702 (MO 1621160). Cusco: Ollantaitambo,
+Cook & Gilbert 475 (US); Tinta, Cook & Gilbert 228 (US). Anta:
+El Chaccan, 3515 m, 16-I-1973, G.R. Brunel 309 (MO 2480112);
+El Chaccan Chico, 3492 m, 11-IV-1973, G.R. Brunel 740 (MO
+2478684). Calca: road Calca-Lares, 3000-3300 m, 6-II-2000, M.
+Weigend & K. Weigend 2000/173 (MO 5206432, USM). Cusco:
+Tankarpata, above Cusco airport, valley between dry steep hillsides, 13°31’S 71°58’W, 3500 m, 23-VII-1983, A. Gentry 43211
+(MO 3337371, USM); ridge above Pumamarca, due E of Cusco,
+13°30’S 71°56’W, 3500-3700 m, 11-IV-1985, B.A. Stein & al.
+2544 (MO 3585496, USM); Cusco, VII-1929, F.L. Herrera 2586
+(MO 996939, US); Chocco, 3400 m, 8-XI-1936, C. Vargas C. 597
+(MO 1606753); Guispicanchi, F.L. Herrera 2605 (US); Urubamba, road from Cuzco to Quillabamba, before pass Abra Málaga,
+13°09’S, 72°16’W, 3550 m, 25-II-2000, M. Weigend & K. Weigend
+2000/466 (USM); Urubamba, ca. 27 km NW of Ollantaytambu on
+road to Quillabamba, 15-IV-1984, S. Knapp & J. Mallet 6359
+(USM). Paucartambo: along Río Paucartambo, S of Paucartambo,
+13°18’S 71°40’W, 3-X-1995, T.B. Croat 78154 (MO 4674659);
+Sunchubamba, 3000 m, 20-VI-1937, C. Vargas C. 1935 (MO
+1605186); Quispicanchis: Huaro: Urpay, 13°41’01”S
+71°38’22”W, 3200 m, XI-2002, W. Galiano & al. 4504 (CUZ); locality not recorded, 3200 m, W. Galiano & al. 4468 (CUZ, USM
+n.v.). Urubamba: Pumahuanca, 3000 m, II-1949, C. Vargas C.
+7809 (MO 1620337); Dist. Huayllabamba, Yanaccocha, Huayoccari, 13º18’11”S 72º03’10”W, 3600-3800 m, L. Valenzuela & al.
+6067 (CUZ n.v., MO, USM n.v., HUT n.v.). Huayllabamba: quebrada de Huayoccari-Laguna de Yanaccocha, 13°21’15”S
+72°03’55”W, 2900-3860 m, 5-XI-1988, A. Tupayachi H. 752 (CUZ
+n.v.); Lagunas Yanacchocha and Quellococha towards San Juan,
+NE of Cusco, 13°16’S 72°04’W, 2900-4600 m, 19-VIII-1989, A.
+Tupayachi & W. Galiano 1195 (MO 4037692). Junín: Concepción:
+Ocopa, E.P. Killip & A.C. Smith 22012 (F n.v., NY n.v., US).
+Huancayo: Huancayo, E.P. Killip & A.C. Smith 22034 (F n.v., NY
+n.v., US); Huancayo, 3300 m, 3-XII-1960, P. Hjerting 1038
+(USM); road from Huancayo to Huancavelica, 17 km from Huancayo, near Pucara, 12°15’30”S 75°04’21”W, 3872 m, 19-IX-2001,
+M. Weigend & al. 5797 (USM). Jauja: road from Palca to Jauja, behind the pass, 11°40’19”S 075°29’41”W, 3886 m, 11-IX-2001, M.
+Weigend & al. 5713 (USM). Tarma: Tarma, Ruiz & Pavón s.n.
+(BM, G n.v.); locality not recorded, E.P. Killip & A.C. Smith 21938
+(F n.v., NY n.v., US).
+
+5. Passiflora carrascoensis P. Jørg. & R. Vásquez, sp.
+nov.
+Type: BOLIVIA. Cochabamba: km 104 on the
+road that leads to Chapare, 3100 m, 1-XII-1966, Roy
+F. Steinbach 558 (holotype, S!).
+Haec species Passiflorae pilosicoronae et P. mandonii
+similis, sed a hac tubo florali multo breviore atque sepalis petalisque majoribus, ab illa hypanthio parum longiore, bracteis lanceolatis atque serie coronali secunda
+intra tubum floralem carente differt.
+Liana climbing 4-6 m over trees and shrubs, pubescent except for the adaxial surface of leaves, internal
+floral parts and petals; indument light brown, tangled.
+
+45
+
+Stem cylindrical; internodes 5-8 cm long; stipules split
+in pinnatisect filiform segments, 4-6 mm long; petiole
+1.5-2 cm, with 3-4 pairs of adaxial glands; blade 3-lobed, 6-8 × 6-8 cm; lobes 5-6 cm long; central lobe
+slightly longer than the lateral lobes, triangular; apices
+acute to apiculate; base cordate; margins serrate; venation impressed above. Flowers axillary, solitary,
+pendent; peduncles 4-7(12) cm long; bracts 2.5-3 × 11.5 cm, lanceolate, free, verticillate; base subcordate;
+apex fimbriate-denticulate; margin serrate-fimbriate;
+stipe 8 mm long; floral tube 2.5-3.6(4) cm long, 7-9
+mm wide, cylindrical; nectar chamber dilated at base;
+operculum reflexed, denticulate; sepals and petals
+rose-colored, spreading; sepals 6-7 × 1.4-1.6 cm wide,
+oblong, aristate; awn 7 mm; petals 5.5 × 1.5 cm, oblong, apex rounded; corona in 2 series, the outer series
+at mouth of floral tube, filiform, free, blue, 1 cm long,
+incurved towards the androgynophore, the inner series of few denticulate elements scattered inside the
+floral tube; androgynophore to 7 cm long; ovary
+ovoid, pubescent, to 10 mm long, 8 mm in diameter.
+Immature fruits appear nearly spherical, green and
+densely brown pubescent, mature fruits and seeds unknown. (Figs. 4, 5).
+Diagnostic characters. Escobar (1980) saw two specimens with short floral tube and shorter corona filaments, but she discussed them with Passiflora mandonii and did not indicate collector and number of the
+deviating specimens. She remarked that there were
+“no gradual intergradation between the typical P. mandonii and these specimens”, and saw them as possible
+hybrids with P. insignis. Those specimens may well belong to the new species here described; if that is the
+case then it is strange that she did not note that the
+sepals and petals are about twice as large as in P. mandonii. This new species is, if it is of hybrid origin, more
+likely to be between P. mandonii and P. pilosicorona.
+Passiflora carrascoensis and P. pilosicorona have very
+similar leaves, color of the indument, and a outer
+corona that is curved towards the androgynophore,
+but differs through the shape of the bracts (ovatelanceolate versus broadly ovate), and the floral tube
+length that is normally longer. It differs from P. mandonii by the shape of the leaves (shorter in P. carrascoensis), by the length of the sepals and petals (7 and
+6 versus 6 and 5 respectively), by the bracts (ovatelanceolate versus ovate), by the stipules (more
+branched in P. mandonii), by the outer corona bent towards the androgynophore, and by the peduncles 4-7
+cm versus 6-15 cm.
+Distribution and habitat. Passiflora carrascoensis has
+a very restricted distribution in a rather small area
+along the road from Cochabamba to Villa Tunari, at
+98-125 km from Cochabamba and from the region of
+Sehuencas (near the type locality of P. pilosicorona),
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322.doi: 10.3989/ajbm.2204
+
+46
+
+P.M. Jørgensen & R. Vásquez
+
+Fig. 4. Passiflora carrascoensis: a, leaf and stem, with detail of pubescence on upper surface; b, lateral leaf lobe tip with detailed pubescence on lower surface; c, stipules; d, bract; e, petal; f, sepal; g, longitudinal section of flower; h, longitudinal section of base of
+floral tube [a-g from S. Arrázola 166].
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322. doi: 10.3989/ajbm.2204
+
+A revision of Passiflora
+
+another 130 km from Cochabamba towards Santa
+Cruz along the old road. The species has only been
+collected 12 times in the last 45 years and to our
+knowledge, not before then. Two of the cited collections from Riksherbariet in Stockholm (S) could have
+been seen by Escobar, but they were never annotated
+by her. An IUCN threat status of EN is here assigned.
+Additional specimens examined
+BOLIVIA. Cochabamba: Carrasco: ca. 6 km below Sehuencas,
+18º29’S 65º15’W, 2200 m, J.R.I. Wood 10286 (LPB); Sehuencas,
+2500-2800 m, 29-IX-1990, S. Arrázola 166 (BOLV, Herb. Vasq.);
+Sehuencas, Mercado & al. 4 (BOLV); trail from Estancia Sehuencas along Río Fuerte, ca. 1 km E of Río Monte Puncu, 2200 m, N.
+Ritter 973 (BOLV); Sehuencas-Monte Puncu, 17º31’42”S
+65º16’17”W, 2400 m, 18-II-2005, E. Fernández & J. Altamirano
+3169 (BOLV n.v., MO); Sehuencas-Monte Puncu, 120 km desde
+Cochabamba, entrando 2 km de la carretera antigua a Santa Cruz,
+17º32’36”S 65º16’08”W, 2610 m, 25-IX-2007, J. Terán & al. 1269
+(BOLV n.v., MO); Siberia-Copachuncho, 150 km de Cochabamba, cerca Copachuncho, 17º45’12”S 65º01’43”W, 3031 m, 22-IX2007, J. Terán & al. 1128 (BOLV n.v., MO); Chapare: km 98 old
+road Cochabamba-Villa Tunari, 17°12’S 65°42’W, 3400 m, 27-VI1996, M. Kessler & al. 6762 (LPB, MO); km 104-125 on the road
+
+47
+
+Cochabamba-Todos Santos, 2100-3000 m, 23-IV-1959, L. Diers
+877 (S); road to Chapare, 17°20’S 65°50’W, 3500 m, 6-VIII-1959,
+J. Cañigueral 17A (LPB). Santa Cruz: Manuel María Caballero: Siberia, 17º50’07”S 64º44’42”W, 2700 m, L. Arroyo & al. 3677 (MO,
+USZ n.v.).
+
+6. Passiflora pilosicorona Sacco, Bradea 1(33): 350.
+1973
+Type: BOLIVIA. Cochabamba: km 200 on road
+from Cochabamba to Santa Cruz, 17°50’S 64°45’W,
+2590 m, 13-XI-1959, B. Maguire & C.K. Maguire
+44485 (holotype, PEL; isotype, NY!).
+Liana climbing 6-8 m over trees and shrubs, entirely covered by a lanuginose or pubescent indument except for the adaxial surface of leaves, internal floral
+parts, and petals. Stems terete, striate; internodes 4-7
+cm long; stipules pinnatisect; filaments pilose, to 9-14
+mm long; petiole 2-2.5 cm long, with 4-8 adaxial
+glands; blade 3-lobed, 8-10 × 7-11 cm; lobes 5.5-8 cm
+long along the lateral veins, to 10 cm long along the
+central vein, apex acute to apiculate; base cordate;
+margins irregular serrate; glabrous above, lanuginose
+beneath. Flower axillary, solitary, pendent; peduncles
+
+Fig. 5. Passiflora carrascoensis: photography of flower and fruit [from J. Terán & al. 1128].
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322.doi: 10.3989/ajbm.2204
+
+48
+
+P.M. Jørgensen & R. Vásquez
+
+6-12(17) cm long; bracts (3)3.5-4 × (2)2.5-3 cm,
+prominent, membranaceous, broadly ovate to almost
+orbicular; apex acute; base cordate; margins irregularly serrate and glandular; stipe to 1 cm long; floral tube
+2.0-2.2(4) × 1 cm; nectar chamber dilated at base, 8
+mm long, 20 mm wide, ferrugineous lanate externally;
+sepals and petals spreading, dark rose-colored; sepals
+5.5-6 × 1.2 cm, oblong-lanceolate, membranaceous,
+dorsally carinate, adaxally villosous, aristate; awn 7-10
+mm long; petals 5.5 × 1.3 cm, oblong, apex rounded;
+corona in 3 series; the outer series falcate, incurved, to
+10 mm long, blue, the ones born at the base of the
+sepals dorsally pilose, the ones from the base of the
+petals glabrous; the middle series composed of tuberculate process, 1 mm long, white, located near the
+base of the floral tube; the inner series compose of an
+erect, tubular, filamentose membrane, 5 mm long; operculum tubular, reflexed membrane, with serrulate
+margin; androgynophore 4 cm long; ovary obovoid,
+10 × 6 mm, densely pubescent, indument white, the
+base stipitate. Fruit subglobose, 6 × 6.5 cm. Seeds pitted, 7-8 mm long, 4.5 mm wide, the apex mucronate.
+(Fig. 6).
+Diagnostic characters. Passiflora pilosicorona is recognized by the large bracts, the short floral tube, the
+deep rose color of the petals, the outer filaments of the
+corona with short pubescent processes (as the name
+pilosicorona implies) and the elongated peduncles in
+the fruiting stage.
+Distribution and habitat. Passiflora pilosicorona is
+known to grow in two separate geographical areas in
+Bolivia. The first is along the border between the departments of Cochabamba and Santa Cruz on the old
+road. The vegetation is an evergreen humid montane
+forest or scrubland. The area is also known as Siberia
+because of its cold climate with clouds and fog that almost always cover it. The other area is located some
+15 km E of the city of Vallegrande with almost similar
+climatic conditions and forest formation. An IUCN
+threat status of EN is assigned to this species.
+Additional specimens examined
+BOLIVIA. Cochabamba: Carrasco: serranias de Siberia, entrance to Karawasi, ca. 3-5 km N of old highway Santa Cruz-Cochabamba, 17º47’44.8”S 64º42’54.2”, 2200 m, J.L. Clark & E. Rodríguez 6740 (LPB, US n.v.); 28 km NW of Comarapa on the Santa Cruz-Cochabamba road, 17°49’S 64°41’W, 2450 m, 10-II-1987,
+J.C. Solomon & M. Nee 15977 (LPB); Cochabamba, along or above main road from Monte Puncu to Parque Nacional Carrasco,
+17°50’S 65°14’W, 2650-2990 m, 2-3-VIII-1995, N. Skinner 67
+(USZ); serranía Siberia, 17°54’S 64°29’W, 2950 m, 16-I-1990, L.J.
+Dorr & L.C. Barnett 7071 (LPB, MO 3861145, NY n.v.); Sehuencas, Río Fuerte (Parque Nacional Carrasco), 17°30’S 65°17’W,
+2100 m, 5-I-1994, P. Ibisch & C. Ibisch 940212 (BOLV, LPB); between Pojo and Siberia, 17°46’S 64°50’W, 1-XI-1992, R. Vásquez &
+al. 1943 (Herb. Vasq.). Santa Cruz: Manuel M. Caballero: ca. 0.5 km
+
+S of Siberia on small side road, J.R.I. Wood 13637 (LPB); Epizana,
+97 km on road Cochabamba-Santa Cruz, 2400 m, 21-I-1994, A.
+Imaki 1 (LPB); 8 km NW of Torrecillas, 17°50’S 64°38’W, 2650 m,
+16-X-1997, J. Muller & J. Heinrichs 6606 (LPB); Parque Nacional
+Amboró, near Cerro Bravo, 10 km N of Comarapa, 17°49’S
+64°32’W, 2450 m, 21-X-1992, I.G. Vargas C. & al. 3025 (LPB, MO
+5166688, USZ); Siberia, 18 km from Comarapa, 17°49’64”S
+64°39’10”W, 2650 m, 18-IV-2003, D. Soto & al. 34 (USZ); between Siberia and Fortaleza, 17°45’S 64°44’W, 2200 m, XI-1992, R.
+Vásquez & al. 1944 (Herb. Vasq.). Vallegrande: Mataralcito, 17 km
+(air) de Vallegrande, Cima de cerro, 18°29’S 63°56’W, 2700 m, 13V-1988, M. Salidas P. 356 (USZ); 10-15 km E of Vallegrande (Potrerillos), 18°33’S 63°56’W, 2300 m, 8-IV-1993, I.G. Vargas C.
+2232 (LPB, MO 4966954, USZ); 15 km E of Vallegrande, below
+Peña de Lampasar, 18°31’01”S 63°54’54”W, 2300-2500 m, 8-V2000, I.G. Vargas C. & al. 4477 (USZ).
+
+II. Passiflora sect. ×Inkea Feuillet & J.M. MacDougal, BioLlania ed. esp. 6: 339. 1997
+Passiflora sect. Insignes Feuillet & J.M. MacDougal ×
+Passiflora sect. Elkea Feuillet & J.M. MacDougal.
+Poggendorffia H. Karst., Linnaea 28: 438. 1857.
+Passiflora sect. Poggendorffia (H. Karst.) Triana &
+Planch., Ann. Sci. Nat., Bot., ser. 5, 17: 127. 1873.
+Type: Passiflora ×rosea (H. Karst.) Killip
+See description of Passiflora ×rosea. The section has
+only one recognized taxon.
+7. Passiflora ×rosea (H. Karst.) Killip, Publ. Field
+Mus. Nat. Hist. Bot. Ser. 19: 278. 1938
+Basionym: Poggendorffia rosea H. Karst., Linnaea 28:
+438. 1856.
+Tacsonia rosea (H. Karst.) Sodiro, Anal. Univ. Quito
+18: 343. 1903.
+Type: COLOMBIA. Cundinamarca: Bogotá, H.
+Karsten s.n. (holotype, B destroyed; lectotype, here
+selected, W!).
+Liana, pubescent, except for internal floral parts;
+indument yellowish to ferrugineous. Stipules 0.5-1 ×
+0.3 cm, linear and deeply pinnatisect to reniform and
+not dissected; petiole 1.0-2.5 cm, with 6-8 glands;
+lamina 4.1-10.3 × 4.5-14.8 cm, three lobed; lobes 2.58.5 cm long, narrowly ovate-ovate; apices acute; base
+cordate to shallowly cordate; margin serrate. Peduncle 2.5-8.5 cm, flexible, flowers pendent; bracts 2-2.5 ×
+1.5-2 cm, ovate, free or united to 1 cm from base, verticillate; apex acute, base cordate; margin entire or
+serrate; floral tube 4.4-6.7 × 1.3-1.6 cm, cylindrical,
+only very slightly dilated at base; sepals 2.5-3 × 0.7-1.1
+cm, oblong-lanceolate, carinate, aristate; petals 2.53.2 × 1.3-1.5 cm; corona in 2 series, 0.8-1.3 cm filiform at mouth of floral tube, white, pink, purple and
+dark blue, graduating from tip to base; inner series 23 mm, white, scattered at or below the level of stamen
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322. doi: 10.3989/ajbm.2204
+
+A revision of Passiflora
+
+49
+
+Fig. 6. Passiflora pilosicorona: a, leaf and pendent flower, with detailed pubescence of upper leaf surface; b, detail of pubescence of
+lower leaf surface; c, stipule; d, bract; e, longitudinal section of flower; f, detail of the nectar chamber; g, sepal; h, petal; i, fruit; j, seed
+[a-j from R. Vásquez 1943].
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322.doi: 10.3989/ajbm.2204
+
+50
+
+P.M. Jørgensen & R. Vásquez
+
+Fig. 7. Passiflora × rosea: A, gynoecium and androecium, note the deform anthers with connective,
+the trochlea like development on the androgynophore where the filaments separate from the
+gynophore; B, longitudinal section of flower and bud; C, axil with pedicel and flower bud with fused
+bracts; D, immature fruit, note the ovoid fruit and the trochlea like structure still present in fruit.
+Scale bars: a-d = 1 cm.
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322. doi: 10.3989/ajbm.2204
+
+A revision of Passiflora
+
+separation from the androgynophore; androgynophore 1-3 cm, thin; gynophore 3-4 cm, stout;
+ovary ovoid; stamens partially free, the stamens separation area is shaped in several different ways (see photography), anthers basifixed or almost so, pollen scarce;
+connective awn shaped. Mature fruits 8 × 2.5 cm, ovoid
+oblong; seeds 6 mm, closely reticulate. (Fig. 7), see also
+http://www.botanicus.org/page/825076.
+Diagnostic characters. A vigorous liana with well developed corona as in P. pinnatistipula while the leaf
+shape and pubescence is more similar to P. tripartita
+var. mollisima. The stipules seem to either take after
+one species or the other. The most characteristic feature of this hybrid is the unique and “monstrous” androgynophore and base of the stamens which seem to
+take different shapes as well; we are not at all sure how
+to interpret the structure except as an indication that
+the two parents may not be as closely related as we
+think. Hybrids are readily produced in many areas of
+Subg. Passiflora and without such remarkable results.
+Distribution. P. ×rosea can be found from Colombia
+to Chile and Bolivia, always under cultivation or near
+settlements frequently seen in close proximity of one or
+both its parent species. The native range of the parent
+species would probably not overlap, but that is difficult
+to ascertain as both species have been widely cultivated
+for a long time. P. pinnatistipula is probably native to
+southern Peru and northern Bolivia (maybe also northern Chile) while P. tripartita var. mollisima is a cultivar
+mainly from Colombia to central Peru. IUCN threat assignment is LC, parent species are frequently cultivated.
+Note on typification. The material at P, which Killip
+annotated in 1927 as type material and cited (1938, p.
+279), is not type material. The label clearly indicates
+that it was collected by J. Triana, in the “environ de Bogotá”, i.e. not a collection made by Karsten. This material was not seen by Escobar (1980), she however saw
+material from W, and indicated that as the holotype.
+Karsten worked, however, in Berlin in 1856 (TL-2,
+http://tl2.idcpublishers.info/ consulted 12-VIII-2008)
+so it would be most logical that the holotype would
+have been deposited there, as indicated by Killip
+(1938), but that specimen was destroyed. Escobar
+(1980) is furthermore not effectively published and
+her indication of a holotype can therefore not stand as
+a lectotypification, so the lectotypification is therefore
+made here.
+Additional specimens examined
+COLOMBIA. Cundinamarca: sabana de Bogotá, M.T. Dawe
+299 (K, US); Bogotá, I-1883, J.G.C Lehmann 2624 (B destr., K);
+Bogotá, Apollinaire M. s.n. (COL n.v., US); Subachoque: XII1978, L.K. Escobar & Escobar-Uribe 534 (LL n.v.); Zipacón: vereda Paloquemao, granja Las Flores, 18-X-1980, J.M. Idrobo & al.
+11110 (COL n.v.). ECUADOR: Pichincha: Pifo, cultivated, L.
+Mille 132 (US); Quito: Quito, cultivated, L. Mille 234 (US). PERU:
+
+51
+
+Cusco: Urubamba, Huayllabamba, Lagunas Yanaccocha and
+Quellococha towards San Juan, NE of Cusco, 13°16’S 72°04’W,
+2900-4600 m, 19-VIII-1989, A. Tupayachi & W. Galiano 1196
+(CUZ n.v.), Dist. Huayllabamba, Yanaccocha, Huayoccari,
+13º18’11”S 072º03’10”W, 3600-3800 m, L. Valenzuela & al. 6066
+(CUZ n.v., MO, USM n.v.). Junín: Huancayo: Huancayo, 3-XII1960, P. Hjerting 1037 (USM); Jauja, road from Palca to Jauja, behind the pass, 11°40’19”S 075°29’41”W, 3886 m, 11-IX-2001, M.
+Weigend & al. 5714 (M n.v.). Tarma: Tarma, 1918, N. Espostos s.n.
+(USM); Tarma, 3000-3200 m, IV-1929, E.P. Killip & A.C. Smith
+21885 (BM, C n.v., F n.v., GH n.v., NY n.v., S, US).
+
+Acknowledgments
+We acknowledge Christian Feuillet, for his translation of Triana and Planchon’s text on Tacsonia rosea; Elena Acurio, for the
+photos of Passiflora ×rosea (fig. 7); Jehizon Terán, for the photo of
+P. carrascoensis (fig. 5); Alexandra Hernández and Carmen Ulloa,
+for commenting on an earlier version of the manuscript; Christian
+Feuillet and John MacDougal for their review; and the curators of
+AAU, BM, BOLV, CUZ, G, K, LPB, MA, MO, P, QCA, S, US,
+USM, USZ for their help during visits or with loans. Roberto
+Vásquez made all the illustrations.
+
+References
+Bentham, G. & Hooker, J.D. 1862. Genera Plantarum 1(1-3):
+1-1040. Kew, London
+Escobar, L.K. 1980. Interrelationships of the edible species of Passiflora centering around Passiflora mollissima (H.B.K.) Bailey subgenus Tacsonia. Ph.D. dissertation, University of Texas at
+Austin, Austin.
+Escobar, L.K. 1988. Passifloraceae: Passiflora, subgeneros Tacsonia,
+Rathea, Manicata y Distephana. Flora de Colombia 10: 1-138.
+Feuillet, C. & MacDougal, J.M. 1997. Infrageneric names in Passiflora (Passifloraceae). BioLlania Edición Especial 6: 335-340.
+Feuillet, C. & MacDougal, J.M. 2004. A new infrageneric classification of Passiflora L. (Passifloraceae). Passiflora 13(2): 34-35,
+37-38. [title page date 2003]
+Harms, H. 1925. Passifloraceae In: A. Engler & K. Prantl (eds.),
+Die Naturlichen Pflanzenfamilien 2ed. 21: 470-507.
+Masters, M.T. 1872. Passifloraceae. In: C.F.P. von Martius (ed.),
+Flora Brasiliensis 13(1): 529-628, tabs. 106-128.
+Karsten, H. 1856. Plantae Columbianae. Linnaea 28: 387-462.
+Karsten, H. 1859. Florae Columbiae, terrarumque adiacentium
+specimina selecta in peregrinatione duodecim annorum observata
+1(2). Berolini. [title page date 1858]
+Karsten, H. 1887. Bentham-Hooker’s “Genera Plantarum” und
+Florae Columbiae specimina selecta. Botanische Jahrbücher für
+Systematik 8: 335-376.
+Killip, E. P. 1938. The American Species of Passifloraceae. Publications of the Field Museum of Natural History, Botanical Series
+19(1-2): 1-331, 333-613.
+McNeill, J., Barrie, F.R., Burdet, H.M., Demoulin, V., Hawksworth, D.L., Marhold, K., Nicholson, D.H., Prado, J., Silva, P.C.,
+Skog, J.E., Wiersema, J.H. & Turland, N.J. 2006. International
+Code of Botanical Nomenclature (Vienna Code). Regnum Vegetabile 146: i-xviii, 1-568.
+Sodiro, L. 1903. Tacsonias ecuatorianas (Pasifloreas) Tacsonia
+Juss. (Vulg. Tacso) [Part. 1]. Anales de la Universidad Central
+del Ecuador 18(130): 333-348.
+Triana, J. & Planchon, J.E. 1873. XIX.– Passifloreae Juss. (Prodromus Florae Novo-Granatensis). Annales des Sciences Naturelles; Botanique sér. 5, 17: 121-186.
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322.doi: 10.3989/ajbm.2204
+
+52
+
+P.M. Jørgensen & R. Vásquez
+
+Appendix 1
+L. Acevey 1 (3); Bro. Adolfo 312 (3); E.-F. André 1282 (4); Araque
+& Barkley 19-B-004 (4); A. Araujo-Murakami & F. Canqui
+3782 (3); S. Arrázola 166 (5); L. Arroyo & al. 3677 (5); E.
+Asplund 3632 (3).
+W.J. Badcock 433 (4); M. Bang 1556 (1); H.G. Barclay & al. 80 (4);
+S.G. Beck 972 (4), 4010 (3), 4787 (1), 12925 (1), 19882 (3); O.
+De Benavides 4231 (4); O. Boelcke 4316 (4); W.M.A. Brooke
+6743 (3), 6887 (1), 6788 (4); G.R. Brunel 309 (4), 740 (4); L.
+Buitrago 4 (4).
+A.L. Cabrera & M.M. Gutiérez 33774 (4); D. Candia 79 (4);
+J. Cañigueral 17A (5); M. Cárdenas 2384 (4), 3184 (4),
+3821(3); Chavez 129 (4); J.L. Clark & E. Rodríguez 6740 (6);
+Cook & Gilbert 228 (4), 475 (4); T.B. Croat 78154 (4); H.
+Cuming 50 (4), 562 (4), 565 (4); H.C. Cutler & M. Cádenas
+9050 (4).
+Bro. Daniel & al. 1542 (4); Dawe 299 (7); L. Diers 877 (5); L.J.
+Dorr & L.C. Barnett 7071 (6); J. Dombey 743 (4); A. Dugand
+3556 (4).
+L.K. Escobar 1306 (3), 1308 (3); L.K. Escobar & P. Berry 652 (4);
+L.K. Escobar & Escobar-Uribe 534 (7); L.K. Escobar & E. Carrillo 1309 (3); L.K. Escobar & J.C. Solomon 4813 (1), 4814 (1),
+4838 (1), 4842 (1); L.K. Escobar & al. 553 (4).
+E. Fernández & E. Saravia 229 (4); E. Fernández & al. 443 (4);
+J. Fernández Casas & J. Molero 6542 (3); A. Fournet 420 (1);
+A. Fuentes & R. Cuevas 8374 (3); A. Fuentes & al. 10727 (3),
+11347 (1), A. Fuentes 12116 (1).
+W. Galiano & al. 4468 (4), 4504 (4); H. García-Barriga 18782 (4);
+A. Gentry 43211 (4); A. Gentry & al. 23307 (4); Giroult 8 (3); P.
+Gutte 490 (3); L. Guzmán 36 (3), 37 (3), 44 (3), 49 (4), 67 (4),
+77 (4), 79 (4), 84 (4); L. Guzmán & L. López 1 (4), 15 (4), 20 (4),
+27 (4).
+O.L. Haught 6191 (4); I. Hensen 418 (4), 2193 (4); M. Hermann
+305 (1); F.L. Herrera 2586 (4), 2605 (4); P. Hjerting 1037 (7),
+1038 (4); I. Holton 706 (4).
+P. Ibisch 730 (4); P. Ibisch & C. Ibisch 940212 (6); Idrobo & al.
+11110 (7); A. Imaki 1 (6).
+Jimenez 4K (4).
+M. Kessler 2898 (3), 6762 (5); M. Kessler & M. Kelschebach 222
+(3); E.P. Killip & A.C. Smith 19700 (4), 21885 (7); 21938 (4),
+22012 (4), 22034 (4); S. Knapp & J. Mallet 6359 (4).
+J.G.C. Lehmann 2509 (4), 2624 (7), 8256 (4); M. Lehnert 528 (4);
+M. Lewis 35073 (4), 39093 (3), 38654 (3); M. Lewis & V. Kuno
+39093 (3); M. Liberman 2318 (4); G. Looser 5496 (4); L. López
+& L. Guzmán 27 (3); J. Luteyn & L.J. Dorr 13688 (1).
+B. Maguire & C.K. Maguire 44485 (6); G. Mandon 609bis (1), 609
+(3); 616 (3); Mathews 1252 (2); X. Menhofer 1481 (1), 1546 (4);
+Mercado & al. 4 (5); L.E. Mora 3422 (4); L. Mille 132 (7); 135
+(4), 232 (4), 234 (7), 236 (4); J. Mueller & J. Heinrichs 6606 (6),
+6653 (3).
+B. Øllgaard & al. 38049 (4).
+A. Pachano 89 (4); Pearce 721 (3); F.W. Popenoe 1078 (4).
+J. Quispe 125a (4).
+M.C. Ramírez 178 (4); N. Ritter 892(3), 973 (5), 1169 (4); N. Ritter & B. Cullina 1238 (3); G. Rodríguez 20 (3); R. RomeroCastañeda & al. 6849 (4); J. Rossel F. 100 (3); H.H. Rusby 2465
+(1).
+M. Saldías P. 356 (6), 630 (4); N. Salinas 2220 (3), 2260 (4), 3163
+(3); Saravia 1232 (3); N. Skinner 67 (6); J.C. Solomon 8646 (1),
+14409 (3); J.C. Solomon & M. Nee 15977 (6); D. Soto & al. 34
+(6); B.A. Stein & al. 2544 (4); J. Steinbach 5765 (3), 8714 (4),
+8722 (4), 9523 (3); R. F. Steinbach 558 (5).
+
+G. Tate 789 (3); J. Terán & al. 863 (3), 1128 (5), 1265 (5); Tovar
+5122 (3); J.J. Triana 2969 (4), 5101 (4); F. Troncoso 17 (3); A.
+Tupayachi H. 752 (4); A. Tupayachi & W. Galiano 1195 (4),
+1196 (7).
+L. Uribe 142 (4), 2638 (4), 6643 (4).
+L. Valenzuela & al. 6067 (4), 6066 (7); C. Vargas 597 (4), 1935 (4),
+7809 (4), 8702 (4); I.G. Vargas 660 (3), 2232 (6), 3025 (6), 4477
+(6); R. Vásquez & al. 1921 (1), 1925 (3), 1926 (3), 1928 (3), 1943
+(6), 1944 (6), 1945 (4), 1946 (4), 1977 (4), 4695a (1); B. Vuillemier 469 (4).
+H.A. Weddell 4130 (4); M. Weigend & al. 5713 (4), 5714 (7), 5797
+(4); M. Weigend & K. Weigend 2000/173 (4), 2000/296 (4),
+2000/345 (4), 2000/466 (4); E. Werdermann 2068 (3); J.R.I.
+Wood 10286 (5), 13637 (6), 17661 (4).
+K. Zander 14 (4); M. Zarate 1942 (4); F. Zenteno 6811 (3); O.
+Zöllner 8016 (4).
+
+Index to scientific names
+Ancylogyne capitata, 40
+Passiflora, 36
+Passiflora subgenus Distephana, 38
+Passiflora subgenus Passiflora, 51
+Passiflora subgenus Tacsonia, 35, 36, 37, 38
+Passiflora supersection Distephana, 35, 38
+Passiflora supersection Tacsonia, 35, 36, 37, 38
+Passiflora section ×Inkea, 35, 36, 37, 48
+Passiflora section Bracteogama, 35, 36
+Passiflora section Colombiana, 35
+Passiflora section Elkea, 36, 37
+Passiflora section Fimbriatistipula, 35
+Passiflora section Insignes, 35, 36, 37, 38
+Passiflora section Manicata, 38
+Passiflora section Parritana, 35
+Passiflora section Poggendorffia, 48, 35, 37
+Passiflora section Rathea, 38
+Passiflora section Tacsonia, 35, 36, 38
+Passiflora section Tacsoniopsis, 35, 38
+Passiflora series Insignes, 37
+Passiflora § Insignes, 37
+Passiflora § Pinnatistipulae, 36
+Passiflora acutissima, 40
+Passiflora buchtienii, 38
+Passiflora callimorpha, 38
+Passiflora carrascoensis, 35, 40, 43, 45
+Passiflora insignis, 36, 37, 38, 45
+Passiflora lanceolata (Mast.) Harms, 37, 40
+Passiflora lanceolata G. Don, 40
+Passiflora lancifolia, 40
+Passiflora mandonii, 35, 37, 40, 43, 44, 45
+Passiflora miniata, 38
+Passiflora mollissima, 36
+Passiflora pennipes, 42
+Passiflora pilosicorona, 35, 43, 45, 47
+Passiflora pinnatistipula, 35, 36, 37, 42, 43, 51
+Passiflora steinbachii, 40
+Passiflora tripartita var. mollissima, 36, 51
+Passiflora ×rosea, 36, 37, 48, 51
+Poggendorffia, 36, 48,
+Poggendorffia rosea, 36, 37, 48
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322. doi: 10.3989/ajbm.2204
+
+53
+
+A revision of Passiflora
+
+Tacsonia, 35, 36
+Tacsonia insignis, 38
+Tacsonia lanceolata, 40
+Tacsonia mandonii, 40
+Tacsonia micradenia, 42
+Tacsonia pennipes, 42
+Tacsonia pinnatistipula, 42
+
+Tacsonia pinnatistipula var. pennipes, 42
+Tacsonia purupuru, 42
+Tacsonia rosea, 48
+Tacsonia ×rosea, 48
+
+Anales del Jardín Botánico de Madrid 66(1): 35-53, enero-junio 2009. ISSN: 0211-1322.doi: 10.3989/ajbm.2204
+
+Associate Editor: C. Aedo
+Received: 21-VIII-2008
+Accepted: 27-XI-2008
+
+
