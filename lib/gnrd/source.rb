@@ -30,7 +30,7 @@ module Gnrd
     private
 
     def text_file?
-      File.exist?(@path) && @fm.file(@path).match(/(UTF-8|ASCII).+text/)
+      File.exist?(@path) && @fm.file(@path).match(/(\bUTF-8\b|\bASCII\b).+text/)
     end
   end
 
@@ -49,7 +49,26 @@ module Gnrd
     private
 
     def pdf_file?
-      File.exist?(@path) && @fm.file(@path).match(/PDF/)
+      File.exist?(@path) && @fm.file(@path).match(/\bPDF\b/)
+    end
+  end
+
+  # Source of a image-file type.
+  class ImageFile
+    def initialize(path)
+      @fm = FileMagic.new
+      @path = path
+      raise TypeError, "Not an image file: #{@path}" unless image_file?
+    end
+
+    def text
+      @text ||= TextExtractor.new(@path).text
+    end
+
+    private
+
+    def image_file?
+      File.exist?(@path) && @fm.file(@path).match(/\bimage data\b/)
     end
   end
 end

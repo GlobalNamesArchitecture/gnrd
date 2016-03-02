@@ -6,8 +6,10 @@ describe "sources of texts" do
   let(:ascii) { __dir__ + "/../files/ascii.txt" }
   let(:pdf) { __dir__ + "/../files/file.pdf" }
   let(:image_pdf) { __dir__ + "/../files/image.pdf" }
-  let(:image) { __dir__ + "/../files/image.jpg" }
+  let(:jpg) { __dir__ + "/../files/image.jpg" }
+  let(:jpg_no_txt) { __dir__ + "/../files/no_names.jpg" }
   let(:pdf_txt) { File.read(__dir__ + "/../files/txt/file.pdf.txt") }
+  let(:image_pdf_txt) { File.read(__dir__ + "/../files/txt/image.jpg.txt") }
 
   describe Gnrd::TextString do
     let(:txt) { "Hello world" }
@@ -51,7 +53,7 @@ describe "sources of texts" do
       end
 
       it "raises error with image" do
-        expect { subject.new(image) }.to raise_error TypeError
+        expect { subject.new(jpg) }.to raise_error TypeError
       end
     end
 
@@ -75,7 +77,7 @@ describe "sources of texts" do
       end
 
       it "raises error with image" do
-        expect { subject.new(image) }.to raise_error TypeError
+        expect { subject.new(jpg) }.to raise_error TypeError
       end
 
       it "raises error with text file" do
@@ -87,9 +89,45 @@ describe "sources of texts" do
       end
     end
 
-    describe ".text" do
+    describe "#text" do
       it "gets text from pdf" do
         expect(subject.new(pdf).text).to eq pdf_txt
+      end
+
+      it "gets text from scanned pdf" do
+        expect(subject.new(image_pdf).text).to eq image_pdf_txt
+      end
+    end
+  end
+
+  describe Gnrd::ImageFile do
+    subject { Gnrd::ImageFile }
+
+    describe ".new" do
+      it "creates instance" do
+        expect(subject.new(jpg)).to be_kind_of Gnrd::ImageFile
+      end
+
+      it "raises error with string" do
+        expect { subject.new("hello") }.to raise_error TypeError
+      end
+
+      it "raises error with pdf" do
+        expect { subject.new(pdf) }.to raise_error TypeError
+      end
+
+      it "raises error with test file" do
+        expect { subject.new(utf) }.to raise_error TypeError
+      end
+    end
+
+    describe "#text" do
+      it "extracts text from images" do
+        expect(subject.new(jpg).text).to eq image_pdf_txt
+      end
+
+      it "deals with images without text" do
+        expect(subject.new(jpg_no_txt).text).to eq " \n\n"
       end
     end
   end

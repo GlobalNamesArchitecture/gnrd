@@ -1,6 +1,8 @@
 language: ruby
 rvm:
-  - 2.0.0-p353
+  - 2.0
+  - 2.1
+  - 2.2
 branches:
   only:
       - master
@@ -16,21 +18,9 @@ before_install:
   - sudo apt-get install tesseract-ocr
   - sudo apt-get install pdftk
   - sudo apt-get install libreoffice
+  - sudo apt-get install libmagic-dev
   - sudo apt-get install wget
-  - sudo easy_install virtualenv
-  - sudo easy_install tornado
-  - sudo easy_install nltk
-  - sudo easy_install nose
-before_script:
-  - ./script/set_travis_env
-  - cp config.yml.example config.yml
-  - rake db:create:all
-  - RACK_ENV=test rake db:migrate
-  - cd src/taxon-finder
-  - perl server.pl &
-  - cd ../..
-  - python ./src/neti_neti/neti_tornado_server.py &
-  - QUEUE=name_finder_high,name_finder,name_finder_low TERM_CHILD=1 rake resque:work &
-  - sleep 100
+# before_script:
+  # - QUEUE=name_finder_high,name_finder,name_finder_low TERM_CHILD=1 rake resque:work &
 
 
