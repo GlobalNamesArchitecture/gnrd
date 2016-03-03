@@ -37,6 +37,6 @@ COPY . /app
 
 RUN bundle install
 
-CMD ["rake"]
+CMD ["rackup"]
 
 
