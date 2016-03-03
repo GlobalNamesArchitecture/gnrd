@@ -9,7 +9,7 @@ describe "sources of texts" do
   let(:jpg) { __dir__ + "/../files/image.jpg" }
   let(:jpg_no_txt) { __dir__ + "/../files/no_names.jpg" }
   let(:pdf_txt) { File.read(__dir__ + "/../files/txt/file.pdf.txt") }
-  let(:image_pdf_txt) { File.read(__dir__ + "/../files/txt/image.jpg.txt") }
+  let(:image_pdf_txt) { /Baccha el.ngata 7-10/ }
 
   describe Gnrd::TextString do
     let(:txt) { "Hello world" }
@@ -95,7 +95,7 @@ describe "sources of texts" do
       end
 
       it "gets text from scanned pdf" do
-        expect(subject.new(image_pdf).text).to eq image_pdf_txt
+        expect(subject.new(image_pdf).text).to match(image_pdf_txt)
       end
     end
   end
@@ -123,7 +123,7 @@ describe "sources of texts" do
 
     describe "#text" do
       it "extracts text from images" do
-        expect(subject.new(jpg).text).to eq image_pdf_txt
+        expect(subject.new(jpg).text).to match(image_pdf_txt)
       end
 
       it "deals with images without text" do
