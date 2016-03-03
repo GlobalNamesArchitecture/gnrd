@@ -1,6 +1,7 @@
 require "fileutils"
 require "filemagic"
 require "docsplit"
+require "yaml"
 
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd
