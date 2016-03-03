@@ -127,7 +127,7 @@ describe "sources of texts" do
       end
 
       it "deals with images without text" do
-        expect(subject.new(jpg_no_txt).text).to eq " \n\n"
+        expect(subject.new(jpg_no_txt).text.strip).to eq ""
       end
     end
   end
