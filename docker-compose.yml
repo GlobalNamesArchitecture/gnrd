@@ -1,12 +1,18 @@
 version: '2'
 services:
-  web:
+  app:
     build: .
     ports:
       - "0.0.0.0:9292:9292"
     volumes:
       - .:/app
     depends_on:
+      - nn
+      - tf
       - redis
   redis:
     image: redis
+  nn:
+    image: gnames/netineti
+  tf:
+    image: gnames/taxonfinder

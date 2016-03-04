@@ -1,74 +1,118 @@
 module Gnrd
   # The simplest source type: utf8-encoded string
   class TextString
-    attr_reader :text
+    attr_reader :info
+
+    def self.normalize(txt, encoding)
+      unless ENCODINGS.include? encoding
+        raise(Gnrd::UnknownEncoding, "We don't know about this: #{encoding}")
+      end
+      opts = { invalid: :replace, undef: :replace }
+      case encoding
+      when /UTF-8|UNKNOWN/ then txt.encode("UTF-8", opts)
+      else txt.encode("UTF-8", encoding, opts)
+      end
+    end
 
     def initialize(txt)
-      @text = txt
-      raise TypeError, "Not a utf-8 encoded string: #{@txt}" unless text_string?
+      @info = InfoText.new(txt).info
+    end
+
+    def text
+      @text ||= prepare_text
     end
 
     private
 
-    def text_string?
-      @text.class == String && @text.encoding.name == "UTF-8"
+    def prepare_text
+      txt = @info[:text][:orig]
+      enc = @info[:text][:encoding]
+      @info[:text][:norm] = TextString.normalize(txt, enc)
     end
   end
 
-  # Source of a text-file type. The file should be in utf-8 encoding
+  # Data source of a text-file type. The file should be in utf-8 encoding
   class TextFile
+    attr_reader :info
+
     def initialize(path)
-      @fm = FileMagic.new
-      @path = path
-      raise TypeError, "Not a utf-8 text file: #{@path}" unless text_file?
+      @info = Gnrd::InfoFile.new(path).info
+      raise(TypeError,
+            "Not a text file: #{path}") unless info[:type] == "text_file"
     end
 
     def text
-      @text ||= File.read(@path)
+      @text ||= prepare_text
     end
 
     private
 
-    def text_file?
-      File.exist?(@path) && @fm.file(@path).match(RE_UTF8)
+    def prepare_text
+      txt = File.read(@info[:file])
+      enc = @info[:text][:encoding]
+      txt.force_encoding!(enc) if enc != "UNKNOWN"
+      @info[:text][:orig] = txt
+      @info[:text][:norm] = TextString.normalize(txt, enc)
     end
   end
 
-  # Source of a pdf-file type. The text should be in utf-8 encoding
+  # Data source of an HTML text string.
+  class HtmlString
+    def initialize(html)
+      @html = html
+    end
+
+    def text
+      @text ||= clean_text
+    end
+
+    def clean_text
+      Sanitize.clean(@html).strip.gsub(/\s+/, " ")
+    end
+  end
+
+  # Data source of html-file type
+  class HtmlFile
+    def initialize(path)
+      @path = path
+      raise(Gnrd::FileMissingError) unless File.exist?(path)
+      @hs = HtmlString.new(File.read(@path))
+    end
+
+    def text
+      @text ||= @hs.text
+    end
+  end
+
+  # Data source of a pdf-file type. The text should be in utf-8 encoding
   class PdfFile
+    attr_reader :info
+
     def initialize(path)
-      @fm = FileMagic.new
-      @path = path
-      raise TypeError, "Not a PDF file: #{@path}" unless pdf_file?
+      @info = InfoFile.new(path).info
+      unless info[:type] == "pdf_file"
+        raise TypeError, "Not a PDF file: #{path}"
+      end
     end
 
     def text
-      @text ||= TextExtractor.new(@path, "pdf").text
-    end
-
-    private
-
-    def pdf_file?
-      File.exist?(@path) && @fm.file(@path).match(RE_PDF)
+      @text ||= TextExtractor.new(@info[:file], "pdf").text
     end
   end
 
-  # Source of a image-file type.
+  # Data source of an image-file type.
   class ImageFile
+    attr_reader :info
+
     def initialize(path)
-      @fm = FileMagic.new
-      @path = path
-      raise TypeError, "Not an image file: #{@path}" unless image_file?
+      @info = Gnrd::InfoFile.new(path).info
+      unless @info[:type] == "image_file"
+        raise TypeError, "Not an image file: #{path}"
+      end
     end
 
     def text
-      @text ||= TextExtractor.new(@path).text
-    end
-
-    private
-
-    def image_file?
-      File.exist?(@path) && @fm.file(@path).match(RE_IMAGE)
+      @text ||= @info[:text][:norm] = TextExtractor.new(@info[:file]).text
     end
   end
 end

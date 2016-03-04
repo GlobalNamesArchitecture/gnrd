@@ -3,12 +3,11 @@ require_relative "gnrd/version"
 require_relative "gnrd/errors"
 require_relative "gnrd/source"
 require_relative "gnrd/text_extractor"
-require_relative "gnrd/source_factory"
+require_relative "gnrd/info_file"
+require_relative "gnrd/info_text"
 
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd
+  ENCODINGS = %w(UTF-8 UTF-16 ASCII ISO-8859-1 UNKNOWN).freeze
   FM = FileMagic.new
-  RE_UTF8 = /(\bUTF-8\b|\bASCII\b).+text/
-  RE_PDF = /\bPDF\b/
-  RE_IMAGE = /\bimage data\b/
 end

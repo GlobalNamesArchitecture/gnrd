@@ -1,8 +1,0 @@
-#!/bin/sh
-
-docker rm -f nn
-docker rm -f tf
-docker run -d --name tf -p 0.0.0.0:1234:1234 gnames/taxonfinder
-docker run -d --name nn -p 0.0.0.0:6384:6384 gnames/netineti
-RAKE_ENV=development QUEUE=name_finder_high,name_finder,name_finder_low \
-  TERM_CHILD=1 bundle exec rake resque:work

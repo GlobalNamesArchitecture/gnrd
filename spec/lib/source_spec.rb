@@ -10,6 +10,9 @@ describe "sources of texts" do
   let(:jpg_no_txt) { __dir__ + "/../files/no_names.jpg" }
   let(:pdf_txt) { File.read(__dir__ + "/../files/txt/file.pdf.txt") }
   let(:image_pdf_txt) { /Baccha el.ngata 7-10/ }
+  let(:html) { __dir__ + "/../files/file.html" }
+  let(:html_string) { File.read(html) }
+  let(:no_html) { File.read(__dir__ + "/../files/txt/no_html.txt") }
 
   describe Gnrd::TextString do
     let(:txt) { "Hello world" }
@@ -41,7 +44,8 @@ describe "sources of texts" do
       end
 
       it "raises error if file is not found" do
-        expect { subject.new("not-a-path") }.to raise_error TypeError
+        expect { subject.new("not-a-path") }
+          .to raise_error Gnrd::FileMissingError
       end
 
       it "it accepts ascii files" do
@@ -57,9 +61,35 @@ describe "sources of texts" do
       end
     end
 
-    describe "#text" do
-      it "returns text of the file" do
-        expect(subject.new(ascii).text).to match("Noeclytus pusillus")
+    # describe "#text" do
+    #   it "returns text of the file" do
+    #     expect(subject.new(ascii).text).to match("Noeclytus pusillus")
+    #   end
+    # end
+  end
+
+  describe Gnrd::HtmlString do
+    subject { Gnrd::HtmlString }
+
+    describe ".new" do
+      it "creates instance" do
+        expect(subject.new(html_string)).to be_kind_of(Gnrd::HtmlString)
+      end
+    end
+
+    # describe "#text" do
+    #   it "returns text without tags" do
+    #     expect(subject.new(html_string).text).to eq no_html
+    #   end
+    # end
+  end
+
+  describe Gnrd::HtmlFile do
+    subject { Gnrd::HtmlFile }
+
+    describe ".new" do
+      it "creates an instance" do
+        expect(subject.new(html)).to be_kind_of(Gnrd::HtmlFile)
       end
     end
   end
@@ -85,7 +115,7 @@ describe "sources of texts" do
       end
 
       it "raises error with string" do
-        expect { subject.new("ascii") }.to raise_error TypeError
+        expect { subject.new("ascii") }.to raise_error Gnrd::FileMissingError
       end
     end
 
@@ -109,7 +139,7 @@ describe "sources of texts" do
       end
 
       it "raises error with string" do
-        expect { subject.new("hello") }.to raise_error TypeError
+        expect { subject.new("hello") }.to raise_error Gnrd::FileMissingError
       end
 
       it "raises error with pdf" do
