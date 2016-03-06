@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 describe Gnrd::Text do
   include_context "shared_context"
   subject { Gnrd::Text }
@@ -53,7 +51,7 @@ describe Gnrd::Text do
     it "returns normalized text" do
       pdf = subject.new(pdf_dossier)
       expect(pdf.text_norm.encoding.to_s).to eq "UTF-8"
-      expect(pdf.text_orig).to_not eq  pdf.text_norm
+      expect(pdf.text_orig).to_not eq pdf.text_norm
     end
   end
 end

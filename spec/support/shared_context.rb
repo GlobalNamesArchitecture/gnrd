@@ -11,6 +11,10 @@ RSpec.shared_context "shared_context", a: :b do
   let(:ascii_txt) { File.read(ascii_path) }
   let(:ascii_dossier) { d.new(file: { path: ascii_path }) }
 
+  let(:latin1_path) { path + "/latin1.txt" }
+  let(:latin1_txt) { File.read(latin1_path) }
+  let(:latin1_dossier) { d.new(file: { path: latin1_path }) }
+
   let(:img_path) { path + "/image.jpg" }
   let(:img_dossier) { d.new(file: { path: img_path }) }
 
