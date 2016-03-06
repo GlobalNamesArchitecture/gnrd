@@ -52,8 +52,8 @@ describe Gnrd::Text do
   describe "#text_norm" do
     it "returns normalized text" do
       pdf = subject.new(pdf_dossier)
-      expect(pdf.text_orig.encoding.to_s).to eq "US-ASCII"
       expect(pdf.text_norm.encoding.to_s).to eq "UTF-8"
+      expect(pdf.text_orig).to_not eq  pdf.text_norm
     end
   end
 end
