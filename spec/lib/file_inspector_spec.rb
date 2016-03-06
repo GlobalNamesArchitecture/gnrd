@@ -13,7 +13,7 @@ describe Gnrd::FileInspector do
 
     it "finds utf text_file" do
       magic = subject.info(utf_path)
-      expect(magic[:magic]).to match(/UTF-8 Unicode text/)
+      expect(magic[:magic]).to match(/UTF-8 Unicode.*text/)
       expect(magic[:type]).to eq "text_file"
     end
 
@@ -24,7 +24,7 @@ describe Gnrd::FileInspector do
 
     it "finds latin1 file info" do
       magic = subject.info(latin1_path)
-      expect(magic[:magic]).to match(/ISO-8859 text/)
+      expect(magic[:magic]).to match(/ISO-8859.*text/)
       expect(magic[:type]).to eq "text_file"
     end
 
