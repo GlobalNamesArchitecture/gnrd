@@ -1,5 +1,5 @@
 module Gnrd
-  # Abstract class
+  # Abstract class for sources
   class Source
     def initialize(dossier)
       @dossier = dossier
@@ -22,9 +22,6 @@ module Gnrd
 
   # Data source of html-file type
   class HtmlFile < Source
-    def normalize
-      Sanitize.clean(text).strip.gsub(/\s+/, " ")
-    end
   end
 
   # Data source of a pdf-file type. The text should be in utf-8 encoding

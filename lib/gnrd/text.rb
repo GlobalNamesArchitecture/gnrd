@@ -32,5 +32,10 @@ module Gnrd
       @dossier.text[:encoding_confidence] = enc["confidence"]
       text_orig.encode("UTF-8", enc["encoding"], opts)
     end
+
+    # Removes html and xml tags
+    def untag
+      Sanitize.clean(text).strip.gsub(/\s+/, " ")
+    end
   end
 end
