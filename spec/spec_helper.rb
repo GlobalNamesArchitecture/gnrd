@@ -9,6 +9,8 @@ require "capybara/dsl"
 ENV["RACK_ENV"] = "test"
 require_relative "../application.rb"
 
+require_relative "support/shared_context"
+
 Capybara.app = Sinatra::Application
 
 RSpec.configure do |c|

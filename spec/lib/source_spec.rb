@@ -1,40 +1,12 @@
-# Texts can come from a variety of sources: strings, text files, pdf text
-# files, scanned pdfs, images, html pages.:w
+# encoding: utf-8
+# TextStrings can come from a variety of sources: strings, text files, pdf text
+# files, scanned pdfs, images, html pages.
 
 describe "sources of texts" do
-  let(:utf) { __dir__ + "/../files/french.txt" }
-  let(:ascii) { __dir__ + "/../files/ascii.txt" }
-  let(:pdf) { __dir__ + "/../files/file.pdf" }
-  let(:image_pdf) { __dir__ + "/../files/image.pdf" }
-  let(:jpg) { __dir__ + "/../files/image.jpg" }
-  let(:jpg_no_txt) { __dir__ + "/../files/no_names.jpg" }
-  let(:pdf_txt) { File.read(__dir__ + "/../files/txt/file.pdf.txt") }
-  let(:image_pdf_txt) { /Baccha el.ngata 7-10/ }
-  let(:html) { __dir__ + "/../files/file.html" }
-  let(:html_string) { File.read(html) }
-  let(:no_html) { File.read(__dir__ + "/../files/txt/no_html.txt") }
+  include_context "shared_context"
+end
 
-  describe Gnrd::TextString do
-    let(:txt) { "Hello world" }
-    subject { Gnrd::TextString }
-
-    describe ".new" do
-      it "creates an instance" do
-        expect(subject.new(txt)).to be_kind_of(Gnrd::TextString)
-      end
-
-      it "raises error for non-strings" do
-        expect { subject.new(123) }.to raise_error TypeError
-      end
-    end
-
-    describe "#text" do
-      it "returns the string" do
-        expect(subject.new(txt).text).to eq txt
-      end
-    end
-  end
-
+__END__
   describe Gnrd::TextFile do
     subject { Gnrd::TextFile }
 
