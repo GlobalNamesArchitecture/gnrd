@@ -13,11 +13,13 @@ describe Gnrd::FileInspector do
 
     it "finds text_file" do
       expect(subject.info(utf_path))
-        .to eq(magic: "UTF-8 Unicode text", type: "text_file")
+        .to eq(magic: "UTF-8 Unicode text, with very long lines",
+               type: "text_file")
       expect(subject.info(ascii_path))
         .to eq(magic: "ASCII text", type: "text_file")
       expect(subject.info(latin1_path))
-        .to eq(magic: "ISO-8859 text", type: "text_file")
+        .to eq(magic: "ISO-8859 text, with very long lines",
+               type: "text_file")
     end
 
     it "finds pdf_file" do

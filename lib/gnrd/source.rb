@@ -12,7 +12,7 @@ module Gnrd
     private
 
     def text_raw
-      File.read(@dossier.file[:path])
+      File.read(@dossier.file[:path], encoding: "utf-8")
     end
   end
 
@@ -40,7 +40,7 @@ module Gnrd
 
   # Data source of unknown-file type
   class UnknownFile < Source
-    def text
+    def text_raw
       ""
     end
   end

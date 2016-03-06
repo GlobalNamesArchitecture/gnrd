@@ -22,20 +22,33 @@ module Gnrd
     private
 
     def orig
-      Gnrd::SourceFactory.inst(@dossier).text
+      txt = Gnrd::SourceFactory.inst(@dossier).text
+      update_dossier(txt)
+      txt.force_encoding(@dossier.text[:encoding])
+    end
+
+    def update_dossier(txt)
+      enc = CharDet.detect(txt)
+      @dossier.text[:magic] = FileMagic.new.buffer(txt)
+      @dossier.text[:encoding] =
+        enc["encoding"] ? enc["encoding"].upcase : "UTF-8"
+      @dossier.text[:encoding_confidence] = enc["confidence"]
     end
 
     def norm
+      txt = text_orig
+      txt = untag(txt) if html?
       opts = { invalid: :replace, undef: :replace }
-      enc = CharDet.detect(text_orig)
-      @dossier.text[:encoding] = enc["encoding"]
-      @dossier.text[:encoding_confidence] = enc["confidence"]
-      text_orig.encode("UTF-8", enc["encoding"], opts)
+      txt.encode("UTF-8", opts)
+    end
+
+    def html?
+      @dossier.text[:magic].match(/\bHTML\b|\bXML\b/) != nil
     end
 
     # Removes html and xml tags
-    def untag
-      Sanitize.clean(text).strip.gsub(/\s+/, " ")
+    def untag(txt)
+      Sanitize.clean(txt).strip.gsub(/\s+/, " ")
     end
   end
 end
