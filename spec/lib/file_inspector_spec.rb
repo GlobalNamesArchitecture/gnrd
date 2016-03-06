@@ -11,15 +11,21 @@ describe Gnrd::FileInspector do
       expect { subject.info(11) }.to raise_error TypeError
     end
 
-    it "finds text_file" do
-      expect(subject.info(utf_path))
-        .to eq(magic: "UTF-8 Unicode text, with very long lines",
-               type: "text_file")
+    it "finds utf text_file" do
+      magic = subject.info(utf_path)
+      expect(magic[:magic]).to match(/UTF-8 Unicode text/)
+      expect(magic[:type]).to eq "text_file"
+    end
+
+    it "finds ascii text file" do
       expect(subject.info(ascii_path))
         .to eq(magic: "ASCII text", type: "text_file")
-      expect(subject.info(latin1_path))
-        .to eq(magic: "ISO-8859 text, with very long lines",
-               type: "text_file")
+    end
+
+    it "finds latin1 file info" do
+      magic = subject.info(latin1_path)
+      expect(magic[:magic]).to match(/ISO-8859 text/)
+      expect(magic[:type]).to eq "text_file"
     end
 
     it "finds pdf_file" do

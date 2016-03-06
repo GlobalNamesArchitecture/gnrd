@@ -13,7 +13,7 @@ module Gnrd
   end
 
   def self.env=(env)
-    if [:development, :test, :production].include(env)
+    if [:development, :test, :production].include?(env)
       @env = env
     else
       raise TypeError, "Wrong environment: '#{env}'"

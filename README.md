@@ -31,7 +31,7 @@ docker-compose up -d
 docker-compose run app rake
 ```
 
-or
+or to run a test on line 44
 
 ```
 docker-compose run app rspec spec/lib/some_spec.rb:44
