@@ -4,13 +4,6 @@ module Gnrd
   class Text
     attr_reader :dossier
 
-    def self.normalize(txt)
-      opts = { invalid: :replace, undef: :replace }
-      enc = CharDet.detect(txt)
-      txt = txt.encode("UTF-8", enc["encoding"], opts)
-      [txt, enc]
-    end
-
     def initialize(dossier)
       unless dossier.is_a? Gnrd::Dossier
         raise TypeError, "Needs Gnrd::Dossier to init"
@@ -22,17 +15,22 @@ module Gnrd
       @dossier.text[:orig] ||= orig
     end
 
+    def text_norm
+      @dossier.text[:norm] ||= norm
+    end
+
     private
 
     def orig
       Gnrd::SourceFactory.inst(@dossier).text
     end
 
-    def prepare_text
-      txt = @dossier[:text][:orig]
-      @dossier[:text][:norm], @dossier[:text][:encoding] =
-        TextString.normalize(txt, is_utf8)
-      @dossier[:text][:norm]
+    def norm
+      opts = { invalid: :replace, undef: :replace }
+      enc = CharDet.detect(text_orig)
+      @dossier.text[:encoding] = enc["encoding"]
+      @dossier.text[:encoding_confidence] = enc["confidence"]
+      text_orig.encode("UTF-8", enc["encoding"], opts)
     end
   end
 end

@@ -42,9 +42,9 @@ module Gnrd
   end
 
   # Data source of unknown-file type
-  class UnkownFile < Source
+  class UnknownFile < Source
     def text
-      nil
+      ""
     end
   end
 end
