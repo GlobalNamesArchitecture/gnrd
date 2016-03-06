@@ -38,12 +38,8 @@ describe Gnrd::FileInspector do
     end
 
     it "marks other files as unknown" do
-      expect(subject.info(binary)).to eq(
-        magic: "ELF 64-bit LSB  executable, x86-64, version 1 (SYSV), " \
-               "dynamically linked (uses shared libs), for GNU/Linux 2.6.32, " \
-               "BuildID[sha1]=b1d6e1509704208218820b836618ecc624df836c, " \
-               "not stripped", type: "unknown_file"
-      )
+      expect(subject.info(binary)[:magic]).to match(/ELF 64-bit LSB/)
+      expect(subject.info(binary)[:type]).to eq "unknown_file"
     end
   end
 end
