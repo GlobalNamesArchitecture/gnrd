@@ -15,16 +15,10 @@ module Gnrd
       names = {}
       names[:nn] = @nn.find(dossier.text[:norm]) if options[:netineti]
       names[:tf] = @tf.find(dossier.text[:norm]) if options[:taxonfinder]
-      return names.values.first if names.size == 1
-      combine_results(names)
+      names
     end
 
     private
-
-    # TODO: add logic
-    def combine_results(names)
-      names
-    end
 
     def taxon_finder_engine
       client = NameSpotter::TaxonFinderClient.new(

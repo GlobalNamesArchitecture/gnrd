@@ -9,11 +9,11 @@ describe Gnrd::NameFinder do
     end
 
     it "takes options" do
-      opts = { netineti: 0 }
+      opts = { netineti: false }
       nf = subject.new(utf_dossier, opts)
-      expect(nf.options[:netineti]).to eq 0
+      expect(nf.options[:netineti]).to be false
       nf = subject.new(utf_dossier)
-      expect(nf.options[:netineti]).to eq 1
+      expect(nf.options[:netineti]).to be true
     end
   end
 
