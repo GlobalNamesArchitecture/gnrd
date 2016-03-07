@@ -35,7 +35,9 @@ RSpec.shared_context "shared_context", a: :b do
   let(:img_no_names_dossier) { d.new(file: { path: img_no_names_path }) }
 
   let(:pdf_path) { path + "/file.pdf" }
+  let(:pdf_txt_path) { path + "/txt/file.pdf.txt" }
   let(:pdf_dossier) { d.new(file: { path: pdf_path }) }
+  let(:pdf_txt_dossier) { d.new(file: { path: pdf_txt_path }) }
 
   let(:pdf_img_path) { path + "/image.pdf" }
   let(:pdf_img_dossier) { d.new(file: { path: pdf_img_path }) }

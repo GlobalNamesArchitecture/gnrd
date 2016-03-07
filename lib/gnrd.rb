@@ -7,6 +7,7 @@ require_relative "gnrd/text_extractor"
 require_relative "gnrd/text"
 require_relative "gnrd/source"
 require_relative "gnrd/source_factory"
+require_relative "gnrd/name_finder"
 
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd
