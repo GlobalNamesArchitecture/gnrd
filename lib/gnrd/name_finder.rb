@@ -1,7 +1,7 @@
 module Gnrd
   # Finds scientific names in texts
   class NameFinder
-    attr_reader :dossier, :options
+    attr_reader :dossier, :options, :execution_time
 
     def initialize(dossier, opts = {})
       @dossier = dossier
@@ -9,16 +9,35 @@ module Gnrd
       @options = { netineti: true, taxonfinder: true }.merge(opts)
       @nn = neti_neti_engine
       @tf = taxon_finder_engine
+      @execution_time = nil
     end
 
     def find
-      names = {}
-      names[:nn] = @nn.find(dossier.text[:norm]) if options[:netineti]
-      names[:tf] = @tf.find(dossier.text[:norm]) if options[:taxonfinder]
-      names
+      start = Time.now
+      res = find_raw
+      @execution_time = Time.now - start
+      res
     end
 
     private
+
+    def find_raw
+      names = {}
+      taxon_finder_names(names)
+      netineti_names(names)
+      NamesCollection.new(names)
+    end
+
+    def taxon_finder_names(names)
+      if options[:taxonfinder]
+        names[:tf] = @tf.find(dossier.text[:norm])[:names]
+        names[:tf].each { |i| i[:scientificName].gsub!(/\[[^()]*\]/, ".") }
+      end
+    end
+
+    def netineti_names(names)
+      names[:nn] = @nn.find(dossier.text[:norm])[:names] if options[:netineti]
+    end
 
     def taxon_finder_engine
       client = NameSpotter::TaxonFinderClient.new(

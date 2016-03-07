@@ -33,6 +33,7 @@ COPY . /app
 
 RUN bundle install
 
+RUN echo 'hello'
 CMD ["rackup"]
 
 

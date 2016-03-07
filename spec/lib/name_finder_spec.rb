@@ -21,7 +21,7 @@ describe Gnrd::NameFinder do
     it "finds names in a text" do
       nf = subject.new(pdf_txt_dossier)
       names = nf.find
-      expect(names).to be_kind_of Hash
+      expect(names).to be_kind_of Gnrd::NamesCollection
     end
   end
 end

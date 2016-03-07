@@ -39,7 +39,7 @@ module Gnrd
       txt = text_orig
       txt = untag(txt) if html?
       opts = { invalid: :replace, undef: :replace }
-      txt.encode("UTF-8", opts)
+      txt.encode("UTF-8", opts).tr("_", " ")
     end
 
     def html?
