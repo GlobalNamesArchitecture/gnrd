@@ -18,12 +18,14 @@ You need Docker >= 1.10 and Docker Composer >= 1.6
 
 ```
 docker-compose build
+
 ```
 
 1. Start Docker Compose (in the background)
 
 ```
 docker-compose up -d
+
 ```
 
 1. Run tests

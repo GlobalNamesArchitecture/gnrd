@@ -39,4 +39,5 @@ group :test do
   gem "rake", "~> 10.5"
   gem "rspec", "~> 3.4"
   gem "rubocop", "~> 0.37"
+  gem "haml_lint", "~> 0.16"
 end
