@@ -2,10 +2,9 @@ sudo: required
 services:
   - docker
 install:
-  - gem remove bundler
+  - docker-compose build
 
 script:
-  - docker-compose build
   - docker-compose up -d
   - docker-comopose run app rake
 
