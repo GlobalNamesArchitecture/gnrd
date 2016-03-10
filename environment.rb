@@ -4,7 +4,7 @@ require "docsplit"
 require "sanitize"
 require "rchardet"
 require "ostruct"
-require "psych"
+require "json"
 require "name-spotter"
 
 # Namespace module for Global Names Recognition and Discovery
@@ -26,15 +26,22 @@ module Gnrd
   end
 
   def self.new_conf
-    conf_file = Psych.load_file(File.join(__dir__, "config", "config.yml"))
     conf = {
       session_secret: "!!change!!me!!", tmp_dir: "/tmp",
       neti_neti_host: "nn", neti_neti_port:  6384,
       taxon_finder_host: "tf", taxon_finder_port: 1234
-    }.each_with_object({}) do|h, obj|
-      obj[h[0]] = conf_file[env.to_s][h[0].to_s] || h[1]
+    }.each_with_object({}) do |h, obj|
+      obj[h[0]] = conf_file[env][h[0]] || h[1]
     end
-    require "byebug"; byebug
     OpenStruct.new(conf)
+  end
+
+  def self.conf_file
+    @conf_file ||= new_conf_file
+  end
+
+  def self.new_conf_file
+    path = File.join(__dir__, "config", "config.json")
+    File.exist?(path) ? JSON.parse(File.read(path), symbolize_names: true) : {}
   end
 end
