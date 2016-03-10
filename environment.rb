@@ -31,7 +31,10 @@ module Gnrd
       session_secret: "!!change!!me!!", tmp_dir: "/tmp",
       neti_neti_host: "nn", neti_neti_port:  6384,
       taxon_finder_host: "tf", taxon_finder_port: 1234
-    }.each_with_object({}) { |h, obj| obj[h[0]] = conf_file[h[0].to_s] || h[1] }
+    }.each_with_object({}) do|h, obj|
+      obj[h[0]] = conf_file[env.to_s][h[0].to_s] || h[1]
+    end
+    require "byebug"; byebug
     OpenStruct.new(conf)
   end
 end

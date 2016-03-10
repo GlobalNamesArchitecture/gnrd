@@ -14,18 +14,19 @@ Testing
 You need Docker >= 1.10 and Docker Composer >= 1.6
 
 1. Build application's image (needs to be done only if a new gem or new
-ubuntu package are added)
+   ubuntu package are added)
 
 ```
 docker-compose build
 ```
-2. Start Docker Compose (in the background)
+
+1. Start Docker Compose (in the background)
 
 ```
 docker-compose up -d
 ```
 
-3. Run tests
+1. Run tests
 
 ```
 docker-compose run app rake
@@ -36,7 +37,6 @@ or to run a test on line 44
 ```
 docker-compose run app rspec spec/lib/some_spec.rb:44
 ```
-
 
 [ci_img]: https://secure.travis-ci.org/GlobalNamesArchitecture/gnrd.svg
 [ci]: http://travis-ci.org/GlobalNamesArchitecture/gnrd
