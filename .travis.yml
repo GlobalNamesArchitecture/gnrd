@@ -2,7 +2,7 @@ sudo: required
 services:
   - docker
 install:
-  - sudo pip install docker-compose
+  - sudo pip install "docker-compose=1.4.1"
 
 script:
   - docker-compose build
