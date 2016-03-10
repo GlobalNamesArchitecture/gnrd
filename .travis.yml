@@ -1,16 +1,14 @@
 sudo: required
+services:
+  - docker
 install:
-  - sudo apt-get install -y linux-image-virtual linux-image-extra-virtual
-  - curl -sSL https://get.docker.com/ | sudo sh
   - sudo pip install docker-compose
 
 script:
   - docker-compose build
   - docker-compose up -d
-  - docker-compose rake
+  - docker-comopose run app rake
 
-# before_script:
-#   - QUEUE=name_finder_high,name_finder,name_finder_low TERM_CHILD=1 rake resque:work &
 branches:
   only:
     - master
