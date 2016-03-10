@@ -19,7 +19,7 @@ before_install:
   - sudo apt-get -qy install libreoffice
   - sudo apt-get -qy install libmagic-dev
   - sudo apt-get -qy install wget
-  - cp config/config.yml.example config/config.yml 
+  - cp config/config.json.example config/config.json
 
 branches:
   only:
