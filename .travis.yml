@@ -1,26 +1,14 @@
-language: ruby
-rvm:
-  - 2.0
-  - 2.1
-  - 2.2
-branches:
-  only:
-      - master
-bundler_args: --without development
-services:
-  - redis-server
-before_install:
-  - sudo apt-get update
-  - sudo apt-get install graphicsmagick
-  - sudo apt-get install --fix-missing poppler-utils
-  - sudo apt-get install --fix-missing poppler-data
-  - sudo apt-get install ghostscript
-  - sudo apt-get install tesseract-ocr
-  - sudo apt-get install pdftk
-  - sudo apt-get install libreoffice
-  - sudo apt-get install libmagic-dev
-  - sudo apt-get install wget
-  - cp config/config.yml.example config/config.yml
+sudo: required
+install:
+  - sudo apt-get install -y linux-image-virtual kernel linux-image-extra-virtual
+  - curl -sSL https://get.docker.com/ | sudo sh
+  - sudo pip install docker-compose
+
+script:
+  - docker-compose build
+  - docker-compose up -d
+  - docker-compose rake
+
 # before_script:
 #   - QUEUE=name_finder_high,name_finder,name_finder_low TERM_CHILD=1 rake resque:work &
 branches:
