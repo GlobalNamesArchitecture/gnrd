@@ -31,7 +31,7 @@ module Gnrd
       neti_neti_host: "nn", neti_neti_port:  6384,
       taxon_finder_host: "tf", taxon_finder_port: 1234
     }.each_with_object({}) do |h, obj|
-      obj[h[0]] = conf_file[env][h[0]] || h[1]
+      obj[h[0]] = conf_file[env] ? conf_file[env][h[0]] : h[1]
     end
     OpenStruct.new(conf)
   end
