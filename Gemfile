@@ -25,7 +25,7 @@ gem "sinatra-redirect-with-flash", "~> 0.2"
 gem "sinatra-reloader", "~> 1.0"
 
 group :development do
-  gem "byebug", "~> 1.8"
+  gem "byebug", "~> 8.2"
 end
 
 group :production do
@@ -36,8 +36,8 @@ end
 group :test do
   gem "capybara", "~> 2.6"
   gem "coveralls", "~> 0.8", require: false
-  gem "rake", "~> 10.5"
+  gem "rake", "~> 11.1"
   gem "rspec", "~> 3.4"
   gem "rubocop", "~> 0.37"
-  gem "haml_lint", "~> 0.16"
+  gem "haml_lint", "~> 0.15"
 end
