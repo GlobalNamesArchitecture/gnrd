@@ -9,6 +9,8 @@ services:
   - redis-server
   - docker
 before_install:
+  - docker run -d --name nn -p 0.0.0.0:6384:6384 gnames/netineti
+  - docker run -d --name tf -p 0.0.0.0:1234:1234 gnames/taxonfinder
   - sudo apt-get update
   - sudo apt-get -qy install graphicsmagick
   - sudo apt-get -qy install --fix-missing poppler-utils
@@ -21,8 +23,6 @@ before_install:
   - sudo apt-get -qy install wget
   - cp config/config.json.example config/config.json
   - gem install bundler
-  - docker run -d --name nn -p 0.0.0.0:6384:6384 gnames/netineti
-  - docker run -d --name tf -p 0.0.0.0:1234:1234 gnames/taxonfinder
 # before_script:
 #   - QUEUE=name_finder_high,name_finder,name_finder_low TERM_CHILD=1 rake resque:work &
 branches:
