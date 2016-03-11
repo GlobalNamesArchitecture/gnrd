@@ -17,7 +17,7 @@ before_install:
   - sudo apt-get install libreoffice
   - sudo apt-get install libmagic-dev
   - sudo apt-get install wget
-  - cp config/config.yml.example config/config.yml
+  - cp config/config.json.example config/config.json
   - docker run -d --name nn -p 0.0.0.0:6384:6384 gnames/netineti
   - docker run -d --name tf -p 0.0.0.0:1234:1234 gnames/taxonfinder
 # before_script:
