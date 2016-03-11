@@ -1,26 +1,27 @@
-lanugage: ruby
+language: ruby
 rvm:
+  - 2.0
+  - 2.1
   - 2.2
-sudo: required
-services:
-  - docker
-  - redis-server
 bundler_args: --without development
+services:
+  - redis-server
 before_install:
+  - sudo apt-get update
+  - sudo apt-get install graphicsmagick
+  - sudo apt-get install --fix-missing poppler-utils
+  - sudo apt-get install --fix-missing poppler-data
+  - sudo apt-get install ghostscript
+  - sudo apt-get install tesseract-ocr
+  - sudo apt-get install pdftk
+  - sudo apt-get install libreoffice
+  - sudo apt-get install libmagic-dev
+  - sudo apt-get install wget
+  - cp config/config.yml.example config/config.yml
   - docker run -d --name nn -p 0.0.0.0:6384:6384 gnames/netineti
   - docker run -d --name tf -p 0.0.0.0:1234:1234 gnames/taxonfinder
-  - sudo apt-get update
-  - sudo apt-get -qy install graphicsmagick
-  - sudo apt-get -qy install --fix-missing poppler-utils
-  - sudo apt-get -qy install --fix-missing poppler-data
-  - sudo apt-get -qy install ghostscript
-  - sudo apt-get -qy install tesseract-ocr
-  - sudo apt-get -qy install pdftk
-  - sudo apt-get -qy install libreoffice
-  - sudo apt-get -qy install libmagic-dev
-  - sudo apt-get -qy install wget
-  - cp config/config.json.example config/config.json
-
+# before_script:
+#   - QUEUE=name_finder_high,name_finder,name_finder_low TERM_CHILD=1 rake resque:work &
 branches:
   only:
     - master
