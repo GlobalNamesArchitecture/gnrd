@@ -1,0 +1,45 @@
+{
+  "development": {
+    "adapter": "mysql2",
+    "host": "localhost",
+    "username": "root",
+    "password": null,
+    "database": "gnrd_dev",
+    "salt": "substitute_with_your_secret_salt_string",
+    "neti_neti_host": "0.0.0.0",
+    "neti_neti_port": 6384,
+    "taxon_finder_host": "0.0.0.0",
+    "taxon_finder_port": 1234,
+    "resolver_url": "http://resolver.globalnames.org/name_resolvers.json"
+  },
+  "test": {
+    "adapter": "mysql2",
+    "host": "localhost",
+    "username": "root",
+    "password": null,
+    "database": "gnrd_test",
+    "salt": "substitute_with_your_secret_salt_string",
+    "neti_neti_host": "0.0.0.0",
+    "neti_neti_port": 6384,
+    "taxon_finder_host": "0.0.0.0",
+    "taxon_finder_port": 1234,
+    "resolver_url": "http://resolver.globalnames.org/name_resolvers.json"
+  },
+  "production": {
+    "adapter": "mysql2",
+    "host": "localhost",
+    "username": "root",
+    "password": null,
+    "database": "gnrd",
+    "salt": "substitute_with_your_secret_salt_string",
+    "neti_neti_host": "0.0.0.0",
+    "neti_neti_port": 6384,
+    "taxon_finder_host": "0.0.0.0",
+    "taxon_finder_port": 1234,
+    "smtp_address": "smtp.somewhere.com",
+    "smtp_port": 25,
+    "smtp_domain": "somwhere.com",
+    "admin_email": "admin@somewhere.com",
+    "resolver_url": "http://resolver.globalnames.org/name_resolvers.json"
+  }
+}
