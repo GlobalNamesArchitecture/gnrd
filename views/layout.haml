@@ -1,5 +1,65 @@
 !!! 5
 %html
   %head
-    %title Global Names Recognition and Discovery
+    %meta{ charset: "UTF-8" }/
+    - if @redirect_url
+      %meta{ "http-equiv" => "refresh",
+             content: "#{@redirect_delay};url=#{@redirect_url}" }
+    - if @meta_norobots
+      %meta{ content: "noindex,nofollow", name: "robots" }/
+    %title= @title || Gnrd.conf.title
+    %link{ href: "/main.css", rel: "stylesheet", type: "text/css" }
+    %script{ src: "javascript/jquery-1.7.2.min.js", type: "text/javascript" }
+    %script{ src: "javascript/jquery.tools.min.js", type: "text/javascript" }
+    %script{ src: "javascript/application.js", type: "text/javascript" }
   %body
+    .structural#SiteContainer
+      .background
+      .structural.fixedWidth#Header
+        .inner
+          #Logo
+            %a{ href: "/" }
+              %h1 Global Names Recognition and Discovery
+          %ul#SiteNavigation
+            - klass =  @page == "home" ? :active : nil
+            %li{ class: klass }
+              %a{ href: "/" } Home
+            - klass = @page == "feedback" ? :active : nil
+            %li{ class: klass }
+              %a{ href: "/feedback" } Feedback
+            - klass = @page == "history" ? :active : nil
+            %li{ class: klass }
+              %a{ href: "/history" } History
+            - klass = @page == "api" ? :active : nil
+            %li{ class: klass }
+              %a{ href: "/api" } API
+      .structural.fixedWidth.clear#BodyContent
+        .inner
+          #content-wrapper
+            - if flash[:notice]
+              #flash_notice= flash[:notice]
+            - if flash[:error]
+              #flash_error= flash[:error]
+            - if flash[:warning]
+              #flash_warning= flash[:warning]
+            - unless @tagline.nil?
+              %p.tagline= @tagline
+            - unless @header.nil?
+              #content-splash
+                %h2= @header
+            #content-body= yield
+      .structural.fixedWidth#Footer
+        .inner
+          %span
+            %a{ href: "http://www.globalnames.org" } Global Names Architecture
+          |
+          = succeed "|" do
+            %span
+              %a{ href: "http://gni.globalnames.org" } Global Names Index
+          = succeed "|" do
+            %span
+              %a{ href: "http://resolver.globalnames.org" }
+                Global Names Resolver
+          %span
+            %a{ href: "http://gnite.org" }
+              Global Names Integrated Taxonomic Editor

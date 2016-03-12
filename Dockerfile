@@ -28,12 +28,8 @@ WORKDIR /app
 
 COPY Gemfile /app
 COPY Gemfile.lock /app
+RUN bundle install
 
 COPY . /app
 
-RUN bundle install
-
-RUN echo 'hello'
-CMD ["rackup"]
-
-
+CMD ["rackup", "-o", "0.0.0.0", "-p", "9292", "-s", "puma"]

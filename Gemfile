@@ -29,7 +29,7 @@ group :development do
 end
 
 group :production do
-  gem "unicorn", "~> 5.0"
+  gem "puma", "~> 3.1"
   gem "rack-google-analytics", "~> 1.2"
 end
 
