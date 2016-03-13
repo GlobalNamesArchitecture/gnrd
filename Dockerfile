@@ -32,4 +32,4 @@ RUN bundle install
 
 COPY . /app
 
-CMD ["rackup", "-o", "0.0.0.0", "-p", "9292", "-s", "puma"]
+CMD ["shotgun", "-o", "0.0.0.0", "-p", "9292", "-s", "puma"]

@@ -23,6 +23,7 @@ gem "sinatra-activerecord", "~> 2.0"
 gem "sinatra-flash", "~> 0.3"
 gem "sinatra-redirect-with-flash", "~> 0.2"
 gem "sinatra-reloader", "~> 1.0"
+gem "shotgun", "~> 0.9"
 
 group :development do
   gem "byebug", "~> 8.2"

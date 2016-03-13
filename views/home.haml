@@ -1,1 +1,118 @@
-%p hi
+%p
+  Find scientific names on web pages, PDFs, Microsoft Office documents, images,
+  or in freeform text. Encrypted or image-based PDFs and image files first pass
+  through an OCR routine using
+  %a{ href: "http://code.google.com/p/tesseract-ocr/" } Tesseract
+  prior to using the excellent
+  %a{ href: "http://code.google.com/p/taxon-finder/" } TaxonFinder
+  and
+  %a{ href: "https://github.com/mbl-cli/NetiNeti" } NetiNeti
+  names discovery engines. The language of incoming content is determined using
+  %a{ href: "https://rubygems.org/gems/unsupervised-language-detection" }
+    unsupervised language detection.
+  If found to be other than English, TaxonFinder is preferentially used. Found
+  names can be optionally resolved against a number of resources.
+
+.panel#chrome-panel
+  .clear#chrome
+    #chrome-icon
+      %a{ href: "https://chrome.google.com/webstore/detail/pogmooobpbggadhlleijfpjgnpkjdnhn", target: "_blank" }
+        %img{ alt: "BiblioSpotter Chrome Extension",
+                  src: "/images/icon-48.png" }/
+    #chrome-description
+      %span
+        %a{ href: "https://chrome.google.com/webstore/detail/pogmooobpbggadhlleijfpjgnpkjdnhn", target: "_blank" }
+          Chrome NameSpotter Extension
+      %span Make scientific names actionable.
+.panel#form-panel
+  %form{ action: "/name_finder", method: "post",
+         enctype: "multipart/form-data", "accept-charset" => "UTF-8" }
+    %ul.tabs
+      %li
+        %a{ href: "#" } File
+      %li
+        %a{ href: "#" } URL
+      %li
+        %a{ href: "#" } Freeform Text
+
+    .panes
+      %div
+        %label{ for: "find_file" } File
+        %input.gnrd-file{ type: :file, name: "find[file]",
+                          id: :find_file, size: 30 }
+      %div
+        %label{ for: "find_url" }
+          URL to web page, PDF, Microsoft Office document or image
+        %input.gnrd-input{ type: :text, name: "find[url]",
+          id: :find_url, placeholder: "http://example.com",
+          size: 30 }
+      %div
+        %label{ for: :find_text } Freeform Text
+        %textarea.gnrd-input{ cols: 25, rows: 12, name: "find[text]",
+          id: :find_text }
+
+    #advanced_options
+      %a{ href: "#" } Advanced Options &gt;&gt;
+    #advanced_selections
+      %fieldset
+        %legend Name-Finding Engine
+        - { "Both" => 0, "TaxonFinder" => 1,
+            "NetiNeti" => 2 }.each do |key, value|
+          - checked = (key == "Both") ? true : nil
+          %input{ type: :radio, name: "engine", id: "engine_#{key}",
+                  value: value, checked: checked }
+          %label{ for: "engine_#{key}" }= key
+      %fieldset
+        %legend Detect Language
+        - { "Yes" => 1, "No" => 0 }.each do |key, value|
+          - checked = (key == "Yes") ? true : nil
+          - id = key.gsub(" ", "_").downcase
+          %input{ type: :radio, name: :detect_language,
+            id: "detect_language_#{id}", value: value,
+            checked: checked }
+          %label{ for: "detect_language_#{id}" }= key
+      %fieldset
+        %legend Name Instances
+        - { "Unique list" => 1, "All instances" => 0 }.each do |key, value|
+          - checked = (key == "Unique list") ? true : nil
+          - id = key.gsub(" ", "_").downcase
+          %input{ type: :radio, name: :unique, id: "unique_#{id}",
+                  value: value, checked: checked }
+          %label{ for: "unique_#{id}" }= key
+      %fieldset
+        %legend Verbatim in Results
+        - { "Yes" => 1, "No" => 0 }.each do |key, value|
+          - checked = (key == "No") ? true : nil
+          - id = key.gsub(" ", "_").downcase
+          %input{ type: :radio, name: :verbatim, id: "verbatim_#{id}",
+                  value: value, checked: checked }
+          %label{ for: "verbatim_#{id}" }= key
+      %fieldset
+        %legend Resolve Against
+        %input{ type: :checkbox, id: "all_data_sources",
+                name: "all_data_sources" }
+        %label{ for: "all_data_sources",
+                id: "all_data_sources_label" }= "All data sources"
+        - { "Catalogue of Life" => 1, "ITIS" => 3,
+            "Index Fungorum" => 5, "GBIF" => 11, "IPNI" => 167,
+            "EOL" => 12, "Union" => 7,
+            "uBio NameBank" => 169 }.each do |key, value|
+          %div
+            %input{ type: :checkbox, id: "data_source_ids_#{value}",
+                    name: "data_source_ids[#{value}]" }
+            %label{ for: "data_source_ids_#{value}" }= key
+      %fieldset
+        %legend Output
+        - %w(html json xml).each do |format|
+          - checked = (format == "html") ? true : nil
+          %input{ type: :radio, name: :format, id: "format_#{format}",
+                  value: format, checked: checked }
+          %label{ for: "format_#{format}" }= format
+        %br
+        %input{ type: :checkbox, name: :return_content, id: :return_content }
+        %label{ for: :return_content } Return original text
+    %div
+      %input.form-button.submit-button{ type: :submit, value: "Find Names" }
+%p
+  %a{ href: "https://github.com/GlobalNamesArchitecture/gnrd" }
+    Code on GitHub

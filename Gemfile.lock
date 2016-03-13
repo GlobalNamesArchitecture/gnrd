@@ -160,6 +160,8 @@ GEM
       nokogiri (>= 1.4.4)
       nokogumbo (~> 1.4.1)
     sass (3.4.21)
+    shotgun (0.9.1)
+      rack (>= 1.0)
     simplecov (0.11.2)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -222,7 +224,7 @@ DEPENDENCIES
   mail (~> 2.6)
   mechanize (~> 2.7)
   name-spotter (~> 0.3)
-  puma
+  puma (~> 3.1)
   rack (~> 1.6)
   rack-google-analytics (~> 1.2)
   rack-test (~> 0.6)
@@ -236,6 +238,7 @@ DEPENDENCIES
   ruby-filemagic (~> 0.7)
   sanitize (~> 4.0)
   sass (~> 3.4)
+  shotgun
   sinatra (~> 1.4)
   sinatra-activerecord (~> 2.0)
   sinatra-flash (~> 0.3)
