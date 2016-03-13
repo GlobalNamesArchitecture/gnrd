@@ -8,7 +8,7 @@ gem "haml", "~> 4.0"
 gem "iconv", "~> 1.0.4" # required by docsplit
 gem "mail", "~> 2.6"
 gem "mechanize", "~> 2.7"
-# gem "mysql2", "~> 0.4"
+gem "pg", "~> 0.18"
 gem "name-spotter", "~> 0.3"
 gem "rack", "~> 1.6"
 gem "rack-test", "~> 0.6"

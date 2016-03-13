@@ -6,7 +6,7 @@ RUN apt-get install -y software-properties-common && \
     apt-add-repository ppa:brightbox/ruby-ng && \
     apt-get update && \
     apt-get install -y ruby2.2 ruby2.2-dev ruby-switch \
-    zlib1g-dev liblzma-dev libxml2-dev \
+    zlib1g-dev liblzma-dev libxml2-dev libpq-dev \
     libxslt-dev supervisor build-essential nodejs && \
     apt-get -y install graphicsmagick poppler-utils poppler-data \
     ghostscript tesseract-ocr pdftk libreoffice libmagic-dev && \

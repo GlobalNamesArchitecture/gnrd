@@ -1,10 +1,10 @@
-describe Gnrd::NameFinder do
+describe Gnrd::NameFinderEngine do
   include_context "shared_context"
-  subject { Gnrd::NameFinder }
+  subject { Gnrd::NameFinderEngine }
 
   describe ".new" do
     it "creates new instance" do
-      expect(subject.new(utf_dossier)).to be_kind_of(Gnrd::NameFinder)
+      expect(subject.new(utf_dossier)).to be_kind_of(Gnrd::NameFinderEngine)
       expect(subject.new(utf_dossier).dossier).to be_kind_of(Gnrd::Dossier)
     end
 

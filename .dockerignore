@@ -1,0 +1,6 @@
+.git
+.sass-cache
+.byebug_history
+.gitmodules
+.gitignore
+coverage

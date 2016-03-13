@@ -23,7 +23,10 @@ before_install:
   - sudo apt-get -qy install wget
   - cp config/config.json.example config/config.json
   - gem install bundler
-# before_script:
+before_script:
+    - bundle exec rake db:create
+    - bundle exec rake db:migrate
+    - bundle exec RACK_ENV=test rake db:migrate
 #   - QUEUE=name_finder_high,name_finder,name_finder_low TERM_CHILD=1 rake resque:work &
 branches:
   only:

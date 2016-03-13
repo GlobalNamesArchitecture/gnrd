@@ -14,8 +14,13 @@ configure do
   register Sinatra::Flash
   helpers Sinatra::RedirectWithFlash
 
+  enable :sessions
+
   use Rack::Timeout
   Rack::Timeout.timeout = 9_000_000
+
+  set :haml, format: :html5
+  set :protection, except: :json_csrf
 
   use Rack::MethodOverride
   use Rack::Session::Cookie, secret: Gnrd.conf.session_secret

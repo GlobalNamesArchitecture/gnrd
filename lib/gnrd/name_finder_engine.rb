@@ -1,6 +1,6 @@
 module Gnrd
   # Finds scientific names in texts
-  class NameFinder
+  class NameFinderEngine
     attr_reader :dossier, :options, :execution_time
 
     def initialize(dossier, opts = {})

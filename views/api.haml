@@ -1,0 +1,188 @@
+%p.api-warning<
+  This API produces an immediate response containing a token URL to be polled.
+  See the
+  %a{ href: "#api-example" } example below
+  = "."
+
+%h3 Resource URI
+#base-url
+  - json_url = "#{@base_url}/name_finder.json"
+  - xml_url  = "#{@base_url}/name_finder.xml"
+  %p "#{json_url} (JSON output)"
+  %p "#{xml_url} (XML output)"
+
+%h3 Parameters (GET or POST)
+
+%dl
+  %dt url
+  %dd
+    Type: string. An encoded URL for a web page, PDF, Microsoft Office
+    document, or image file
+    %br/
+    %em e.g.
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia"
+  %dt file
+  %dd
+    When using multipart/form-data as the content-type, a file may be sent.
+  %dt text
+  %dd
+    Type: string. Text content; best used with a POST request
+    %br/
+    %em e.g.
+    =  json_url + "?text=A+spider+named+Pardosa+moesta+Banks,+1892"
+  %dt engine (optional)
+  %dd
+    Type: integer, Default: 0. Either 1 for TaxonFinder, 2 for NetiNeti, or 0
+    for both. If absent, both engines are used.
+    %br/
+    %em e.g.
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;engine=1"
+  %dt unique (optional)
+  %dd
+    Type: boolean (true/false), Default: true. If 'true', response has unique
+    names without offsets.
+    %br/
+    %em e.g.
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;unique=true"
+  %dt verbatim (optional)
+  %dd
+    Type: boolean (true/false), Default: false. If 'true', response excludes
+    verbatim strings.
+    %br/
+    %em e.g.
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;verbatim=false"
+  %dt detect_language (optional)
+  %dd
+    Type: boolean (true/false), Default: true. When 'true', NetiNeti is not
+    used if the language of incoming text is determined not to be English.
+    When 'false', NetiNeti will be used if requested.
+    %br/
+    %em e.g.
+    = json_url + "?url=http://es.wikipedia.org/wiki/Animalia&amp;detect_language=false"
+  %dt callback (optional)
+  %dd
+    Type: string. Can be used for cross-domain JavaScript integration.
+    %br/
+    %em e.g.
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;callback=MyCoolCallBack"
+
+  %h4 Optional resolution parameters
+
+  %dt all_data_sources (optional)
+  %dd
+    Type: bolean (true/false). Resolve found names against all available
+    = succeed "." do
+      %a{ href: "http://resolver.globalnames.org/data_sources" }
+        Data Sources
+    %br/
+    %em e.g.
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;all_data_sources=true"
+
+  %dt data_source_ids (optional)
+  %dd
+    Type: string. Pipe separated list of data source ids to resolve found
+    names against. See list of
+    = succeed "." do
+      %a{ href: "http://resolver.globalnames.org/data_sources" }
+        Data Sources
+    %br/
+    %em e.g.
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;data_source_ids=1|169"
+
+%h3
+  %a{ name: "api-example" } Example
+
+%p
+  %em e.g.
+  = json_url + "?url=http://en.wikipedia.org/wiki/Araneae"
+
+%h4 Initial Response Containing Token URL
+
+%p
+  An HTTP status code of 303 "See Other" will be sent and the Location will be
+  the token URL.
+
+%pre.code
+  :escaped
+    {
+      "token_url" : "#{json_url}?token=VmuYurv3QLyMXLABnqU1vg",
+      "input_url" : "http://en.wikipedia.org/wiki/Araneae",
+      "file"      : "",
+      "status"    : 303,
+      "engines"   : ["TaxonFinder", "NetiNeti"],
+      "unique"    : false,
+      "verbatim"  : true,
+      "queue_size": 1
+    }
+
+%h4 Final Response After Having Polled Token URL
+
+%pre.code
+  :escaped
+    {
+      "token_url" : "#{json_url}?token=VmuYurv3QLyMXLABnqU1vg",
+      "input_url" : "http://en.wikipedia.org/wiki/Araneae",
+      "file"      : "",
+      "status"    : 200,
+      "engines"   : ["TaxonFinder", "NetiNeti"],
+      "unique"    : false,
+      "verbatim"  : true,
+      "agent"     : {
+        "code"         : "200",
+        "content_type" : "text/html; charset=UTF-8",
+        "filename"     : "Araneae.html"
+      },
+      "created"   : "2012-06-28T03:21:28-04:00",
+      "execution_time" : {
+        "find_names_duration" : 1.935246,
+        "total_duration"      : 4.051854
+      },
+      "total"    : 347,
+      "names":[
+        {
+          "verbatim"       : "T. nigroannulatum build",
+          "identifiedName" : "T. nigroannulatum",
+          "scientificName" : "Theridion nigroannulatum",
+          "offsetStart"    : 39686,
+          "offsetEnd"      : 39708,
+        },
+        {
+          "verbatim"       : "Uloboridae",
+          "identifiedName" : "Uloboridae"
+          "scientificName" : "Uloboridae",
+          "offsetStart"    : 39885,
+          "offsetEnd"      : 39896,
+        },
+        ...etc...
+      ]
+    }
+
+%h3 Advanced
+
+%p
+  If you have many large documents to send or experience long network delays,
+  you can gzip compress your POST body and set the request header,
+  Content-Encoding : gzip.
+
+%h4 Example ruby script
+
+%pre.code
+  :escaped
+    require 'active_support/all'
+    require 'addressable/uri'
+
+    addressable = Addressable::URI.new
+    addressable.query_values = { :text => really_big_text }
+    gz_payload = ActiveSupport::Gzip.compress(addressable.query)
+
+    uri = URI('#{json_url}')
+    req = Net::HTTP::Post.new(uri.path)
+    req["Content-Encoding"] = "gzip"
+    req["Content-Length"] = gz_payload.size
+    req["X-Uncompressed-Length"] = addressable.query.size
+    req.body = gz_payload
+
+    res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+      http.request(req)
+    end
+

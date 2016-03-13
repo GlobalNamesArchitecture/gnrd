@@ -9,6 +9,8 @@ bundle_bin
 .vagrant
 tags
 t
+db/schema.rb
+db/schema.sql
 config/database.yml
 config/production_site_specific.rb
 log/*.log
@@ -20,3 +22,4 @@ cookbooks
 .sass-cache
 .sass-cache/*
 .sass-cache/**/*
+.byebug_history

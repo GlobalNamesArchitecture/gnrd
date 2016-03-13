@@ -15,15 +15,20 @@ RuboCop::RakeTask.new
 
 task default: [:rubocop, :spec]
 
+include ActiveRecord::Tasks
+ActiveRecord::Base.configurations = Gnrd.conf.database
+
+Gnrd.db_connection
+
 namespace :db do
-  desc "create all the databases from config.yml"
+  desc "create all the databases"
   namespace :create do
     task(:all) do
       DatabaseTasks.create_all
     end
   end
 
-  desc "drop all the databases from config.yml"
+  desc "drop all the databases"
   namespace :drop do
     task(:all) do
       DatabaseTasks.drop_all

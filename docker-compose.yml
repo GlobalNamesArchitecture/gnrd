@@ -10,9 +10,12 @@ services:
       - nn
       - tf
       - redis
+      - pg
   redis:
     image: redis
   nn:
     image: gnames/netineti
   tf:
     image: gnames/taxonfinder
+  pg:
+    image: postgres
