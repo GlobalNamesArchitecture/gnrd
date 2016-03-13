@@ -238,7 +238,7 @@ DEPENDENCIES
   ruby-filemagic (~> 0.7)
   sanitize (~> 4.0)
   sass (~> 3.4)
-  shotgun
+  shotgun (~> 0.9)
   sinatra (~> 1.4)
   sinatra-activerecord (~> 2.0)
   sinatra-flash (~> 0.3)
