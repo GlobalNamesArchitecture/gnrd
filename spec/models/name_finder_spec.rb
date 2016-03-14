@@ -6,5 +6,4 @@ describe NameFinder do
       expect(subject.new).to be_kind_of subject
     end
   end
-
 end
