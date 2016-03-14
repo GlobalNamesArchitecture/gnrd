@@ -4,35 +4,30 @@
   "neti_neti_port": 6384,
   "taxon_finder_host": "0.0.0.0",
   "taxon_finder_port": 1234,
-  "resolver_url": "http://resolver.globalnames.org/name_resolvers.json",
-  "database":
-  {
+  "resolver_url":
+    "http://resolver.globalnames.org/name_resolvers.json",
+  "database": {
     "development": {
-      "database": {
-        "adapter": "postgresql",
-        "host": "0.0.0.0",
-        "username": "postgres",
-        "password": null,
-        "database": "gnrd_development"
-      },
+      "adapter": "postgresql",
+      "host": "0.0.0.0",
+      "username": "postgres",
+      "password": null,
+      "database": "gnrd_development"
     },
     "test": {
-      "database": {
-        "adapter": "postgresql",
-        "host": "0.0.0.0",
-        "username": "postgres",
-        "password": null,
-        "database": "gnrd_test"
-      },
+      "adapter": "postgresql",
+      "host": "0.0.0.0",
+      "username": "postgres",
+      "password": null,
+      "database": "gnrd_test"
     },
     "production": {
-      "database": {
-        "adapter": "postgresql",
-        "host": "0.0.0.0",
-        "username": "postgres",
-        "password": null,
-        "database": "gnrd"
-      }
+      "adapter": "postgresql",
+      "host": "0.0.0.0",
+      "username": "postgres",
+      "password": null,
+      "database": "gnrd"
     }
   }
 }
+

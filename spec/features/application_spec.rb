@@ -1,3 +1,10 @@
+describe "/main.css" do
+  it "renders" do
+    visit "/main.css"
+    expect(page.status_code).to be 200
+  end
+end
+
 describe "/" do
   it "renders" do
     visit "/"
