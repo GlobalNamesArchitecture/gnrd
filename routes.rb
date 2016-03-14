@@ -23,3 +23,16 @@ get "/feedback" do
   @header = "Feedback"
   haml :feedback
 end
+
+get "/name_finder.?:format?" do
+  if params[:token]
+    begin
+      nf = NameFinder.find_by_token(params[:token])
+      name_finder_presentation(nf, params[:format])
+    rescue
+      error_presentation(params[:format])
+    end
+  else
+    find(params)
+  end
+end

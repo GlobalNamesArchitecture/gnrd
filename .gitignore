@@ -9,8 +9,6 @@ bundle_bin
 .vagrant
 tags
 t
-db/schema.rb
-db/schema.sql
 config/config.json
 config/production_site_specific.rb
 log/*.log
