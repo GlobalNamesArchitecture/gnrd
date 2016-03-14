@@ -48,8 +48,9 @@ module Gnrd
     conf = {
       "database" => db_conf,
       "session_secret" => "!!change!!me!!", "tmp_dir" => "/tmp",
-      "neti_neti_host" => "nn", "neti_neti_port" => "tf",
-      "taxon_finder_port" => 1234, "disqus_shortname" => "globalnames-rd"
+      "neti_neti_host" => "nn", "neti_neti_port" => 6384,
+      "taxon_finder_host" => "tf", "taxon_finder_port" => 1234,
+      "disqus_shortname" => "globalnames-rd"
     }.each_with_object({}) do |h, obj|
       obj[h[0]] = conf_file[h[0]] ? conf_file[h[0]] : h[1]
     end
@@ -75,4 +76,4 @@ module Gnrd
   end
 end
 
-# Gnrd.db_connection
+Gnrd.db_connection
