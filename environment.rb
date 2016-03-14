@@ -46,18 +46,14 @@ module Gnrd
 
   def self.new_conf
     conf = {
-      database: db_conf,
-      session_secret: "!!change!!me!!", tmp_dir: "/tmp", neti_neti_host: "nn",
-      neti_neti_port:  6384, taxon_finder_host: "tf", taxon_finder_port: 1234,
-      disqus_shortname: "globalnames-rd"
+      "database" => db_conf,
+      "session_secret" => "!!change!!me!!", "tmp_dir" => "/tmp",
+      "neti_neti_host" => "nn", "neti_neti_port" => "tf",
+      "taxon_finder_port" => 1234, "disqus_shortname" => "globalnames-rd"
     }.each_with_object({}) do |h, obj|
-      obj[h[0]] = conf_file_has?(h[0]) ? conf_file[env][h[0]] : h[1]
+      obj[h[0]] = conf_file[h[0]] ? conf_file[h[0]] : h[1]
     end
     OpenStruct.new(conf)
-  end
-
-  def self.conf_file_has?(field)
-    conf_file[env] && conf_file[env][field]
   end
 
   def self.conf_file
@@ -66,7 +62,7 @@ module Gnrd
 
   def self.new_conf_file
     path = File.join(__dir__, "config", "config.json")
-    File.exist?(path) ? JSON.parse(File.read(path), symbolize_names: true) : {}
+    File.exist?(path) ? JSON.parse(File.read(path)) : {}
   end
 
   def self.db_conf
@@ -79,4 +75,4 @@ module Gnrd
   end
 end
 
-Gnrd.db_connection
+# Gnrd.db_connection
