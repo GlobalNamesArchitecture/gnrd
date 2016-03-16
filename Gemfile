@@ -41,4 +41,5 @@ group :test do
   gem "rspec", "~> 3.4"
   gem "rubocop", "~> 0.37"
   gem "haml_lint", "~> 0.15"
+  gem "factory_girl", "~> 4.5"
 end

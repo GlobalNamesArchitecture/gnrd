@@ -9,6 +9,7 @@ require "sass"
 require_relative "lib/gnrd"
 require_relative "routes"
 require_relative "helpers"
+require_relative "lib/gnrd/app/formatter"
 
 configure do
   register Sinatra::Flash

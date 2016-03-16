@@ -5,6 +5,7 @@ require "rack/test"
 require "capybara"
 require "capybara/rspec"
 require "capybara/dsl"
+require "factory_girl"
 require "json"
 
 ENV["RACK_ENV"] = "test"

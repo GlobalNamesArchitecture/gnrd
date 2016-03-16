@@ -53,6 +53,8 @@ GEM
     domain_name (0.5.20160309)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
     haml (4.0.7)
       tilt
     haml_lint (0.15.2)
@@ -219,6 +221,7 @@ DEPENDENCIES
   capybara (~> 2.6)
   coveralls (~> 0.8)
   docsplit (~> 0.7)
+  factory_girl (~> 4.5)
   haml (~> 4.0)
   haml_lint (~> 0.15)
   iconv (~> 1.0.4)
