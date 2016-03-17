@@ -24,8 +24,16 @@ get "/feedback" do
   haml :feedback
 end
 
+get "/name_finder.?:format?" do
+  @ns = if params[:token]
+          NameFinder.find_by_token(params[:token])
+        else
+          NameFinder.create(params: params)
+        end
+  name_finder_result(@ns)
+end
+
 post "/name_finder.?:format?" do
-  opts = { redirect: true }
   @ns = NameFinder.create(params: params)
-  output(@ns, opts)
+  output(@ns)
 end
