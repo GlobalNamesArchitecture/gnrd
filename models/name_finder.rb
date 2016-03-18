@@ -1,14 +1,3 @@
-# Symbolizes jsonb
-class HashSerializer
-  def self.dump(hash)
-    hash.to_json
-  end
-
-  def self.load(hash)
-    Gnrd.symbolize_keys(hash || {})
-  end
-end
-
 # Gathers parameters and input from users, calls name finding utitilites and
 # saves their output.
 class NameFinder < ActiveRecord::Base
@@ -23,6 +12,6 @@ class NameFinder < ActiveRecord::Base
 
   before_create do
     self.token = NameFinder.token
-    self.params = Gnrd::App::Params.new(params).normalize
+    self.params = Params.new(params).normalize
   end
 end
