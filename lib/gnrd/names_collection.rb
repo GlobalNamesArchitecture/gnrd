@@ -36,8 +36,6 @@ module Gnrd
         @combined.shift
         name1
       when :right_better then @combined.shift
-
-      else raise "Should noto be here"
       end
     end
 

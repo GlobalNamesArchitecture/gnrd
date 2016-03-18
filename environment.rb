@@ -40,10 +40,6 @@ module Gnrd
     ActiveRecord::Base.establish_connection(env)
   end
 
-  def self.db_close
-    @db.close if @@db
-  end
-
   def self.new_conf
     conf = {
       "database" => db_conf,
