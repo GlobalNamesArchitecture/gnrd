@@ -21,4 +21,15 @@ describe Gnrd do
       expect { subject.env = :whateva }.to raise_error TypeError
     end
   end
+
+  describe ".symbolize_keys" do
+    let(:hash) do
+      { one: { "two" => { three: "four" } }, "five" => [1, 2, 3, 4] }
+    end
+
+    it "symbolizes keys recursively" do
+      expect(subject.symbolize_keys(hash))
+        .to eq(one: { two: { three: "four" } }, five: [1, 2, 3, 4])
+    end
+  end
 end

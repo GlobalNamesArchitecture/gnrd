@@ -25,7 +25,10 @@ describe NameFinder do
       token = subject
               .create(params: { format: "json", text: "Pardosa moesta" }).token
       expect(subject.find_by_token(token).params)
-        .to eq("format" => "json", "text" => "Pardosa moesta")
+        .to eq(engine: 0, format: "json", source: { text: "Pardosa moesta" },
+               unique: false, verbatim: false, return_content: false,
+               best_match_only: false, detect_language: true,
+               all_data_sources: false)
     end
   end
 end

@@ -61,5 +61,5 @@ end
 
 desc "open an irb session preloaded with this library"
 task :console do
-  sh "irb -I lib -I extra -r gnrd.rb"
+  sh "irb -I lib -I #{__dir__} -r application.rb"
 end

@@ -32,7 +32,7 @@ end
 
 describe "/name_finder" do
   it "redirects home with empty parameters" do
-    visit "/name_finder"
+    # visit "/name_finder.json"
     # expect(page.status_code).to be 302
     # follow_redirect!
     # r = last_response

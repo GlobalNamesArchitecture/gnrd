@@ -9,8 +9,13 @@ require_relative "gnrd/source"
 require_relative "gnrd/source_factory"
 require_relative "gnrd/name_finder_engine"
 require_relative "gnrd/names_collection"
-require_relative "../models/name_finder"
 
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd
+  def self.symbolize_keys(hash)
+    hash = hash.map do |k, v|
+      v.is_a?(Hash) ? [k.to_sym, symbolize_keys(v)] : [k.to_sym, v]
+    end
+    Hash[hash]
+  end
 end
