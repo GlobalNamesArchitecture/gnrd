@@ -48,15 +48,13 @@ module Gnrd
       def params_data_sources
         %i(data_source_ids preferred_data_sources)
           .each_with_object({}) do |p, obj|
-          if params[p]
-            normalize_data_source(obj, p, params[p])
-            obj[p] = obj[p].map(&:to_i).uniq.compact
-          end
+          obj[p] = params[p] ? normalize_data_source(params[p]) : []
         end
       end
 
-      def normalize_data_source(hsh, key, value)
-        hsh[key] = value.is_a?(Array) ? value : value.split("|")
+      def normalize_data_source(value)
+        v = value.is_a?(Array) ? value : value.split("|")
+        v.uniq.compact.map(&:to_i).select { |i| i != 0 }
       end
 
       def normalize_engine

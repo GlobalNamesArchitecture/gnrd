@@ -8,11 +8,18 @@ describe Gnrd::App::Params do
   end
 
   describe "#normalize" do
-    let(:params1) { { engine: 2, format: "json ", aparam: "one two" } }
-    let(:params2) { { engine: "1", format: "xml", file: "/usr/bin/file" } }
+    let(:params1) do
+      { preferred_data_sources: "1|2", engine: 2,
+        format: "json ", aparam: "one two" }
+    end
+    let(:params2) do
+      { preferred_data_sources: [1, 3], engine: "1",
+        format: "xml", file: "/usr/bin/file" }
+    end
     let(:params3) do
-      { engine: "whaa?", detect_language: "false\n ",
-        verbatim: true, unique: "whaa?", format: "klenon" }
+      { preferred_data_sources: "some|nonsense", engine: "whaa?",
+        detect_language: "false\n ", verbatim: true, unique: "whaa?",
+        format: "klenon" }
     end
     let(:params4) { { find: { detect_language: false } } }
 
@@ -59,6 +66,17 @@ describe Gnrd::App::Params do
       expect(subject.new(params2).normalize[:engine]).to be 1
       expect(subject.new(params3).normalize[:engine]).to be 0
       expect(subject.new(params4).normalize[:engine]).to be 0
+    end
+
+    it "normalizes data sources" do
+      expect(subject.new(params1).normalize[:preferred_data_sources])
+        .to eq [1, 2]
+      expect(subject.new(params2).normalize[:preferred_data_sources])
+        .to eq [1, 3]
+      expect(subject.new(params3).normalize[:preferred_data_sources])
+        .to eq []
+      expect(subject.new(params4).normalize[:preferred_data_sources])
+        .to eq []
     end
   end
 end

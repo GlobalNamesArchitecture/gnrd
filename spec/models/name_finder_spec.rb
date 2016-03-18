@@ -28,7 +28,8 @@ describe NameFinder do
         .to eq(engine: 0, format: "json", source: { text: "Pardosa moesta" },
                unique: false, verbatim: false, return_content: false,
                best_match_only: false, detect_language: true,
-               all_data_sources: false)
+               all_data_sources: false, data_source_ids: [],
+               preferred_data_sources: [])
     end
   end
 end
