@@ -1,5 +1,5 @@
-describe Gnrd::App::Params do
-  subject { Gnrd::App::Params }
+describe Params do
+  subject { Params }
 
   describe ".new" do
     it "creates and instance" do
@@ -35,7 +35,7 @@ describe Gnrd::App::Params do
       expect(prm[:source][:file]).to eq "/usr/bin/file"
     end
 
-    it "deals with boleans" do
+    it "deals with booleans" do
       prm = subject.new(params3).normalize
       expect(prm[:verbatim]).to be true
       expect(prm[:unique]).to be true

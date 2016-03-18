@@ -1,6 +1,6 @@
-describe Gnrd::App::Formatter do
+describe Sinatra::Formatter do
   include_context "shared_context"
-  subject { Gnrd::App::Formatter }
+  subject { Sinatra::Formatter }
   let(:nc) { FactoryGirl.create(:name_finder) }
 
   describe ".new" do

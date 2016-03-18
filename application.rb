@@ -7,11 +7,13 @@ require "tilt/haml"
 require "tilt/sass"
 
 require_relative "lib/gnrd"
+require_relative "models/hash_serializer"
+require_relative "models/params"
 require_relative "models/name_finder"
-require_relative "routes"
+
+require_relative "sinatra/formatter"
 require_relative "helpers"
-require_relative "lib/gnrd/app/formatter"
-require_relative "lib/gnrd/app/params"
+require_relative "routes"
 
 configure do
   register Sinatra::Flash
