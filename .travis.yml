@@ -28,7 +28,7 @@ before_install:
   - gem install bundler
 before_script:
   - bundle exec rake db:setup
-#   - QUEUE=name_finder_high,name_finder,name_finder_low TERM_CHILD=1 rake resque:work &
+  - QUEUE=gnrd TERM_CHILD=1 rake resque:work &
 branches:
   only:
     - master
