@@ -53,7 +53,7 @@ namespace :resque do
     end
     unless pids.empty?
       system("kill -QUIT #{pids.join(' ')}")
-      god_pid = "/var/run/god/resque-1.10.0.pid"
+      god_pid = "/var/run/god/resque.pid"
       FileUtils.rm god_pid if File.exist? god_pid
     end
   end

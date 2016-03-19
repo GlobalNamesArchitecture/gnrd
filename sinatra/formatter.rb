@@ -5,11 +5,12 @@ module Sinatra
       @nf = name_finder
     end
 
-    def show
-      res = { params: @nf.params, text: @nf.text, output: @nf.output }
-      status @nf.status_code
-      content_type "application/json", charset: "utf-8"
-      JSON.dump(res)
+    def content_type
+      "application/json; charset=UTF-8"
+    end
+
+    def render
+      JSON.dump(hi: "hi")
     end
   end
 
@@ -23,8 +24,12 @@ module Sinatra
       @nf = name_finder
     end
 
-    def show
-      # haml :fail
+    def content_type
+      "text/html; charset=UTF-8"
+    end
+
+    def render
+      eval("haml(:fail)")
     end
   end
 
@@ -35,16 +40,17 @@ module Sinatra
 
     def initialize(name_finder)
       @nf = name_finder
-      @format = FORMAT[name_finder.params[:format]] ||
+      fmt = FORMAT[name_finder.params[:format]] ||
                 Sinatra::FormatHtml
+      @format = fmt.new(@nf)
     end
 
-    def show
-      if @nf.redirect_path
-        redirect @nf.redirect_path
-        @nf.redirect_path = nil
-      end
-      @format.new(@nf).show
+    def content_type
+      @format.content_type
+    end
+
+    def render
+      @format.render
     end
   end
 end

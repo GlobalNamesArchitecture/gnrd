@@ -7,7 +7,7 @@ RUN apt-get install -y software-properties-common && \
     apt-get update && \
     apt-get install -y ruby2.2 ruby2.2-dev ruby-switch \
     zlib1g-dev liblzma-dev libxml2-dev libpq-dev \
-    libxslt-dev supervisor build-essential nodejs && \
+    libxslt-dev supervisor build-essential nodejs supervisor && \
     apt-get -y install graphicsmagick poppler-utils poppler-data \
     ghostscript tesseract-ocr pdftk libreoffice libmagic-dev && \
     apt-get clean && \
@@ -17,6 +17,9 @@ RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
+
+ENV RACK_ENV development
+ENV RESQUE_WORKERS 1
 
 RUN ruby-switch --set ruby2.2
 RUN echo 'gem: --no-rdoc --no-ri >> "$HOME/.gemrc"'
@@ -32,4 +35,6 @@ RUN bundle install
 
 COPY . /app
 
-CMD ["shotgun", "-o", "0.0.0.0", "-p", "9292", "-s", "puma"]
+ENTRYPOINT ["/app/exe/docker.sh"]
+
+CMD ["development"]
