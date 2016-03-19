@@ -50,7 +50,7 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.5)
     docsplit (0.7.6)
-    domain_name (0.5.20160309)
+    domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     factory_girl (4.5.0)
@@ -66,6 +66,7 @@ GEM
     i18n (0.7.0)
     iconv (1.0.4)
     json (1.8.3)
+    kgio (2.10.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -103,7 +104,6 @@ GEM
       ast (~> 2.2)
     pg (0.18.4)
     powerpack (0.1.1)
-    puma (3.1.0)
     rack (1.6.4)
     rack-google-analytics (1.2.0)
       actionpack
@@ -122,7 +122,8 @@ GEM
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rainbow (2.1.0)
-    rake (11.1.0)
+    raindrops (0.16.0)
+    rake (11.1.1)
     rchardet (1.6.1)
     redis (3.2.2)
     redis-namespace (1.5.2)
@@ -204,6 +205,10 @@ GEM
     unf_ext (0.0.7.2)
     unicode-display_width (1.0.2)
     unicode_utils (1.4.0)
+    unicorn (5.0.1)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
     unsupervised-language-detection (0.0.6)
     vegas (0.1.11)
       rack (>= 1.0.0)
@@ -229,7 +234,6 @@ DEPENDENCIES
   mechanize (~> 2.7)
   name-spotter (~> 0.3)
   pg (~> 0.18)
-  puma (~> 3.1)
   rack (~> 1.6)
   rack-google-analytics (~> 1.2)
   rack-test (~> 0.6)
@@ -249,6 +253,7 @@ DEPENDENCIES
   sinatra-flash (~> 0.3)
   sinatra-redirect-with-flash (~> 0.2)
   sinatra-reloader (~> 1.0)
+  unicorn (~> 5.0)
 
 BUNDLED WITH
    1.11.2

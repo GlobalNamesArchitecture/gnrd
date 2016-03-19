@@ -10,6 +10,22 @@ class NameFinder < ActiveRecord::Base
     end
   end
 
+  def self.enqueue(resource)
+    Resque::Job.create(self, resource.id)
+  end
+
+  def self.perform(name_finder_id)
+    nf = NameFinder.find(name_finder_id)
+    nf.name_find
+  end
+
+  def prepare
+  end
+
+  def error?
+    false
+  end
+
   before_create do
     self.token = NameFinder.token
     self.params = Params.new(params).normalize

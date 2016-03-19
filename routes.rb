@@ -25,15 +25,22 @@ get "/feedback" do
 end
 
 get "/name_finder.?:format?" do
-  @ns = if params[:token]
-          NameFinder.find_by_token(params[:token])
-        else
-          NameFinder.create(params: params)
-        end
-  name_finder_result(@ns)
+  if params[:token]
+    @ns = NameFinder.find_by_token(params[:token])
+    @ns.init_find
+  else
+    @ns = NameFinder.create(params: params)
+  end
+  @ns.prepare
+  redirect(@ns) if @ns.redirect_path
+  if @ns.error?
+    show_error(@ns)
+  else
+    show(@ns)
+  end
 end
 
 post "/name_finder.?:format?" do
   @ns = NameFinder.create(params: params)
-  output(@ns)
+  redirect(@ns)
 end

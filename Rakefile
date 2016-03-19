@@ -18,7 +18,7 @@ task default: [:rubocop, :spec]
 include ActiveRecord::Tasks
 ActiveRecord::Base.configurations = Gnrd.conf.database
 
-Gnrd.db_connection
+Gnrd.db_connections
 
 namespace :db do
   desc "create all the databases"
@@ -40,11 +40,7 @@ namespace :db do
 end
 
 namespace :resque do
-  task setup: :environment do
-    puts "Setting Environment"
-  end
-
-  task stop_workers: :setup do
+  task :stop_workers do
     desc "Finds and quits all running workers"
     puts "Quitting resque workers"
     pids = []
@@ -53,7 +49,7 @@ namespace :resque do
     end
     unless pids.empty?
       system("kill -QUIT #{pids.join(' ')}")
-      god_pid = "/var/run/god/resque-1.10.0.pid"
+      god_pid = "/var/run/god/resque.pid"
       FileUtils.rm god_pid if File.exist? god_pid
     end
   end

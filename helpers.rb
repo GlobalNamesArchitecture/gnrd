@@ -9,18 +9,16 @@ helpers do
     errs.empty? ? result_show(name_finder) : errors_show(name_finder, errs)
   end
 
-  def result_show(name_finder)
-    @title = @header = "Discovered Names"
-    @page = "home"
-    fm = Gnrd::App::Formatter.new(name_finder)
-    fm.show
+  def show(name_finder)
+    "hi #{name_finder}"
   end
 
   def errors_show(name_finder, errors)
     name_finder.output = errors
     name_finder.save!
-    fm = Gnrd::App::Formatter.new(name_finder)
-    fm.show
+    fm = Sinatra::Formatter.new(name_finder)
+    status(name_finder.status_code)
+    content_type(fm.content_type, charset: "utf-8")
   end
 
   def errors_detect(name_finder)
@@ -30,8 +28,11 @@ helpers do
   end
 
   def error_check_params_empty(name_finder)
-    if name_finder.params.empty?
-      { status: 400, message: "Bad request. Parameters missing" }
+    nf = name_finder
+    if nf.params[:source].empty?
+      nf.status_code = 400
+      nf.err_msg = "Bad request. Parameters missing"
+      { status: nf.status_code, message: nf.err_msg }
     end
   end
 end

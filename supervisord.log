@@ -1,0 +1,2078 @@
+2016-03-19 02:44:59,271 CRIT Supervisor running as root (no user in config file)
+2016-03-19 02:44:59,274 INFO supervisord started with pid 9
+2016-03-19 02:45:00,276 INFO spawned: ' puma' with pid 12
+2016-03-19 02:45:00,279 INFO spawnerr: can't find command 'TERM_CHILD=1'
+2016-03-19 02:45:00,428 INFO exited:  puma (exit status 1; not expected)
+2016-03-19 02:45:01,430 INFO spawned: ' puma' with pid 14
+2016-03-19 02:45:01,431 INFO spawnerr: can't find command 'TERM_CHILD=1'
+2016-03-19 02:45:01,598 INFO exited:  puma (exit status 1; not expected)
+2016-03-19 02:45:03,601 INFO spawned: ' puma' with pid 16
+2016-03-19 02:45:03,601 INFO spawnerr: can't find command 'TERM_CHILD=1'
+2016-03-19 02:45:03,793 INFO exited:  puma (exit status 1; not expected)
+2016-03-19 02:45:06,797 INFO spawned: ' puma' with pid 18
+2016-03-19 02:45:06,798 INFO spawnerr: can't find command 'TERM_CHILD=1'
+2016-03-19 02:45:06,798 INFO gave up:  resque entered FATAL state, too many start retries too quickly
+2016-03-19 02:45:06,910 INFO exited:  puma (exit status 1; not expected)
+2016-03-19 02:45:07,911 INFO gave up:  puma entered FATAL state, too many start retries too quickly
+2016-03-19 02:45:17,878 CRIT Supervisor running as root (no user in config file)
+2016-03-19 02:45:17,881 INFO supervisord started with pid 9
+2016-03-19 02:45:18,883 INFO spawned: ' puma' with pid 12
+2016-03-19 02:45:18,884 INFO spawnerr: can't find command 'TERM_CHILD=1'
+2016-03-19 02:45:19,071 INFO exited:  puma (exit status 1; not expected)
+2016-03-19 02:45:20,073 INFO spawned: ' puma' with pid 14
+2016-03-19 02:45:20,074 INFO spawnerr: can't find command 'TERM_CHILD=1'
+2016-03-19 02:45:20,223 INFO exited:  puma (exit status 1; not expected)
+2016-03-19 02:45:22,227 INFO spawned: ' puma' with pid 16
+2016-03-19 02:45:22,227 INFO spawnerr: can't find command 'TERM_CHILD=1'
+2016-03-19 02:45:22,445 INFO exited:  puma (exit status 1; not expected)
+2016-03-19 02:45:25,449 INFO spawned: ' puma' with pid 18
+2016-03-19 02:45:25,449 INFO spawnerr: can't find command 'TERM_CHILD=1'
+2016-03-19 02:45:25,449 INFO gave up:  resque entered FATAL state, too many start retries too quickly
+2016-03-19 02:45:25,573 INFO exited:  puma (exit status 1; not expected)
+2016-03-19 02:45:26,574 INFO gave up:  puma entered FATAL state, too many start retries too quickly
+2016-03-19 02:57:05,720 CRIT Supervisor running as root (no user in config file)
+2016-03-19 02:57:05,723 INFO supervisord started with pid 9
+2016-03-19 02:57:06,725 INFO spawned: ' puma' with pid 12
+2016-03-19 02:57:06,728 INFO spawned: ' resque' with pid 13
+2016-03-19 02:57:08,062 INFO success:  puma entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:08,062 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:09,443 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:10,445 INFO spawned: ' resque' with pid 18
+2016-03-19 02:57:11,447 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:12,657 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:13,659 INFO spawned: ' resque' with pid 22
+2016-03-19 02:57:14,661 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:15,928 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:16,930 INFO spawned: ' resque' with pid 26
+2016-03-19 02:57:17,931 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:18,462 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:19,463 INFO spawned: ' resque' with pid 30
+2016-03-19 02:57:20,465 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:20,975 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:21,977 INFO spawned: ' resque' with pid 34
+2016-03-19 02:57:22,978 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:23,498 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:24,500 INFO spawned: ' resque' with pid 38
+2016-03-19 02:57:25,501 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:25,997 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:26,999 INFO spawned: ' resque' with pid 42
+2016-03-19 02:57:28,001 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:28,513 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:29,515 INFO spawned: ' resque' with pid 46
+2016-03-19 02:57:30,516 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:31,042 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:32,043 INFO spawned: ' resque' with pid 50
+2016-03-19 02:57:33,044 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:33,524 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:34,526 INFO spawned: ' resque' with pid 54
+2016-03-19 02:57:35,528 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:36,071 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:37,073 INFO spawned: ' resque' with pid 58
+2016-03-19 02:57:38,075 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:38,599 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:39,602 INFO spawned: ' resque' with pid 62
+2016-03-19 02:57:40,603 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:41,159 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:42,161 INFO spawned: ' resque' with pid 66
+2016-03-19 02:57:43,162 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:43,722 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:44,724 INFO spawned: ' resque' with pid 70
+2016-03-19 02:57:45,726 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:46,332 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:47,334 INFO spawned: ' resque' with pid 74
+2016-03-19 02:57:48,335 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:48,824 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:49,825 INFO spawned: ' resque' with pid 78
+2016-03-19 02:57:50,827 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:51,670 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:52,672 INFO spawned: ' resque' with pid 82
+2016-03-19 02:57:53,674 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:54,302 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:55,304 INFO spawned: ' resque' with pid 86
+2016-03-19 02:57:56,306 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:56,794 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:57:57,795 INFO spawned: ' resque' with pid 90
+2016-03-19 02:57:58,796 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:57:59,403 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:00,405 INFO spawned: ' resque' with pid 94
+2016-03-19 02:58:01,407 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:01,884 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:02,886 INFO spawned: ' resque' with pid 98
+2016-03-19 02:58:03,888 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:04,438 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:05,439 INFO spawned: ' resque' with pid 102
+2016-03-19 02:58:06,441 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:06,956 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:07,958 INFO spawned: ' resque' with pid 106
+2016-03-19 02:58:08,959 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:09,516 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:10,518 INFO spawned: ' resque' with pid 110
+2016-03-19 02:58:11,520 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:12,097 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:13,099 INFO spawned: ' resque' with pid 114
+2016-03-19 02:58:14,100 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:14,635 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:15,637 INFO spawned: ' resque' with pid 118
+2016-03-19 02:58:16,639 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:17,163 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:18,165 INFO spawned: ' resque' with pid 122
+2016-03-19 02:58:19,167 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:19,751 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:20,753 INFO spawned: ' resque' with pid 126
+2016-03-19 02:58:21,754 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:22,326 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:23,328 INFO spawned: ' resque' with pid 130
+2016-03-19 02:58:24,330 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:24,895 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:25,897 INFO spawned: ' resque' with pid 134
+2016-03-19 02:58:26,898 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:28,482 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:29,484 INFO spawned: ' resque' with pid 138
+2016-03-19 02:58:30,486 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:31,024 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:32,026 INFO spawned: ' resque' with pid 142
+2016-03-19 02:58:33,027 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:33,563 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:34,566 INFO spawned: ' resque' with pid 146
+2016-03-19 02:58:35,567 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:36,044 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:37,046 INFO spawned: ' resque' with pid 150
+2016-03-19 02:58:38,047 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:38,561 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:39,563 INFO spawned: ' resque' with pid 154
+2016-03-19 02:58:40,564 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:41,155 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:42,157 INFO spawned: ' resque' with pid 158
+2016-03-19 02:58:43,158 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:43,704 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:44,706 INFO spawned: ' resque' with pid 162
+2016-03-19 02:58:45,707 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:46,216 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:47,218 INFO spawned: ' resque' with pid 166
+2016-03-19 02:58:48,220 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:48,843 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:49,845 INFO spawned: ' resque' with pid 170
+2016-03-19 02:58:50,846 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:51,524 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:52,526 INFO spawned: ' resque' with pid 174
+2016-03-19 02:58:53,528 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:54,235 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:55,237 INFO spawned: ' resque' with pid 178
+2016-03-19 02:58:56,238 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:56,993 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:58:57,995 INFO spawned: ' resque' with pid 182
+2016-03-19 02:58:58,997 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:58:59,549 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:00,551 INFO spawned: ' resque' with pid 186
+2016-03-19 02:59:01,553 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:02,500 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:03,502 INFO spawned: ' resque' with pid 190
+2016-03-19 02:59:04,503 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:05,236 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:06,238 INFO spawned: ' resque' with pid 194
+2016-03-19 02:59:07,240 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:07,832 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:08,834 INFO spawned: ' resque' with pid 198
+2016-03-19 02:59:09,835 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:10,470 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:11,472 INFO spawned: ' resque' with pid 202
+2016-03-19 02:59:12,473 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:13,011 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:14,013 INFO spawned: ' resque' with pid 206
+2016-03-19 02:59:15,014 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:15,580 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:16,582 INFO spawned: ' resque' with pid 210
+2016-03-19 02:59:17,583 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:18,080 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:19,083 INFO spawned: ' resque' with pid 214
+2016-03-19 02:59:20,084 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:20,577 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:21,579 INFO spawned: ' resque' with pid 218
+2016-03-19 02:59:22,580 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:23,121 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:24,123 INFO spawned: ' resque' with pid 222
+2016-03-19 02:59:25,124 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:25,618 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:26,621 INFO spawned: ' resque' with pid 226
+2016-03-19 02:59:27,622 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:28,196 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:29,198 INFO spawned: ' resque' with pid 230
+2016-03-19 02:59:30,200 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:30,792 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:31,794 INFO spawned: ' resque' with pid 234
+2016-03-19 02:59:32,796 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:33,345 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:34,347 INFO spawned: ' resque' with pid 238
+2016-03-19 02:59:35,348 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:35,909 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:36,911 INFO spawned: ' resque' with pid 242
+2016-03-19 02:59:37,912 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:38,503 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:39,505 INFO spawned: ' resque' with pid 246
+2016-03-19 02:59:40,506 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:41,147 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:42,149 INFO spawned: ' resque' with pid 250
+2016-03-19 02:59:43,150 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:43,636 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:44,639 INFO spawned: ' resque' with pid 254
+2016-03-19 02:59:45,640 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:46,165 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:47,167 INFO spawned: ' resque' with pid 258
+2016-03-19 02:59:48,169 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:48,739 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:49,741 INFO spawned: ' resque' with pid 262
+2016-03-19 02:59:50,743 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:51,324 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:52,326 INFO spawned: ' resque' with pid 266
+2016-03-19 02:59:53,328 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:53,819 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:54,821 INFO spawned: ' resque' with pid 270
+2016-03-19 02:59:55,823 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:56,336 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:57,338 INFO spawned: ' resque' with pid 274
+2016-03-19 02:59:58,340 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 02:59:58,961 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 02:59:59,963 INFO spawned: ' resque' with pid 278
+2016-03-19 03:00:00,964 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 03:00:01,468 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 03:00:02,470 INFO spawned: ' resque' with pid 282
+2016-03-19 03:00:03,471 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 03:00:03,948 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 03:00:04,950 INFO spawned: ' resque' with pid 286
+2016-03-19 03:00:05,951 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 03:00:06,476 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 03:00:07,478 INFO spawned: ' resque' with pid 290
+2016-03-19 03:00:08,479 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 03:00:08,980 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 03:00:32,428 CRIT Supervisor running as root (no user in config file)
+2016-03-19 03:00:32,431 INFO supervisord started with pid 8
+2016-03-19 03:00:33,433 INFO spawned: ' puma' with pid 11
+2016-03-19 03:00:33,434 INFO spawned: ' resque' with pid 12
+2016-03-19 03:00:33,441 INFO exited:  resque (exit status 0; not expected)
+2016-03-19 03:00:34,715 INFO success:  puma entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 03:00:34,716 INFO spawned: ' resque' with pid 14
+2016-03-19 03:00:34,721 INFO exited:  resque (exit status 0; not expected)
+2016-03-19 03:00:36,723 INFO spawned: ' resque' with pid 15
+2016-03-19 03:00:36,728 INFO exited:  resque (exit status 0; not expected)
+2016-03-19 03:00:39,732 INFO spawned: ' resque' with pid 16
+2016-03-19 03:00:39,735 INFO exited:  resque (exit status 0; not expected)
+2016-03-19 03:00:40,736 INFO gave up:  resque entered FATAL state, too many start retries too quickly
+2016-03-19 03:04:37,589 CRIT Supervisor running as root (no user in config file)
+2016-03-19 03:04:37,591 INFO supervisord started with pid 9
+2016-03-19 03:04:38,593 INFO spawned: ' puma' with pid 12
+2016-03-19 03:04:38,595 INFO spawned: ' resque' with pid 13
+2016-03-19 03:04:38,600 INFO exited:  resque (exit status 0; not expected)
+2016-03-19 03:04:39,912 INFO success:  puma entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 03:04:39,913 INFO spawned: ' resque' with pid 15
+2016-03-19 03:04:39,918 INFO exited:  resque (exit status 0; not expected)
+2016-03-19 03:04:41,922 INFO spawned: ' resque' with pid 16
+2016-03-19 03:04:41,927 INFO exited:  resque (exit status 0; not expected)
+2016-03-19 03:04:44,931 INFO spawned: ' resque' with pid 17
+2016-03-19 03:04:44,934 INFO exited:  resque (exit status 0; not expected)
+2016-03-19 03:04:45,935 INFO gave up:  resque entered FATAL state, too many start retries too quickly
+2016-03-19 13:55:42,506 CRIT Supervisor running as root (no user in config file)
+2016-03-19 13:55:42,510 INFO supervisord started with pid 8
+2016-03-19 13:55:43,511 INFO spawned: ' unicorn' with pid 11
+2016-03-19 13:55:43,512 INFO spawned: ' nginx' with pid 12
+2016-03-19 13:55:43,517 INFO spawned: ' resque' with pid 13
+2016-03-19 13:55:43,753 INFO exited:  unicorn (exit status 1; not expected)
+2016-03-19 13:55:44,755 INFO spawned: ' unicorn' with pid 23
+2016-03-19 13:55:44,756 INFO success:  nginx entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:55:44,756 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:55:44,980 INFO exited:  unicorn (exit status 1; not expected)
+2016-03-19 13:55:45,805 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:55:46,808 INFO spawned: ' resque' with pid 26
+2016-03-19 13:55:47,810 INFO spawned: ' unicorn' with pid 28
+2016-03-19 13:55:47,811 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:55:48,024 INFO exited:  unicorn (exit status 1; not expected)
+2016-03-19 13:55:49,381 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:55:50,384 INFO spawned: ' resque' with pid 33
+2016-03-19 13:55:51,387 INFO spawned: ' unicorn' with pid 35
+2016-03-19 13:55:51,387 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:55:51,641 INFO exited:  unicorn (exit status 1; not expected)
+2016-03-19 13:55:52,285 INFO gave up:  unicorn entered FATAL state, too many start retries too quickly
+2016-03-19 13:55:52,304 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:55:53,307 INFO spawned: ' resque' with pid 40
+2016-03-19 13:55:54,308 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:55:54,874 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:55:55,876 INFO spawned: ' resque' with pid 44
+2016-03-19 13:55:56,877 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:55:57,532 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:55:58,534 INFO spawned: ' resque' with pid 48
+2016-03-19 13:55:59,535 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:56:00,213 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:56:01,215 INFO spawned: ' resque' with pid 52
+2016-03-19 13:56:02,216 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:56:02,935 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:56:03,937 INFO spawned: ' resque' with pid 56
+2016-03-19 13:56:04,938 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:56:05,521 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:56:06,522 INFO spawned: ' resque' with pid 60
+2016-03-19 13:56:07,524 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:56:08,099 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:56:09,101 INFO spawned: ' resque' with pid 64
+2016-03-19 13:56:10,102 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:56:10,654 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:56:11,656 INFO spawned: ' resque' with pid 68
+2016-03-19 13:56:12,657 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:56:13,260 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:56:14,262 INFO spawned: ' resque' with pid 72
+2016-03-19 13:56:15,264 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:56:15,852 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:56:16,854 INFO spawned: ' resque' with pid 76
+2016-03-19 13:56:17,855 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:56:18,509 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:56:19,511 INFO spawned: ' resque' with pid 80
+2016-03-19 13:56:20,512 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:56:21,061 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:56:22,063 INFO spawned: ' resque' with pid 84
+2016-03-19 13:56:23,065 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:56:23,594 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:56:24,596 INFO spawned: ' resque' with pid 88
+2016-03-19 13:56:25,598 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:56:26,170 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:56:27,172 INFO spawned: ' resque' with pid 92
+2016-03-19 13:57:16,317 CRIT Supervisor running as root (no user in config file)
+2016-03-19 13:57:16,319 INFO supervisord started with pid 8
+2016-03-19 13:57:17,322 INFO spawned: ' unicorn' with pid 11
+2016-03-19 13:57:17,323 INFO spawned: ' resque' with pid 12
+2016-03-19 13:57:17,616 INFO exited:  unicorn (exit status 1; not expected)
+2016-03-19 13:57:18,619 INFO spawned: ' unicorn' with pid 18
+2016-03-19 13:57:18,619 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:18,848 INFO exited:  unicorn (exit status 1; not expected)
+2016-03-19 13:57:19,891 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:20,893 INFO spawned: ' unicorn' with pid 21
+2016-03-19 13:57:20,895 INFO spawned: ' resque' with pid 22
+2016-03-19 13:57:21,161 INFO exited:  unicorn (exit status 1; not expected)
+2016-03-19 13:57:22,162 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:24,669 INFO spawned: ' unicorn' with pid 28
+2016-03-19 13:57:24,669 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:24,912 INFO spawned: ' resque' with pid 31
+2016-03-19 13:57:24,916 INFO exited:  unicorn (exit status 1; not expected)
+2016-03-19 13:57:25,918 INFO gave up:  unicorn entered FATAL state, too many start retries too quickly
+2016-03-19 13:57:25,918 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:27,626 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:28,628 INFO spawned: ' resque' with pid 35
+2016-03-19 13:57:29,629 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:30,138 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:31,139 INFO spawned: ' resque' with pid 39
+2016-03-19 13:57:32,141 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:32,646 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:33,650 INFO spawned: ' resque' with pid 43
+2016-03-19 13:57:34,655 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:35,215 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:36,219 INFO spawned: ' resque' with pid 47
+2016-03-19 13:57:37,221 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:37,905 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:38,906 INFO spawned: ' resque' with pid 51
+2016-03-19 13:57:39,908 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:40,459 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:41,462 INFO spawned: ' resque' with pid 55
+2016-03-19 13:57:42,463 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:43,004 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:44,006 INFO spawned: ' resque' with pid 59
+2016-03-19 13:57:45,007 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:45,545 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:46,547 INFO spawned: ' resque' with pid 63
+2016-03-19 13:57:47,548 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:48,096 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:49,098 INFO spawned: ' resque' with pid 84
+2016-03-19 13:57:50,099 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:50,669 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:51,671 INFO spawned: ' resque' with pid 88
+2016-03-19 13:57:52,673 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:53,191 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:54,192 INFO spawned: ' resque' with pid 92
+2016-03-19 13:57:55,194 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:55,765 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:56,767 INFO spawned: ' resque' with pid 96
+2016-03-19 13:57:57,768 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:57:58,302 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:57:59,307 INFO spawned: ' resque' with pid 132
+2016-03-19 13:58:00,310 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:07,637 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:08,640 INFO spawned: ' resque' with pid 156
+2016-03-19 13:58:09,641 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:11,208 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:12,210 INFO spawned: ' resque' with pid 160
+2016-03-19 13:58:13,212 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:13,791 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:14,793 INFO spawned: ' resque' with pid 164
+2016-03-19 13:58:15,794 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:16,378 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:17,380 INFO spawned: ' resque' with pid 168
+2016-03-19 13:58:18,381 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:18,943 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:19,945 INFO spawned: ' resque' with pid 172
+2016-03-19 13:58:20,946 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:21,586 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:22,588 INFO spawned: ' resque' with pid 176
+2016-03-19 13:58:23,590 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:24,179 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:25,181 INFO spawned: ' resque' with pid 180
+2016-03-19 13:58:26,183 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:26,782 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:27,784 INFO spawned: ' resque' with pid 184
+2016-03-19 13:58:28,785 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:29,357 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:30,359 INFO spawned: ' resque' with pid 188
+2016-03-19 13:58:31,360 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:31,922 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:32,924 INFO spawned: ' resque' with pid 192
+2016-03-19 13:58:33,926 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:34,471 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:35,473 INFO spawned: ' resque' with pid 196
+2016-03-19 13:58:36,474 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:37,046 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:38,048 INFO spawned: ' resque' with pid 200
+2016-03-19 13:58:39,050 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:39,621 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:40,623 INFO spawned: ' resque' with pid 204
+2016-03-19 13:58:41,624 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:42,299 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:43,301 INFO spawned: ' resque' with pid 208
+2016-03-19 13:58:44,303 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:44,949 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:45,951 INFO spawned: ' resque' with pid 212
+2016-03-19 13:58:46,952 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:47,487 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:48,489 INFO spawned: ' resque' with pid 216
+2016-03-19 13:58:49,490 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:51,142 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:52,144 INFO spawned: ' resque' with pid 220
+2016-03-19 13:58:53,145 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:53,769 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:54,771 INFO spawned: ' resque' with pid 224
+2016-03-19 13:58:55,772 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:56,366 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:57,368 INFO spawned: ' resque' with pid 228
+2016-03-19 13:58:58,369 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:58:58,885 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:58:59,886 INFO spawned: ' resque' with pid 232
+2016-03-19 13:59:00,887 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:01,439 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:02,441 INFO spawned: ' resque' with pid 236
+2016-03-19 13:59:03,442 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:04,029 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:05,031 INFO spawned: ' resque' with pid 240
+2016-03-19 13:59:06,032 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:06,616 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:07,618 INFO spawned: ' resque' with pid 244
+2016-03-19 13:59:08,620 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:09,185 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:10,187 INFO spawned: ' resque' with pid 248
+2016-03-19 13:59:11,188 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:11,769 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:12,771 INFO spawned: ' resque' with pid 252
+2016-03-19 13:59:13,772 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:14,341 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:15,343 INFO spawned: ' resque' with pid 256
+2016-03-19 13:59:16,344 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:16,924 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:17,926 INFO spawned: ' resque' with pid 260
+2016-03-19 13:59:18,928 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:19,476 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:20,478 INFO spawned: ' resque' with pid 264
+2016-03-19 13:59:21,480 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:22,133 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:23,136 INFO spawned: ' resque' with pid 271
+2016-03-19 13:59:24,137 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:24,721 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:25,723 INFO spawned: ' resque' with pid 275
+2016-03-19 13:59:26,724 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:27,292 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:28,294 INFO spawned: ' resque' with pid 279
+2016-03-19 13:59:29,295 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:29,876 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:30,877 INFO spawned: ' resque' with pid 283
+2016-03-19 13:59:31,879 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:32,463 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:33,465 INFO spawned: ' resque' with pid 287
+2016-03-19 13:59:34,466 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:35,015 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:36,017 INFO spawned: ' resque' with pid 294
+2016-03-19 13:59:37,018 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:37,593 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:38,595 INFO spawned: ' resque' with pid 298
+2016-03-19 13:59:39,596 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:40,166 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:41,168 INFO spawned: ' resque' with pid 302
+2016-03-19 13:59:42,170 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:42,707 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:43,709 INFO spawned: ' resque' with pid 306
+2016-03-19 13:59:44,711 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:45,269 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:46,271 INFO spawned: ' resque' with pid 310
+2016-03-19 13:59:47,272 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:47,848 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:48,850 INFO spawned: ' resque' with pid 314
+2016-03-19 13:59:49,852 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:50,414 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:51,416 INFO spawned: ' resque' with pid 318
+2016-03-19 13:59:52,417 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:52,961 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:53,963 INFO spawned: ' resque' with pid 322
+2016-03-19 13:59:54,964 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:55,544 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:56,546 INFO spawned: ' resque' with pid 333
+2016-03-19 13:59:57,548 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 13:59:58,432 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 13:59:59,434 INFO spawned: ' resque' with pid 337
+2016-03-19 14:00:00,436 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:00,970 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:01,972 INFO spawned: ' resque' with pid 341
+2016-03-19 14:00:02,974 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:03,549 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:04,551 INFO spawned: ' resque' with pid 345
+2016-03-19 14:00:05,552 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:06,115 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:07,117 INFO spawned: ' resque' with pid 349
+2016-03-19 14:00:08,118 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:08,626 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:09,628 INFO spawned: ' resque' with pid 353
+2016-03-19 14:00:10,629 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:11,168 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:12,170 INFO spawned: ' resque' with pid 357
+2016-03-19 14:00:13,172 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:13,807 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:14,809 INFO spawned: ' resque' with pid 361
+2016-03-19 14:00:15,810 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:16,396 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:17,398 INFO spawned: ' resque' with pid 365
+2016-03-19 14:00:18,400 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:19,431 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:20,432 INFO spawned: ' resque' with pid 369
+2016-03-19 14:00:21,434 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:22,915 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:23,917 INFO spawned: ' resque' with pid 373
+2016-03-19 14:00:24,918 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:26,247 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:27,248 INFO spawned: ' resque' with pid 377
+2016-03-19 14:00:28,250 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:30,007 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:31,009 INFO spawned: ' resque' with pid 381
+2016-03-19 14:00:32,010 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:32,643 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:33,645 INFO spawned: ' resque' with pid 385
+2016-03-19 14:00:34,647 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:35,303 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:36,305 INFO spawned: ' resque' with pid 389
+2016-03-19 14:00:37,306 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:37,842 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:38,843 INFO spawned: ' resque' with pid 393
+2016-03-19 14:00:39,845 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:40,416 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:41,418 INFO spawned: ' resque' with pid 397
+2016-03-19 14:00:42,420 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:42,971 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:43,973 INFO spawned: ' resque' with pid 401
+2016-03-19 14:00:44,974 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:45,508 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:46,510 INFO spawned: ' resque' with pid 405
+2016-03-19 14:00:47,511 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:48,071 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:49,073 INFO spawned: ' resque' with pid 409
+2016-03-19 14:00:50,075 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:50,675 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:51,677 INFO spawned: ' resque' with pid 413
+2016-03-19 14:00:52,678 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:53,237 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:54,239 INFO spawned: ' resque' with pid 417
+2016-03-19 14:00:55,241 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:55,789 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:56,792 INFO spawned: ' resque' with pid 421
+2016-03-19 14:00:57,793 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:00:58,453 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:00:59,455 INFO spawned: ' resque' with pid 425
+2016-03-19 14:01:00,457 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:01,034 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:02,036 INFO spawned: ' resque' with pid 429
+2016-03-19 14:01:03,038 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:03,569 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:04,571 INFO spawned: ' resque' with pid 433
+2016-03-19 14:01:05,572 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:06,140 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:07,142 INFO spawned: ' resque' with pid 437
+2016-03-19 14:01:08,144 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:08,681 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:09,683 INFO spawned: ' resque' with pid 441
+2016-03-19 14:01:10,684 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:11,262 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:12,264 INFO spawned: ' resque' with pid 445
+2016-03-19 14:01:13,266 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:13,845 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:14,847 INFO spawned: ' resque' with pid 449
+2016-03-19 14:01:15,849 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:16,381 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:17,383 INFO spawned: ' resque' with pid 453
+2016-03-19 14:01:18,384 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:19,013 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:20,015 INFO spawned: ' resque' with pid 457
+2016-03-19 14:01:21,016 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:21,595 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:22,598 INFO spawned: ' resque' with pid 461
+2016-03-19 14:01:23,599 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:24,250 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:25,252 INFO spawned: ' resque' with pid 465
+2016-03-19 14:01:26,254 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:26,848 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:27,850 INFO spawned: ' resque' with pid 469
+2016-03-19 14:01:28,851 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:29,415 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:30,417 INFO spawned: ' resque' with pid 473
+2016-03-19 14:01:31,418 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:32,009 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:33,011 INFO spawned: ' resque' with pid 477
+2016-03-19 14:01:34,013 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:34,577 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:35,578 INFO spawned: ' resque' with pid 481
+2016-03-19 14:01:36,580 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:37,158 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:38,160 INFO spawned: ' resque' with pid 485
+2016-03-19 14:01:39,162 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:39,761 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:40,763 INFO spawned: ' resque' with pid 489
+2016-03-19 14:01:41,764 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:42,341 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:43,343 INFO spawned: ' resque' with pid 493
+2016-03-19 14:01:44,345 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:44,935 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:45,937 INFO spawned: ' resque' with pid 497
+2016-03-19 14:01:46,938 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:47,507 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:48,509 INFO spawned: ' resque' with pid 501
+2016-03-19 14:01:49,510 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:50,078 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:51,080 INFO spawned: ' resque' with pid 505
+2016-03-19 14:01:52,082 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:52,652 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:53,654 INFO spawned: ' resque' with pid 509
+2016-03-19 14:01:54,655 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:55,190 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:56,192 INFO spawned: ' resque' with pid 513
+2016-03-19 14:01:57,194 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:01:57,722 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:01:58,724 INFO spawned: ' resque' with pid 517
+2016-03-19 14:01:59,726 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:00,263 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:01,265 INFO spawned: ' resque' with pid 521
+2016-03-19 14:02:02,266 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:02,879 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:03,882 INFO spawned: ' resque' with pid 525
+2016-03-19 14:02:04,883 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:05,563 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:06,565 INFO spawned: ' resque' with pid 529
+2016-03-19 14:02:07,566 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:08,766 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:09,769 INFO spawned: ' resque' with pid 533
+2016-03-19 14:02:10,770 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:11,899 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:12,901 INFO spawned: ' resque' with pid 537
+2016-03-19 14:02:13,902 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:15,349 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:16,352 INFO spawned: ' resque' with pid 541
+2016-03-19 14:02:17,353 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:18,681 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:19,683 INFO spawned: ' resque' with pid 545
+2016-03-19 14:02:20,684 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:21,960 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:22,962 INFO spawned: ' resque' with pid 549
+2016-03-19 14:02:23,963 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:25,332 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:26,335 INFO spawned: ' resque' with pid 553
+2016-03-19 14:02:27,336 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:28,568 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:29,569 INFO spawned: ' resque' with pid 557
+2016-03-19 14:02:30,570 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:31,990 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:32,992 INFO spawned: ' resque' with pid 561
+2016-03-19 14:02:33,993 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:35,453 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:36,455 INFO spawned: ' resque' with pid 565
+2016-03-19 14:02:37,457 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:38,791 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:39,792 INFO spawned: ' resque' with pid 569
+2016-03-19 14:02:40,793 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:42,458 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:43,461 INFO spawned: ' resque' with pid 573
+2016-03-19 14:02:44,462 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:45,817 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:46,818 INFO spawned: ' resque' with pid 577
+2016-03-19 14:02:47,820 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:49,032 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:50,034 INFO spawned: ' resque' with pid 581
+2016-03-19 14:02:51,036 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:52,424 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:53,427 INFO spawned: ' resque' with pid 585
+2016-03-19 14:02:54,429 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:55,908 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:02:56,910 INFO spawned: ' resque' with pid 589
+2016-03-19 14:02:57,911 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:02:59,314 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:00,316 INFO spawned: ' resque' with pid 593
+2016-03-19 14:03:01,318 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:02,718 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:03,721 INFO spawned: ' resque' with pid 597
+2016-03-19 14:03:04,722 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:05,742 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:06,744 INFO spawned: ' resque' with pid 601
+2016-03-19 14:03:07,745 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:08,599 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:09,602 INFO spawned: ' resque' with pid 605
+2016-03-19 14:03:10,603 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:11,761 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:12,763 INFO spawned: ' resque' with pid 609
+2016-03-19 14:03:13,764 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:14,928 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:15,930 INFO spawned: ' resque' with pid 613
+2016-03-19 14:03:16,931 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:17,634 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:18,636 INFO spawned: ' resque' with pid 617
+2016-03-19 14:03:19,638 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:20,675 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:21,677 INFO spawned: ' resque' with pid 621
+2016-03-19 14:03:22,678 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:23,678 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:24,680 INFO spawned: ' resque' with pid 625
+2016-03-19 14:03:25,681 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:26,724 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:27,727 INFO spawned: ' resque' with pid 629
+2016-03-19 14:03:28,729 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:29,717 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:30,719 INFO spawned: ' resque' with pid 633
+2016-03-19 14:03:31,720 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:32,638 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:33,639 INFO spawned: ' resque' with pid 637
+2016-03-19 14:03:34,640 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:35,398 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:36,400 INFO spawned: ' resque' with pid 641
+2016-03-19 14:03:37,401 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:38,080 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:39,082 INFO spawned: ' resque' with pid 645
+2016-03-19 14:03:40,083 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:40,791 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:41,793 INFO spawned: ' resque' with pid 649
+2016-03-19 14:03:42,794 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:43,746 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:44,747 INFO spawned: ' resque' with pid 653
+2016-03-19 14:03:45,749 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:46,438 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:47,440 INFO spawned: ' resque' with pid 657
+2016-03-19 14:03:48,441 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:49,563 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:50,565 INFO spawned: ' resque' with pid 661
+2016-03-19 14:03:51,566 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:52,782 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:53,784 INFO spawned: ' resque' with pid 665
+2016-03-19 14:03:54,785 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:55,573 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:56,575 INFO spawned: ' resque' with pid 669
+2016-03-19 14:03:57,576 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:03:58,647 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:03:59,648 INFO spawned: ' resque' with pid 673
+2016-03-19 14:04:00,650 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:01,493 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:02,495 INFO spawned: ' resque' with pid 677
+2016-03-19 14:04:03,496 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:04,254 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:05,256 INFO spawned: ' resque' with pid 681
+2016-03-19 14:04:06,257 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:07,244 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:08,246 INFO spawned: ' resque' with pid 685
+2016-03-19 14:04:09,247 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:10,339 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:11,341 INFO spawned: ' resque' with pid 689
+2016-03-19 14:04:12,343 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:13,007 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:14,009 INFO spawned: ' resque' with pid 693
+2016-03-19 14:04:15,010 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:15,638 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:16,640 INFO spawned: ' resque' with pid 697
+2016-03-19 14:04:17,641 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:18,450 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:19,452 INFO spawned: ' resque' with pid 701
+2016-03-19 14:04:20,454 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:21,156 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:22,158 INFO spawned: ' resque' with pid 705
+2016-03-19 14:04:23,160 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:24,140 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:25,142 INFO spawned: ' resque' with pid 709
+2016-03-19 14:04:26,143 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:27,017 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:28,019 INFO spawned: ' resque' with pid 713
+2016-03-19 14:04:29,021 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:30,061 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:31,063 INFO spawned: ' resque' with pid 717
+2016-03-19 14:04:32,065 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:33,621 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:34,623 INFO spawned: ' resque' with pid 721
+2016-03-19 14:04:35,624 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:36,304 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:37,306 INFO spawned: ' resque' with pid 725
+2016-03-19 14:04:38,308 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:39,083 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:40,085 INFO spawned: ' resque' with pid 729
+2016-03-19 14:04:41,086 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:42,052 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:43,053 INFO spawned: ' resque' with pid 733
+2016-03-19 14:04:44,055 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:44,763 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:45,765 INFO spawned: ' resque' with pid 737
+2016-03-19 14:04:46,766 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:47,691 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:48,693 INFO spawned: ' resque' with pid 741
+2016-03-19 14:04:49,694 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:50,294 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:51,296 INFO spawned: ' resque' with pid 745
+2016-03-19 14:04:52,298 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:53,360 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:54,362 INFO spawned: ' resque' with pid 749
+2016-03-19 14:04:55,364 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:57,048 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:04:58,050 INFO spawned: ' resque' with pid 753
+2016-03-19 14:04:59,051 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:04:59,791 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:00,793 INFO spawned: ' resque' with pid 757
+2016-03-19 14:05:01,794 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:02,515 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:03,517 INFO spawned: ' resque' with pid 761
+2016-03-19 14:05:04,518 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:05,512 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:06,514 INFO spawned: ' resque' with pid 765
+2016-03-19 14:05:07,515 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:08,504 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:09,506 INFO spawned: ' resque' with pid 769
+2016-03-19 14:05:10,508 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:11,806 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:12,808 INFO spawned: ' resque' with pid 773
+2016-03-19 14:05:13,810 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:14,796 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:15,798 INFO spawned: ' resque' with pid 777
+2016-03-19 14:05:16,799 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:18,010 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:19,013 INFO spawned: ' resque' with pid 781
+2016-03-19 14:05:20,014 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:21,113 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:22,115 INFO spawned: ' resque' with pid 785
+2016-03-19 14:05:23,117 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:24,112 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:25,114 INFO spawned: ' resque' with pid 789
+2016-03-19 14:05:26,116 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:27,035 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:28,037 INFO spawned: ' resque' with pid 793
+2016-03-19 14:05:29,038 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:30,167 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:31,168 INFO spawned: ' resque' with pid 797
+2016-03-19 14:05:32,170 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:33,088 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:34,090 INFO spawned: ' resque' with pid 801
+2016-03-19 14:05:35,093 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:37,117 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:38,119 INFO spawned: ' resque' with pid 805
+2016-03-19 14:05:39,120 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:40,126 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:41,128 INFO spawned: ' resque' with pid 809
+2016-03-19 14:05:42,129 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:43,235 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:44,237 INFO spawned: ' resque' with pid 813
+2016-03-19 14:05:45,238 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:46,257 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:47,259 INFO spawned: ' resque' with pid 817
+2016-03-19 14:05:48,260 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:49,373 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:50,375 INFO spawned: ' resque' with pid 821
+2016-03-19 14:05:51,376 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:52,465 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:53,467 INFO spawned: ' resque' with pid 825
+2016-03-19 14:05:54,469 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:55,580 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:56,583 INFO spawned: ' resque' with pid 829
+2016-03-19 14:05:57,585 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:05:58,588 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:05:59,591 INFO spawned: ' resque' with pid 833
+2016-03-19 14:06:00,592 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:01,666 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:02,667 INFO spawned: ' resque' with pid 837
+2016-03-19 14:06:03,669 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:04,635 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:05,637 INFO spawned: ' resque' with pid 841
+2016-03-19 14:06:06,638 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:07,589 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:08,592 INFO spawned: ' resque' with pid 845
+2016-03-19 14:06:09,593 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:10,541 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:11,543 INFO spawned: ' resque' with pid 849
+2016-03-19 14:06:12,545 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:13,613 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:14,615 INFO spawned: ' resque' with pid 853
+2016-03-19 14:06:15,616 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:16,585 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:17,587 INFO spawned: ' resque' with pid 857
+2016-03-19 14:06:18,589 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:19,751 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:20,753 INFO spawned: ' resque' with pid 861
+2016-03-19 14:06:21,754 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:22,666 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:23,669 INFO spawned: ' resque' with pid 865
+2016-03-19 14:06:24,670 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:25,785 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:26,787 INFO spawned: ' resque' with pid 869
+2016-03-19 14:06:27,788 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:28,821 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:29,823 INFO spawned: ' resque' with pid 873
+2016-03-19 14:06:30,824 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:31,779 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:32,782 INFO spawned: ' resque' with pid 877
+2016-03-19 14:06:33,783 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:34,919 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:35,921 INFO spawned: ' resque' with pid 881
+2016-03-19 14:06:36,922 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:37,915 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:38,916 INFO spawned: ' resque' with pid 885
+2016-03-19 14:06:39,918 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:40,972 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:41,973 INFO spawned: ' resque' with pid 889
+2016-03-19 14:06:42,974 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:44,139 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:45,141 INFO spawned: ' resque' with pid 893
+2016-03-19 14:06:46,142 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:47,393 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:48,395 INFO spawned: ' resque' with pid 897
+2016-03-19 14:06:49,395 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:50,569 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:51,571 INFO spawned: ' resque' with pid 901
+2016-03-19 14:06:52,573 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:53,603 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:54,606 INFO spawned: ' resque' with pid 905
+2016-03-19 14:06:55,608 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:56,391 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:06:57,393 INFO spawned: ' resque' with pid 909
+2016-03-19 14:06:58,394 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:06:59,571 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:00,573 INFO spawned: ' resque' with pid 913
+2016-03-19 14:07:01,575 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:02,624 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:03,626 INFO spawned: ' resque' with pid 917
+2016-03-19 14:07:04,627 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:05,569 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:06,571 INFO spawned: ' resque' with pid 921
+2016-03-19 14:07:07,572 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:08,673 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:09,675 INFO spawned: ' resque' with pid 925
+2016-03-19 14:07:10,676 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:12,788 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:13,790 INFO spawned: ' resque' with pid 929
+2016-03-19 14:07:14,792 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:15,929 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:16,931 INFO spawned: ' resque' with pid 933
+2016-03-19 14:07:17,932 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:18,865 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:19,868 INFO spawned: ' resque' with pid 937
+2016-03-19 14:07:20,869 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:21,921 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:22,923 INFO spawned: ' resque' with pid 941
+2016-03-19 14:07:23,925 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:25,169 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:26,172 INFO spawned: ' resque' with pid 945
+2016-03-19 14:07:27,173 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:28,101 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:29,103 INFO spawned: ' resque' with pid 949
+2016-03-19 14:07:30,104 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:31,079 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:32,081 INFO spawned: ' resque' with pid 953
+2016-03-19 14:07:33,082 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:34,167 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:35,169 INFO spawned: ' resque' with pid 957
+2016-03-19 14:07:36,170 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:37,203 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:38,205 INFO spawned: ' resque' with pid 961
+2016-03-19 14:07:39,206 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:40,185 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:41,187 INFO spawned: ' resque' with pid 965
+2016-03-19 14:07:42,189 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:43,177 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:44,179 INFO spawned: ' resque' with pid 969
+2016-03-19 14:07:45,181 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:46,089 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:47,091 INFO spawned: ' resque' with pid 973
+2016-03-19 14:07:48,093 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:48,943 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:49,944 INFO spawned: ' resque' with pid 977
+2016-03-19 14:07:50,947 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:51,853 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:52,855 INFO spawned: ' resque' with pid 981
+2016-03-19 14:07:53,856 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:54,905 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:55,906 INFO spawned: ' resque' with pid 985
+2016-03-19 14:07:56,908 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:07:57,838 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:07:58,840 INFO spawned: ' resque' with pid 989
+2016-03-19 14:07:59,841 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:00,745 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:01,747 INFO spawned: ' resque' with pid 993
+2016-03-19 14:08:02,748 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:03,787 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:04,789 INFO spawned: ' resque' with pid 997
+2016-03-19 14:08:05,790 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:06,575 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:07,576 INFO spawned: ' resque' with pid 1001
+2016-03-19 14:08:08,578 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:09,448 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:10,450 INFO spawned: ' resque' with pid 1005
+2016-03-19 14:08:11,451 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:12,499 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:13,502 INFO spawned: ' resque' with pid 1009
+2016-03-19 14:08:14,502 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:15,306 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:16,308 INFO spawned: ' resque' with pid 1013
+2016-03-19 14:08:17,309 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:18,118 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:19,119 INFO spawned: ' resque' with pid 1017
+2016-03-19 14:08:20,120 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:21,199 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:22,201 INFO spawned: ' resque' with pid 1021
+2016-03-19 14:08:23,202 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:24,066 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:25,067 INFO spawned: ' resque' with pid 1025
+2016-03-19 14:08:26,069 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:26,934 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:27,935 INFO spawned: ' resque' with pid 1029
+2016-03-19 14:08:28,936 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:29,719 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:30,721 INFO spawned: ' resque' with pid 1033
+2016-03-19 14:08:31,723 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:32,583 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:33,585 INFO spawned: ' resque' with pid 1037
+2016-03-19 14:08:34,586 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:35,382 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:36,383 INFO spawned: ' resque' with pid 1041
+2016-03-19 14:08:37,385 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:38,263 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:39,266 INFO spawned: ' resque' with pid 1045
+2016-03-19 14:08:40,267 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:41,238 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:42,240 INFO spawned: ' resque' with pid 1049
+2016-03-19 14:08:43,242 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:44,239 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:45,241 INFO spawned: ' resque' with pid 1053
+2016-03-19 14:08:46,242 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:47,242 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:48,244 INFO spawned: ' resque' with pid 1057
+2016-03-19 14:08:49,246 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:50,316 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:51,318 INFO spawned: ' resque' with pid 1061
+2016-03-19 14:08:52,319 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:53,457 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:54,460 INFO spawned: ' resque' with pid 1065
+2016-03-19 14:08:55,461 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:56,310 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:08:57,312 INFO spawned: ' resque' with pid 1069
+2016-03-19 14:08:58,313 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:08:59,450 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:00,452 INFO spawned: ' resque' with pid 1073
+2016-03-19 14:09:01,453 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:02,433 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:03,434 INFO spawned: ' resque' with pid 1077
+2016-03-19 14:09:04,435 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:05,314 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:06,315 INFO spawned: ' resque' with pid 1081
+2016-03-19 14:09:07,316 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:09,446 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:10,448 INFO spawned: ' resque' with pid 1085
+2016-03-19 14:09:11,449 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:12,468 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:13,469 INFO spawned: ' resque' with pid 1089
+2016-03-19 14:09:14,470 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:15,507 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:16,510 INFO spawned: ' resque' with pid 1093
+2016-03-19 14:09:17,512 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:18,530 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:19,532 INFO spawned: ' resque' with pid 1097
+2016-03-19 14:09:20,533 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:21,351 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:22,353 INFO spawned: ' resque' with pid 1101
+2016-03-19 14:09:23,353 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:24,267 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:25,269 INFO spawned: ' resque' with pid 1105
+2016-03-19 14:09:26,270 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:27,298 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:28,299 INFO spawned: ' resque' with pid 1109
+2016-03-19 14:09:29,299 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:30,235 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:31,238 INFO spawned: ' resque' with pid 1113
+2016-03-19 14:09:32,239 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:33,321 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:34,323 INFO spawned: ' resque' with pid 1117
+2016-03-19 14:09:35,324 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:36,291 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:37,293 INFO spawned: ' resque' with pid 1121
+2016-03-19 14:09:38,294 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:39,173 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:40,175 INFO spawned: ' resque' with pid 1125
+2016-03-19 14:09:41,176 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:42,130 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:43,132 INFO spawned: ' resque' with pid 1129
+2016-03-19 14:09:44,134 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:45,212 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:46,214 INFO spawned: ' resque' with pid 1133
+2016-03-19 14:09:47,216 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:49,274 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:50,276 INFO spawned: ' resque' with pid 1137
+2016-03-19 14:09:51,277 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:52,013 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:53,015 INFO spawned: ' resque' with pid 1141
+2016-03-19 14:09:54,016 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:55,147 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:56,149 INFO spawned: ' resque' with pid 1145
+2016-03-19 14:09:57,151 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:09:58,199 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:09:59,201 INFO spawned: ' resque' with pid 1149
+2016-03-19 14:10:00,203 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:01,075 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:02,077 INFO spawned: ' resque' with pid 1153
+2016-03-19 14:10:03,078 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:03,985 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:04,987 INFO spawned: ' resque' with pid 1157
+2016-03-19 14:10:05,989 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:06,958 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:07,960 INFO spawned: ' resque' with pid 1161
+2016-03-19 14:10:08,961 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:10,191 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:11,193 INFO spawned: ' resque' with pid 1165
+2016-03-19 14:10:12,194 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:13,277 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:14,279 INFO spawned: ' resque' with pid 1169
+2016-03-19 14:10:15,280 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:16,356 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:17,358 INFO spawned: ' resque' with pid 1173
+2016-03-19 14:10:18,359 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:19,382 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:20,383 INFO spawned: ' resque' with pid 1177
+2016-03-19 14:10:21,385 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:22,345 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:23,347 INFO spawned: ' resque' with pid 1181
+2016-03-19 14:10:24,348 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:25,421 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:26,423 INFO spawned: ' resque' with pid 1185
+2016-03-19 14:10:27,424 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:28,384 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:29,387 INFO spawned: ' resque' with pid 1189
+2016-03-19 14:10:30,389 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:31,598 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:32,600 INFO spawned: ' resque' with pid 1193
+2016-03-19 14:10:33,602 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:34,507 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:35,509 INFO spawned: ' resque' with pid 1197
+2016-03-19 14:10:36,510 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:37,206 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:38,209 INFO spawned: ' resque' with pid 1201
+2016-03-19 14:10:39,210 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:40,211 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:41,213 INFO spawned: ' resque' with pid 1205
+2016-03-19 14:10:42,214 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:43,271 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:44,273 INFO spawned: ' resque' with pid 1209
+2016-03-19 14:10:45,275 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:46,223 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:47,224 INFO spawned: ' resque' with pid 1213
+2016-03-19 14:10:48,226 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:48,902 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:49,904 INFO spawned: ' resque' with pid 1217
+2016-03-19 14:10:50,906 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:51,580 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:52,582 INFO spawned: ' resque' with pid 1221
+2016-03-19 14:10:53,583 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:54,167 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:55,169 INFO spawned: ' resque' with pid 1225
+2016-03-19 14:10:56,170 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:56,752 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:10:57,754 INFO spawned: ' resque' with pid 1229
+2016-03-19 14:10:58,755 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:10:59,349 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:00,352 INFO spawned: ' resque' with pid 1233
+2016-03-19 14:11:01,353 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:01,877 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:02,878 INFO spawned: ' resque' with pid 1237
+2016-03-19 14:11:03,880 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:04,431 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:05,433 INFO spawned: ' resque' with pid 1241
+2016-03-19 14:11:06,434 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:06,970 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:07,972 INFO spawned: ' resque' with pid 1245
+2016-03-19 14:11:08,974 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:09,588 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:10,590 INFO spawned: ' resque' with pid 1249
+2016-03-19 14:11:11,592 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:12,158 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:13,160 INFO spawned: ' resque' with pid 1253
+2016-03-19 14:11:14,161 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:14,718 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:15,720 INFO spawned: ' resque' with pid 1257
+2016-03-19 14:11:16,721 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:17,301 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:18,303 INFO spawned: ' resque' with pid 1261
+2016-03-19 14:11:19,304 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:19,860 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:20,862 INFO spawned: ' resque' with pid 1265
+2016-03-19 14:11:21,863 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:22,451 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:23,453 INFO spawned: ' resque' with pid 1269
+2016-03-19 14:11:24,454 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:25,044 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:26,046 INFO spawned: ' resque' with pid 1273
+2016-03-19 14:11:27,047 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:28,620 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:29,622 INFO spawned: ' resque' with pid 1277
+2016-03-19 14:11:30,624 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:31,224 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:32,226 INFO spawned: ' resque' with pid 1281
+2016-03-19 14:11:33,227 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:33,786 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:34,788 INFO spawned: ' resque' with pid 1285
+2016-03-19 14:11:35,789 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:36,473 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:37,475 INFO spawned: ' resque' with pid 1289
+2016-03-19 14:11:38,477 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:39,052 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:40,054 INFO spawned: ' resque' with pid 1293
+2016-03-19 14:11:41,056 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:41,580 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:42,582 INFO spawned: ' resque' with pid 1297
+2016-03-19 14:11:43,582 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:44,175 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:45,177 INFO spawned: ' resque' with pid 1301
+2016-03-19 14:11:46,178 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:46,703 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:47,705 INFO spawned: ' resque' with pid 1305
+2016-03-19 14:11:48,707 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:49,248 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:50,250 INFO spawned: ' resque' with pid 1309
+2016-03-19 14:11:51,251 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:51,819 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:52,821 INFO spawned: ' resque' with pid 1313
+2016-03-19 14:11:53,823 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:54,401 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:55,403 INFO spawned: ' resque' with pid 1317
+2016-03-19 14:11:56,404 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:56,960 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:11:57,962 INFO spawned: ' resque' with pid 1321
+2016-03-19 14:11:58,964 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:11:59,597 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:00,599 INFO spawned: ' resque' with pid 1325
+2016-03-19 14:12:01,600 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:02,125 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:03,127 INFO spawned: ' resque' with pid 1329
+2016-03-19 14:12:04,128 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:04,698 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:05,700 INFO spawned: ' resque' with pid 1333
+2016-03-19 14:12:06,701 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:07,244 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:08,247 INFO spawned: ' resque' with pid 1337
+2016-03-19 14:12:09,248 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:09,848 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:10,850 INFO spawned: ' resque' with pid 1341
+2016-03-19 14:12:11,851 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:12,445 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:13,448 INFO spawned: ' resque' with pid 1345
+2016-03-19 14:12:14,449 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:15,003 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:16,005 INFO spawned: ' resque' with pid 1349
+2016-03-19 14:12:17,006 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:17,545 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:18,547 INFO spawned: ' resque' with pid 1353
+2016-03-19 14:12:19,548 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:20,210 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:21,212 INFO spawned: ' resque' with pid 1357
+2016-03-19 14:12:22,213 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:22,835 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:23,837 INFO spawned: ' resque' with pid 1361
+2016-03-19 14:12:24,838 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:25,416 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:26,418 INFO spawned: ' resque' with pid 1365
+2016-03-19 14:12:27,419 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:27,956 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:28,958 INFO spawned: ' resque' with pid 1369
+2016-03-19 14:12:29,960 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:30,524 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:31,526 INFO spawned: ' resque' with pid 1373
+2016-03-19 14:12:32,528 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:33,064 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:34,066 INFO spawned: ' resque' with pid 1377
+2016-03-19 14:12:35,067 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:35,644 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:36,646 INFO spawned: ' resque' with pid 1381
+2016-03-19 14:12:37,648 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:38,244 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:39,247 INFO spawned: ' resque' with pid 1385
+2016-03-19 14:12:40,248 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:40,777 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:41,779 INFO spawned: ' resque' with pid 1389
+2016-03-19 14:12:42,780 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:43,310 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:44,311 INFO spawned: ' resque' with pid 1393
+2016-03-19 14:12:45,313 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:45,856 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:46,857 INFO spawned: ' resque' with pid 1397
+2016-03-19 14:12:47,858 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:48,407 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:49,409 INFO spawned: ' resque' with pid 1401
+2016-03-19 14:12:50,411 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:50,926 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:51,928 INFO spawned: ' resque' with pid 1405
+2016-03-19 14:12:52,930 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:53,519 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:54,521 INFO spawned: ' resque' with pid 1409
+2016-03-19 14:12:55,523 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:56,034 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:57,036 INFO spawned: ' resque' with pid 1413
+2016-03-19 14:12:58,038 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:12:58,605 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:12:59,607 INFO spawned: ' resque' with pid 1417
+2016-03-19 14:13:00,609 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:01,138 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:02,140 INFO spawned: ' resque' with pid 1421
+2016-03-19 14:13:03,140 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:03,725 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:04,727 INFO spawned: ' resque' with pid 1425
+2016-03-19 14:13:05,728 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:06,359 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:07,361 INFO spawned: ' resque' with pid 1429
+2016-03-19 14:13:08,362 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:08,926 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:09,928 INFO spawned: ' resque' with pid 1433
+2016-03-19 14:13:10,929 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:11,499 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:12,501 INFO spawned: ' resque' with pid 1437
+2016-03-19 14:13:13,503 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:14,055 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:15,057 INFO spawned: ' resque' with pid 1441
+2016-03-19 14:13:16,058 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:16,632 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:17,634 INFO spawned: ' resque' with pid 1445
+2016-03-19 14:13:18,636 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:19,194 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:20,196 INFO spawned: ' resque' with pid 1449
+2016-03-19 14:13:21,198 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:21,765 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:22,767 INFO spawned: ' resque' with pid 1453
+2016-03-19 14:13:23,769 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:24,306 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:25,308 INFO spawned: ' resque' with pid 1457
+2016-03-19 14:13:26,309 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:26,848 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:27,850 INFO spawned: ' resque' with pid 1461
+2016-03-19 14:13:28,852 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:29,365 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:30,366 INFO spawned: ' resque' with pid 1465
+2016-03-19 14:13:31,368 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:31,945 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:32,946 INFO spawned: ' resque' with pid 1469
+2016-03-19 14:13:33,947 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:34,624 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:35,626 INFO spawned: ' resque' with pid 1473
+2016-03-19 14:13:36,627 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:37,226 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:38,228 INFO spawned: ' resque' with pid 1477
+2016-03-19 14:13:39,230 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:39,825 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:40,827 INFO spawned: ' resque' with pid 1481
+2016-03-19 14:13:41,828 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:42,417 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:43,419 INFO spawned: ' resque' with pid 1485
+2016-03-19 14:13:44,420 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:44,972 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:45,974 INFO spawned: ' resque' with pid 1489
+2016-03-19 14:13:46,975 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:47,572 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:48,574 INFO spawned: ' resque' with pid 1493
+2016-03-19 14:13:49,575 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:50,176 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:51,178 INFO spawned: ' resque' with pid 1497
+2016-03-19 14:13:52,180 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:52,736 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:53,738 INFO spawned: ' resque' with pid 1501
+2016-03-19 14:13:54,740 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:55,257 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:56,259 INFO spawned: ' resque' with pid 1505
+2016-03-19 14:13:57,261 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:13:57,835 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:13:58,837 INFO spawned: ' resque' with pid 1509
+2016-03-19 14:13:59,838 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:00,470 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:01,472 INFO spawned: ' resque' with pid 1513
+2016-03-19 14:14:02,473 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:03,013 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:04,015 INFO spawned: ' resque' with pid 1517
+2016-03-19 14:14:05,017 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:05,618 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:06,620 INFO spawned: ' resque' with pid 1521
+2016-03-19 14:14:07,622 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:08,204 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:09,206 INFO spawned: ' resque' with pid 1525
+2016-03-19 14:14:10,207 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:10,760 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:11,762 INFO spawned: ' resque' with pid 1529
+2016-03-19 14:14:12,763 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:13,274 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:14,276 INFO spawned: ' resque' with pid 1533
+2016-03-19 14:14:15,278 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:15,788 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:16,789 INFO spawned: ' resque' with pid 1537
+2016-03-19 14:14:17,791 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:18,294 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:19,296 INFO spawned: ' resque' with pid 1541
+2016-03-19 14:14:20,297 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:20,845 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:21,847 INFO spawned: ' resque' with pid 1545
+2016-03-19 14:14:22,848 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:23,388 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:24,390 INFO spawned: ' resque' with pid 1549
+2016-03-19 14:14:25,391 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:26,038 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:27,040 INFO spawned: ' resque' with pid 1553
+2016-03-19 14:14:28,041 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:28,646 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:29,648 INFO spawned: ' resque' with pid 1557
+2016-03-19 14:14:30,650 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:31,336 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:32,338 INFO spawned: ' resque' with pid 1561
+2016-03-19 14:14:33,340 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:33,941 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:34,943 INFO spawned: ' resque' with pid 1565
+2016-03-19 14:14:35,945 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:36,754 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:37,756 INFO spawned: ' resque' with pid 1569
+2016-03-19 14:14:38,757 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:39,703 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:40,705 INFO spawned: ' resque' with pid 1573
+2016-03-19 14:14:41,706 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:42,390 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:43,392 INFO spawned: ' resque' with pid 1577
+2016-03-19 14:14:44,394 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:45,089 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:46,091 INFO spawned: ' resque' with pid 1581
+2016-03-19 14:14:47,092 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:47,621 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:48,623 INFO spawned: ' resque' with pid 1585
+2016-03-19 14:14:49,624 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:50,200 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:51,202 INFO spawned: ' resque' with pid 1589
+2016-03-19 14:14:52,203 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:52,872 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:53,874 INFO spawned: ' resque' with pid 1593
+2016-03-19 14:14:54,876 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:55,471 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:56,473 INFO spawned: ' resque' with pid 1597
+2016-03-19 14:14:57,475 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:14:58,022 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:14:59,024 INFO spawned: ' resque' with pid 1601
+2016-03-19 14:15:00,025 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:00,864 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:01,866 INFO spawned: ' resque' with pid 1605
+2016-03-19 14:15:02,868 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:03,499 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:04,501 INFO spawned: ' resque' with pid 1609
+2016-03-19 14:15:05,503 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:06,060 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:07,062 INFO spawned: ' resque' with pid 1613
+2016-03-19 14:15:08,064 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:08,855 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:09,857 INFO spawned: ' resque' with pid 1617
+2016-03-19 14:15:10,858 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:11,602 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:12,604 INFO spawned: ' resque' with pid 1621
+2016-03-19 14:15:13,606 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:14,343 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:15,345 INFO spawned: ' resque' with pid 1625
+2016-03-19 14:15:16,347 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:17,221 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:18,223 INFO spawned: ' resque' with pid 1629
+2016-03-19 14:15:19,224 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:19,729 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:20,732 INFO spawned: ' resque' with pid 1633
+2016-03-19 14:15:21,733 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:22,281 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:23,283 INFO spawned: ' resque' with pid 1637
+2016-03-19 14:15:24,284 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:25,052 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:26,054 INFO spawned: ' resque' with pid 1641
+2016-03-19 14:15:27,056 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:27,626 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:28,628 INFO spawned: ' resque' with pid 1645
+2016-03-19 14:15:29,629 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:30,302 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:31,304 INFO spawned: ' resque' with pid 1649
+2016-03-19 14:15:32,306 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:33,010 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:34,013 INFO spawned: ' resque' with pid 1653
+2016-03-19 14:15:35,015 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:35,884 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:36,886 INFO spawned: ' resque' with pid 1657
+2016-03-19 14:15:37,888 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:38,479 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:39,481 INFO spawned: ' resque' with pid 1661
+2016-03-19 14:15:40,482 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:41,062 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:42,064 INFO spawned: ' resque' with pid 1665
+2016-03-19 14:15:43,065 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:43,784 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:44,786 INFO spawned: ' resque' with pid 1669
+2016-03-19 14:15:45,788 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:46,402 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:47,404 INFO spawned: ' resque' with pid 1673
+2016-03-19 14:15:48,406 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:48,976 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:49,977 INFO spawned: ' resque' with pid 1677
+2016-03-19 14:15:50,979 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:51,583 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:52,585 INFO spawned: ' resque' with pid 1681
+2016-03-19 14:15:53,586 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:54,188 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:55,190 INFO spawned: ' resque' with pid 1685
+2016-03-19 14:15:56,191 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:56,742 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:15:57,744 INFO spawned: ' resque' with pid 1689
+2016-03-19 14:15:58,745 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:15:59,316 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:00,318 INFO spawned: ' resque' with pid 1693
+2016-03-19 14:16:01,320 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:01,869 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:02,871 INFO spawned: ' resque' with pid 1697
+2016-03-19 14:16:03,872 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:04,428 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:05,430 INFO spawned: ' resque' with pid 1701
+2016-03-19 14:16:06,432 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:07,014 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:08,015 INFO spawned: ' resque' with pid 1705
+2016-03-19 14:16:09,016 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:09,606 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:10,608 INFO spawned: ' resque' with pid 1709
+2016-03-19 14:16:11,609 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:12,139 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:13,141 INFO spawned: ' resque' with pid 1713
+2016-03-19 14:16:14,142 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:14,660 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:15,662 INFO spawned: ' resque' with pid 1717
+2016-03-19 14:16:16,663 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:17,282 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:18,284 INFO spawned: ' resque' with pid 1721
+2016-03-19 14:16:19,285 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:19,836 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:20,838 INFO spawned: ' resque' with pid 1725
+2016-03-19 14:16:21,840 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:22,428 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:23,430 INFO spawned: ' resque' with pid 1729
+2016-03-19 14:16:24,432 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:24,974 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:25,976 INFO spawned: ' resque' with pid 1733
+2016-03-19 14:16:26,978 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:27,555 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:28,557 INFO spawned: ' resque' with pid 1737
+2016-03-19 14:16:29,559 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:30,145 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:31,147 INFO spawned: ' resque' with pid 1741
+2016-03-19 14:16:32,148 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:32,737 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:33,739 INFO spawned: ' resque' with pid 1761
+2016-03-19 14:16:34,740 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:35,270 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:36,272 INFO spawned: ' resque' with pid 1765
+2016-03-19 14:16:37,273 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:37,849 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:38,851 INFO spawned: ' resque' with pid 1778
+2016-03-19 14:16:39,852 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:40,368 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:41,370 INFO spawned: ' resque' with pid 1782
+2016-03-19 14:16:42,372 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:42,935 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:43,937 INFO spawned: ' resque' with pid 1786
+2016-03-19 14:16:44,938 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:45,589 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:46,591 INFO spawned: ' resque' with pid 1790
+2016-03-19 14:16:47,592 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:48,181 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:49,183 INFO spawned: ' resque' with pid 1794
+2016-03-19 14:16:50,184 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:50,832 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:51,834 INFO spawned: ' resque' with pid 1798
+2016-03-19 14:16:52,835 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:53,371 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:54,373 INFO spawned: ' resque' with pid 1802
+2016-03-19 14:16:55,374 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:55,895 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:56,898 INFO spawned: ' resque' with pid 1806
+2016-03-19 14:16:57,899 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:16:58,514 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:16:59,517 INFO spawned: ' resque' with pid 1810
+2016-03-19 14:17:00,518 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:01,106 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:02,108 INFO spawned: ' resque' with pid 1814
+2016-03-19 14:17:03,110 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:03,732 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:04,734 INFO spawned: ' resque' with pid 1818
+2016-03-19 14:17:05,735 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:06,252 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:07,254 INFO spawned: ' resque' with pid 1822
+2016-03-19 14:17:08,255 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:08,861 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:09,863 INFO spawned: ' resque' with pid 1826
+2016-03-19 14:17:10,864 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:11,405 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:12,407 INFO spawned: ' resque' with pid 1830
+2016-03-19 14:17:13,408 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:14,022 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:15,024 INFO spawned: ' resque' with pid 1834
+2016-03-19 14:17:16,025 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:16,601 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:17,603 INFO spawned: ' resque' with pid 1843
+2016-03-19 14:17:18,604 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:19,173 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:20,175 INFO spawned: ' resque' with pid 1847
+2016-03-19 14:17:21,177 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:21,697 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:22,699 INFO spawned: ' resque' with pid 1851
+2016-03-19 14:17:23,701 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:24,325 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:25,327 INFO spawned: ' resque' with pid 1855
+2016-03-19 14:17:26,328 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:26,848 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:27,850 INFO spawned: ' resque' with pid 1859
+2016-03-19 14:17:28,851 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:29,435 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:30,436 INFO spawned: ' resque' with pid 1863
+2016-03-19 14:17:31,437 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:31,995 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:32,998 INFO spawned: ' resque' with pid 1867
+2016-03-19 14:17:33,998 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:34,533 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:35,535 INFO spawned: ' resque' with pid 1871
+2016-03-19 14:17:36,537 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:38,129 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:39,131 INFO spawned: ' resque' with pid 1875
+2016-03-19 14:17:40,133 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:40,707 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:41,709 INFO spawned: ' resque' with pid 1879
+2016-03-19 14:17:42,710 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:43,226 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:44,228 INFO spawned: ' resque' with pid 1883
+2016-03-19 14:17:45,229 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:45,831 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:46,833 INFO spawned: ' resque' with pid 1891
+2016-03-19 14:17:47,834 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:48,350 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:49,352 INFO spawned: ' resque' with pid 1895
+2016-03-19 14:17:50,353 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:50,895 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:51,897 INFO spawned: ' resque' with pid 1899
+2016-03-19 14:17:52,898 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:53,415 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:54,417 INFO spawned: ' resque' with pid 1903
+2016-03-19 14:17:55,418 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:55,959 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:56,961 INFO spawned: ' resque' with pid 1907
+2016-03-19 14:17:57,962 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:17:58,518 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:17:59,520 INFO spawned: ' resque' with pid 1911
+2016-03-19 14:18:00,522 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:01,058 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:02,060 INFO spawned: ' resque' with pid 1915
+2016-03-19 14:18:03,061 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:03,713 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:04,715 INFO spawned: ' resque' with pid 1919
+2016-03-19 14:18:05,716 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:06,244 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:07,246 INFO spawned: ' resque' with pid 1923
+2016-03-19 14:18:08,247 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:08,853 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:09,855 INFO spawned: ' resque' with pid 1927
+2016-03-19 14:18:10,857 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:11,499 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:12,501 INFO spawned: ' resque' with pid 1931
+2016-03-19 14:18:13,502 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:14,055 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:15,057 INFO spawned: ' resque' with pid 1935
+2016-03-19 14:18:16,059 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:16,650 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:17,652 INFO spawned: ' resque' with pid 1939
+2016-03-19 14:18:18,654 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:19,254 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:20,256 INFO spawned: ' resque' with pid 1943
+2016-03-19 14:18:21,258 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:21,846 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:22,848 INFO spawned: ' resque' with pid 1947
+2016-03-19 14:18:23,850 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:24,409 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:25,411 INFO spawned: ' resque' with pid 1951
+2016-03-19 14:18:26,412 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:27,003 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:28,005 INFO spawned: ' resque' with pid 1955
+2016-03-19 14:18:29,006 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:29,541 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:30,543 INFO spawned: ' resque' with pid 1959
+2016-03-19 14:18:31,545 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:32,130 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:33,132 INFO spawned: ' resque' with pid 1965
+2016-03-19 14:18:34,133 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:34,768 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:35,770 INFO spawned: ' resque' with pid 1975
+2016-03-19 14:18:36,772 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:37,378 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:38,380 INFO spawned: ' resque' with pid 1979
+2016-03-19 14:18:39,381 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:39,972 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:40,974 INFO spawned: ' resque' with pid 1983
+2016-03-19 14:18:41,975 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:42,499 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:43,501 INFO spawned: ' resque' with pid 1987
+2016-03-19 14:18:44,502 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:45,063 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:46,065 INFO spawned: ' resque' with pid 1995
+2016-03-19 14:18:47,066 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:47,651 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:48,654 INFO spawned: ' resque' with pid 1999
+2016-03-19 14:18:49,655 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:50,264 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:51,266 INFO spawned: ' resque' with pid 2003
+2016-03-19 14:18:52,268 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:52,804 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:53,806 INFO spawned: ' resque' with pid 2007
+2016-03-19 14:18:54,807 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:55,426 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:56,428 INFO spawned: ' resque' with pid 2011
+2016-03-19 14:18:57,430 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:18:58,024 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:18:59,026 INFO spawned: ' resque' with pid 2015
+2016-03-19 14:19:00,028 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:00,590 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:01,592 INFO spawned: ' resque' with pid 2019
+2016-03-19 14:19:02,594 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:03,112 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:04,114 INFO spawned: ' resque' with pid 2023
+2016-03-19 14:19:05,116 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:05,711 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:06,713 INFO spawned: ' resque' with pid 2027
+2016-03-19 14:19:07,715 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:08,375 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:09,377 INFO spawned: ' resque' with pid 2031
+2016-03-19 14:19:10,378 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:11,032 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:12,034 INFO spawned: ' resque' with pid 2039
+2016-03-19 14:19:13,036 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:13,545 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:14,547 INFO spawned: ' resque' with pid 2043
+2016-03-19 14:19:15,549 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:16,110 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:17,112 INFO spawned: ' resque' with pid 2047
+2016-03-19 14:19:18,113 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:18,703 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:19,705 INFO spawned: ' resque' with pid 2051
+2016-03-19 14:19:20,706 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:21,214 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:22,216 INFO spawned: ' resque' with pid 2055
+2016-03-19 14:19:23,217 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:23,819 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:24,821 INFO spawned: ' resque' with pid 2059
+2016-03-19 14:19:25,823 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:26,377 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:27,379 INFO spawned: ' resque' with pid 2063
+2016-03-19 14:19:28,380 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:28,963 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:29,965 INFO spawned: ' resque' with pid 2067
+2016-03-19 14:19:30,966 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:31,558 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:32,560 INFO spawned: ' resque' with pid 2071
+2016-03-19 14:19:33,561 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:34,126 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:35,128 INFO spawned: ' resque' with pid 2075
+2016-03-19 14:19:36,129 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:36,703 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:37,705 INFO spawned: ' resque' with pid 2079
+2016-03-19 14:19:38,706 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:39,259 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:40,261 INFO spawned: ' resque' with pid 2083
+2016-03-19 14:19:41,263 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:41,795 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:42,797 INFO spawned: ' resque' with pid 2087
+2016-03-19 14:19:43,798 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:44,412 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:45,414 INFO spawned: ' resque' with pid 2091
+2016-03-19 14:19:46,415 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:46,944 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:47,946 INFO spawned: ' resque' with pid 2095
+2016-03-19 14:19:48,947 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:49,537 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:50,539 INFO spawned: ' resque' with pid 2099
+2016-03-19 14:19:51,540 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:52,132 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:53,133 INFO spawned: ' resque' with pid 2103
+2016-03-19 14:19:54,134 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:54,716 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:55,718 INFO spawned: ' resque' with pid 2107
+2016-03-19 14:19:56,719 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:57,320 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:19:58,322 INFO spawned: ' resque' with pid 2111
+2016-03-19 14:19:59,323 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:19:59,883 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:00,885 INFO spawned: ' resque' with pid 2115
+2016-03-19 14:20:01,886 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:02,485 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:03,487 INFO spawned: ' resque' with pid 2119
+2016-03-19 14:20:04,488 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:05,088 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:06,090 INFO spawned: ' resque' with pid 2123
+2016-03-19 14:20:07,091 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:07,672 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:08,674 INFO spawned: ' resque' with pid 2127
+2016-03-19 14:20:09,676 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:10,233 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:11,235 INFO spawned: ' resque' with pid 2131
+2016-03-19 14:20:12,237 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:12,777 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:13,779 INFO spawned: ' resque' with pid 2135
+2016-03-19 14:20:14,781 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:15,392 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:16,393 INFO spawned: ' resque' with pid 2139
+2016-03-19 14:20:17,394 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:17,928 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:18,930 INFO spawned: ' resque' with pid 2143
+2016-03-19 14:20:19,931 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:20,469 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:21,471 INFO spawned: ' resque' with pid 2147
+2016-03-19 14:20:22,473 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:23,038 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:24,040 INFO spawned: ' resque' with pid 2151
+2016-03-19 14:20:25,042 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:25,626 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:26,628 INFO spawned: ' resque' with pid 2155
+2016-03-19 14:20:27,630 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:28,207 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:29,209 INFO spawned: ' resque' with pid 2159
+2016-03-19 14:20:30,210 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:30,775 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:31,776 INFO spawned: ' resque' with pid 2163
+2016-03-19 14:20:32,778 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:33,289 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:34,291 INFO spawned: ' resque' with pid 2167
+2016-03-19 14:20:35,292 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:35,835 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:36,837 INFO spawned: ' resque' with pid 2171
+2016-03-19 14:20:37,838 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:38,435 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:39,436 INFO spawned: ' resque' with pid 2175
+2016-03-19 14:20:40,438 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:40,984 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:41,986 INFO spawned: ' resque' with pid 2179
+2016-03-19 14:20:42,987 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:43,495 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:44,497 INFO spawned: ' resque' with pid 2183
+2016-03-19 14:20:45,498 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:46,012 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:47,014 INFO spawned: ' resque' with pid 2187
+2016-03-19 14:20:48,015 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:48,526 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:49,528 INFO spawned: ' resque' with pid 2191
+2016-03-19 14:20:50,530 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:51,056 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:52,058 INFO spawned: ' resque' with pid 2195
+2016-03-19 14:20:53,060 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:53,626 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:54,628 INFO spawned: ' resque' with pid 2199
+2016-03-19 14:20:55,629 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:56,176 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:57,178 INFO spawned: ' resque' with pid 2203
+2016-03-19 14:20:58,179 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:20:58,731 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:20:59,733 INFO spawned: ' resque' with pid 2207
+2016-03-19 14:21:00,735 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:01,280 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:02,282 INFO spawned: ' resque' with pid 2211
+2016-03-19 14:21:03,283 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:03,856 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:04,857 INFO spawned: ' resque' with pid 2215
+2016-03-19 14:21:05,859 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:06,440 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:07,442 INFO spawned: ' resque' with pid 2219
+2016-03-19 14:21:08,443 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:08,969 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:09,971 INFO spawned: ' resque' with pid 2223
+2016-03-19 14:21:10,972 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:11,638 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:12,640 INFO spawned: ' resque' with pid 2227
+2016-03-19 14:21:13,641 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:14,247 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:15,249 INFO spawned: ' resque' with pid 2231
+2016-03-19 14:21:16,250 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:16,796 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:17,798 INFO spawned: ' resque' with pid 2235
+2016-03-19 14:21:18,800 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:19,351 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:20,353 INFO spawned: ' resque' with pid 2239
+2016-03-19 14:21:21,354 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:22,006 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:23,008 INFO spawned: ' resque' with pid 2243
+2016-03-19 14:21:24,009 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:24,617 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:25,619 INFO spawned: ' resque' with pid 2247
+2016-03-19 14:21:26,621 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:27,183 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:28,185 INFO spawned: ' resque' with pid 2251
+2016-03-19 14:21:29,187 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:29,822 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:30,824 INFO spawned: ' resque' with pid 2255
+2016-03-19 14:21:31,825 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:32,418 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:33,420 INFO spawned: ' resque' with pid 2259
+2016-03-19 14:21:34,421 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:35,015 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:36,017 INFO spawned: ' resque' with pid 2263
+2016-03-19 14:21:37,018 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:37,592 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:38,594 INFO spawned: ' resque' with pid 2267
+2016-03-19 14:21:39,595 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:40,170 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:41,172 INFO spawned: ' resque' with pid 2271
+2016-03-19 14:21:42,173 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:43,724 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:44,726 INFO spawned: ' resque' with pid 2275
+2016-03-19 14:21:45,727 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:46,348 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:47,350 INFO spawned: ' resque' with pid 2279
+2016-03-19 14:21:48,351 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:48,874 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:49,876 INFO spawned: ' resque' with pid 2283
+2016-03-19 14:21:50,878 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:51,435 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:52,437 INFO spawned: ' resque' with pid 2287
+2016-03-19 14:21:53,438 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:21:53,968 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:21:54,970 INFO spawned: ' resque' with pid 2291
+2016-03-19 14:22:03,799 CRIT Supervisor running as root (no user in config file)
+2016-03-19 14:22:03,802 INFO supervisord started with pid 9
+2016-03-19 14:22:04,804 INFO spawned: ' unicorn' with pid 12
+2016-03-19 14:22:04,805 INFO spawned: ' resque-web' with pid 13
+2016-03-19 14:22:05,308 INFO exited:  resque-web (exit status 0; not expected)
+2016-03-19 14:22:06,310 INFO success:  unicorn entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:22:06,311 INFO spawned: ' resque-web' with pid 24
+2016-03-19 14:22:06,900 INFO exited:  resque-web (exit status 1; not expected)
+2016-03-19 14:22:08,904 INFO spawned: ' resque-web' with pid 29
+2016-03-19 14:22:09,505 INFO exited:  resque-web (exit status 1; not expected)
+2016-03-19 14:22:12,510 INFO spawned: ' resque-web' with pid 33
+2016-03-19 14:22:12,885 INFO exited:  resque-web (exit status 1; not expected)
+2016-03-19 14:22:13,886 INFO gave up:  resque-web entered FATAL state, too many start retries too quickly
+2016-03-19 14:25:56,292 CRIT Supervisor running as root (no user in config file)
+2016-03-19 14:25:56,297 INFO supervisord started with pid 10
+2016-03-19 14:25:57,299 INFO spawned: ' unicorn' with pid 13
+2016-03-19 14:25:57,300 INFO spawned: ' resque-web' with pid 14
+2016-03-19 14:25:58,275 INFO exited:  resque-web (exit status 0; not expected)
+2016-03-19 14:25:59,276 INFO success:  unicorn entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:25:59,277 INFO spawned: ' resque-web' with pid 25
+2016-03-19 14:25:59,973 INFO exited:  resque-web (exit status 1; not expected)
+2016-03-19 14:26:01,976 INFO spawned: ' resque-web' with pid 30
+2016-03-19 14:26:02,622 INFO exited:  resque-web (exit status 1; not expected)
+2016-03-19 14:26:05,630 INFO spawned: ' resque-web' with pid 34
+2016-03-19 14:26:06,028 INFO exited:  resque-web (exit status 1; not expected)
+2016-03-19 14:26:07,029 INFO gave up:  resque-web entered FATAL state, too many start retries too quickly
+2016-03-19 14:37:36,028 CRIT Supervisor running as root (no user in config file)
+2016-03-19 14:37:36,031 INFO supervisord started with pid 9
+2016-03-19 14:37:37,042 INFO spawned: ' unicorn' with pid 12
+2016-03-19 14:37:38,359 INFO success:  unicorn entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:39:51,283 CRIT Supervisor running as root (no user in config file)
+2016-03-19 14:39:51,285 INFO supervisord started with pid 9
+2016-03-19 14:39:52,287 INFO spawned: ' shotgun' with pid 12
+2016-03-19 14:39:53,578 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:50:09,491 CRIT Supervisor running as root (no user in config file)
+2016-03-19 14:50:09,493 INFO supervisord started with pid 8
+2016-03-19 14:50:10,495 INFO spawned: ' shotgun' with pid 11
+2016-03-19 14:50:11,799 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:51:54,333 CRIT Supervisor running as root (no user in config file)
+2016-03-19 14:51:54,336 INFO supervisord started with pid 9
+2016-03-19 14:51:55,338 INFO spawned: ' shotgun' with pid 12
+2016-03-19 14:51:56,619 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:56:03,069 CRIT Supervisor running as root (no user in config file)
+2016-03-19 14:56:03,072 INFO supervisord started with pid 8
+2016-03-19 14:56:04,074 INFO spawned: ' resque' with pid 11
+2016-03-19 14:56:04,075 INFO spawned: ' shotgun' with pid 12
+2016-03-19 14:56:05,450 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:56:05,450 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:57:31,939 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:57:32,940 INFO spawned: ' resque' with pid 23
+2016-03-19 14:57:33,942 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:57:34,935 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:57:35,937 INFO spawned: ' resque' with pid 27
+2016-03-19 14:57:36,939 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:57:37,729 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:57:38,731 INFO spawned: ' resque' with pid 31
+2016-03-19 14:57:57,795 CRIT Supervisor running as root (no user in config file)
+2016-03-19 14:57:57,798 INFO supervisord started with pid 9
+2016-03-19 14:57:58,800 INFO spawned: ' resque' with pid 12
+2016-03-19 14:57:58,802 INFO spawned: ' shotgun' with pid 13
+2016-03-19 14:58:00,130 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:58:00,130 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:59:41,809 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:59:42,813 INFO spawned: ' resque' with pid 32
+2016-03-19 14:59:43,814 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:59:44,599 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 14:59:45,601 INFO spawned: ' resque' with pid 36
+2016-03-19 14:59:46,602 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:59:50,991 CRIT Supervisor running as root (no user in config file)
+2016-03-19 14:59:50,994 INFO supervisord started with pid 9
+2016-03-19 14:59:51,996 INFO spawned: ' resque' with pid 12
+2016-03-19 14:59:51,997 INFO spawned: ' shotgun' with pid 13
+2016-03-19 14:59:53,341 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 14:59:53,341 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 15:02:50,814 CRIT Supervisor running as root (no user in config file)
+2016-03-19 15:02:50,816 INFO supervisord started with pid 9
+2016-03-19 15:02:51,818 INFO spawned: ' resque' with pid 12
+2016-03-19 15:02:51,819 INFO spawned: ' shotgun' with pid 13
+2016-03-19 15:02:53,092 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 15:02:53,092 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 15:03:38,900 WARN received SIGINT indicating exit request
+2016-03-19 15:03:38,900 INFO waiting for  resque,  shotgun to die
+2016-03-19 15:03:38,901 INFO stopped:  shotgun (exit status 1)
+2016-03-19 15:03:41,904 INFO waiting for  resque to die
+2016-03-19 15:03:43,506 INFO stopped:  resque (exit status 0)
+2016-03-19 15:03:59,128 CRIT Supervisor running as root (no user in config file)
+2016-03-19 15:03:59,131 INFO supervisord started with pid 8
+2016-03-19 15:04:00,133 INFO spawned: ' resque' with pid 11
+2016-03-19 15:04:00,134 INFO spawned: ' shotgun' with pid 12
+2016-03-19 15:04:01,406 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 15:04:01,406 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 15:04:11,155 WARN received SIGINT indicating exit request
+2016-03-19 15:04:11,156 INFO waiting for  resque,  shotgun to die
+2016-03-19 15:04:11,157 INFO stopped:  shotgun (exit status 1)
+2016-03-19 15:04:11,837 INFO stopped:  resque (exit status 0)
+2016-03-19 15:04:20,062 CRIT Supervisor running as root (no user in config file)
+2016-03-19 15:04:20,064 INFO supervisord started with pid 8
+2016-03-19 15:04:21,066 INFO spawned: ' resque' with pid 11
+2016-03-19 15:04:21,067 INFO spawned: ' shotgun' with pid 12
+2016-03-19 15:04:22,282 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 15:04:22,282 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 15:04:24,897 WARN received SIGINT indicating exit request
+2016-03-19 15:04:24,898 INFO waiting for  resque,  shotgun to die
+2016-03-19 15:04:24,899 INFO stopped:  shotgun (exit status 1)
+2016-03-19 15:04:26,972 WARN received SIGINT indicating exit request
+2016-03-19 15:04:27,702 INFO stopped:  resque (exit status 0)
+2016-03-19 15:04:47,209 CRIT Supervisor running as root (no user in config file)
+2016-03-19 15:04:47,212 INFO supervisord started with pid 10
+2016-03-19 15:04:48,213 INFO spawned: ' resque' with pid 13
+2016-03-19 15:04:48,214 INFO spawned: ' shotgun' with pid 14
+2016-03-19 15:04:49,418 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 15:04:49,420 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 15:06:34,566 WARN received SIGINT indicating exit request
+2016-03-19 15:06:34,568 INFO waiting for  resque,  shotgun to die
+2016-03-19 15:06:34,569 INFO stopped:  shotgun (exit status 1)
+2016-03-19 15:06:34,845 INFO stopped:  resque (exit status 0)
+2016-03-19 15:06:49,436 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 15:06:50,440 INFO spawned: ' resque' with pid 42
+2016-03-19 15:06:51,442 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 15:06:52,218 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 15:06:53,220 INFO spawned: ' resque' with pid 46
+2016-03-19 15:06:54,221 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 15:06:54,978 INFO exited:  resque (exit status 1; not expected)
+2016-03-19 15:06:55,980 INFO spawned: ' resque' with pid 50
+2016-03-19 15:07:00,622 CRIT Supervisor running as root (no user in config file)
+2016-03-19 15:07:00,625 INFO supervisord started with pid 9
+2016-03-19 15:07:01,627 INFO spawned: ' resque' with pid 12
+2016-03-19 15:07:01,629 INFO spawned: ' shotgun' with pid 13
+2016-03-19 15:07:02,950 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-19 15:07:02,950 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

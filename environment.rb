@@ -8,6 +8,7 @@ require "json"
 require "name-spotter"
 require "logger"
 require "active_record"
+require "resque"
 
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd
@@ -29,8 +30,9 @@ module Gnrd
     @conf ||= new_conf
   end
 
-  def self.db_connection
+  def self.db_connections
     @db ||= connect
+    @redis ||= redis_connect
   end
 
   def self.connect
@@ -40,9 +42,13 @@ module Gnrd
     ActiveRecord::Base.establish_connection(env)
   end
 
+  def self.redis_connect
+    Resque.redis = Gnrd.conf.redis_host
+  end
+
   def self.new_conf
     conf = {
-      "database" => db_conf,
+      "redis_host" => "redis", "database" => db_conf,
       "session_secret" => "!!change!!me!!", "tmp_dir" => "/tmp",
       "neti_neti_host" => "nn", "neti_neti_port" => 6384,
       "taxon_finder_host" => "tf", "taxon_finder_port" => 1234,
@@ -72,4 +78,4 @@ module Gnrd
   end
 end
 
-Gnrd.db_connection
+Gnrd.db_connections

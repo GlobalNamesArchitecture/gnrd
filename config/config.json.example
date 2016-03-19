@@ -4,6 +4,7 @@
   "neti_neti_port": 6384,
   "taxon_finder_host": "0.0.0.0",
   "taxon_finder_port": 1234,
+  "redis_host": "0.0.0.0"
   "resolver_url":
     "http://resolver.globalnames.org/name_resolvers.json",
   "database": {
