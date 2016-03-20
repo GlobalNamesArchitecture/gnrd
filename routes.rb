@@ -25,12 +25,7 @@ get "/feedback" do
 end
 
 get "/name_finder.?:format?" do
-  if params[:token]
-    @nf = NameFinder.find_by_token(params[:token])
-  else
-    @nf = NameFinder.create(params: params)
-  end
-
+  @nf = name_finder_init(params)
   if @nf.errors?
     handle_errors(@nf)
   else

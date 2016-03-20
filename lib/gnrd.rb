@@ -17,7 +17,7 @@ module Gnrd
     when Array
       obj.map { |v| symbolize_keys(v) }
     when Hash
-      obj.each_with_object({}) do |(k, v), o |
+      obj.each_with_object({}) do |(k, v), o|
         o[k] = symbolize_keys(v)
       end.symbolize_keys
     else

@@ -1,3 +1,4 @@
+# Error handling in models
 class Errors
   def initialize(name_finder)
     @nf = name_finder

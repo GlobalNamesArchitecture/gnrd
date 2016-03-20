@@ -15,13 +15,12 @@ require_relative "models/name_finder"
 
 require_relative "sinatra/formatter"
 require_relative "sinatra/redirector"
-require_relative "helpers"
 require_relative "routes"
+require_relative "helpers"
 
 configure do
   register Sinatra::Flash
-  helpers Sinatra::RedirectWithFlash,
-    Sinatra::Gnrd::Redirector
+  helpers Sinatra::Gnrd::Redirector, Sinatra::RedirectWithFlash
 
   enable :sessions
 

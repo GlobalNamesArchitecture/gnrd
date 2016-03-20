@@ -35,6 +35,7 @@ describe "/name_finder" do
     visit "/name_finder"
     expect(page.current_path).to eq "/"
     expect(page.status_code).to be 200
+    expect(page.body).to include("Parameters missing")
   end
 
   it "displays empty params error when json" do

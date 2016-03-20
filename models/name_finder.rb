@@ -26,16 +26,22 @@ class NameFinder < ActiveRecord::Base
     if errs.empty?
       false
     else
-      self.status_code = errs.first[:status_code]
-      self.output = { status: errs.first[:status_code],
-                      message: errs.first[:message] }
-      save!
-      true
+      save_error
     end
   end
 
   before_create do
     self.token = NameFinder.token
     self.params = Params.new(params).normalize
+  end
+
+  private
+
+  def save_error
+    self.status_code = errs.first[:status_code]
+    self.output = { status: errs.first[:status_code],
+                    message: errs.first[:message] }
+    save!
+    true
   end
 end
