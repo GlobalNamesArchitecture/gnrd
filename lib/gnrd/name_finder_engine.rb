@@ -2,6 +2,14 @@ module Gnrd
   # Finds scientific names in texts
   class NameFinderEngine
     attr_reader :dossier, :options, :execution_time
+    ENGINES = {
+      taxon_finder: { klass: NameSpotter::TaxonFinderClient,
+                      host: Gnrd.conf.taxon_finder_host,
+                      port: Gnrd.conf.taxon_finder_port },
+      neti_neti: { klass: NameSpotter::NetiNetiClient,
+                   host: Gnrd.conf.neti_neti_host,
+                   port: Gnrd.conf.neti_neti_port }
+    }.freeze
 
     def initialize(dossier, opts = {})
       @dossier = dossier
@@ -40,17 +48,17 @@ module Gnrd
     end
 
     def taxon_finder_engine
-      client = NameSpotter::TaxonFinderClient.new(
-        host: Gnrd.conf.taxon_finder_host,
-        port: Gnrd.conf.taxon_finder_port
-      )
-      NameSpotter.new(client)
+      engine_factory(ENGINES[:taxon_finder])
     end
 
     def neti_neti_engine
-      client = NameSpotter::NetiNetiClient.new(
-        host: Gnrd.conf.neti_neti_host,
-        port: Gnrd.conf.neti_neti_port
+      engine_factory(ENGINES[:neti_neti])
+    end
+
+    def engine_factory(engine)
+      client = engine[:klass].new(
+        host: engine[:host],
+        port: engine[:port]
       )
       NameSpotter.new(client)
     end

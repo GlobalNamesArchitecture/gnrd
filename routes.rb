@@ -32,13 +32,3 @@ get "/name_finder.?:format?" do
     handle_process(@nf)
   end
 end
-
-post "/name_finder.?:format?" do
-  @nf = NameFinder.create(params: params)
-
-  if @nf.errors?
-    handle_errors(@nf)
-  else
-    handle_process(@nf)
-  end
-end
