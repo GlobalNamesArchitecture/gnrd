@@ -6,16 +6,27 @@ module Sinatra
     end
 
     def content_type
-      "application/json; charset=UTF-8"
+      "application/json"
     end
 
-    def render
-      JSON.dump(hi: "hi")
+    def content
+      JSON.dump @nf.output
     end
   end
 
   # XML format for output
   class FormatXml
+    def initialize(name_finder)
+      @nf = name_finder
+    end
+
+    def content_type
+      "text/xml"
+    end
+
+    def content
+      @nf.output
+    end
   end
 
   # HTML format for output
@@ -35,22 +46,34 @@ module Sinatra
 
   # Sets formatting environment for name finder output
   class Formatter
-    FORMAT = { "json" => Sinatra::FormatJson,
+    attr_reader :format
+    FORMAT = { "html" => Sinatra::FormatHtml,
+               "json" => Sinatra::FormatJson,
                "xml"  => Sinatra::FormatXml }.freeze
 
     def initialize(name_finder)
       @nf = name_finder
-      fmt = FORMAT[name_finder.params[:format]] ||
-            Sinatra::FormatHtml
-      @format = fmt.new(@nf)
+      @format = find_format
+      fmt = FORMAT[@nf.params[:format]] || Sinatra::FormatHtml
+      @formatter = fmt.new(@nf)
     end
 
     def content_type
-      @format.content_type
+      @formatter.content_type
     end
 
-    def render
-      @format.render
+    def content
+      @formatter.content
+    end
+
+    private
+
+    def find_format
+      if %w(html json xml).include?(@nf.params[:format].to_s)
+        @nf.params[:format].to_sym
+      else
+        :html
+      end
     end
   end
 end

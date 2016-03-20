@@ -2,6 +2,8 @@
 # saves their output.
 class NameFinder < ActiveRecord::Base
   serialize :params, HashSerializer
+  serialize :errs, HashSerializer
+  serialize :output, HashSerializer
 
   def self.token
     loop do
@@ -19,11 +21,17 @@ class NameFinder < ActiveRecord::Base
     nf.name_find
   end
 
-  def prepare
-  end
-
-  def error?
-    false
+  def errors?
+    self.errs = Errors.new(self).validate if errs.is_a?(Hash)
+    if errs.empty?
+      false
+    else
+      self.status_code = errs.first[:status_code]
+      self.output = { status: errs.first[:status_code],
+                      message: errs.first[:message] }
+      save!
+      true
+    end
   end
 
   before_create do

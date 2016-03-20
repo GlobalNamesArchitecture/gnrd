@@ -26,21 +26,24 @@ end
 
 get "/name_finder.?:format?" do
   if params[:token]
-    @ns = NameFinder.find_by_token(params[:token])
-    @ns.init_find
+    @nf = NameFinder.find_by_token(params[:token])
   else
-    @ns = NameFinder.create(params: params)
+    @nf = NameFinder.create(params: params)
   end
-  @ns.prepare
-  redirect(@ns) if @ns.redirect_path
-  if @ns.error?
-    show_error(@ns)
+
+  if @nf.errors?
+    handle_errors(@nf)
   else
-    show(@ns)
+    handle_process(@nf)
   end
 end
 
 post "/name_finder.?:format?" do
-  @ns = NameFinder.create(params: params)
-  redirect(@ns)
+  @nf = NameFinder.create(params: params)
+
+  if @nf.errors?
+    handle_errors(@nf)
+  else
+    handle_process(@nf)
+  end
 end

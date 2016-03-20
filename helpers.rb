@@ -4,35 +4,30 @@ helpers do
       "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
   end
 
-  def name_finder_result(name_finder)
-    errs = errors_detect(name_finder)
-    errs.empty? ? result_show(name_finder) : errors_show(name_finder, errs)
-  end
-
-  def show(name_finder)
-    "hi #{name_finder}"
-  end
-
-  def errors_show(name_finder, errors)
-    name_finder.output = errors
-    name_finder.save!
-    fm = Sinatra::Formatter.new(name_finder)
-    status(name_finder.status_code)
-    content_type(fm.content_type, charset: "utf-8")
-  end
-
-  def errors_detect(name_finder)
-    errs = []
-    errs << error_check_params_empty(name_finder)
-    errs.compact
-  end
-
-  def error_check_params_empty(name_finder)
+  def handle_errors(name_finder)
     nf = name_finder
-    if nf.params[:source].empty?
-      nf.status_code = 400
-      nf.err_msg = "Bad request. Parameters missing"
-      { status: nf.status_code, message: nf.err_msg }
+    e = nf.errs.first
+    fmt = Sinatra::Formatter.new(nf)
+    url = redirect_url(e[:status_code], fmt.format)
+    url ? redirect(url, 303) : present(nf, fmt)
+  end
+
+  def present(name_finder, formatter)
+    @nf = name_finder
+    status @nf.status_code
+    content_type(formatter.content_type, encoding: "utf-8")
+    case formatter.format
+    when :html
+      set_flash(@nf)
+      haml formatter.content
+    when :xml
+      @output = formatter.content
+      builder :namefinder
+    when :json
+      formatter.content
     end
+  end
+
+  def handle_process(name_finder)
   end
 end

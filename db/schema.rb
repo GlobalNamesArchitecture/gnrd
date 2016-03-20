@@ -11,23 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313165638) do
+ActiveRecord::Schema.define(version: 20160313165637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "name_finders", force: :cascade do |t|
     t.string   "token"
-    t.integer  "status_code"
-    t.string   "err_msg"
-    t.string   "redirect_path"
-    t.jsonb    "params"
-    t.jsonb    "text"
+    t.integer  "current_state", default: 0
+    t.integer  "status_code",   default: 200
     t.jsonb    "result"
     t.jsonb    "errs"
+    t.jsonb    "params"
     t.jsonb    "output"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end

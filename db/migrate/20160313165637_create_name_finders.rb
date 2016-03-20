@@ -2,13 +2,12 @@ class CreateNameFinders < ActiveRecord::Migration
   def change
     create_table :name_finders do |t|
       t.string   :token
-      t.integer  :status_code
-      t.string   :err_msg
-      t.string   :redirect_path
-      t.jsonb    :params
-      t.jsonb    :text
+      t.integer  :current_state, default: 0
+      t.integer  :status_code, default: 200
       t.jsonb    :result
       t.jsonb    :errs
+
+      t.jsonb    :params
       t.jsonb    :output
 
       t.timestamps null: false

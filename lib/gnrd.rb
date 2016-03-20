@@ -12,10 +12,16 @@ require_relative "gnrd/names_collection"
 
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd
-  def self.symbolize_keys(hash)
-    hash = hash.map do |k, v|
-      v.is_a?(Hash) ? [k.to_sym, symbolize_keys(v)] : [k.to_sym, v]
+  def self.symbolize_keys(obj)
+    case obj
+    when Array
+      obj.map { |v| symbolize_keys(v) }
+    when Hash
+      obj.each_with_object({}) do |(k, v), o |
+        o[k] = symbolize_keys(v)
+      end.symbolize_keys
+    else
+      obj
     end
-    Hash[hash]
   end
 end
