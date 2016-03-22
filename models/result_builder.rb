@@ -1,3 +1,4 @@
+# Organizes results of name-finding
 class ResultBuilder
   class << self
     def init_text(nf)
@@ -19,16 +20,16 @@ class ResultBuilder
       when :text
         Gnrd::Dossier.new(text: { orig: input_type.last })
       when :url
-        text =
-          begin
-            RestClient.get(input_type.last)
-          rescue RestClient::ExceptionWithResponse
-            ""
-          end
-        Gnrd::Dossier.new(text: { orig: text })
+        Gnrd::Dossier.new(text: { orig: from_url(input_type.last) })
       when :file
         Gnrd::Dossier.new(file: { path: Gnrd.file_path(input_type.last) })
       end
+    end
+
+    def from_url(url)
+      RestClient.get(url)
+    rescue RestClient::ExceptionWithResponse
+      ""
     end
   end
 end

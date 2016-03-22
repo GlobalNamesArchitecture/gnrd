@@ -39,7 +39,7 @@ module Sinatra
       "text/html; charset=UTF-8"
     end
 
-    def render
+    def content
       @nf.output
     end
   end

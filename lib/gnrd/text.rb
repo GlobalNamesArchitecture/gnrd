@@ -26,8 +26,8 @@ module Gnrd
       txt = dossier.text[:orig]
       txt = Gnrd::SourceFactory.inst(dossier).text unless txt
       update_dossier(txt)
-      dossier.text[:orig] = txt
-        .force_encoding(@dossier.text[:encoding])
+      dossier.text[:orig] =
+        txt.force_encoding(@dossier.text[:encoding])
     end
 
     def update_dossier(txt)

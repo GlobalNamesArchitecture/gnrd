@@ -29,23 +29,12 @@ class NameFinder < ActiveRecord::Base
   end
 
   def find_names
-    self.text = ResultBuilder.init_text(self)
     self.timeline = { start: Time.now.to_f }
-    self.text.text_norm
-    self.timeline[:text_extraction] = Time.now.to_f
-    opts = find_names_opts
-    self.names = Gnrd::NameFinderEngine.new(text.dossier, opts).find.combine
-    self.timeline[:name_finding] = Time.now.to_f
-    self.result = ResultBuilder.init_result(self)
-    if resolve?
-      self.result.merge!(ResultBuilder.add_resolution(resolve)) if resolve?
-    end
-    self.timeline[:stop] = Time.now.to_f
-    self.result.merge!(timeline: timeline)
-    self.status_code = 200
-    self.output.merge! OutputBuilder.add_result(self)
+    prepare_text
+    prepare_names
+    prepare_result
     self.state = :finished
-    self.save!
+    save!
   end
 
   def state
@@ -53,12 +42,14 @@ class NameFinder < ActiveRecord::Base
   end
 
   def state=(new_state)
-    res = STATE.find { |k, v| v == new_state }
-    if res && res[0] != state
-      self.current_state = res[0]
-    else
-      raise IndexError, "Unknown state #{new_state}"
-    end
+    res = STATE.find { |_, v| v == new_state }
+    raise(IndexError, "Unknown state #{new_state}") unless res
+    self.current_state = res[0]
+  end
+
+  def params_update(new_params)
+    params.merge! Params.new(new_params).update
+    save!
   end
 
   def errors?
@@ -77,6 +68,27 @@ class NameFinder < ActiveRecord::Base
   end
 
   private
+
+  def prepare_text
+    self.text = ResultBuilder.init_text(self)
+    text.text_norm
+    timeline[:text_extraction] = Time.now.to_f
+  end
+
+  def prepare_names
+    opts = find_names_opts
+    self.names = Gnrd::NameFinderEngine.new(text.dossier, opts).find.combine
+    timeline[:name_finding] = Time.now.to_f
+  end
+
+  def prepare_result
+    self.status_code = 200
+    self.result = ResultBuilder.init_result(self)
+    result.merge!(ResultBuilder.add_resolution(self)) if resolve?
+    timeline[:stop] = Time.now.to_f
+    result[:timeline] = timeline
+    output.merge! OutputBuilder.add_result(self)
+  end
 
   def resolve?
     false

@@ -6,16 +6,13 @@
 - else
   #output-format
     %span
-      %a{:href => "#{SiteConfig.url_base}/name_finder.json?token=#{@output[:token]}" } JSON
+      %a{ href: "#{request.base_url}/name_finder.json?token=#{@nf[:token]}"  } JSON
     %span
-      %a{:href => "#{SiteConfig.url_base}/name_finder.xml?token=#{@output[:token]}" } XML
+      %a{ href: "#{request.base_url}/name_finder.xml?token=#{@nf[:token]}"  } XML
 
-  %p#found-names-duration Results are accessible at this URL for #{SiteConfig.cleaner_period} days
-  - if !@output[:agent].blank? && @output[:agent][:content_type] && @output[:agent][:content_type].include?("image")
-    %h3
-      Source Image
-    #found-names-preview
-      %img{:src => @output[:input_url]}
+  %p#found-names-duration
+    Results are accessible at this URL for 2 days.
+    See JSON or XML output for more details.
   %ul#found-names-summary
     - if !@output[:input_url].blank?
       %li
@@ -42,19 +39,12 @@
           (NetiNeti was not used)
     - if @output[:execution_time] && @output[:status] == 200
       %li
-        #{@output[:execution_time][:find_names_duration].to_s} s to find names,
+        #{sprintf("%.3f", @output[:execution_time][:text_preparation_duration])}s to prepare text,
+        #{sprintf("%.3f", @output[:execution_time][:find_names_duration])}s to find names,
         - if @output[:execution_time][:resolve_names_duration]
-          #{@output[:execution_time][:resolve_names_duration].to_s} s to resolve names,
-        #{@output[:execution_time][:total_duration].to_s} s for entire process
+          #{sprintf("%.3f", @output[:execution_time][:resolve_names_duration])}s to resolve names,
+        #{sprintf("%.3f", @output[:execution_time][:total_duration])}s for entire process
   - if @output[:total] && @output[:total] > 0
-
-    -# COMMENTED OUT FOR NOW
-    -# if @output[:resolved_names]
-      #names-lists
-        %span
-          %a{:href => "#found-names" } Found Names
-        %span
-          %a{:href => "#resolved-names" } Resolved Names
 
     %table#found-names-grid
       %thead
@@ -71,24 +61,3 @@
             - if @output[:verbatim]
               %td= name[:verbatim]
             %td= name[:scientificName]
-
-    -# COMMENTED OUT FOR NOW
-    -# if @output[:resolved_names]
-      - @output[:resolved_names].sort { |a,b| a[:supplied_name_string] <=> b[:supplied_name_string] }.each do |result|
-        .section
-          .searched-name
-            %h4= h result[:supplied_name_string]
-            - num_matches = (result[:results] && result[:results].size > 0) ? result[:results].size : 0
-            %span.number-matches= "Number of matches: #{num_matches}"
-
-          .results
-            - if result[:results]
-              - result[:results].each do |source|
-                .source-match
-                  .source-names-score
-                    %span.source-name-string= source[:name_string]
-                  - if source[:current_name_string]
-                    .source-names-score
-                      Current name:
-                      %span.source-current-name-string= source[:current_name_string]
-                    .source-classification-path= source[:classification_path].gsub('|', ' >> ')

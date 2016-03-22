@@ -31,7 +31,6 @@ describe "/feedback" do
 end
 
 describe "/name_finder" do
-
   context "insufficient parameters" do
     it "redirects home when html/empty parameters" do
       visit "/name_finder"
@@ -59,6 +58,16 @@ describe "/name_finder" do
     it "returns result in json" do
       visit "/name_finder.json?text=Pardosa+moesta"
       expect(page.body).to include("200")
+    end
+
+    it "returns result in xml" do
+      visit "/name_finder.xml?text=Pardosa+moesta"
+      expect(page.body).to include("<status>200</status>")
+    end
+
+    it "returns result in html" do
+      visit "/name_finder?text=Pardosa+moesta"
+      expect(page.body).to include("Pardosa moesta")
     end
   end
 end

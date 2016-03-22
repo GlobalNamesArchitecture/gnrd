@@ -6,8 +6,8 @@
 
 %h3 Resource URI
 #base-url
-  - json_url = "#{@base_url}/name_finder.json"
-  - xml_url  = "#{@base_url}/name_finder.xml"
+  - json_url = "#{request.base_url}/name_finder.json"
+  - xml_url  = "#{request.base_url}/name_finder.xml"
   %p "#{json_url} (JSON output)"
   %p "#{xml_url} (XML output)"
 

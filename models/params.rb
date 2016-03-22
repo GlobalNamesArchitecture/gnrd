@@ -16,6 +16,10 @@ class Params
     params.merge(res)
   end
 
+  def update
+    { format: normalize_format }
+  end
+
   private
 
   def params_sources

@@ -13,7 +13,6 @@ get "/api" do
   @page = "api"
   @title = "API"
   @header = "Application Programming Interface"
-  base_url
   haml :api
 end
 
@@ -25,6 +24,9 @@ get "/feedback" do
 end
 
 get "/name_finder.?:format?" do
+  @page = "name_finder"
+  @title = "Name Finder"
+  @header = "Feedback"
   @nf = name_finder_init(params)
   if @nf.errors?
     handle_errors(@nf)

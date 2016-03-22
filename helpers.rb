@@ -1,15 +1,14 @@
 helpers do
-  def base_url
-    @base_url ||=
-      "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
-  end
-
   def workers_running?
-    !Resque.redis.smembers('workers').empty?
+    !Resque.redis.smembers("workers").empty?
   end
 
   def name_finder_init(params)
-    return NameFinder.find_by_token(params[:token]) if params[:token]
+    if params[:token]
+      nf = NameFinder.find_by_token(params[:token])
+      nf.params_update(params)
+      return nf
+    end
     NameFinder.create(params: params)
   end
 
@@ -57,7 +56,7 @@ helpers do
   end
 
   def init_name_find(nf)
-    if workers_running? && false
+    if workers_running? && 1 == 2
       NameFinder.enqueue(nf)
       nf.state = :working
     else
@@ -66,8 +65,7 @@ helpers do
     end
     nf.save!
     fmt = Sinatra::Formatter.new(nf)
-    url = redirect_url(303, fmt)
-    redirect url, 303
+    redirect redirect_url(303, fmt), 303
   end
 
   def handle_waiting(nf)
