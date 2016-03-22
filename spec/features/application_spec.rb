@@ -70,4 +70,23 @@ describe "/name_finder" do
       expect(page.body).to include("Pardosa moesta")
     end
   end
+
+  context "url string" do
+    let(:url) { "https://en.wikipedia.org/wiki/Asian_long-horned_beetle" }
+
+    it "returns result in html" do
+      visit "/name_finder?url=#{url}"
+      expect(page.body).to include("<td>Anoplophora glabripennis</td>")
+    end
+
+    it "returns result in json" do
+      visit "/name_finder.json?url=#{url}"
+      expect(page.body).to include('scientificName":"Anoplophora glabripennis')
+    end
+
+    it "returns result in xml" do
+      visit "/name_finder.xml?url=#{url}"
+      expect(page.body).to include("scientificName>Anoplophora glabripennis")
+    end
+  end
 end
