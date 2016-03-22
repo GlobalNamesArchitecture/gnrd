@@ -31,22 +31,34 @@ describe "/feedback" do
 end
 
 describe "/name_finder" do
-  it "redirects home when html/empty parameters" do
-    visit "/name_finder"
-    expect(page.current_path).to eq "/"
-    expect(page.status_code).to be 200
-    expect(page.body).to include("Parameters missing")
+
+  context "insufficient parameters" do
+    it "redirects home when html/empty parameters" do
+      visit "/name_finder"
+      expect(page.current_path).to eq "/"
+      expect(page.status_code).to be 200
+      expect(page.body).to include("Parameters missing")
+    end
+
+    it "displays empty params error when json" do
+      visit "/name_finder.json"
+      expect(page.current_path).to match("name_finder")
+      expect(page.body).to include('"status":400')
+    end
+
+    it "displays empty params error when xml" do
+      visit "/name_finder.xml"
+      expect(page.current_path).to match("name_finder")
+      expect(page.body).to include("<status>400</status>")
+    end
   end
 
-  it "displays empty params error when json" do
-    visit "/name_finder.json"
-    expect(page.current_path).to match("name_finder")
-    expect(page.body).to include('"status":400')
-  end
+  context "text string" do
+    let(:params) { "text=Pardosa moesta" }
 
-  it "displays empty params error when xml" do
-    visit "/name_finder.xml"
-    expect(page.current_path).to match("name_finder")
-    expect(page.body).to include("<status>400</status>")
+    it "returns result in json" do
+      visit "/name_finder.json?text=Pardosa+moesta"
+      expect(page.body).to include("200")
+    end
   end
 end

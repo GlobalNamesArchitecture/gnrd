@@ -40,13 +40,15 @@ module Sinatra
     end
 
     def render
-      eval("haml(:fail)")
+      @nf.output
     end
   end
 
   # Sets formatting environment for name finder output
   class Formatter
-    attr_reader :format
+    attr_reader :nf, :format
+    alias name_finder nf
+
     FORMAT = { "html" => Sinatra::FormatHtml,
                "json" => Sinatra::FormatJson,
                "xml"  => Sinatra::FormatXml }.freeze

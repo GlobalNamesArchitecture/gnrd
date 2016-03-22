@@ -26,7 +26,7 @@ class Params
   end
 
   def params_boolean
-    %i(unique verbatim return_content all_data_sources best_match_only)
+    %i(unique return_content all_data_sources best_match_only)
       .each_with_object({}) do |p, obj|
       obj[p] = params[p] ? true : false
     end

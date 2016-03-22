@@ -4,6 +4,13 @@ class NameFinder < ActiveRecord::Base
   serialize :params, HashSerializer
   serialize :errs, HashSerializer
   serialize :output, HashSerializer
+  serialize :result, HashSerializer
+
+  attr_accessor :text
+  attr_accessor :names
+  attr_accessor :timeline
+
+  STATE = { 0 => :idle, 10 => :working, 20 => :finished }.freeze
 
   def self.token
     loop do
@@ -18,7 +25,40 @@ class NameFinder < ActiveRecord::Base
 
   def self.perform(name_finder_id)
     nf = NameFinder.find(name_finder_id)
-    nf.name_find
+    nf.find_names
+  end
+
+  def find_names
+    self.text = ResultBuilder.init_text(self)
+    self.timeline = { start: Time.now.to_f }
+    self.text.text_norm
+    self.timeline[:text_extraction] = Time.now.to_f
+    opts = find_names_opts
+    self.names = Gnrd::NameFinderEngine.new(text.dossier, opts).find.combine
+    self.timeline[:name_finding] = Time.now.to_f
+    self.result = ResultBuilder.init_result(self)
+    if resolve?
+      self.result.merge!(ResultBuilder.add_resolution(resolve)) if resolve?
+    end
+    self.timeline[:stop] = Time.now.to_f
+    self.result.merge!(timeline: timeline)
+    self.status_code = 200
+    self.output.merge! OutputBuilder.add_result(self)
+    self.state = :finished
+    self.save!
+  end
+
+  def state
+    STATE[current_state]
+  end
+
+  def state=(new_state)
+    res = STATE.find { |k, v| v == new_state }
+    if res && res[0] != state
+      self.current_state = res[0]
+    else
+      raise IndexError, "Unknown state #{new_state}"
+    end
   end
 
   def errors?
@@ -33,9 +73,14 @@ class NameFinder < ActiveRecord::Base
   before_create do
     self.token = NameFinder.token
     self.params = Params.new(params).normalize
+    self.output = OutputBuilder.init(self)
   end
 
   private
+
+  def resolve?
+    false
+  end
 
   def save_error
     self.status_code = errs.first[:status_code]
@@ -43,5 +88,12 @@ class NameFinder < ActiveRecord::Base
                     message: errs.first[:message] }
     save!
     true
+  end
+
+  def find_names_opts
+    opts = {}
+    opts[:neti_neti] = false if params[:engine] == 1
+    opts[:taxon_finder] = false if params[:engine] == 2
+    opts
   end
 end

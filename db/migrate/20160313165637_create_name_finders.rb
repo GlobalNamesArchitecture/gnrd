@@ -3,7 +3,7 @@ class CreateNameFinders < ActiveRecord::Migration
     create_table :name_finders do |t|
       t.string   :token
       t.integer  :current_state, default: 0
-      t.integer  :status_code, default: 200
+      t.integer  :status_code, default: 303
       t.jsonb    :result
       t.jsonb    :errs
 

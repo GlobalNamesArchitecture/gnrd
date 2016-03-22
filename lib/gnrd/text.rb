@@ -12,7 +12,8 @@ module Gnrd
     end
 
     def text_orig
-      @dossier.text[:orig] ||= orig
+      set_orig
+      @dossier.text[:orig]
     end
 
     def text_norm
@@ -21,10 +22,12 @@ module Gnrd
 
     private
 
-    def orig
-      txt = Gnrd::SourceFactory.inst(@dossier).text
+    def set_orig
+      txt = dossier.text[:orig]
+      txt = Gnrd::SourceFactory.inst(dossier).text unless txt
       update_dossier(txt)
-      txt.force_encoding(@dossier.text[:encoding])
+      dossier.text[:orig] = txt
+        .force_encoding(@dossier.text[:encoding])
     end
 
     def update_dossier(txt)

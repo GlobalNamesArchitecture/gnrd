@@ -2181,3 +2181,44 @@
 2016-03-20 15:07:09,951 INFO spawned: ' shotgun' with pid 12
 2016-03-20 15:07:11,896 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2016-03-20 15:07:11,896 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-21 15:13:53,332 INFO exited:  resque (exit status 1; not expected)
+2016-03-21 15:13:54,349 INFO spawned: ' resque' with pid 155
+2016-03-21 15:13:55,352 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-21 15:13:56,088 INFO exited:  resque (exit status 1; not expected)
+2016-03-21 15:13:57,092 INFO spawned: ' resque' with pid 159
+2016-03-21 15:13:58,094 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-21 15:14:06,199 CRIT Supervisor running as root (no user in config file)
+2016-03-21 15:14:06,203 INFO supervisord started with pid 8
+2016-03-21 15:14:07,205 INFO spawned: ' resque' with pid 11
+2016-03-21 15:14:07,206 INFO spawned: ' shotgun' with pid 12
+2016-03-21 15:14:08,508 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-21 15:14:08,508 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-21 20:58:21,892 INFO exited:  resque (exit status 1; not expected)
+2016-03-21 20:58:22,901 INFO spawned: ' resque' with pid 66
+2016-03-21 20:58:23,902 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-21 20:58:24,662 INFO exited:  resque (exit status 1; not expected)
+2016-03-21 20:58:25,665 INFO spawned: ' resque' with pid 70
+2016-03-21 20:58:26,667 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-21 20:58:27,169 INFO exited:  resque (exit status 1; not expected)
+2016-03-21 20:58:28,171 INFO spawned: ' resque' with pid 74
+2016-03-21 20:58:29,172 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-21 20:58:33,432 CRIT Supervisor running as root (no user in config file)
+2016-03-21 20:58:33,434 INFO supervisord started with pid 8
+2016-03-21 20:58:34,436 INFO spawned: ' resque' with pid 11
+2016-03-21 20:58:34,437 INFO spawned: ' shotgun' with pid 12
+2016-03-21 20:58:35,749 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-21 20:58:35,750 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-22 02:43:21,342 INFO exited:  resque (exit status 1; not expected)
+2016-03-22 02:43:22,357 INFO spawned: ' resque' with pid 23
+2016-03-22 02:43:23,359 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-22 02:43:24,000 INFO exited:  resque (exit status 1; not expected)
+2016-03-22 02:43:25,004 INFO spawned: ' resque' with pid 27
+2016-03-22 02:43:26,005 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-22 02:43:26,655 INFO exited:  resque (exit status 1; not expected)
+2016-03-22 02:43:27,657 INFO spawned: ' resque' with pid 31
+2016-03-22 02:43:48,914 CRIT Supervisor running as root (no user in config file)
+2016-03-22 02:43:48,919 INFO supervisord started with pid 9
+2016-03-22 02:43:49,921 INFO spawned: ' resque' with pid 12
+2016-03-22 02:43:49,922 INFO spawned: ' shotgun' with pid 13
+2016-03-22 02:43:51,511 INFO success:  resque entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2016-03-22 02:43:51,511 INFO success:  shotgun entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

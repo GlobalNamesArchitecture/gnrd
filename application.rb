@@ -11,6 +11,8 @@ require_relative "lib/gnrd"
 require_relative "models/hash_serializer"
 require_relative "models/params"
 require_relative "models/errors"
+require_relative "models/result_builder"
+require_relative "models/output_builder"
 require_relative "models/name_finder"
 
 require_relative "sinatra/formatter"
