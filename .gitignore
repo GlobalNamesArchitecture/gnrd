@@ -12,6 +12,8 @@ t
 config/config.json
 config/production_site_specific.rb
 log/*.log
+supervisord.pid
+supervisord.log
 .DS_Store
 config.yml
 tmp
