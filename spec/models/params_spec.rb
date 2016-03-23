@@ -14,7 +14,7 @@ describe Params do
     end
     let(:params2) do
       { preferred_data_sources: [1, 3], engine: "1",
-        format: "xml", file: "/usr/bin/file" }
+        format: "xml", file: { filename: "file", tempfile: "/usr/bin/file" } }
     end
     let(:params3) do
       { preferred_data_sources: "some|nonsense", engine: "whaa?",
@@ -22,24 +22,31 @@ describe Params do
         format: "klenon" }
     end
     let(:params4) { { find: { detect_language: false } } }
+    let(:params5) { { unique: 1 } }
+    let(:params6) { { unique: "true\n " } }
 
-    it "does not remove params which are not normalized" do
+    it "removes unknown params" do
       prm = subject.new(params1).normalize
-      expect(prm[:aparam]).to eq "one two"
+      expect(prm[:aparam]).to be nil
     end
 
     it "moves source fields under :sources" do
-      expect(params2[:file]).to eq "/usr/bin/file"
+      expect(params2[:file][:filename]).to eq "file"
+      expect(params2[:file][:tempfile]).to eq "/usr/bin/file"
       prm = subject.new(params2).normalize
       expect(prm[:file]).to be nil
-      expect(prm[:source][:file]).to eq "/usr/bin/file"
+      expect(prm[:source][:file][:tempfile]).to eq "/usr/bin/file"
+      expect(prm[:source][:file][:filename]).to eq "file"
     end
 
     it "deals with booleans" do
       prm = subject.new(params3).normalize
-      expect(prm[:verbatim]).to be true
-      expect(prm[:unique]).to be true
+      expect(prm[:unique]).to be false
       expect(prm[:return_content]).to be false
+      prm = subject.new(params5).normalize
+      expect(prm[:unique]).to be true
+      prm = subject.new(params6).normalize
+      expect(prm[:unique]).to be true
     end
 
     it "deals with detect_language false param" do

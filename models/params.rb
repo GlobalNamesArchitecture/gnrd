@@ -13,7 +13,7 @@ class Params
     res[:detect_language] = detect_language?
     res[:format] = normalize_format
     res[:engine] = normalize_engine
-    params.merge(res)
+    res
   end
 
   def update
@@ -25,14 +25,20 @@ class Params
   def params_sources
     %i(url file text).each_with_object({}) do |p, obj|
       v =  params.delete(p) || (params[:find] && params[:find].delete(p))
-      obj[p] = v if v
+      next if v.to_s.strip == ""
+      v = normalize_file_source(v) if p == :file
+      obj[p] = v
     end
+  end
+
+  def normalize_file_source(src)
+    { filename: src[:filename], tempfile: src[:tempfile], type: src[:type] }
   end
 
   def params_boolean
     %i(unique return_content all_data_sources best_match_only)
       .each_with_object({}) do |p, obj|
-      obj[p] = params[p] ? true : false
+      obj[p] = %w(1 true).include? params[p].to_s.strip
     end
   end
 
@@ -44,7 +50,8 @@ class Params
   def detect_language?
     dt = params[:detect_language] ||
          (params[:find] && params[:find][:detect_language])
-    dt.to_s.strip == "false" ? false : true
+    return true if dt.nil?
+    %w(0 false).include? dt.to_s.strip ? false : true
   end
 
   def params_data_sources
@@ -61,6 +68,6 @@ class Params
 
   def normalize_engine
     engine = params[:engine].to_i
-    (1..2).cover?(engine) ? engine : 0
+    (0..2).cover?(engine) ? engine : 0
   end
 end

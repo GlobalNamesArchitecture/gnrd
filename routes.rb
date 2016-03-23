@@ -34,3 +34,13 @@ get "/name_finder.?:format?" do
     handle_process(@nf)
   end
 end
+
+post "/name_finder.?:format?" do
+  params_normalized = Gnrd.symbolize_keys(params) # to get path to file
+  @nf = NameFinder.create(params: params_normalized)
+  if @nf.errors?
+    handle_errors(@nf)
+  else
+    handle_process(@nf)
+  end
+end

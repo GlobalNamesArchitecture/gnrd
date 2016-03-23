@@ -64,7 +64,7 @@
           %label{ for: "engine_#{key}" }= key
       %fieldset
         %legend Detect Language
-        - { "Yes" => 1, "No" => 0 }.each do |key, value|
+        - { "Yes" => true, "No" => false }.each do |key, value|
           - checked = (key == "Yes") ? true : nil
           - id = key.gsub(" ", "_").downcase
           %input{ type: :radio, name: :detect_language,
@@ -72,21 +72,13 @@
             checked: checked }
           %label{ for: "detect_language_#{id}" }= key
       %fieldset
-        %legend Name Instances
-        - { "Unique list" => 1, "All instances" => 0 }.each do |key, value|
-          - checked = (key == "Unique list") ? true : nil
-          - id = key.gsub(" ", "_").downcase
+        %legend Scientific Names
+        - { "Unique list" => true, "All occurrences" => false }.each do |k, v|
+          - checked = (k == "Unique list") ? true : nil
+          - id = k.gsub(" ", "_").downcase
           %input{ type: :radio, name: :unique, id: "unique_#{id}",
-                  value: value, checked: checked }
-          %label{ for: "unique_#{id}" }= key
-      %fieldset
-        %legend Verbatim in Results
-        - { "Yes" => 1, "No" => 0 }.each do |key, value|
-          - checked = (key == "No") ? true : nil
-          - id = key.gsub(" ", "_").downcase
-          %input{ type: :radio, name: :verbatim, id: "verbatim_#{id}",
-                  value: value, checked: checked }
-          %label{ for: "verbatim_#{id}" }= key
+                  value: v, checked: checked }
+          %label{ for: "unique_#{id}" }= k
       %fieldset
         %legend Resolve Against
         %input{ type: :checkbox, id: "all_data_sources",

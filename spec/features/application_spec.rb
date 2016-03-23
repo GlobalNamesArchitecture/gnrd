@@ -89,4 +89,31 @@ describe "/name_finder" do
       expect(page.body).to include("scientificName>Anoplophora glabripennis")
     end
   end
+
+  context "text file" do
+    let(:file1) { File.absolute_path(__dir__ + "/../files/latin1.txt") }
+
+    it "returns result from file" do
+      visit "/"
+      attach_file("find_file", file1)
+      click_button("Find Names")
+      expect(page.body).to include("<td>Pedicia spinifera</td>")
+    end
+
+    it "returns result from file in json" do
+      visit "/"
+      attach_file("find_file", file1)
+      choose("format_json")
+      click_button("Find Names")
+      expect(page.body).to include('scientificName":"Pedicia spinifera"')
+    end
+
+    it "returns result from file in xml" do
+      visit "/"
+      attach_file("find_file", file1)
+      choose("format_xml")
+      click_button("Find Names")
+      expect(page.body).to include("scientificName>Pedicia spinifera")
+    end
+  end
 end
