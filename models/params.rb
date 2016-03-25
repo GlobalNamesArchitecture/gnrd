@@ -3,7 +3,7 @@ class Params
   attr_reader :params
 
   def initialize(params)
-    @params = params
+    @params = params || {}
   end
 
   def normalize
@@ -13,6 +13,7 @@ class Params
     res[:detect_language] = detect_language?
     res[:format] = normalize_format
     res[:engine] = normalize_engine
+    res[:unique] = adjust_by_verbatim if params[:verbatim]
     res
   end
 
@@ -20,7 +21,19 @@ class Params
     { format: normalize_format }
   end
 
+  def format
+    normalize_format.to_sym
+  end
+
   private
+
+  def true?(param)
+    %w(1 true).include?(param.to_s.strip)
+  end
+
+  def adjust_by_verbatim
+    !true?(params[:verbatim])
+  end
 
   def params_sources
     %i(url file text).each_with_object({}) do |p, obj|
@@ -38,7 +51,7 @@ class Params
   def params_boolean
     %i(unique return_content all_data_sources best_match_only)
       .each_with_object({}) do |p, obj|
-      obj[p] = %w(1 true).include? params[p].to_s.strip
+      obj[p] = true?(params[p])
     end
   end
 

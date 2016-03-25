@@ -23,24 +23,7 @@ get "/feedback" do
   haml :feedback
 end
 
-get "/name_finder.?:format?" do
-  @page = "name_finder"
-  @title = "Name Finder"
-  @header = "Feedback"
-  @nf = name_finder_init(params)
-  if @nf.errors?
-    handle_errors(@nf)
-  else
-    handle_process(@nf)
-  end
-end
-
-post "/name_finder.?:format?" do
-  params_normalized = Gnrd.symbolize_keys(params) # to get path to file
-  @nf = NameFinder.create(params: params_normalized)
-  if @nf.errors?
-    handle_errors(@nf)
-  else
-    handle_process(@nf)
-  end
+post_get "/name_finder.?:format?" do
+  @nf, @err = name_finder_init
+  @err.empty? ? find_names : show_errors(@err)
 end

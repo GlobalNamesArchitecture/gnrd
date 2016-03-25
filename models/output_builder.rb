@@ -4,7 +4,7 @@ class OutputBuilder
 
   class << self
     def init(nf)
-      { token_url: "/name_finder#{format_ext(nf)}?token=#{nf.token}",
+      { token_url: "/name_finder#{format(nf)}?token=#{nf.token}",
         input_url: nf.params[:source][:url],
         file: nf.params[:source][:file], status: 303,
         engines: engines(nf.params[:engine]), unique: nf.params[:unique],
@@ -33,9 +33,8 @@ class OutputBuilder
       nf.params[:unique] ? unique_names : names
     end
 
-    def format_ext(nf)
-      format = Sinatra::Formatter.new(nf).format
-      format == :html ? "" : ".#{format}"
+    def format(nf)
+      nf.params[:format].to_sym
     end
 
     def execution_time(nf)

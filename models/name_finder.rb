@@ -2,13 +2,14 @@
 # saves their output.
 class NameFinder < ActiveRecord::Base
   serialize :params, HashSerializer
-  serialize :errs, HashSerializer
   serialize :output, HashSerializer
   serialize :result, HashSerializer
 
   attr_accessor :text
   attr_accessor :names
   attr_accessor :timeline
+
+  validates_with NameFinderValidator
 
   STATE = { 0 => :idle, 10 => :working, 20 => :finished }.freeze
 
@@ -52,19 +53,12 @@ class NameFinder < ActiveRecord::Base
     save!
   end
 
-  def errors?
-    self.errs = Errors.new(self).validate if errs.is_a?(Hash)
-    if errs.empty?
-      false
-    else
-      save_error
+  before_validation do
+    unless token # needs to happen only once on creation, not on updates
+      self.token = NameFinder.token
+      self.params = Params.new(params).normalize if params[:source].nil?
+      self.output = OutputBuilder.init(self)
     end
-  end
-
-  before_create do
-    self.token = NameFinder.token
-    self.params = Params.new(params).normalize
-    self.output = OutputBuilder.init(self)
   end
 
   private
@@ -92,14 +86,6 @@ class NameFinder < ActiveRecord::Base
 
   def resolve?
     false
-  end
-
-  def save_error
-    self.status_code = errs.first[:status_code]
-    self.output = { status: errs.first[:status_code],
-                    message: errs.first[:message] }
-    save!
-    true
   end
 
   def find_names_opts

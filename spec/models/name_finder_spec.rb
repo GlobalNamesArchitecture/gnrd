@@ -1,5 +1,6 @@
 describe NameFinder do
   subject { NameFinder }
+  let(:params) { { format: "json", text: "Pardosa moesta" } }
 
   describe ".new" do
     it "creates instance" do
@@ -15,7 +16,7 @@ describe NameFinder do
 
   describe ".create" do
     it "populates id, token" do
-      nf = subject.create
+      nf = subject.create(params: params)
       expect(nf.id).to be > 0
       expect(nf.id).to be_kind_of Fixnum
       expect(nf.token).to match(/^[0-9a-z]{10}$/)

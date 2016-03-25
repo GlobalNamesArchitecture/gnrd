@@ -10,19 +10,18 @@ require "tilt/builder"
 require_relative "lib/gnrd"
 require_relative "models/hash_serializer"
 require_relative "models/params"
-require_relative "models/errors"
 require_relative "models/result_builder"
 require_relative "models/output_builder"
+require_relative "models/name_finder_validator"
 require_relative "models/name_finder"
 
-require_relative "sinatra/formatter"
-require_relative "sinatra/redirector"
+require_relative "sinatra/post_get"
 require_relative "routes"
 require_relative "helpers"
 
 configure do
-  register Sinatra::Flash
-  helpers Sinatra::Gnrd::Redirector, Sinatra::RedirectWithFlash
+  register Sinatra::Flash, Sinatra::PostGet
+  helpers Sinatra::RedirectWithFlash
 
   enable :sessions
 
