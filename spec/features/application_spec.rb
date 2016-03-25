@@ -92,6 +92,7 @@ describe "/name_finder" do
 
   context "url string" do
     let(:url) { "https://en.wikipedia.org/wiki/Asian_long-horned_beetle" }
+    let(:url2) { "eol.org/pages/207212/overview" }
     let(:bad_url) { "http://dunno.com/this/thingie" }
 
     it "returns result in html" do
@@ -107,6 +108,11 @@ describe "/name_finder" do
     it "returns result in xml" do
       visit "/name_finder.xml?url=#{url}"
       expect(page.body).to include("scientificName>Anoplophora glabripennis")
+    end
+
+    it "adds http:// to urls without prefix" do
+      visit "/name_finder.json?url=#{url2}"
+      expect(page.body).to include("verbatim\":\"Epinephelus drummondhayi")
     end
 
     it "redirects home when url is not found" do
