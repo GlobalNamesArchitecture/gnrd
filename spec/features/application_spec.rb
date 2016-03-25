@@ -31,7 +31,7 @@ describe "/feedback" do
 end
 
 describe "/name_finder" do
-  context "insufficient parameters" do
+  context "error handling" do
     it "redirects home when html/empty parameters" do
       visit "/name_finder"
       expect(page.current_path).to eq "/"
@@ -49,6 +49,25 @@ describe "/name_finder" do
       visit "/name_finder.xml"
       expect(page.current_path).to match("name_finder")
       expect(page.body).to include("<status>400</status>")
+    end
+
+    it "redirects home when token not found" do
+      visit "/name_finder?token=123"
+      expect(page.current_path).to eq "/"
+      expect(page.status_code).to be 200
+      expect(page.body).to include("no longer exists")
+    end
+
+    it "displays 404 when token not found in json" do
+      visit "/name_finder.json?token=123"
+      expect(page.current_path).to match("name_finder")
+      expect(page.body).to include('"status":404')
+    end
+
+    it "displays 404 when token not found in xml" do
+      visit "/name_finder.xml?token=123"
+      expect(page.current_path).to match("name_finder")
+      expect(page.body).to include("<status>404</status>")
     end
   end
 
