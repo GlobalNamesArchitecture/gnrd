@@ -159,4 +159,23 @@ describe "/name_finder" do
       expect(page.body).to include("scientificName>Pedicia spinifera")
     end
   end
+
+  context "image file" do
+    let(:image) { File.absolute_path(__dir__ + "/../files/image.jpg") }
+    let(:image2) { File.absolute_path(__dir__ + "/../files/no_names.jpg") }
+
+    it "returns result from image file" do
+      visit "/"
+      attach_file("find_file", image)
+      click_button("Find Names")
+      expect(page.body).to include("<td>Baccha elongata</td>")
+    end
+
+    it "handles images without names" do
+      visit "/"
+      attach_file("find_file", image2)
+      click_button("Find Names")
+      expect(page.body).to match(/0<\/strong>.*<strong>unique/m)
+    end
+  end
 end

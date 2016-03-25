@@ -64,7 +64,7 @@
           %label{ for: "engine_#{key}" }= key
       %fieldset
         %legend Detect Language
-        - { "Yes" => true, "No" => false }.each do |key, value|
+        - { "Yes" => "true", "No" => "false" }.each do |key, value|
           - checked = (key == "Yes") ? true : nil
           - id = key.gsub(" ", "_").downcase
           %input{ type: :radio, name: :detect_language,
@@ -73,7 +73,8 @@
           %label{ for: "detect_language_#{id}" }= key
       %fieldset
         %legend Scientific Names
-        - { "Unique list" => true, "All occurrences" => false }.each do |k, v|
+        - { "Unique list" => "true",
+            "All occurrences" => "false" }.each do |k, v|
           - checked = (k == "Unique list") ? true : nil
           - id = k.gsub(" ", "_").downcase
           %input{ type: :radio, name: :unique, id: "unique_#{id}",
