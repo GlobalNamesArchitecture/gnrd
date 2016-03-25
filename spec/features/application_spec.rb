@@ -92,6 +92,7 @@ describe "/name_finder" do
 
   context "url string" do
     let(:url) { "https://en.wikipedia.org/wiki/Asian_long-horned_beetle" }
+    let(:bad_url) { "http://dunno.com/this/thingie" }
 
     it "returns result in html" do
       visit "/name_finder?url=#{url}"
@@ -106,6 +107,23 @@ describe "/name_finder" do
     it "returns result in xml" do
       visit "/name_finder.xml?url=#{url}"
       expect(page.body).to include("scientificName>Anoplophora glabripennis")
+    end
+
+    it "redirects home when url is not found" do
+      visit "/name_finder?url=#{bad_url}"
+      expect(page.current_path).to eq "/"
+      expect(page.status_code).to be 200
+      expect(page.body).to include("URL resource not found")
+    end
+
+    it "returns not found for non-existant url in json" do
+      visit "/name_finder.json?url=#{bad_url}"
+      expect(page.body).to include("404")
+    end
+
+    it "returns not found for non-existant url in xml" do
+      visit "/name_finder.xml?url=#{bad_url}"
+      expect(page.body).to include("<status>404</status>")
     end
   end
 

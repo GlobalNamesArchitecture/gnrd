@@ -18,14 +18,13 @@ ActiveRecord::Schema.define(version: 20160313165637) do
 
   create_table "name_finders", force: :cascade do |t|
     t.string   "token"
-    t.integer  "current_state", default: 0
-    t.integer  "status_code",   default: 303
-    t.jsonb    "result"
-    t.jsonb    "errs"
     t.jsonb    "params"
+    t.integer  "current_state", default: 0
+    t.jsonb    "result"
     t.jsonb    "output"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.jsonb    "errs",          default: []
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
 end

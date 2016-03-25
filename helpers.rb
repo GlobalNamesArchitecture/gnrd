@@ -4,7 +4,7 @@ helpers do
                    xml:  "application/xml" }.freeze
 
   def name_finder_init
-    return find_name_finder if params[:token]
+    return find_by_token if params[:token]
     create_name_finder
   end
 
@@ -27,7 +27,7 @@ helpers do
     [nf, err]
   end
 
-  def find_name_finder
+  def find_by_token
     err = []
     nf = NameFinder.find_by_token(params[:token])
     if nf
@@ -81,13 +81,16 @@ helpers do
   end
 
   def wait_find
-    sleep 1
     redirect_find_names
   end
 
   def redirect_find_names
-    ext = format == :html ? "" : ".#{format}"
-    redirect "/name_finder#{ext}?token=#{@nf.token}", 303
+    if @nf.errs.empty?
+      ext = format == :html ? "" : ".#{format}"
+      redirect "/name_finder#{ext}?token=#{@nf.token}", 303
+    else
+      show_errors(@nf.errs)
+    end
   end
 
   def show_find

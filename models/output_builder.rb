@@ -13,7 +13,7 @@ class OutputBuilder
 
     def add_result(nf)
       res = { names: prepare_names(nf) }
-      res.merge!(status: nf.status_code, total: res[:names].count,
+      res.merge!(status: 200, total: res[:names].count,
                  execution_time: execution_time(nf))
       res[:content] = nf.text.text_norm if nf.params[:return_content]
       res[:resolved_names] = nf.result[:resolver] if nf.result[:resolver]

@@ -1,5 +1,7 @@
 module Gnrd
-  class FileMissingError < RuntimeError; end
-  class UnknownEncodingError < RuntimeError; end
-  class AbsentTextStringError < RuntimeError; end
+  class Error < RuntimeError; end
+  class FileMissingError < Gnrd::Error; end
+  class UnknownEncodingError < Gnrd::Error; end
+  class AbsentTextStringError < Gnrd::Error; end
+  class UrlNotFoundError < Gnrd::Error; end
 end

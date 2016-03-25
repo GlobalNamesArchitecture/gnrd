@@ -28,8 +28,8 @@ class ResultBuilder
 
     def from_url(url)
       RestClient.get(url)
-    rescue RestClient::ExceptionWithResponse
-      ""
+    rescue RestClient::ResourceNotFound
+      raise Gnrd::UrlNotFoundError, "URL resource not found"
     end
   end
 end

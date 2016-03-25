@@ -4,6 +4,7 @@ class NameFinder < ActiveRecord::Base
   serialize :params, HashSerializer
   serialize :output, HashSerializer
   serialize :result, HashSerializer
+  serialize :errs,   HashSerializer
 
   attr_accessor :text
   attr_accessor :names
@@ -36,6 +37,8 @@ class NameFinder < ActiveRecord::Base
     prepare_result
     self.state = :finished
     save!
+  rescue Gnrd::Error => e
+    add_error(e)
   end
 
   def state
@@ -63,6 +66,14 @@ class NameFinder < ActiveRecord::Base
 
   private
 
+  def add_error(e)
+    status_code = e.is_a?(Gnrd::UrlNotFoundError) ? 404 : 200
+    errs << { status: status_code,
+              message: e.message }
+    self.state = :finished
+    save!
+  end
+
   def prepare_text
     self.text = ResultBuilder.init_text(self)
     text.text_norm
@@ -76,7 +87,6 @@ class NameFinder < ActiveRecord::Base
   end
 
   def prepare_result
-    self.status_code = 200
     self.result = ResultBuilder.init_result(self)
     result.merge!(ResultBuilder.add_resolution(self)) if resolve?
     timeline[:stop] = Time.now.to_f
