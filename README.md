@@ -28,7 +28,30 @@ docker-compose up -d
 
 ```
 
+* Create/update database
+
+```
+# run this only if you need to remove old version of db
+doker-compose run app rake db:drop
+
+docker-compose run app rake db:create
+
+docker-compose run app rake db:migrate
+docker-compose run app env RACK_ENV=test rake db:migrate
+```
+
+After database and migrations are created, `schema.rb`
+will be created as well. Next time after restarting
+containers just running
+
+```
+docker-compose run app rake db:setup
+```
+is sufficient
+
 * Run tests
+
+For all tests run
 
 ```
 docker-compose run app rake
@@ -37,8 +60,9 @@ docker-compose run app rake
 or to run a specific test
 
 ```
-docker-compose run app rspec spec/lib/some_spec.rb:44
+docker-compose run app rspec -r factories spec/lib/some_spec.rb:44
 ```
+Note added dependency to load factories.
 
 [ci_img]: https://secure.travis-ci.org/GlobalNamesArchitecture/gnrd.svg
 [ci]: http://travis-ci.org/GlobalNamesArchitecture/gnrd
