@@ -27,6 +27,7 @@ class ResultBuilder
     end
 
     def from_url(url)
+      url =~ %r{^http[s]?://} ? url : "http://" + url
       RestClient.get(url)
     rescue RestClient::ResourceNotFound
       raise Gnrd::UrlNotFoundError, "URL resource not found"

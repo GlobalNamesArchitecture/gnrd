@@ -175,7 +175,7 @@ describe "/name_finder" do
       visit "/"
       attach_file("find_file", image2)
       click_button("Find Names")
-      expect(page.body).to match(/0<\/strong>.*<strong>unique/m)
+      expect(page.body).to match(%r{0</strong>.*<strong>unique}m)
     end
   end
 end
