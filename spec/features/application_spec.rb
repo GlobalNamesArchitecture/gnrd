@@ -41,12 +41,14 @@ describe "/name_finder" do
 
     it "displays empty params error when json" do
       visit "/name_finder.json"
+      expect(page.status_code).to be 400
       expect(page.current_path).to match("name_finder")
       expect(page.body).to include('"status":400')
     end
 
     it "displays empty params error when xml" do
       visit "/name_finder.xml"
+      expect(page.status_code).to be 400
       expect(page.current_path).to match("name_finder")
       expect(page.body).to include("<status>400</status>")
     end
@@ -60,12 +62,14 @@ describe "/name_finder" do
 
     it "displays 404 when token not found in json" do
       visit "/name_finder.json?token=123"
+      expect(page.status_code).to be 404
       expect(page.current_path).to match("name_finder")
       expect(page.body).to include('"status":404')
     end
 
     it "displays 404 when token not found in xml" do
       visit "/name_finder.xml?token=123"
+      expect(page.status_code).to be 404
       expect(page.current_path).to match("name_finder")
       expect(page.body).to include("<status>404</status>")
     end
@@ -124,11 +128,13 @@ describe "/name_finder" do
 
     it "returns not found for non-existant url in json" do
       visit "/name_finder.json?url=#{bad_url}"
+      expect(page.status_code).to be 404
       expect(page.body).to include("404")
     end
 
     it "returns not found for non-existant url in xml" do
       visit "/name_finder.xml?url=#{bad_url}"
+      expect(page.status_code).to be 404
       expect(page.body).to include("<status>404</status>")
     end
   end
@@ -176,6 +182,25 @@ describe "/name_finder" do
       attach_file("find_file", image2)
       click_button("Find Names")
       expect(page.body).to match(%r{0</strong>.*<strong>unique}m)
+    end
+  end
+
+  context "pdf file" do
+    let(:pdf) { File.absolute_path(__dir__ + "/../files/file.pdf") }
+    let(:image_pdf) { File.absolute_path(__dir__ + "/../files/image.pdf") }
+
+    it "returns result from pdf file" do
+      visit "/"
+      attach_file("find_file", pdf)
+      click_button("Find Names")
+      expect(page.body).to include("<td>Tacsonia insignis</td>")
+    end
+
+    it "handles image pdfs" do
+      visit "/"
+      attach_file("find_file", image_pdf)
+      click_button("Find Names")
+      expect(page.body).to include("<td>Baccha elongata</td>")
     end
   end
 end
