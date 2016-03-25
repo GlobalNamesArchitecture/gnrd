@@ -62,7 +62,6 @@ or to run a specific test
 ```
 docker-compose run app rspec -r factories spec/lib/some_spec.rb:44
 ```
-Note added dependency to load factories.
 
 [ci_img]: https://secure.travis-ci.org/GlobalNamesArchitecture/gnrd.svg
 [ci]: http://travis-ci.org/GlobalNamesArchitecture/gnrd
