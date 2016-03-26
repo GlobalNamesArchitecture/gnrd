@@ -10,7 +10,8 @@ class NameFinderValidator < ActiveModel::Validator
   def source_exist?
     if @nf.params[:source].nil? || @nf.params[:source].empty?
       @nf.errors[:base] << { status: 400,
-                             message: "Bad request. Parameters missing." }
+                             message: "Bad request. Parameters missing.",
+                             parameters: Params.output(@nf.params) }
     end
   end
 end

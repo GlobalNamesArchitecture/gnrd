@@ -34,7 +34,8 @@ helpers do
       nf.params_update(params)
     else
       err << { status: 404,
-               message: "Not Found. That result no longer exists." }
+               message: "Not Found. That result no longer exists.",
+               parameters: { token: params[:token] } }
     end
     [nf, err]
   end

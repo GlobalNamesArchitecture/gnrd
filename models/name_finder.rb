@@ -69,7 +69,8 @@ class NameFinder < ActiveRecord::Base
   def add_error(e)
     status_code = e.is_a?(Gnrd::UrlNotFoundError) ? 404 : 200
     errs << { status: status_code,
-              message: e.message }
+              message: e.message,
+              parameters: Params.output(params) }
     self.state = :finished
     save!
   end
@@ -100,8 +101,13 @@ class NameFinder < ActiveRecord::Base
 
   def find_names_opts
     opts = {}
-    opts[:neti_neti] = false if params[:engine] == 1
-    opts[:taxon_finder] = false if params[:engine] == 2
+    opts[:netineti] = false if params[:engine] == 1
+    opts[:taxonfinder] = false if params[:engine] == 2
+    adjust_opts_for_lang(opts) if params[:detect_language]
     opts
+  end
+
+  def adjust_opts_for_lang(opts)
+    opts.merge!(netineti: false) if text.english? == false
   end
 end

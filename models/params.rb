@@ -2,6 +2,13 @@
 class Params
   attr_reader :params
 
+  def self.output(params)
+    res = Marshal.load Marshal.dump(params)
+    res.delete(:format)
+    res.delete(:source)
+    res
+  end
+
   def initialize(params)
     @params = params || {}
   end
@@ -64,7 +71,7 @@ class Params
     dt = params[:detect_language] ||
          (params[:find] && params[:find][:detect_language])
     return true if dt.nil?
-    %w(0 false).include? dt.to_s.strip ? false : true
+    %w(0 false).include?(dt.to_s.strip) ? false : true
   end
 
   def params_data_sources

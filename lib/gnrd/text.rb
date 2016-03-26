@@ -20,6 +20,11 @@ module Gnrd
       @dossier.text[:norm] ||= norm
     end
 
+    def english?
+      @english ||=
+        text_norm.size < 1000 ? nil : NameSpotter.english?(text_norm)
+    end
+
     private
 
     def set_orig

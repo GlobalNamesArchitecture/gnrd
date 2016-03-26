@@ -4,23 +4,40 @@ class OutputBuilder
 
   class << self
     def init(nf)
+      params = prepare_params(nf)
+      source = params.delete(:source)
       { token_url: "/name_finder#{format(nf)}?token=#{nf.token}",
-        input_url: nf.params[:source][:url],
-        file: nf.params[:source][:file], status: 303,
-        engines: engines(nf.params[:engine]), unique: nf.params[:unique],
-        verbatim: nf.params[:verbatim] }
+        input_url: source.delete(:url),
+        file: source.delete(:file), status: 303,
+        engines: params.delete(:engines), unique: params[:unique],
+        verbatim: !params.delete(:unique),
+        parameters: params }
     end
 
     def add_result(nf)
-      res = { names: prepare_names(nf) }
-      res.merge!(status: 200, total: res[:names].count,
-                 execution_time: execution_time(nf))
-      res[:content] = nf.text.text_norm if nf.params[:return_content]
-      res[:resolved_names] = nf.result[:resolver] if nf.result[:resolver]
-      res
+      res = { names: prepare_names(nf), english_detected: nf.text.english?,
+              engines: update_engines(nf), status: 200,
+              execution_time: execution_time(nf), content: content(nf),
+              resolved_names: resolved_names(nf) }
+      res[:total] = res[:names].count
+      res.select { |_, v| v }
     end
 
     private
+
+    def content(nf)
+      nf.params[:return_content] ? nf.text.text_norm : nil
+    end
+
+    def prepare_params(nf)
+      params = Marshal.load Marshal.dump(nf.params)
+      params[:engines] = engines(params[:engine])
+      if params[:source][:file]
+        params[:source][:file] = params[:source][:file][:filename]
+      end
+      params.delete(:format)
+      params
+    end
 
     def prepare_names(nf)
       names = nf.result[:names].map do |n|
@@ -68,10 +85,19 @@ class OutputBuilder
       when 0
         ENGINES
       when 1
-        ENGINES[0]
+        [ENGINES[0]]
       when 2
-        ENGINES[1]
+        [ENGINES[1]]
       end
+    end
+
+    def update_engines(nf)
+      return nil unless nf.params[:detect_language] && nf.text.english? == false
+      [ENGINES[0]]
+    end
+
+    def resolved_names(nf)
+      nf.result[:resolver] ? res[:resolved_names] = nf.result[:resolver] : nil
     end
   end
 end

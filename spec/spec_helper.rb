@@ -14,6 +14,12 @@ require_relative "support/shared_context"
 
 Capybara.app = Sinatra::Application
 
+# required for RackTest
+def app
+  Sinatra::Application
+end
+
 RSpec.configure do |c|
   c.include Capybara::DSL
+  c.include Rack::Test::Methods
 end
