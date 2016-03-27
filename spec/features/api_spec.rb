@@ -72,7 +72,8 @@ describe "api" do
       res = JSON.parse(last_response.body, symbolize_names: true)
       names = res[:names].map { |n| n[:scientificName] }
       expect(names.size).to be > 10
-      expect(names).to include("Vibrionidi quali esseri")
+      expect(names)
+        .to match(/(Vibrionidi quali esseri|Appunti geologici sul)/)
       expect(res[:engines]).to eq %w(TaxonFinder NetiNeti)
     end
 
