@@ -25,7 +25,7 @@ describe "api" do
                 %w(data_source_ids 1|2|3), %w(preferred_data_sources 1|2),
                 %w(detect_language false), %w(engine 1)
       ].each_with_object([]) { |(k, v), obj| obj << "#{k}=#{v}" }.join("&")
-      get "/name_finder.json?#{params}"
+      get "/name_finder.json?#{URI.escape(params)}"
       params = JSON.parse(last_response.body,
                           symbolize_names: true)[:parameters]
       expect(params).to eq(unique: true,
@@ -84,7 +84,8 @@ describe "api" do
       res = JSON.parse(last_response.body, symbolize_names: true)
       names = res[:names].map { |n| n[:scientificName] }
       expect(names.size).to be < 10
-      expect(names).to_not include("Vibrionidi quali esseri")
+      expect(names)
+        .to_not match(/(Vibrionidi quali esseri|Appunti geologici sul)/)
       expect(res[:engines]).to eq ["TaxonFinder"]
     end
   end
@@ -127,8 +128,9 @@ describe "api" do
     end
 
     context "data_source_ids" do
-      it "resolves agains mentioned data sources" do
-        get("/name_finder.json?text=#{text}&data_source_ids=1|4")
+      it "resolves using specific data sources" do
+        params = "text=#{text}&data_source_ids=#{URI.escape('1|4')}"
+        get("/name_finder.json?#{params}")
         follow_redirect!
         res = JSON.parse(last_response.body, symbolize_names: true)
         expect(res[:data_sources]).to eq(
