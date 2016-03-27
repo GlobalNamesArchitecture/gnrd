@@ -72,7 +72,7 @@ describe "api" do
       res = JSON.parse(last_response.body, symbolize_names: true)
       names = res[:names].map { |n| n[:scientificName] }
       expect(names.size).to be > 10
-      expect(names)
+      expect(names.join(", "))
         .to match(/(Vibrionidi quali esseri|Appunti geologici sul)/)
       expect(res[:engines]).to eq %w(TaxonFinder NetiNeti)
     end
@@ -85,7 +85,7 @@ describe "api" do
       res = JSON.parse(last_response.body, symbolize_names: true)
       names = res[:names].map { |n| n[:scientificName] }
       expect(names.size).to be < 10
-      expect(names)
+      expect(names.join(", "))
         .to_not match(/(Vibrionidi quali esseri|Appunti geologici sul)/)
       expect(res[:engines]).to eq ["TaxonFinder"]
     end
