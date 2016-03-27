@@ -9,6 +9,7 @@ require_relative "gnrd/source"
 require_relative "gnrd/source_factory"
 require_relative "gnrd/name_finder_engine"
 require_relative "gnrd/names_collection"
+require_relative "gnrd/resolver"
 
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd

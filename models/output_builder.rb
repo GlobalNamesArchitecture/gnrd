@@ -17,8 +17,8 @@ class OutputBuilder
     def add_result(nf)
       res = { names: prepare_names(nf), english_detected: nf.text.english?,
               engines: update_engines(nf), status: 200,
-              execution_time: execution_time(nf), content: content(nf),
-              resolved_names: resolved_names(nf) }
+              execution_time: execution_time(nf), content: content(nf) }
+      add_resolver_result(res, nf)
       res[:total] = res[:names].count
       res.select { |_, v| v }
     end
@@ -96,8 +96,11 @@ class OutputBuilder
       [ENGINES[0]]
     end
 
-    def resolved_names(nf)
-      nf.result[:resolver] ? res[:resolved_names] = nf.result[:resolver] : nil
+    def add_resolver_result(res, nf)
+      if nf.result[:resolved_names]
+        res[:resolved_names] = nf.result[:resolved_names]
+        res[:data_sources] = nf.result[:data_sources]
+      end
     end
   end
 end

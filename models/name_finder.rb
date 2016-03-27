@@ -9,6 +9,7 @@ class NameFinder < ActiveRecord::Base
   attr_accessor :text
   attr_accessor :names
   attr_accessor :timeline
+  attr_accessor :resolved
 
   validates_with NameFinderValidator
 
@@ -89,14 +90,21 @@ class NameFinder < ActiveRecord::Base
 
   def prepare_result
     self.result = ResultBuilder.init_result(self)
-    result.merge!(ResultBuilder.add_resolution(self)) if resolve?
+    resolve_names
     timeline[:stop] = Time.now.to_f
     result[:timeline] = timeline
     output.merge! OutputBuilder.add_result(self)
   end
 
   def resolve?
-    false
+    result[:names].any? &&
+      (params[:all_data_sources] || params[:data_source_ids].any?)
+  end
+
+  def resolve_names
+    if resolve?
+      result.merge!(Gnrd::Resolver.new(result[:names], params).resolve)
+    end
   end
 
   def find_names_opts

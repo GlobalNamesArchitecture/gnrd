@@ -47,16 +47,20 @@ module Gnrd
   end
 
   def self.new_conf
-    conf = {
-      "redis_host" => "redis", "database" => db_conf,
-      "session_secret" => "!!change!!me!!", "tmp_dir" => "/tmp",
-      "neti_neti_host" => "nn", "neti_neti_port" => 6384,
-      "taxon_finder_host" => "tf", "taxon_finder_port" => 1234,
-      "disqus_shortname" => "globalnames-rd"
-    }.each_with_object({}) do |h, obj|
+    conf = conf_default.each_with_object({}) do |h, obj|
       obj[h[0]] = conf_file[h[0]] ? conf_file[h[0]] : h[1]
     end
     OpenStruct.new(conf)
+  end
+
+  def self.conf_default
+    { "redis_host" => "redis", "database" => db_conf,
+      "session_secret" => "!!change!!me!!", "tmp_dir" => "/tmp",
+      "neti_neti_host" => "nn", "neti_neti_port" => 6384,
+      "taxon_finder_host" => "tf", "taxon_finder_port" => 1234,
+      "disqus_shortname" => "globalnames-rd",
+      "resolver_url" =>
+        "http://res.globalnames.org/name_resolvers.json" }
   end
 
   def self.conf_file
