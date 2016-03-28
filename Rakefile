@@ -2,7 +2,6 @@ require "rake"
 require "bundler/setup"
 require "rspec/core/rake_task"
 require "rubocop/rake_task"
-# require "escape"
 require "resque"
 require "resque/tasks"
 require "active_record"
@@ -17,8 +16,6 @@ task default: [:rubocop, :spec]
 
 include ActiveRecord::Tasks
 ActiveRecord::Base.configurations = Gnrd.conf.database
-
-Resque.logger = Logger.new("log/resque.log")
 
 Gnrd.db_connections
 

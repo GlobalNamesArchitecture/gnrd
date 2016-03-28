@@ -41,8 +41,7 @@ helpers do
   end
 
   def workers_running?
-    !Resque.redis.smembers("workers").empty?
-    false
+    Resque.redis.smembers("workers").any?
   end
 
   def format
@@ -70,9 +69,9 @@ helpers do
   end
 
   def init_find
-    if workers_running?
-      NameFinder.enqueue(@nf)
+    if workers_running? && Gnrd.env != :test
       @nf.state = :working
+      @nf.enqueue
     else
       @nf.find_names
       @nf.state = :finished
@@ -82,7 +81,12 @@ helpers do
   end
 
   def wait_find
-    redirect_find_names
+    if format == :html
+      sleep 2
+      redirect_find_names
+    else
+      show_find
+    end
   end
 
   def redirect_find_names

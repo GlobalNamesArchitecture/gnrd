@@ -9,6 +9,7 @@ require "name-spotter"
 require "logger"
 require "active_record"
 require "resque"
+require "resque/server"
 
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd
@@ -37,7 +38,7 @@ module Gnrd
 
   def self.connect
     ActiveRecord::Base.logger = Logger.new(__dir__ + "/log/postgres.log")
-    ActiveRecord::Base.logger.level = Logger::DEBUG
+    ActiveRecord::Base.logger.level = Logger::WARN
     ActiveRecord::Base.configurations = Gnrd.conf.database
     ActiveRecord::Base.establish_connection(env)
   end
@@ -82,4 +83,5 @@ module Gnrd
   end
 end
 
+Resque.logger = Logger.new(__dir__ + "/log/#{Gnrd.env}_resque.log")
 Gnrd.db_connections

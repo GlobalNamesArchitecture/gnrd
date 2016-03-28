@@ -41,6 +41,6 @@ group :test do
   gem "capybara", "~> 2.6"
   gem "coveralls", "~> 0.8", require: false
   gem "rspec", "~> 3.4"
-  gem "rubocop", "~> 0.37"
+  gem "rubocop", "~> 0.39"
   gem "factory_girl", "~> 4.5"
 end
