@@ -3,6 +3,34 @@ describe "api" do
   let(:html) do
     URI.escape("<html><body><p>Atlanta and Pardosa moesta</p></body></html>")
   end
+  let(:file) { File.absolute_path(__dir__ + "/../files/utf8.txt") }
+  let(:url) do
+    URI.escape("https://en.wikipedia.org/wiki/Asian_long-horned_beetle")
+  end
+
+  context "input" do
+    it "accepts text" do
+      get "/name_finder.json?text=Pardosa+moesta"
+      follow_redirect!
+      expect(last_response.body).to include('scientificName":"Pardosa moesta"')
+    end
+
+    it "accespts url" do
+      get "/name_finder.json?url=#{url}&unique=1"
+      follow_redirect!
+      expect(last_response.body)
+        .to include('scientificName":"Anthonomus aeneotinctus"')
+    end
+
+    it "accepts file" do
+      post("/name_finder.json",
+           file: Rack::Test::UploadedFile.new(file, "text/plain"),
+           detect_language: false, unique: true)
+      follow_redirect!
+      expect(last_response.body)
+        .to include('scientificName":"Pedicia spinifera"')
+    end
+  end
 
   context "parameters" do
     it "sets default parameters" do

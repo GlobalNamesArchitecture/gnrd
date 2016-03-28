@@ -35,7 +35,7 @@ class Params
   private
 
   def true?(param)
-    %w(1 true).include?(param.to_s.strip)
+    %w(1 on true).include?(param.to_s.strip)
   end
 
   def adjust_by_verbatim
@@ -82,8 +82,15 @@ class Params
   end
 
   def normalize_data_source(value)
+    value = data_source_from_hash(value) if value.is_a?(Hash)
     v = value.is_a?(Array) ? value : value.split("|")
     v.uniq.compact.map(&:to_i).select { |i| i != 0 }
+  end
+
+  def data_source_from_hash(value)
+    value.each_with_object([]) do |(k, v), obj|
+      obj << k.to_s.to_i if v == "on"
+    end
   end
 
   def normalize_engine
