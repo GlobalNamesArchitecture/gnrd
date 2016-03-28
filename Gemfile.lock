@@ -245,7 +245,7 @@ DEPENDENCIES
   resque (~> 1.26)
   rest-client (~> 1.8)
   rspec (~> 3.4)
-  rubocop (~> 0.37)
+  rubocop (~> 0.39)
   ruby-filemagic (~> 0.7)
   sanitize (~> 4.0)
   sass (~> 3.4)
