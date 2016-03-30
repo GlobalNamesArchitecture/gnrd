@@ -6,7 +6,7 @@ class OutputBuilder
     def init(nf)
       params = prepare_params(nf)
       source = params.delete(:source)
-      { token_url: "/name_finder#{format(nf)}?token=#{nf.token}",
+      { token_url: "/name_finder#{extention(nf)}?token=#{nf.token}",
         input_url: source.delete(:url),
         file: source.delete(:file), status: 303,
         engines: params.delete(:engines), unique: params[:unique],
@@ -24,6 +24,10 @@ class OutputBuilder
     end
 
     private
+
+    def extention(nf)
+      nf.params[:format] == :html ? "" : ".#{nf.params[:format]}"
+    end
 
     def content(nf)
       nf.params[:return_content] ? nf.text.text_norm : nil

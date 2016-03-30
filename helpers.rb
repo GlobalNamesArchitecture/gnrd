@@ -61,12 +61,19 @@ helpers do
   def present(status_code, output)
     status status_code
     content_type CONTENT_TYPE[format]
-    @output = output
+    @output = adjust_output(output)
     case format
     when :html then haml :name_finder
     when :xml  then builder :namefinder
     when :json then JSON.dump output
     end
+  end
+
+  def adjust_output(output)
+    if output[:token_url]
+      output[:token_url] = request.base_url + output[:token_url]
+    end
+    output
   end
 
   def init_find
