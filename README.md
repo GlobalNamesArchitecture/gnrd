@@ -8,6 +8,19 @@ Global Names Recognition and Discovery (GNRD)
 
 GNRD finds scientific names in texts, pdf files, images, web-pages
 
+Install
+-------
+
+There are quite a few moving parts in the system -- Tesseract or OCR,
+Libre Office to read various file formats, Postgresql for data, Redis for
+asyncronous execution of commands, NetiNeti and TaxonFinder for name-finding
+etc. We recommend to install Docker to simplify setup of the system
+dramatically.
+
+You can follow .travis.yml file to see necessary components for the system on a
+Debian-based GNU/Linux distribution. You can see docker-compose file to get
+inside how to make a complete Docker-based installation.
+
 Testing
 -------
 
