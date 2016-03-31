@@ -23,16 +23,15 @@ gem "sinatra-activerecord", "~> 2.0"
 gem "sinatra-flash", "~> 0.3"
 gem "sinatra-redirect-with-flash", "~> 0.2"
 gem "sinatra-reloader", "~> 1.0"
+gem "puma", "~> 3.2"
 
 group :development do
   gem "byebug", "~> 8.2"
   gem "haml_lint", "~> 0.15"
   gem "shotgun", "~> 0.9"
-  gem "puma", "~> 3.2"
 end
 
 group :production do
-  gem "unicorn", "~> 5.0"
   gem "rack-google-analytics", "~> 1.2"
 end
 

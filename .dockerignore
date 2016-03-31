@@ -4,3 +4,4 @@
 .gitmodules
 .gitignore
 coverage
+log/*
