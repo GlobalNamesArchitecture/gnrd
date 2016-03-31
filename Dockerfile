@@ -25,7 +25,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-ENV RACK_ENV development
+ENV RACK_ENV production
 ENV RESQUE_WORKERS 1
 ENV QUEUE NameFinder
 ENV PUMA_WORKERS 2
@@ -40,7 +40,7 @@ WORKDIR /app
 
 COPY config/docker/nginx-sites.conf /etc/nginx/sites-enabled/default
 COPY Gemfile /app
-# COPY Gemfile.lock /app
+COPY Gemfile.lock /app
 
 RUN bundle install
 

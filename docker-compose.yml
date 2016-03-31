@@ -1,17 +1,19 @@
 version: '3'
 services:
   app:
-    build: .
+    build:
+      context: .
     env_file:
       - .env
+    container_name: gnrd
+    image: gnames/gnrd
     ports:
-      - "0.0.0.0:9292:9292"
-    volumes:
-      - .:/app
+      - "0.0.0.0:9292:80"
     depends_on:
       - gnf
       - redis
       - pg
+    command: [/usr/bin/supervisord, -c, /app/config/docker/supervisord.conf]
   redis:
     image: redis
   gnf:
@@ -20,3 +22,5 @@ services:
       - "0.0.0.0:8778:8778"
   pg:
     image: postgres
+    volumes:
+      - /opt/gna/data/gnrd/postgresql/data:/var/lib/postgresql/data
