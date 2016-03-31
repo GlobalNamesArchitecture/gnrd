@@ -1,16 +1,21 @@
 version: '2'
 services:
   app:
-    build: .
+    build:
+      context: .
+    container_name: gnrd
+    image: gnames/gnrd
     ports:
-      - "0.0.0.0:9292:9292"
-    volumes:
-      - .:/app
+      - "0.0.0.0:9292:80"
     depends_on:
       - nn
       - tf
       - redis
       - pg
+    environment:
+      RACK_ENV: production
+      RESQUE_WORKERS: 1
+    command: [/usr/bin/supervisord, -c, /app/config/docker/supervisord.conf]
   redis:
     image: redis
   nn:
@@ -19,3 +24,5 @@ services:
     image: gnames/taxonfinder
   pg:
     image: postgres
+    volumes:
+      - /opt/gna/data/gnrd/postgresql/data:/var/lib/postgresql/data
