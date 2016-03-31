@@ -7,13 +7,13 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 term://.//3273:/bin/bash
+badd +1 term://.//11237:/bin/bash
 badd +1 README.md
 badd +36 term://.//5855:/bin/bash
 badd +1 LICENSE.txt
-badd +1 term://.//3292:bash
-badd +0 term://.//3281:/bin/bash
-badd +0 term://.//3288:/bin/bash
+badd +1 term://.//11258:bash
+badd +1 term://.//11245:/bin/bash
+badd +1 term://.//11255:/bin/bash
 argglobal
 silent! argdel *
 set stal=2
@@ -27,8 +27,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 83 + 73) / 147)
-exe 'vert 2resize ' . ((&columns * 63 + 73) / 147)
+exe 'vert 1resize ' . ((&columns * 111 + 98) / 196)
+exe 'vert 2resize ' . ((&columns * 84 + 98) / 196)
 argglobal
 setlocal fdm=expr
 setlocal fde=0
@@ -38,7 +38,7 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 4 - ((3 * winheight(0) + 18) / 37)
+let s:l = 4 - ((3 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -46,7 +46,7 @@ normal! zt
 normal! 045|
 wincmd w
 argglobal
-edit term://.//3273:/bin/bash
+edit term://.//11237:/bin/bash
 setlocal fdm=expr
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -55,15 +55,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 37 - ((36 * winheight(0) + 18) / 37)
+let s:l = 36 - ((35 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-37
+36
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 83 + 73) / 147)
-exe 'vert 2resize ' . ((&columns * 63 + 73) / 147)
+exe 'vert 1resize ' . ((&columns * 111 + 98) / 196)
+exe 'vert 2resize ' . ((&columns * 84 + 98) / 196)
 tabedit LICENSE.txt
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -74,8 +74,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 73 + 73) / 147)
-exe 'vert 2resize ' . ((&columns * 73 + 73) / 147)
+exe 'vert 1resize ' . ((&columns * 98 + 98) / 196)
+exe 'vert 2resize ' . ((&columns * 97 + 98) / 196)
 argglobal
 setlocal fdm=expr
 setlocal fde=0
@@ -85,7 +85,7 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 18) / 37)
+let s:l = 1 - ((0 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -93,7 +93,7 @@ normal! zt
 normal! 0
 wincmd w
 argglobal
-edit term://.//3281:/bin/bash
+edit term://.//11245:/bin/bash
 setlocal fdm=expr
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -102,15 +102,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 36 - ((35 * winheight(0) + 18) / 37)
+let s:l = 36 - ((34 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 36
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 73 + 73) / 147)
-exe 'vert 2resize ' . ((&columns * 73 + 73) / 147)
+exe 'vert 1resize ' . ((&columns * 98 + 98) / 196)
+exe 'vert 2resize ' . ((&columns * 97 + 98) / 196)
 tabnew
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -121,10 +121,10 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 73 + 73) / 147)
-exe 'vert 2resize ' . ((&columns * 73 + 73) / 147)
+exe 'vert 1resize ' . ((&columns * 98 + 98) / 196)
+exe 'vert 2resize ' . ((&columns * 97 + 98) / 196)
 argglobal
-edit term://.//3288:/bin/bash
+edit term://.//11255:/bin/bash
 setlocal fdm=expr
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -133,7 +133,7 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 18 - ((17 * winheight(0) + 18) / 37)
+let s:l = 18 - ((17 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -141,7 +141,7 @@ normal! zt
 normal! 0
 wincmd w
 argglobal
-edit term://.//3292:bash
+edit term://.//11258:bash
 setlocal fdm=expr
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -150,15 +150,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 36 - ((35 * winheight(0) + 18) / 37)
+let s:l = 36 - ((34 * winheight(0) + 18) / 36)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 36
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 73 + 73) / 147)
-exe 'vert 2resize ' . ((&columns * 73 + 73) / 147)
+exe 'vert 1resize ' . ((&columns * 98 + 98) / 196)
+exe 'vert 2resize ' . ((&columns * 97 + 98) / 196)
 tabnew
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -169,8 +169,8 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 73 + 73) / 147)
-exe 'vert 2resize ' . ((&columns * 73 + 73) / 147)
+exe 'vert 1resize ' . ((&columns * 98 + 98) / 196)
+exe 'vert 2resize ' . ((&columns * 97 + 98) / 196)
 argglobal
 enew
 setlocal fdm=expr
@@ -193,9 +193,25 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 wincmd w
-exe 'vert 1resize ' . ((&columns * 73 + 73) / 147)
-exe 'vert 2resize ' . ((&columns * 73 + 73) / 147)
-tabnext 1
+exe 'vert 1resize ' . ((&columns * 98 + 98) / 196)
+exe 'vert 2resize ' . ((&columns * 97 + 98) / 196)
+tabnew
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+enew
+setlocal fdm=expr
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+tabnext 2
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
