@@ -93,7 +93,11 @@ helpers do
 
   def redirect_find_names
     if @nf.errs.empty?
-      ext = format == :html ? "" : ".#{format}"
+      ext = ".#{format}"
+      if format == :html
+        sleep 0.5
+        ext = ""
+      end
       redirect "/name_finder#{ext}?token=#{@nf.token}", 303
     else
       show_errors(@nf.errs)
