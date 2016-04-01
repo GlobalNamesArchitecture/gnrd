@@ -41,8 +41,7 @@ helpers do
   end
 
   def workers_running?
-    !Resque.redis.smembers("workers").empty?
-    false
+    !Resque.redis.smembers("workers").empty? && Gnrd.env != :test
   end
 
   def format

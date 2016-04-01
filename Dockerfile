@@ -25,7 +25,7 @@ ENV LC_ALL en_US.UTF-8
 
 ENV RACK_ENV development
 ENV RESQUE_WORKERS 1
-ENV QUEUE=gnrd
+ENV QUEUE=NameFinder
 ENV PUMA_WORKERS=2
 
 RUN ruby-switch --set ruby2.2

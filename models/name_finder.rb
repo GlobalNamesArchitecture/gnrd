@@ -1,6 +1,7 @@
 # Gathers parameters and input from users, calls name finding utitilites and
 # saves their output.
 class NameFinder < ActiveRecord::Base
+  @queue = :NameFinder
   serialize :params, HashSerializer
   serialize :output, HashSerializer
   serialize :result, HashSerializer
@@ -23,7 +24,7 @@ class NameFinder < ActiveRecord::Base
   end
 
   def self.enqueue(resource)
-    Resque::Job.create(self, resource.id)
+    Resque.enqueue(NameFinder, resource.id)
   end
 
   def self.perform(name_finder_id)
@@ -36,10 +37,11 @@ class NameFinder < ActiveRecord::Base
     prepare_text
     prepare_names
     prepare_result
-    self.state = :finished
-    save!
   rescue Gnrd::Error => e
     add_error(e)
+  ensure
+    self.state = :finished
+    save!
   end
 
   def state

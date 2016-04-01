@@ -33,16 +33,17 @@ Production system using docker-compose
 
 Get source code and swich to production branch
 
-```
+```bash
 git clone https://github.com/GlobalNamesArchitecture/gnrd.git
 cd gnrd
 git co production
 ```
 
-Create directories and configuration files for persistency
+Create directories for database and configuration files
 
-```
-sudo mkdir -p /opt/gna/data/gnrd
+```bash
+sudo mkdir -p /opt/gna/data/gnrd/postgresql/data
+sudo chown 999:999 -R /opt/gna/data/gnrd/postgresql
 sudo mkdir /opt/gna/config/gnrd
 sudo cp ./config.json.example /opt/gna/config/gnrd/config.json
 sudo cp .config/docker/gnrd.env.example /opt/gna/config/gnrd/gnrd.env
@@ -51,7 +52,7 @@ sudo cp .config/docker/gnrd.env.example /opt/gna/config/gnrd/gnrd.env
 Modify config.json and gnrd.env to suit your needs.
 Run compose in daemon mode
 
-```
+```bash
 nohup docker-compose up -d
 ```
 
@@ -61,7 +62,7 @@ Testing
 You need Docker >= 1.10 and Docker Composer >= 1.6
 
 * Build application's image (needs to be done only if a new gem or new
-   ubuntu package are added)
+   Ubuntu package are added)
 
 ```
 docker-compose build
@@ -78,23 +79,9 @@ docker-compose up -d
 * Create/update database
 
 ```
-# run this only if you need to remove old version of db
-doker-compose run app rake db:drop
-
-docker-compose run app rake db:create
-
-docker-compose run app rake db:migrate
-docker-compose run app env RACK_ENV=test rake db:migrate
+docker-compose run app rake db:reset
 ```
-
-After database and migrations are created, `schema.rb`
-will be created as well. Next time after restarting
-containers just running
-
-```
-docker-compose run app rake db:setup
-```
-is sufficient
+should be sufficient
 
 * Run tests
 

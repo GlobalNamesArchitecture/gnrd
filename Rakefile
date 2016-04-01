@@ -21,6 +21,10 @@ Resque.logger = Logger.new("log/resque.log")
 
 Gnrd.db_connections
 
+task :environment do
+  require_relative "environment"
+end
+
 namespace :db do
   desc "create all the databases"
   namespace :create do
@@ -41,7 +45,9 @@ namespace :db do
 end
 
 namespace :resque do
-  task :stop_workers do
+  task setup: :environment
+
+  task stop_workers: :setup do
     desc "Finds and quits all running workers"
     puts "Quitting resque workers"
     pids = []

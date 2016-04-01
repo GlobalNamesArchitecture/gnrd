@@ -9,6 +9,14 @@ require "name-spotter"
 require "logger"
 require "active_record"
 require "resque"
+require "resque/server"
+
+require_relative "models/hash_serializer"
+require_relative "models/params"
+require_relative "models/result_builder"
+require_relative "models/output_builder"
+require_relative "models/name_finder_validator"
+require_relative "models/name_finder"
 
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd
