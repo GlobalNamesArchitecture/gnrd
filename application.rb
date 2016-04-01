@@ -31,6 +31,13 @@ configure do
   set :haml, format: :html5
   set :protection, except: :json_csrf
 
+  # Logger for Gnrd app
+  class GnrdLogger < ::Logger
+    alias write <<
+  end
+
+  log = GnrdLogger.new(__dir__ + "/log/sinatra.log")
+  use Rack::CommonLogger, log
   use Rack::MethodOverride
   use Rack::Session::Cookie, secret: Gnrd.conf.session_secret
 end
