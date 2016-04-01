@@ -31,7 +31,6 @@ module Gnrd
   end
 
   def self.db_connections
-    disconnect
     @db ||= connect
     @redis ||= redis_connect
   end
