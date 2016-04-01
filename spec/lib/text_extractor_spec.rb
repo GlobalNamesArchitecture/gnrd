@@ -8,17 +8,17 @@ describe Gnrd::TextExtractor do
 
   describe ".new" do
     it "creates instance" do
-      expect(subject.new(pdf, "pdf")).to be_kind_of Gnrd::TextExtractor
+      expect(subject.new(pdf)).to be_kind_of Gnrd::TextExtractor
     end
   end
 
   describe "#text" do
     it "gets text from pdf" do
-      expect(subject.new(pdf, "pdf").text).to eq pdf_txt
+      expect(subject.new(pdf).text).to eq pdf_txt
     end
 
     it "gets text from scanned pdf" do
-      expect(subject.new(image_pdf, "pdf").text).to match(jpg_txt)
+      expect(subject.new(image_pdf).text).to match(jpg_txt)
     end
 
     it "gets text from image" do

@@ -27,12 +27,26 @@ module Gnrd
   # Data source of a pdf-file type. The text should be in utf-8 encoding
   class PdfFile < Source
     def text_raw
-      TextExtractor.new(@dossier.file[:path], "pdf").text
+      TextExtractor.new(@dossier.file[:path]).text
     end
   end
 
   # Data source of an image-file type.
   class ImageFile < Source
+    def text_raw
+      TextExtractor.new(@dossier.file[:path]).text
+    end
+  end
+
+  # Data source of a msword-file type.
+  class MswordFile < Source
+    def text_raw
+      TextExtractor.new(@dossier.file[:path]).text
+    end
+  end
+
+  # Data source of a msexcel-file type.
+  class MsexcelFile < Source
     def text_raw
       TextExtractor.new(@dossier.file[:path]).text
     end

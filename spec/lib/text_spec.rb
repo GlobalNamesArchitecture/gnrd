@@ -44,6 +44,16 @@ describe Gnrd::Text do
         .to match(/Baccha el.ngata 7-10/)
     end
 
+    it "returns text from MS Word file" do
+      res = subject.new(msword_dossier)
+      expect(res.text_orig).to include("Global Names Discovery")
+    end
+
+    it "returns text from MS Excel file" do
+      res = subject.new(msexcel_dossier)
+      expect(res.text_orig).to include("AcceptedTaxonIGenus")
+    end
+
     it "returns empty string from unknown file" do
       expect(subject.new(binary_dossier).text_orig).to eq ""
     end

@@ -42,6 +42,12 @@ RSpec.shared_context "shared_context", a: :b do
   let(:pdf_img_path) { path + "/image.pdf" }
   let(:pdf_img_dossier) { d.new(file: { path: pdf_img_path }) }
 
+  let(:msword_path) { path + "/file.docx" }
+  let(:msword_dossier) { d.new(file: { path: msword_path }) }
+
+  let(:msexcel_path) { path + "/file.xlsx" }
+  let(:msexcel_dossier) { d.new(file: { path: msexcel_path }) }
+
   let(:binary_path) { path + "/binary" }
   let(:binary_dossier) { d.new(file: { path: binary_path }) }
 

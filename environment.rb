@@ -31,8 +31,15 @@ module Gnrd
   end
 
   def self.db_connections
+    disconnect
     @db ||= connect
     @redis ||= redis_connect
+  end
+
+  def self.disconnect
+    ActiveRecord::Base.connection.disconnect!
+  rescue ActiveRecord::ConnectionNotEstablished
+    puts "Setting new connection"
   end
 
   def self.connect

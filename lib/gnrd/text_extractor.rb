@@ -1,8 +1,7 @@
 module Gnrd
   # Extracts texts from images, pdfs, and other binary files
   class TextExtractor
-    def initialize(path, file_type = "image")
-      @file_type = file_type
+    def initialize(path)
       @path = path
       raise(FileMissingError) unless File.exist?(@path)
       @dir = make_dir
@@ -18,7 +17,6 @@ module Gnrd
       # { osr: true } option is not set, as docsplit should apply
       # ocr on its own when needed
       options = { output: @dir, clean: true }
-      # options.merge!(pages: "all") if @file_type == "pdf"
       Docsplit.extract_text(@path, options)
       files = Dir.entries(@dir).select { |f| f =~ /\.txt$/ }
       assemble_text(files)

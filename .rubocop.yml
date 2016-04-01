@@ -3,5 +3,6 @@ AllCops:
     - db/**/*
     - bin/**/*
     - lib/gnrd/source_factory.rb
+    - lib/gnrd/file_inspector.rb
 Style/StringLiterals:
   EnforcedStyle: double_quotes

@@ -203,4 +203,23 @@ describe "/name_finder" do
       expect(page.body).to include("<td>Baccha elongata</td>")
     end
   end
+
+  context "Microsoft Office files" do
+    let(:msw) { File.absolute_path(__dir__ + "/../files/file.docx") }
+    let(:mse) { File.absolute_path(__dir__ + "/../files/file.xlsx") }
+
+    it "returns result from Microsoft Word file" do
+      visit "/"
+      attach_file("find_file", msw)
+      click_button("Find Names")
+      expect(page.body).to include("<td>Pangagrellus redivivus</td>")
+    end
+
+    it "returns result from Microsoft Excel file" do
+      visit "/"
+      attach_file("find_file", mse)
+      click_button("Find Names")
+      expect(page.body).to include("<td>Notostira pubicornis</td>")
+    end
+  end
 end
