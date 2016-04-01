@@ -21,6 +21,40 @@ You can follow .travis.yml file to see necessary components for the system on a
 Debian-based GNU/Linux distribution. You can see docker-compose file to get
 inside how to make a complete Docker-based installation.
 
+Prerequisites
+-------------
+
+* Docker >= 1.10
+* Docker Composer >= 1.6
+* Git
+
+Production system using docker-compose
+--------------------------------------
+
+Get source code and swich to production branch
+
+```
+git clone https://github.com/GlobalNamesArchitecture/gnrd.git
+cd gnrd
+git co production
+```
+
+Create directories and configuration files for persistency
+
+```
+sudo mkdir -p /opt/gna/data/gnrd
+sudo mkdir /opt/gna/config/gnrd
+sudo cp ./config.json.example /opt/gna/config/gnrd/config.json
+sudo cp .config/docker/gnrd.env.example /opt/gna/config/gnrd/gnrd.env
+```
+
+Modify config.json and gnrd.env to suit your needs.
+Run compose in daemon mode
+
+```
+nohup docker-compose up -d
+```
+
 Testing
 -------
 
