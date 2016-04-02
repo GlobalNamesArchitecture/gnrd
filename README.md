@@ -28,8 +28,8 @@ Prerequisites
 * Docker Composer >= 1.6
 * Git
 
-Production system using docker-compose
---------------------------------------
+Set *production* environment with docker-compose
+------------------------------------------------
 
 Get source code and swich to production branch
 
@@ -61,29 +61,29 @@ Testing
 
 You need Docker >= 1.10 and Docker Composer >= 1.6
 
-* Build application's image (needs to be done only if a new gem or new
-   Ubuntu package are added)
+Build application's image (needs to be done only if a new gem or new
+Ubuntu package are added)
 
 ```
 docker-compose build
 
 ```
 
-* Start Docker Compose (in the background)
+Start Docker Compose (in the background)
 
 ```
 docker-compose up -d
 
 ```
 
-* Create/update database
+Create/update database
 
 ```
 docker-compose run app rake db:reset
 ```
 should be sufficient
 
-* Run tests
+Run tests
 
 For all tests run
 
