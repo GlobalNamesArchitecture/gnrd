@@ -2,15 +2,9 @@
 # saves their output.
 class NameFinder < ActiveRecord::Base
   @queue = :NameFinder
-  serialize :params, HashSerializer
-  serialize :output, HashSerializer
-  serialize :result, HashSerializer
-  serialize :errs,   HashSerializer
+  %i(params output result errs).each { |f| serialize f, HashSerializer }
 
-  attr_accessor :text
-  attr_accessor :names
-  attr_accessor :timeline
-  attr_accessor :resolved
+  attr_accessor :text, :names, :timeline, :resolved
 
   validates_with NameFinderValidator
 
@@ -33,15 +27,7 @@ class NameFinder < ActiveRecord::Base
   end
 
   def find_names
-    self.timeline = { start: Time.now.to_f }
-    prepare_text
-    prepare_names
-    prepare_result
-  rescue Gnrd::Error => e
-    add_error(e)
-  ensure
-    self.state = :finished
-    save!
+    NameFinderWorker.find_names(self)
   end
 
   def state
@@ -59,6 +45,14 @@ class NameFinder < ActiveRecord::Base
     save!
   end
 
+  def add_error(e)
+    status_code = e.is_a?(Gnrd::UrlNotFoundError) ? 404 : 200
+    errs << { status: status_code, message: e.message,
+              parameters: Params.output(params) }
+    self.state = :finished
+    save!
+  end
+
   before_validation do
     unless token # needs to happen only once on creation, not on updates
       self.token = NameFinder.token
@@ -67,57 +61,26 @@ class NameFinder < ActiveRecord::Base
     end
   end
 
+  after_validation { move_tempfile if tempfile? }
+
+  before_destroy { File.rm(params[:source][:file][:path]) if filepath? }
+
   private
 
-  def add_error(e)
-    status_code = e.is_a?(Gnrd::UrlNotFoundError) ? 404 : 200
-    errs << { status: status_code,
-              message: e.message,
-              parameters: Params.output(params) }
-    self.state = :finished
+  def move_tempfile
+    tempfile = params[:source][:file].delete(:tempfile)
+    ext = File.extname(tempfile)
+    params[:source][:file][:path] = path = "#{Gnrd.dir}/#{token}#{ext}"
+    FileUtils.mv(tempfile, path)
     save!
   end
 
-  def prepare_text
-    self.text = ResultBuilder.init_text(self)
-    text.text_norm
-    timeline[:text_extraction] = Time.now.to_f
+  def filepath?
+    defined?(params[:source][:file][:path]) && params[:source][:file][:path]
   end
 
-  def prepare_names
-    opts = find_names_opts
-    self.names = Gnrd::NameFinderEngine.new(text.dossier, opts).find.combine
-    timeline[:name_finding] = Time.now.to_f
-  end
-
-  def prepare_result
-    self.result = ResultBuilder.init_result(self)
-    resolve_names
-    timeline[:stop] = Time.now.to_f
-    result[:timeline] = timeline
-    output.merge! OutputBuilder.add_result(self)
-  end
-
-  def resolve?
-    result[:names].any? &&
-      (params[:all_data_sources] || params[:data_source_ids].any?)
-  end
-
-  def resolve_names
-    if resolve?
-      result.merge!(Gnrd::Resolver.new(result[:names], params).resolve)
-    end
-  end
-
-  def find_names_opts
-    opts = {}
-    opts[:netineti] = false if params[:engine] == 1
-    opts[:taxonfinder] = false if params[:engine] == 2
-    adjust_opts_for_lang(opts) if params[:detect_language]
-    opts
-  end
-
-  def adjust_opts_for_lang(opts)
-    opts.merge!(netineti: false) if text.english? == false
+  def tempfile?
+    defined?(params[:source][:file][:tempfile]) &&
+      params[:source][:file][:tempfile]
   end
 end

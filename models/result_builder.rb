@@ -22,7 +22,7 @@ class ResultBuilder
       when :url
         Gnrd::Dossier.new(text: { orig: from_url(input_type.last) })
       when :file
-        Gnrd::Dossier.new(file: { path: input_type.last[:tempfile] })
+        Gnrd::Dossier.new(file: { path: input_type.last[:path] })
       end
     end
 

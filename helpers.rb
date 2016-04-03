@@ -22,7 +22,7 @@ helpers do
   private
 
   def create_name_finder
-    nf = NameFinder.create(params: Gnrd.symbolize_keys(params))
+    nf = NameFinder.create(params: HashSerializer.symbolize_keys(params))
     err = nf.valid? ? [] : nf.errors[:base]
     [nf, err]
   end
@@ -32,10 +32,10 @@ helpers do
     nf = NameFinder.find_by_token(params[:token])
     if nf
       nf.params_update(params)
+      err += nf.errs unless nf.errs.empty?
     else
-      err << { status: 404,
-               message: "Not Found. That result no longer exists.",
-               parameters: { token: params[:token] } }
+      err << { status: 404, parameters: { token: params[:token] },
+               message: "Not Found. That result no longer exists." }
     end
     [nf, err]
   end
