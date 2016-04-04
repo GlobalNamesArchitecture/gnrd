@@ -18,6 +18,7 @@ require_relative "models/output_builder"
 require_relative "models/name_finder_validator"
 require_relative "models/name_finder_worker"
 require_relative "models/name_finder"
+require_relative "models/today"
 
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd

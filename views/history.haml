@@ -1,0 +1,20 @@
+%p#found-names-duration
+  Results are limited to files for the last #{Today::KEEP_DATA_DAYS} days
+
+%table#found-names-grid
+  %thead
+    %tr
+      %th Item
+      %th.created Created
+  %tbody
+    - cycle = "odd"
+    - @records.each do |record|
+      - source = record.params[:source]
+      - cycle = (cycle == "odd") ? "even" : "odd"
+      - item = source[:url] ? source[:url] : source[:file][:filename]
+      - item = (item.length > 75) ? item[0..72] + "..." : item
+      %tr{:class => cycle}
+        %td
+          %a{ href: "#{request.base_url}/name_finder?token=#{record.token}" }= item
+        %td.created= record.created_at
+

@@ -13,4 +13,7 @@ require_relative "gnrd/resolver"
 
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd
+  def self.today
+    Time.new.strftime("%Y-%m-%d")
+  end
 end

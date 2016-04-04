@@ -30,6 +30,14 @@ describe "/feedback" do
   end
 end
 
+describe "/history" do
+  it "renders" do
+    visit "/history"
+    expect(page.status_code).to be 200
+    expect(page.body).to match "History"
+  end
+end
+
 describe "/name_finder" do
   context "error handling" do
     it "redirects home when html/empty parameters" do
