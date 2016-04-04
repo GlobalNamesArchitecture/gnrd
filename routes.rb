@@ -36,6 +36,9 @@ get "/history" do
 end
 
 post_get "/name_finder.?:format?" do
+  @title = "Discovered Names"
+  @page = "home"
+  @header = "Discovered Names"
   @nf, @err = name_finder_init
   @err.empty? ? find_names : show_errors(@err)
 end
