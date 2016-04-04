@@ -40,8 +40,8 @@
       %li
         #{sprintf("%.3f", @output[:execution_time][:text_preparation_duration])}s to prepare text,
         #{sprintf("%.3f", @output[:execution_time][:find_names_duration])}s to find names,
-        - if @output[:execution_time][:resolve_names_duration]
-          #{sprintf("%.3f", @output[:execution_time][:resolve_names_duration])}s to resolve names,
+        - if @output[:execution_time][:names_resolution_duration]
+          #{sprintf("%.3f", @output[:execution_time][:names_resolution_duration])}s to verify them,
         #{sprintf("%.3f", @output[:execution_time][:total_duration])}s for entire process
   - if @output[:total] && @output[:total] > 0
 

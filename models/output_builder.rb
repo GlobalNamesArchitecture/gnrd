@@ -60,11 +60,12 @@ class OutputBuilder
 
     def execution_time(nf)
       tl = nf.result[:timeline]
-      res = {
-        text_preparation_duration: text_preparation(tl),
-        find_names_duration: find_names(tl),
-        total_duration: total(tl) }
-      res[:resolve_names_duration] = resolve_names(tl) if nf.result[:resolver]
+      res = { text_preparation_duration: text_preparation(tl),
+              find_names_duration: find_names(tl),
+              total_duration: total(tl) }
+      if nf.result[:resolved_names]
+        res[:names_resolution_duration] = resolve_names(tl)
+      end
       res
     end
 

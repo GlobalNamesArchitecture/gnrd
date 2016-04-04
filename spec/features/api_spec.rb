@@ -172,6 +172,7 @@ describe "api" do
         res = JSON.parse(last_response.body, symbolize_names: true)
         expect(res[:data_sources]).to eq []
         expect(res[:resolved_names].size).to eq 2
+        expect(res[:execution_time][:names_resolution_duration]).to be > 0
       end
     end
 
