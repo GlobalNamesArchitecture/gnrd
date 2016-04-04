@@ -19,14 +19,15 @@ RUN apt-get install -y software-properties-common && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN locale-gen en_US.UTF-8
+
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 ENV RACK_ENV development
 ENV RESQUE_WORKERS 1
-ENV QUEUE=NameFinder
-ENV PUMA_WORKERS=2
+ENV QUEUE NameFinder
+ENV PUMA_WORKERS 2
 
 RUN ruby-switch --set ruby2.2
 RUN echo 'gem: --no-rdoc --no-ri >> "$HOME/.gemrc"'
