@@ -30,6 +30,7 @@ module Gnrd
       db_connections
     end
 
+    # directory to keep temporary files
     def dir
       @dir ||= lambda do
         temp_dir = "#{Gnrd.conf.tmp_dir}/gnrd"
@@ -51,7 +52,12 @@ module Gnrd
     end
 
     def conf
-      @conf ||= new_conf
+      @conf ||= lambda do
+        conf = conf_default.each_with_object({}) do |h, obj|
+          obj[h[0]] = conf_file[h[0]] ? conf_file[h[0]] : h[1]
+        end
+        OpenStruct.new(conf)
+      end[]
     end
 
     def db_conf
@@ -87,13 +93,6 @@ module Gnrd
       Resque.redis = Gnrd.conf.redis_host
     end
 
-    def new_conf
-      conf = conf_default.each_with_object({}) do |h, obj|
-        obj[h[0]] = conf_file[h[0]] ? conf_file[h[0]] : h[1]
-      end
-      OpenStruct.new(conf)
-    end
-
     def conf_default
       { "redis_host" => "redis",
         "database" => db_conf, "session_secret" => "!!change!!me!!",
@@ -104,12 +103,10 @@ module Gnrd
     end
 
     def conf_file
-      @conf_file ||= new_conf_file
-    end
-
-    def new_conf_file
-      path = File.join(__dir__, "config", "config.json")
-      File.exist?(path) ? JSON.parse(File.read(path)) : {}
+      @conf_file ||= lambda do
+        path = File.join(__dir__, "config", "config.json")
+        File.exist?(path) ? JSON.parse(File.read(path)) : {}
+      end[]
     end
   end
 end
