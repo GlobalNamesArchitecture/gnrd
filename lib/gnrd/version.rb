@@ -1,6 +1,6 @@
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd
-  VERSION = "0.7.0".freeze
+  VERSION = "0.8.0".freeze
 
   def self.version
     VERSION

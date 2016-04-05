@@ -29,6 +29,7 @@ group :development do
   gem "byebug", "~> 8.2"
   gem "haml_lint", "~> 0.15"
   gem "shotgun", "~> 0.9"
+  gem "git", "~> 1.3"
 end
 
 group :production do

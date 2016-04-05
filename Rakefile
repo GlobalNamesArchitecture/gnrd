@@ -62,6 +62,21 @@ namespace :resque do
   end
 end
 
+desc "create release on github"
+task(:release) do
+  require "git"
+  begin
+    g = Git.open(File.dirname(__FILE__))
+    new_tag = Gnrd.version
+    g.add_tag("v.#{new_tag}")
+    g.add(all: true)
+    g.commit("Releasing version #{new_tag}")
+    g.push
+  rescue Git::GitExecuteError
+    puts "'v.#{new_tag}' already exists, update your version."
+  end
+end
+
 desc "open an irb session preloaded with this library"
 task :console do
   sh "irb -I lib -I #{__dir__} -r application.rb"
