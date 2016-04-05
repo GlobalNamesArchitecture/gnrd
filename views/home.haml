@@ -72,6 +72,16 @@
             checked: checked }
           %label{ for: "detect_language_#{id}" }= key
       %fieldset
+        %legend Output
+        - %w(html json xml).each do |format|
+          - checked = (format == "html") ? true : nil
+          %input{ type: :radio, name: :format, id: "format_#{format}",
+                  value: format, checked: checked }
+          %label{ for: "format_#{format}" }= format
+        %br
+        %input{ type: :checkbox, name: :return_content, id: :return_content }
+        %label{ for: :return_content } Return original text
+      %fieldset
         %legend Scientific Names
         - { "Unique list" => "true",
             "All occurrences" => "false" }.each do |k, v|
@@ -94,16 +104,6 @@
             %input{ type: :checkbox, id: "data_source_ids_#{value}",
                     name: "data_source_ids[#{value}]" }
             %label{ for: "data_source_ids_#{value}" }= key
-      %fieldset
-        %legend Output
-        - %w(html json xml).each do |format|
-          - checked = (format == "html") ? true : nil
-          %input{ type: :radio, name: :format, id: "format_#{format}",
-                  value: format, checked: checked }
-          %label{ for: "format_#{format}" }= format
-        %br
-        %input{ type: :checkbox, name: :return_content, id: :return_content }
-        %label{ for: :return_content } Return original text
     %div
       %input.form-button.submit-button{ type: :submit, value: "Find Names" }
 %p
