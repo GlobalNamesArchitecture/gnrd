@@ -67,11 +67,11 @@ task(:release) do
   require "git"
   begin
     g = Git.open(File.dirname(__FILE__))
-    new_tag = Gnrd.version
-    g.add_tag("v.#{new_tag}")
+    new_tag = "v" + Gnrd.version
+    g.add_tag(new_tag)
     g.add(all: true)
-    g.commit("Releasing version #{new_tag}")
-    g.push
+    g.commit("Releasing #{new_tag}")
+    g.push("origin", "refs/tags/#{new_tag}", f: true)
   rescue Git::GitExecuteError
     puts "'v.#{new_tag}' already exists, update your version."
   end
