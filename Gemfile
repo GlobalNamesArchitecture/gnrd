@@ -12,7 +12,7 @@ gem "pg", "~> 0.18"
 gem "name-spotter", "~> 0.3"
 gem "rack", "~> 1.6"
 gem "rack-test", "~> 0.6"
-gem "rack-timeout", "~> 0.3.2"
+gem "rack-timeout", "~> 0.4"
 gem "rchardet", "~> 1.6"
 gem "resque", "~> 1.26", require: "resque/server"
 gem "rest-client", "~> 1.8"
@@ -23,11 +23,10 @@ gem "sinatra-activerecord", "~> 2.0"
 gem "sinatra-flash", "~> 0.3"
 gem "sinatra-redirect-with-flash", "~> 0.2"
 gem "sinatra-reloader", "~> 1.0"
-gem "puma", "~> 3.2"
+gem "puma", "~> 3.3"
 
 group :development do
   gem "byebug", "~> 8.2"
-  gem "haml_lint", "~> 0.15"
   gem "shotgun", "~> 0.9"
   gem "git", "~> 1.3"
 end
@@ -42,5 +41,5 @@ group :test do
   gem "coveralls", "~> 0.8", require: false
   gem "rspec", "~> 3.4"
   gem "rubocop", "~> 0.37"
-  gem "factory_girl", "~> 4.5"
+  gem "factory_girl", "~> 4.7"
 end

@@ -1,0 +1,8 @@
+# Change Log for Global Names Recognition and Discovery
+
+## [Unreleased]
+- gems upgrade
+
+## [0.8.3] - 2016-04-05
+### Changed
+- complete rewrite of the backend from @dimus
