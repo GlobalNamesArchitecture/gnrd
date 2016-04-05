@@ -28,7 +28,7 @@ helpers do
   end
 
   def show_process
-    port = format == :html ? 200 : 300
+    port = format == :html ? 200 : 303
     present(port, @nf.output)
   end
 
