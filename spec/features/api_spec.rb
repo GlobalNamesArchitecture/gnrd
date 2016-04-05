@@ -11,13 +11,11 @@ describe "api" do
   context "input" do
     it "accepts text" do
       get "/name_finder.json?text=Pardosa+moesta"
-      follow_redirect!
       expect(last_response.body).to include('scientificName":"Pardosa moesta"')
     end
 
     it "accespts url" do
       get "/name_finder.json?url=#{url}&unique=1"
-      follow_redirect!
       expect(last_response.body)
         .to include('scientificName":"Anthonomus aeneotinctus"')
     end
@@ -26,7 +24,6 @@ describe "api" do
       post("/name_finder.json",
            file: Rack::Test::UploadedFile.new(file, "text/plain"),
            detect_language: false, unique: true)
-      follow_redirect!
       expect(last_response.body)
         .to include('scientificName":"Pedicia spinifera"')
     end
@@ -89,8 +86,6 @@ describe "api" do
   context "engines" do
     it "runs both engines by default" do
       get "/name_finder.json?text=#{text}"
-      expect(last_response.status).to be 303
-      follow_redirect!
       res = JSON.parse(last_response.body, symbolize_names: true)
       names = res[:names].map { |n| n[:scientificName] }
       expect(res[:engines]).to eq %w(TaxonFinder NetiNeti)
@@ -99,8 +94,6 @@ describe "api" do
 
     it "runs only TaxonFinder when engine is 1" do
       get "/name_finder.json?engine=1&text=#{text}"
-      expect(last_response.status).to be 303
-      follow_redirect!
       res = JSON.parse(last_response.body, symbolize_names: true)
       names = res[:names].map { |n| n[:scientificName] }
       expect(res[:engines]).to eq ["TaxonFinder"]
@@ -115,7 +108,6 @@ describe "api" do
       post("/name_finder.json",
            file: Rack::Test::UploadedFile.new(italian, "text/plain"),
            detect_language: false, unique: true)
-      follow_redirect!
       res = JSON.parse(last_response.body, symbolize_names: true)
       names = res[:names].map { |n| n[:scientificName] }
       expect(names.size).to be > 10
@@ -128,7 +120,6 @@ describe "api" do
       post("/name_finder.json",
            file: Rack::Test::UploadedFile.new(italian, "text/plain"),
            detect_language: true, unique: true)
-      follow_redirect!
       res = JSON.parse(last_response.body, symbolize_names: true)
       names = res[:names].map { |n| n[:scientificName] }
       expect(names.size).to be < 10
@@ -141,7 +132,6 @@ describe "api" do
   context "return_content" do
     it "returns normalized text when on" do
       get("/name_finder.json?text=#{text}&return_content=true")
-      follow_redirect!
       res = JSON.parse(last_response.body, symbolize_names: true)
       content = res[:content]
       expect(content).to eq "Atlanta and Pardosa moesta"
@@ -149,7 +139,6 @@ describe "api" do
 
     it "returns stripped tags text from html" do
       get("/name_finder.json?text=#{html}&return_content=true")
-      follow_redirect!
       res = JSON.parse(last_response.body, symbolize_names: true)
       content = res[:content]
       expect(content).to eq "Atlanta and Pardosa moesta"
@@ -157,7 +146,6 @@ describe "api" do
 
     it "returns no content by default" do
       get("/name_finder.json?text=#{html}")
-      follow_redirect!
       res = JSON.parse(last_response.body, symbolize_names: true)
       content = res[:content]
       expect(content).to be_nil
@@ -168,7 +156,6 @@ describe "api" do
     context "all_data_sources" do
       it "returns resolution result" do
         get("/name_finder.json?text=#{text}&all_data_sources=true")
-        follow_redirect!
         res = JSON.parse(last_response.body, symbolize_names: true)
         expect(res[:data_sources]).to eq []
         expect(res[:resolved_names].size).to eq 2
@@ -180,7 +167,6 @@ describe "api" do
       it "resolves using specific data sources" do
         params = "text=#{text}&data_source_ids=#{URI.escape('1|4')}"
         get("/name_finder.json?#{params}")
-        follow_redirect!
         res = JSON.parse(last_response.body, symbolize_names: true)
         expect(res[:data_sources]).to eq(
           [
@@ -194,7 +180,6 @@ describe "api" do
         params = "text=#{text}&data_source_ids=#{URI.escape('1|4')}"
         params << "&all_data_sources=true"
         get("/name_finder.json?#{params}")
-        follow_redirect!
         res = JSON.parse(last_response.body, symbolize_names: true)
         expect(res[:data_sources]).to eq(
           [
@@ -209,7 +194,6 @@ describe "api" do
       it "returns many results when false" do
         params = "text=#{text}&all_data_sources=true"
         get("/name_finder.json?#{params}")
-        follow_redirect!
         res = JSON.parse(last_response.body, symbolize_names: true)
         expect(res[:resolved_names][0][:results].size).to be > 1
       end
@@ -217,7 +201,6 @@ describe "api" do
       it "returns only best-scored match when true" do
         params = "text=#{text}&best_match_only=true&all_data_sources=true"
         get("/name_finder.json?#{params}")
-        follow_redirect!
         res = JSON.parse(last_response.body, symbolize_names: true)
         expect(res[:resolved_names][0][:results].size).to eq 1
       end
@@ -228,7 +211,6 @@ describe "api" do
         params = "text=#{text}&best_match_only=true"
         params << "&all_data_sources=true&preferred_data_sources=11"
         get("/name_finder.json?#{params}")
-        follow_redirect!
         res = JSON.parse(last_response.body, symbolize_names: true)
         expect(res[:resolved_names][0][:preferred_results].size).to be > 0
       end
@@ -237,7 +219,6 @@ describe "api" do
         params = "text=#{text}&best_match_only=true"
         params << "&data_source_ids=1&preferred_data_sources=11"
         get("/name_finder.json?#{params}")
-        follow_redirect!
         res = JSON.parse(last_response.body, symbolize_names: true)
         expect(res[:resolved_names][0][:preferred_results].size).to be 0
       end
@@ -245,7 +226,6 @@ describe "api" do
       it "doesn't exist when not set" do
         params = "text=#{text}&all_data_sources=true"
         get("/name_finder.json?#{params}")
-        follow_redirect!
         res = JSON.parse(last_response.body, symbolize_names: true)
         expect(res[:resolved_names][0][:preferred_results]).to be nil
       end

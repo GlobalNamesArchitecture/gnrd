@@ -24,6 +24,7 @@ configure do
 
   set :haml, format: :html5
   set :protection, except: :json_csrf
+  set :dump_errors, true
 
   # Logger for Gnrd app
   class GnrdLogger < ::Logger

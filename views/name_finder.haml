@@ -1,6 +1,6 @@
 - if @output[:status] == 303
   - if @output[:queue_size] && @output[:queue_size] > 0
-    #found-names-loader Waiting in the queue...
+    #found-names-loader Waiting in the queue: (#{@output[:queue_size]} left)
   - else
     #found-names-loader Processing...
 - else

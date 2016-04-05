@@ -84,7 +84,7 @@ module Gnrd
 
     def connect
       ActiveRecord::Base.logger = Logger.new(__dir__ + "/log/postgres.log")
-      ActiveRecord::Base.logger.level = Logger::DEBUG
+      ActiveRecord::Base.logger.level = Logger::INFO
       ActiveRecord::Base.configurations = Gnrd.conf.database
       ActiveRecord::Base.establish_connection(env)
     end

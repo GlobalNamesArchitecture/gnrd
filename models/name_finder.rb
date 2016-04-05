@@ -17,17 +17,15 @@ class NameFinder < ActiveRecord::Base
     end
   end
 
-  def self.enqueue(resource)
-    Resque.enqueue(NameFinder, resource.id)
+  def self.enqueue(nf)
+    Resque.enqueue(NameFinder, nf.id)
+    nf.state = :working
+    nf.save!
   end
 
   def self.perform(name_finder_id)
     nf = NameFinder.find(name_finder_id)
-    nf.find_names
-  end
-
-  def find_names
-    NameFinderWorker.find_names(self)
+    NameFinderWorker.find_names(nf)
   end
 
   def state
@@ -41,7 +39,7 @@ class NameFinder < ActiveRecord::Base
   end
 
   def params_update(new_params)
-    params.merge! Params.new(new_params).update
+    params.merge!(Params.new(new_params).update)
     save!
   end
 
@@ -49,8 +47,6 @@ class NameFinder < ActiveRecord::Base
     status_code = e.is_a?(Gnrd::UrlNotFoundError) ? 404 : 200
     errs << { status: status_code, message: e.message,
               parameters: Params.output(params) }
-    self.state = :finished
-    save!
   end
 
   before_validation do

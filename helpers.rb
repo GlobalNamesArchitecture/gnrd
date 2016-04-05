@@ -9,17 +9,32 @@ helpers do
   end
 
   def find_names
-    case @nf.state
-    when :idle
-      init_find
-    when :working
-      wait_find
-    when :finished
-      show_find
-    end
+    init_find if @nf.state == :idle
+    @nf.state == :finished ? show_find : show_process
   end
 
   private
+
+  def init_find
+    with_resque? ? NameFinder.enqueue(@nf) : NameFinderWorker.find_names(@nf)
+  end
+
+  def show_find
+    if @nf.errs.empty?
+      present(200, @nf.output)
+    else
+      show_errors(@nf.errs)
+    end
+  end
+
+  def show_process
+    port = format == :html ? 200 : 300
+    present(port, @nf.output)
+  end
+
+  def with_resque?
+    !Resque.redis.smembers("workers").empty? && Gnrd.env != :test
+  end
 
   def create_name_finder
     nf = NameFinder.create(params: HashSerializer.symbolize_keys(params))
@@ -40,10 +55,6 @@ helpers do
     [nf, err]
   end
 
-  def workers_running?
-    !Resque.redis.smembers("workers").empty? && Gnrd.env != :test
-  end
-
   def format
     @format ||= Params.new(params).format
   end
@@ -61,6 +72,7 @@ helpers do
     status status_code
     content_type CONTENT_TYPE[format]
     @output = adjust_output(output)
+    @redirect_url = @output[:status] == 303 ? output[:token_url] : nil
     case format
     when :html then haml :name_finder
     when :xml  then builder :namefinder
@@ -72,43 +84,7 @@ helpers do
     if output[:token_url]
       output[:token_url] = request.base_url + output[:token_url]
     end
+    output[:queue_size] = with_resque? ? Resque.size(:NameFinder) : nil
     output
-  end
-
-  def init_find
-    if workers_running?
-      NameFinder.enqueue(@nf)
-      @nf.state = :working
-    else
-      @nf.find_names
-      @nf.state = :finished
-    end
-    @nf.save!
-    redirect_find_names
-  end
-
-  def wait_find
-    redirect_find_names
-  end
-
-  def redirect_find_names
-    if @nf.errs.empty?
-      ext = ".#{format}"
-      if format == :html
-        sleep 0.5
-        ext = ""
-      end
-      redirect "/name_finder#{ext}?token=#{@nf.token}", 303
-    else
-      show_errors(@nf.errs)
-    end
-  end
-
-  def show_find
-    if @nf.errors[:base].empty?
-      present(200, @nf.output)
-    else
-      show_errors(@nf.errors[:base])
-    end
   end
 end

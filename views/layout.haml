@@ -4,7 +4,7 @@
     %meta{ charset: "UTF-8" }/
     - if @redirect_url
       %meta{ "http-equiv" => "refresh",
-             content: "#{@redirect_delay};url=#{@redirect_url}" }
+             content: "1;url=#{@redirect_url}" }
     - if @meta_norobots
       %meta{ content: "noindex,nofollow", name: "robots" }/
     %title= @title || Gnrd.conf.title
