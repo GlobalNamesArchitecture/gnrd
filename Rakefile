@@ -72,8 +72,8 @@ task(:release) do
     g.add(all: true)
     g.commit("Releasing #{new_tag}")
     g.push("origin", "refs/tags/#{new_tag}", f: true)
-  # rescue Git::GitExecuteError
-  #   puts "'#{new_tag}' already exists, update your version."
+  rescue Git::GitExecuteError
+    puts "'#{new_tag}' already exists, update your version."
   end
 end
 
