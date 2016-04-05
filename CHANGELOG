@@ -1,7 +1,9 @@
 # Change Log for Global Names Recognition and Discovery
 
-## [Unreleased]
-- gems upgrade
+## [0.8.4-SNAPSHOT]
+### Fixed
+- Fix #1 until result is final status code should be 303 from @dimus
+- Fix #5 nginx can take files up to 1Gb from @dimus
 
 ## [0.8.3] - 2016-04-05
 ### Changed
