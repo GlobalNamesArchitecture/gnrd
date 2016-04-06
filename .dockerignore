@@ -5,3 +5,4 @@
 .gitignore
 coverage
 log/*
+spec
