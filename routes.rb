@@ -31,6 +31,7 @@ get "/history" do
   @records = NameFinder
              .select(:token, :params, :created_at)
              .where("params #> '{source}' ?| array['file', 'url']")
+             .order(created_at: :desc)
   @meta_norobots = true
   haml :history
 end
