@@ -21,15 +21,15 @@ helpers do
 
   def show_find
     if @nf.errs.empty?
-      present(200, @nf.output)
+      show_process
     else
       show_errors(@nf.errs)
     end
   end
 
   def show_process
-    port = format == :html ? 200 : 303
-    present(port, @nf.output)
+    status_code = format == :html || params[:token] ? 200 : 303
+    present(status_code, @nf.output)
   end
 
   def with_resque?
@@ -72,11 +72,17 @@ helpers do
     status status_code
     content_type CONTENT_TYPE[format]
     @output = adjust_output(output)
-    @redirect_url = @output[:status] == 303 ? output[:token_url] : nil
+    @redirect_url = @output[:status] == 303 ? @output[:token_url] : nil
+    format == :html ? haml(:name_finder) : present_or_redirect
+  end
+
+  def present_or_redirect
+    if request.url != @output[:token_url] && status.between?(300, 399)
+      redirect(@output[:token_url], status)
+    end
     case format
-    when :html then haml :name_finder
     when :xml  then builder :namefinder
-    when :json then JSON.dump output
+    when :json then JSON.dump @output
     end
   end
 
@@ -84,7 +90,7 @@ helpers do
     if output[:token_url]
       output[:token_url] = request.base_url + output[:token_url]
     end
-    output[:queue_size] = with_resque? ? Resque.size(:NameFinder) : nil
+    output[:queue_size] = Resque.size(:NameFinder) if with_resque?
     output
   end
 end

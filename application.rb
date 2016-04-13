@@ -19,8 +19,7 @@ configure do
 
   enable :sessions
 
-  use Rack::Timeout
-  Rack::Timeout.timeout = 9_000_000
+  use Rack::Timeout, service_timeout: 9_000_000
 
   set :haml, format: :html5
   set :protection, except: :json_csrf

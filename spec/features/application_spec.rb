@@ -84,20 +84,20 @@ describe "/name_finder" do
   end
 
   context "text string" do
-    let(:params) { "text=Pardosa moesta" }
+    let(:params) { URI.encode("text=Pardosa moesta") }
 
     it "returns result in json" do
-      visit "/name_finder.json?text=Pardosa+moesta"
+      visit "/name_finder.json?#{params}"
       expect(page.body).to include("200")
     end
 
     it "returns result in xml" do
-      visit "/name_finder.xml?text=Pardosa+moesta"
+      visit "/name_finder.xml?#{params}"
       expect(page.body).to include("<status>200</status>")
     end
 
     it "returns result in html" do
-      visit "/name_finder?text=Pardosa+moesta"
+      visit "/name_finder?#{params}"
       expect(page.body).to include("Pardosa moesta")
     end
   end
