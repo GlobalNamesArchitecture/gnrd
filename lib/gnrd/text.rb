@@ -6,7 +6,7 @@ module Gnrd
 
     def initialize(dossier)
       unless dossier.is_a? Gnrd::Dossier
-        raise TypeError, "Needs Gnrd::Dossier to init"
+        raise TypeError.new("Needs Gnrd::Dossier to init")
       end
       @dossier = dossier
     end

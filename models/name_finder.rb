@@ -34,7 +34,7 @@ class NameFinder < ActiveRecord::Base
 
   def state=(new_state)
     res = STATE.find { |_, v| v == new_state }
-    raise(IndexError, "Unknown state #{new_state}") unless res
+    raise(IndexError.new("Unknown state #{new_state}")) unless res
     self.current_state = res[0]
   end
 
@@ -44,7 +44,7 @@ class NameFinder < ActiveRecord::Base
   end
 
   def add_error(e)
-    status_code = e.is_a?(Gnrd::UrlNotFoundError) ? 404 : 200
+    status_code = e.respond_to?(:status_code) ? e.status_code.to_i : 200
     errs << { status: status_code, message: e.message,
               parameters: Params.output(params) }
   end
@@ -57,26 +57,57 @@ class NameFinder < ActiveRecord::Base
     end
   end
 
-  after_validation { move_tempfile if tempfile? }
+  after_validation do
+    create_temp_file unless params[:file_path]
+  end
 
-  before_destroy { File.rm(params[:source][:file][:path]) if filepath? }
+  before_destroy { File.rm(params[:file_path]) if filepath? }
 
   private
+
+  def create_temp_file
+    return move_tempfile if tempfile?
+    make_url_file if url?
+  end
+
+  def make_url_file
+    url = normalize_url
+    wd = Gnrd::WebDownloader.new
+    params[:file_path] = wd.download(url, token)
+  rescue Gnrd::Error => e
+    add_error(e)
+    params[:file_path] = path(".txt")
+  ensure
+    FileUtils.touch(params[:file_path])
+  end
+
+  def normalize_url
+    url = params[:source][:url]
+    url =~ %r{^http[s]?://} ? url : "http://" + url
+  end
 
   def move_tempfile
     tempfile = params[:source][:file].delete(:tempfile)
     ext = File.extname(tempfile)
-    params[:source][:file][:path] = path = "#{Gnrd.dir}/#{token}#{ext}"
-    FileUtils.mv(tempfile, path)
+    params[:file_path] = path(ext)
+    FileUtils.mv(tempfile, params[:file_path])
     save!
   end
 
+  def path(ext = ".txt")
+    "#{Gnrd.dir}/#{token}#{ext}"
+  end
+
   def filepath?
-    defined?(params[:source][:file][:path]) && params[:source][:file][:path]
+    defined?(params[:file_path]) && params[:file_path]
   end
 
   def tempfile?
     defined?(params[:source][:file][:tempfile]) &&
       params[:source][:file][:tempfile]
+  end
+
+  def url?
+    params[:source][:url]
   end
 end

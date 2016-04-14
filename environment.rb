@@ -1,15 +1,16 @@
-require "fileutils"
-require "filemagic"
-require "docsplit"
-require "sanitize"
-require "rchardet"
-require "ostruct"
-require "json"
-require "name-spotter"
-require "logger"
 require "active_record"
+require "docsplit"
+require "filemagic"
+require "fileutils"
+require "json"
+require "logger"
+require "mechanize"
+require "name-spotter"
+require "ostruct"
+require "rchardet"
 require "resque"
 require "resque/server"
+require "sanitize"
 
 require_relative "models/hash_serializer"
 require_relative "models/params"
@@ -47,7 +48,7 @@ module Gnrd
       if ENVIRONMENTS.include?(env)
         @env = env
       else
-        raise TypeError, "Wrong environment: '#{env}'"
+        raise TypeError.new("Wrong environment: '#{env}'")
       end
     end
 

@@ -19,18 +19,9 @@ class ResultBuilder
       case input_type.first
       when :text
         Gnrd::Dossier.new(text: { orig: input_type.last })
-      when :url
-        Gnrd::Dossier.new(text: { orig: from_url(input_type.last) })
-      when :file
-        Gnrd::Dossier.new(file: { path: input_type.last[:path] })
+      when :url, :file
+        Gnrd::Dossier.new(file: { path: nf.params[:file_path] })
       end
-    end
-
-    def from_url(url)
-      url =~ %r{^http[s]?://} ? url : "http://" + url
-      RestClient.get(url)
-    rescue RestClient::ResourceNotFound
-      raise Gnrd::UrlNotFoundError, "URL resource not found"
     end
   end
 end

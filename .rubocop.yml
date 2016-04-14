@@ -3,6 +3,9 @@ AllCops:
     - db/**/*
     - bin/**/*
     - lib/gnrd/source_factory.rb
-    - lib/gnrd/file_inspector.rb
+Style/RaiseArgs:
+  EnforcedStyle: compact
+Metrics/CyclomaticComplexity:
+  Max: 7
 Style/StringLiterals:
   EnforcedStyle: double_quotes

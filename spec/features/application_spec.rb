@@ -147,6 +147,20 @@ describe "/name_finder" do
     end
   end
 
+  context "url pdf" do
+    let(:url) do
+      "http://bmcbioinformatics.biomedcentral.com/track/pdf/" \
+        "10.1186/1471-2105-13-211?site=bmcbioinformatics.biomedcentral.com"
+    end
+
+    it "returns result in json" do
+      path = "/name_finder.json?url=#{URI.encode(url)}&unique=true"
+      visit path
+      expect(page.body)
+        .to include("\"scientificName\":\"Oxyuranus temporalis\"")
+    end
+  end
+
   context "text file" do
     let(:file1) { File.absolute_path(__dir__ + "/../files/latin1.txt") }
 

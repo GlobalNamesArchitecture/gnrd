@@ -3,10 +3,13 @@ module Gnrd
   class FileInspector
     class << self
       def info(path)
-        raise(TypeError,
-              "File path is not string: #{path}") unless path.is_a?(String)
-        raise(Gnrd::FileMissingError,
-              "No such file: #{path}") unless File.exist?(path)
+        raise(
+          TypeError.new("File path is not string: #{path}")
+        ) unless path.is_a?(String)
+
+        raise(
+          Gnrd::FileMissingError.new("No such file: #{path}")
+        ) unless File.exist?(path)
         collect_info(path)
       end
 

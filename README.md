@@ -19,7 +19,7 @@ dramatically.
 
 You can follow .travis.yml file to see necessary components for the system on a
 Debian-based GNU/Linux distribution. You can see docker-compose file to get
-inside how to make a complete Docker-based installation.
+insite on how to make a complete Docker-based installation.
 
 Prerequisites
 -------------
@@ -28,7 +28,7 @@ Prerequisites
 * Docker Composer >= 1.6
 * Git
 
-Set *production* environment with docker-compose
+Install for production on one machine
 ------------------------------------------------
 
 Get source code and swich to production branch
@@ -36,7 +36,7 @@ Get source code and swich to production branch
 ```bash
 git clone https://github.com/GlobalNamesArchitecture/gnrd.git
 cd gnrd
-git co production
+git checkout production
 ```
 
 Create directories for database and configuration files
@@ -50,7 +50,7 @@ sudo cp .config/docker/gnrd.env.example /opt/gna/config/gnrd/gnrd.env
 ```
 
 Modify config.json and gnrd.env to suit your needs.
-Run compose in daemon mode
+Run compose in daemon mode from the project's root directory
 
 ```bash
 nohup docker-compose up -d
@@ -83,17 +83,19 @@ docker-compose run app rake db:reset
 ```
 should be sufficient
 
-Run tests
-
-For all tests run
+Run all tests
 
 ```
 docker-compose run app rake
 ```
 
-or to run a specific test
+Run a specific test
 
 ```
+# with rake
+docker-compose run app rake spec SPEC=spec/lib/some_spec.rb:44
+
+# with rspec
 docker-compose run app rspec -r factories spec/lib/some_spec.rb:44
 ```
 
