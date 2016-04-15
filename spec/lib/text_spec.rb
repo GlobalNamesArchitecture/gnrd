@@ -98,5 +98,12 @@ describe Gnrd::Text do
       binary = subject.new(binary_dossier)
       expect(binary.text_norm).to eq ""
     end
+
+    context "detected edge cases" do
+      it "returns names from seachells_book" do
+        expect(subject.new(seashells_dossier).text_norm)
+          .to match("Mrs. Walter E. Garrey")
+      end
+    end
   end
 end

@@ -31,6 +31,9 @@ RSpec.shared_context "shared_context", a: :b do
   let(:img_path) { path + "/image.jpg" }
   let(:img_dossier) { d.new(file: { path: img_path }) }
 
+  let(:seashells_path) { path + "/seashells_book.txt" }
+  let(:seashells_dossier) { d.new(file: { path: seashells_path }) }
+
   let(:img_no_names_path) { path + "/no_names.jpg" }
   let(:img_no_names_dossier) { d.new(file: { path: img_no_names_path }) }
 

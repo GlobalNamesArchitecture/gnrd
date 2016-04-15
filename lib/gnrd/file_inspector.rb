@@ -32,7 +32,7 @@ module Gnrd
         when /\bimage data\b/ then      "image_file"
         when /\bMicrosoft Word\b/ then  "msword_file"
         when /\bMicrosoft Excel\b/ then "msexcel_file"
-        when /\btext\b/ then            "text_file"
+        when /\b(text|FORTRAN)\b/ then  "text_file"
         else                            "unknown_file"
         end
       end
