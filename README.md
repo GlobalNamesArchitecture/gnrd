@@ -6,16 +6,18 @@ Global Names Recognition and Discovery (GNRD)
 [![CodePolice][qc_img]][qc]
 [![Dependency Status][gems_img]][gems]
 
-GNRD finds scientific names in texts, pdf files, images, web-pages
+GNRD is a [web-application][gnrd]. It finds scientific names in texts, PDF
+files, images, web-pages, MS Word and MS Excel documents. [RESTful API][api]
+allows to search for scientific names using scripts.
 
 Install
 -------
 
-There are quite a few moving parts in the system -- Tesseract or OCR,
+There are quite a few moving parts in the system -- Tesseract for OCR,
 Libre Office to read various file formats, Postgresql for data, Redis for
 asyncronous execution of commands, NetiNeti and TaxonFinder for name-finding
-etc. We recommend to install Docker to simplify setup of the system
-dramatically.
+etc. We recommend to install Docker and Docker Compose to dramatically simplify
+the installation process.
 
 You can follow .travis.yml file to see necessary components for the system on a
 Debian-based GNU/Linux distribution. You can see docker-compose file to get
@@ -98,6 +100,29 @@ docker-compose run app rake spec SPEC=spec/lib/some_spec.rb:44
 # with rspec
 docker-compose run app rspec -r factories spec/lib/some_spec.rb:44
 ```
+Contributing to GNRD
+----------------------------
+
+* Check out the latest master to make sure the feature hasn't been implemented
+or the bug hasn't been fixed yet
+* Check out the issue tracker to make sure someone already hasn't requested
+it and/or contributed it
+* Fork the project
+* Start a feature/bugfix branch
+* Commit and push until you are happy with your contribution
+* Make sure to add tests for it. This is important so I don't break it in a
+future version unintentionally.
+* Please try not to mess with the Rakefile, version, or history. If you want
+to have your own version, or is otherwise necessary, that is fine, but please
+isolate to its own commit so I can cherry-pick around it.
+
+Copyright
+---------
+
+Authors: [David Shorthouse][dps], [Dmitry Mozzherin][dimus]
+
+Copyright (c) 2012-2016 Marine Biological Laboratory.
+See [LICENSE.txt][license] for further details.
 
 [ci_img]: https://secure.travis-ci.org/GlobalNamesArchitecture/gnrd.svg
 [ci]: http://travis-ci.org/GlobalNamesArchitecture/gnrd
@@ -107,6 +132,8 @@ docker-compose run app rspec -r factories spec/lib/some_spec.rb:44
 [qc]: https://codeclimate.com/github/GlobalNamesArchitecture/gnrd
 [gems_img]: https://gemnasium.com/GlobalNamesArchitecture/gnrd.svg
 [gems]: https://gemnasium.com/GlobalNamesArchitecture/gnrd
-[5]: http://docs.vagrantup.com/v2/getting-started/index.html
-[6]: http://docs.vagrantup.com/v2/installation/
-[7]: https://www.virtualbox.org/wiki/Downloads
+[dimus]: https://github.com/dimus
+[dps]: https://github.com/dshorthouse
+[license]: https://github.com/GlobalNamesArchitecture/gnrd/blob/master/LICENSE.txt
+[gnrd]: http://gnrd.globalnames.org
+[api]: http://gnrd.globalnames.org/api
