@@ -95,12 +95,14 @@ module Gnrd
     end
 
     def conf_default
-      { "redis_host" => "redis",
+      {
+        "redis_host" => "redis",
         "database" => db_conf, "session_secret" => "!!change!!me!!",
         "tmp_dir" => "/tmp", "neti_neti_host" => "nn",
         "neti_neti_port" => 6384, "taxon_finder_host" => "tf",
         "taxon_finder_port" => 1234, "disqus_shortname" => "globalnames-rd",
-        "resolver_url" => "http://res.globalnames.org/name_resolvers.json" }
+        "resolver_url" => "http://resolver.globalnames.org/name_resolvers.json"
+      }
     end
 
     def conf_file

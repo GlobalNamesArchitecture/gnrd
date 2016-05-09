@@ -7,6 +7,9 @@ RSpec.shared_context "shared_context", a: :b do
   let(:utf_dossier) { d.new(file: { path: utf_path }) }
   let(:utf_txt_dossier) { d.new(text: { orig: utf_txt }) }
 
+  let(:reptile_path) { path + "/reptilia.txt" }
+  let(:reptile_dossier) { d.new(file: { path: reptile_path }) }
+
   let(:utf16_path) { path + "/utf16.txt" }
   let(:utf16_txt) { File.read(utf16_path, encoding: "utf-16") }
   let(:utf16_dossier) { d.new(file: { path: utf16_path }) }

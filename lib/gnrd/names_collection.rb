@@ -40,7 +40,8 @@ module Gnrd
     end
 
     def pick_one(l, r)
-      if no_overlap?(l, r) || left_is_superset?(l, r)
+      return :no_overlap if no_overlap?(l, r)
+      if left_is_superset?(l, r)
         :left_better
       else
         :right_better

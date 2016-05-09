@@ -2,7 +2,8 @@ FROM ubuntu:14.04.4
 MAINTAINER Dmitry Mozzherin
 ENV LAST_FULL_REBUILD 2016-03-06
 
-RUN apt-get install -y software-properties-common && \
+RUN apt-get update && \ 
+    apt-get install -y software-properties-common && \
     apt-add-repository ppa:brightbox/ruby-ng && \
     apt-get update && \
     apt-get install -y ruby2.2 ruby2.2-dev ruby-switch \
