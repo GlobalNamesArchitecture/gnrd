@@ -73,7 +73,7 @@ docker-compose run app rake db:reset
 ```
 
 Now you should have a working version of GNRD on http://0.0.0.0:9292 and
-the following command should return found names in JSON format
+the following command should work as expected
 
 ```bash
 curl -L http://0.0.0.0:9292/name_finder.json?url=http://en.wikipedia.org/wiki/Araneae
