@@ -45,6 +45,7 @@ Create directories for database and configuration files
 
 ```bash
 sudo mkdir -p /opt/gna/data/gnrd/postgresql/data
+sudo mkdir -p /opt/gna/config/gnrd
 sudo chown 999:999 -R /opt/gna/data/gnrd/postgresql
 sudo mkdir /opt/gna/config/gnrd
 sudo cp ./config/config.json.example /opt/gna/config/gnrd/config.json
