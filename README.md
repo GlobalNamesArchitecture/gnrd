@@ -79,6 +79,10 @@ the following command should work as expected
 curl -L http://0.0.0.0:9292/name_finder.json?url=http://en.wikipedia.org/wiki/Araneae
 ```
 
+You can change the placement of default directories, and ports by modifying
+[docker-compose](https://github.com/GlobalNamesArchitecture/gnrd/blob/production/docker-compose.yml) file
+
+
 Testing
 -------
 
