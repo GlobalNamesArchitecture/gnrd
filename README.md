@@ -52,11 +52,31 @@ sudo cp ./config/config.json.example /opt/gna/config/gnrd/config.json
 sudo cp ./config/docker/gnrd.env.example /opt/gna/config/gnrd/gnrd.env
 ```
 
-Modify config.json and gnrd.env to suit your needs.
-Run compose in daemon mode from the project's root directory
+Modify config.json and gnrd.env to suit your needs (defaults are not secure, but
+work as well).
+
+Optionally pull gnames/gnrd from dockerhub to save time on building step
+
+```bash
+docker pull gnames/gnrd
+```
+
+Run docker compose in daemon mode from the project's root directory
 
 ```bash
 nohup docker-compose up -d
+```
+
+Initialize database:
+```bash
+docker-compose run app rake db:reset
+```
+
+Now you should have a working version of GNRD on http://0.0.0.0:9292 and
+the following command should return found names in JSON format
+
+```bash
+curl -L http://0.0.0.0:9292/name_finder.json?url=http://en.wikipedia.org/wiki/Araneae
 ```
 
 Testing
