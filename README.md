@@ -27,7 +27,7 @@ Prerequisites
 -------------
 
 * Docker >= 1.10
-* Docker Composer >= 1.6
+* Docker Compose >= 1.6
 * Git
 
 Install for production on one machine
@@ -84,11 +84,10 @@ curl -L http://0.0.0.0:9292/name_finder.json?url=http://en.wikipedia.org/wiki/Ar
 You can change the placement of default directories, and ports by modifying
 [docker-compose](https://github.com/GlobalNamesArchitecture/gnrd/blob/production/docker-compose.yml) file
 
+Development and Testing
+-----------------------
 
-Testing
--------
-
-You need Docker >= 1.10 and Docker Composer >= 1.6
+You need Docker >= 1.10 and Docker Compose >= 1.6
 
 Build application's image (needs to be done only if a new gem or new
 Ubuntu package are added)
