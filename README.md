@@ -47,15 +47,15 @@ Create directories for database and configuration files
 sudo mkdir -p /opt/gna/data/gnrd/postgresql/data
 sudo mkdir -p /opt/gna/config/gnrd
 sudo chown 999:999 -R /opt/gna/data/gnrd/postgresql
-sudo mkdir /opt/gna/config/gnrd
 sudo cp ./config/config.json.example /opt/gna/config/gnrd/config.json
 sudo cp ./config/docker/gnrd.env.example /opt/gna/config/gnrd/gnrd.env
 ```
 
-Modify config.json and gnrd.env to suit your needs (defaults are not secure, but
-work as well).
+Modify config.json and gnrd.env to suit your needs (defaults are not secure,
+but work as well).
 
-Optionally pull gnames/gnrd from dockerhub to save time on the gnrd docker image building step
+Optionally pull gnames/gnrd from dockerhub to save time on the gnrd docker
+image building step
 
 ```bash
 docker pull gnames/gnrd
@@ -82,7 +82,8 @@ curl -L http://0.0.0.0:9292/name_finder.json?url=http://en.wikipedia.org/wiki/Ar
 ```
 
 You can change the placement of default directories, and ports by modifying
-[docker-compose](https://github.com/GlobalNamesArchitecture/gnrd/blob/production/docker-compose.yml) file
+[docker-compose]
+file
 
 Development and Testing
 -----------------------
@@ -163,3 +164,4 @@ See [LICENSE.txt][license] for further details.
 [license]: https://github.com/GlobalNamesArchitecture/gnrd/blob/master/LICENSE.txt
 [gnrd]: http://gnrd.globalnames.org
 [api]: http://gnrd.globalnames.org/api
+[docker-compose]: https://github.com/GlobalNamesArchitecture/gnrd/blob/production/docker-compose.yml
