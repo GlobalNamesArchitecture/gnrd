@@ -55,15 +55,17 @@ sudo cp ./config/docker/gnrd.env.example /opt/gna/config/gnrd/gnrd.env
 Modify config.json and gnrd.env to suit your needs (defaults are not secure, but
 work as well).
 
-Optionally pull gnames/gnrd from dockerhub to save time on building step
+Optionally pull gnames/gnrd from dockerhub to save time on the gnrd docker image building step
 
 ```bash
 docker pull gnames/gnrd
 ```
 
-Run docker compose in daemon mode from the project's root directory
+Run docker compose from the project's root directory
 
 ```bash
+docker-compose up
+# or in daemon mode:
 nohup docker-compose up -d
 ```
 
