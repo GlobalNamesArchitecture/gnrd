@@ -21,7 +21,7 @@ the installation process.
 
 You can follow .travis.yml file to see necessary components for the system on a
 Debian-based GNU/Linux distribution. You can see docker-compose file to get
-insite on how to make a complete Docker-based installation.
+an insight on how to make a complete Docker-based installation.
 
 Prerequisites
 -------------
