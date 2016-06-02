@@ -27,7 +27,7 @@ Prerequisites
 -------------
 
 * Docker >= 1.10
-* Docker Composer >= 1.6
+* Docker Compose >= 1.6
 * Git
 
 Install for production on one machine
@@ -45,23 +45,50 @@ Create directories for database and configuration files
 
 ```bash
 sudo mkdir -p /opt/gna/data/gnrd/postgresql/data
+sudo mkdir -p /opt/gna/config/gnrd
 sudo chown 999:999 -R /opt/gna/data/gnrd/postgresql
-sudo mkdir /opt/gna/config/gnrd
-sudo cp ./config.json.example /opt/gna/config/gnrd/config.json
-sudo cp .config/docker/gnrd.env.example /opt/gna/config/gnrd/gnrd.env
+sudo cp ./config/config.json.example /opt/gna/config/gnrd/config.json
+sudo cp ./config/docker/gnrd.env.example /opt/gna/config/gnrd/gnrd.env
 ```
 
-Modify config.json and gnrd.env to suit your needs.
-Run compose in daemon mode from the project's root directory
+Modify config.json and gnrd.env to suit your needs (defaults are not secure,
+but work as well).
+
+Optionally pull gnames/gnrd from dockerhub to save time on the gnrd docker
+image building step
 
 ```bash
+docker pull gnames/gnrd
+```
+
+Run docker compose from the project's root directory
+
+```bash
+docker-compose up
+# or in daemon mode:
 nohup docker-compose up -d
 ```
 
-Testing
--------
+Initialize database:
+```bash
+docker-compose run app rake db:reset
+```
 
-You need Docker >= 1.10 and Docker Composer >= 1.6
+Now you should have a working version of GNRD on http://0.0.0.0:9292 and
+the following command should work as expected
+
+```bash
+curl -L http://0.0.0.0:9292/name_finder.json?url=http://en.wikipedia.org/wiki/Araneae
+```
+
+You can change the placement of default directories, and ports by modifying
+[docker-compose]
+file
+
+Development and Testing
+-----------------------
+
+You need Docker >= 1.10 and Docker Compose >= 1.6
 
 Build application's image (needs to be done only if a new gem or new
 Ubuntu package are added)
@@ -137,3 +164,4 @@ See [LICENSE.txt][license] for further details.
 [license]: https://github.com/GlobalNamesArchitecture/gnrd/blob/master/LICENSE.txt
 [gnrd]: http://gnrd.globalnames.org
 [api]: http://gnrd.globalnames.org/api
+[docker-compose]: https://github.com/GlobalNamesArchitecture/gnrd/blob/production/docker-compose.yml
