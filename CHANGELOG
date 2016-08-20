@@ -1,10 +1,24 @@
 # Change Log for Global Names Recognition and Discovery
 
-## [0.8.4-SNAPSHOT]
+## [0.8.5]
+
+### Changed
+
+- add git to Dockerfile
+
+## [0.8.4]
+
+### Changed
+
+- Update gems to remove security risks
+
 ### Fixed
+
 - Fix #1 until result is final status code should be 303 from @dimus
 - Fix #5 nginx can take files up to 1Gb from @dimus
 
 ## [0.8.3] - 2016-04-05
+
 ### Changed
+
 - complete rewrite of the backend from @dimus
