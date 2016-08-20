@@ -10,8 +10,8 @@ module Gnrd
 
     def initialize(status_code, message = nil)
       @status_code = status_code.to_i
-      default_msg =
-        (@status_code == 404) ? "URL resource not found" : "URL retrieval error"
+      is_404 = (@status_code == 404)
+      default_msg = is_404 ? "URL resource not found" : "URL retrieval error"
       super(message || default_msg)
     end
   end

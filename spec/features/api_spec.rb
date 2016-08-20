@@ -51,8 +51,9 @@ describe "api" do
       params = [%w(unique true), %w(return_content true),
                 %w(all_data_sources true), %w(best_match_only true),
                 %w(data_source_ids 1|2|3), %w(preferred_data_sources 1|2),
-                %w(detect_language false), %w(engine 1)
-      ].each_with_object([]) { |(k, v), obj| obj << "#{k}=#{v}" }.join("&")
+                %w(detect_language false), %w(engine 1)]
+               .each_with_object([]) { |(k, v), obj| obj << "#{k}=#{v}" }
+               .join("&")
       get "/name_finder.json?#{URI.escape(params)}"
       params = JSON.parse(last_response.body,
                           symbolize_names: true)[:parameters]
@@ -70,8 +71,9 @@ describe "api" do
       params = [%w(unique 1), %w(return_content 1),
                 %w(all_data_sources 1), %w(best_match_only 1),
                 %w(data_source_ids 1|2|3), %w(preferred_data_sources 1|2),
-                %w(detect_language 0), %w(engine 1)
-      ].each_with_object([]) { |(k, v), obj| obj << "#{k}=#{v}" }.join("&")
+                %w(detect_language 0), %w(engine 1)]
+               .each_with_object([]) { |(k, v), obj| obj << "#{k}=#{v}" }
+               .join("&")
       get "/name_finder.json?#{URI.escape(params)}"
       params = JSON.parse(last_response.body,
                           symbolize_names: true)[:parameters]
@@ -186,7 +188,8 @@ describe "api" do
           [
             { id: 1, title: "Catalogue of Life" },
             { id: 4, title: "NCBI" }
-          ])
+          ]
+        )
         expect(res[:resolved_names].size).to eq 2
       end
 
@@ -200,7 +203,8 @@ describe "api" do
           [
             { id: 1, title: "Catalogue of Life" },
             { id: 4, title: "NCBI" }
-          ])
+          ]
+        )
         expect(res[:resolved_names].size).to eq 2
       end
     end
