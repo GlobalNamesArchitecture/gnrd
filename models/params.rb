@@ -84,7 +84,7 @@ class Params
   def normalize_data_source(value)
     value = data_source_from_hash(value) if value.is_a?(Hash)
     v = value.is_a?(Array) ? value : value.split("|")
-    v.uniq.compact.map(&:to_i).select { |i| i != 0 }
+    v.uniq.compact.map(&:to_i).select(&:nonzero?)
   end
 
   def data_source_from_hash(value)
@@ -95,6 +95,7 @@ class Params
 
   def normalize_engine
     engine = params[:engine].to_i
-    (0..2).cover?(engine) ? engine : 0
+    engine_is_set = (0..2).cover?(engine)
+    engine_is_set ? engine : 0
   end
 end

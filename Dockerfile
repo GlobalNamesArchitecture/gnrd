@@ -7,7 +7,7 @@ RUN apt-get update && \
     apt-add-repository ppa:brightbox/ruby-ng && \
     apt-get update && \
     apt-get install -y ruby2.2 ruby2.2-dev ruby-switch \
-    zlib1g-dev liblzma-dev libxml2-dev libpq-dev \
+    zlib1g-dev liblzma-dev libxml2-dev libpq-dev git \
     libxslt-dev supervisor build-essential nodejs supervisor && \
     apt-get -y install graphicsmagick poppler-utils poppler-data \
     ghostscript tesseract-ocr pdftk libreoffice libmagic-dev && \
