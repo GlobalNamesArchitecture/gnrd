@@ -23,3 +23,4 @@ cookbooks
 .sass-cache/*
 .sass-cache/**/*
 .byebug_history
+.vim.custom
