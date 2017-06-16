@@ -1,0 +1,143 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gnrd
+  namespace: gn
+  labels:
+    app: gnrd
+    tier: frontend
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: gnrd
+    tier: frontend
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gnrd
+  namespace: gn
+spec:
+  replicas: 1
+  template:
+    metadata:
+      namespace: gn
+      name: gnrd
+      labels:
+        app: gnrd
+        tier: frontend
+    spec:
+      containers:
+        - name: gnrd
+          image: gnames/gnrd:0.0.2
+
+          env:
+            - name: RAILS_ENV
+              value: production
+            - name: GNRD_SALT
+              valueFrom:
+                secretKeyRef:
+                  name: gnrd
+                  key: salt
+            - name: NETI_NETI_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: gnrd
+                  key: neti-neti.host
+            - name: NETI_NETI_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: gnrd
+                  key: neti-neti.port
+            - name: TAXON_FINDER_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: gnrd
+                  key: taxon-finder.host
+            - name: TAXON_FINDER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: gnrd
+                  key: taxon-finder.port
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: gnrd
+                  key: redis.host
+            - name: RESOLVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: gnrd
+                  key: resolver.url
+            - name: GNRD_DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: gnrd
+                  key: db.service
+            - name: GNRD_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: gnrd
+                  key: db.database
+            - name: GNRD_DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: gnrd
+                  key: db.user
+            - name: GNRD_DB_USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: gnrd
+                  key: db.user.password
+          ports:
+            - containerPort: 80
+              name: http
+          command:
+            - /app/exe/docker.sh
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6379
+              name: redis
+
+        - name: neti-neti
+          image: gnames/netineti
+          ports:
+            - containerPort: 6384
+              name: neti-neti
+
+        - name: taxon-finder
+          image: gnames/taxonfinder
+          ports:
+            - containerPort: 1234
+              name: taxon-finder
+
+        # - name: nginx
+        #   image: nginx
+        #   livenessProbe:
+        #     httpGet:
+        #       path: /name_resolvers.json?names=Plantago+major&data_source_ids=1
+        #       port: 80
+        #     initialDelaySeconds: 180
+        #     timeoutSeconds: 3
+        #   readinessProbe:
+        #     httpGet:
+        #       path: /name_resolvers.json?names=Plantago+major&data_source_ids=1
+        #       port: 80
+        #     initialDelaySeconds: 20
+        #     timeoutSeconds: 3
+        #   ports:
+        #     - containerPort: 80
+        #       name: http
+        #   volumeMounts:
+        #     - name: app-vol
+        #       mountPath: /var/www
+        #   command:
+        #     - bash
+        #     - -c
+        #     - "sleep 4 && var/www/app/exe/nginx-start"

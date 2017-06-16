@@ -1,4 +1,7 @@
 #!/bin/bash
+set -euo pipefail
+
+echo env
 
 if [ "$RACK_ENV" == "production" ]; then
   /usr/bin/supervisord -c /app/config/docker/supervisord.conf

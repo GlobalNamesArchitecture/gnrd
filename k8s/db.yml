@@ -1,0 +1,59 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gnrd-db
+  labels:
+    app: gnrd
+    tier: backend
+spec:
+  type: NodePort
+  ports:
+    - port: 5432
+      targetPort: 5432
+  selector:
+    app: gnrd
+    tier: backend
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gnrd-db
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: gnrd-db
+      labels:
+        app: gnrd-db
+        tier: backend
+    spec:
+      containers:
+        - name: gnrd-db
+          image: postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: gnrd
+                  key: db.root.password
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: gnrd
+                  key: db.user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: gnrd
+                  key: db.user.password
+            - name: DB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: gnrd
+                  key: db.database
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          ports:
+            - containerPort: 5432
+              name: psql
