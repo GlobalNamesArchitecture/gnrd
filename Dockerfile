@@ -10,6 +10,7 @@ RUN apt-get update && \
     zlib1g-dev liblzma-dev libxml2-dev libpq-dev git \
     libxslt-dev supervisor build-essential nodejs supervisor && \
     apt-get -y install graphicsmagick poppler-utils poppler-data \
+    postgresql-client \
     ghostscript tesseract-ocr pdftk libreoffice libmagic-dev && \
     add-apt-repository -y ppa:nginx/stable && \
     apt-get update && \

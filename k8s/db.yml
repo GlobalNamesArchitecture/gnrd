@@ -25,29 +25,24 @@ spec:
     metadata:
       name: gnrd-db
       labels:
-        app: gnrd-db
+        app: gnrd
         tier: backend
     spec:
       containers:
         - name: gnrd-db
           image: postgres
           env:
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: gnrd
-                  key: db.root.password
-            - name: DB_USERNAME
+            - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
                   name: gnrd
                   key: db.user
-            - name: DB_PASSWORD
+            - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: gnrd
                   key: db.user.password
-            - name: DB_DATABASE
+            - name: POSTGRES_DB
               valueFrom:
                 configMapKeyRef:
                   name: gnrd

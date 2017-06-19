@@ -12,10 +12,12 @@ services:
       - tf
       - redis
       - pg
+    env_file: .env
     environment:
       RACK_ENV: production
+      GNRD_DB_HOST: pg
+      GNRD_DB: gnrd
       RESQUE_WORKERS: 1
-    command: [/usr/bin/supervisord, -c, /app/config/docker/supervisord.conf]
   redis:
     image: redis
   nn:
