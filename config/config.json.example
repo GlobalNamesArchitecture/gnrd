@@ -1,33 +1,32 @@
 {
-  "salt": "substitute_with_your_secret_salt_string",
-  "neti_neti_host": "0.0.0.0",
-  "neti_neti_port": 6384,
-  "taxon_finder_host": "0.0.0.0",
-  "taxon_finder_port": 1234,
-  "redis_host": "0.0.0.0",
-  "resolver_url":
-    "http://resolver.globalnames.org/name_resolvers.json",
+  "salt": "<%= ENV['GNRD_SALT'] %>",
+  "neti_neti_host": "<%= ENV['NETI_NETI_HOST'] %>",
+  "neti_neti_port": "<%= ENV['NETI_NETI_PORT'] %>",
+  "taxon_finder_host": "<%= ENV['TAXON_FINDER_HOST'] %>",
+  "taxon_finder_port": "<%= ENV['TAXON_FINDER_PORT'] %>",
+  "redis_host": "<%= ENV['REDIS_HOST'] %>",
+  "resolver_url": "<%= ENV['GNRD_RESOLVER'] %>",
   "database": {
     "development": {
       "adapter": "postgresql",
-      "host": "0.0.0.0",
-      "username": "postgres",
-      "password": null,
-      "database": "gnrd_development"
+      "host": "<%= ENV['GNRD_DB_HOST'] %>",
+      "username": "<%= ENV['GNRD_DB_USER'] %>",
+      "password": "<%= ENV['GNRD_DB_USER_PASSWORD'] %>",
+      "database": "<%= ENV['GNRD_DB'] %>"
     },
     "test": {
       "adapter": "postgresql",
-      "host": "0.0.0.0",
-      "username": "postgres",
-      "password": null,
-      "database": "gnrd_test"
+      "host": "<%= ENV['GNRD_DB_HOST'] %>",
+      "username": "<%= ENV['GNRD_DB_USER'] %>",
+      "password": "<%= ENV['GNRD_DB_USER_PASSWORD'] %>",
+      "database": "<%= ENV['GNRD_DB'] %>"
     },
     "production": {
       "adapter": "postgresql",
-      "host": "0.0.0.0",
-      "username": "postgres",
-      "password": null,
-      "database": "gnrd"
+      "host": "<%= ENV['GNRD_DB_HOST'] %>",
+      "username": "<%= ENV['GNRD_DB_USER'] %>",
+      "password": "<%= ENV['GNRD_DB_USER_PASSWORD'] %>",
+      "database": "<%= ENV['GNRD_DB'] %>"
     }
   }
 }
