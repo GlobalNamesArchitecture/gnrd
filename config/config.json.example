@@ -5,7 +5,7 @@
   "taxon_finder_host": "<%= ENV['TAXON_FINDER_HOST'] %>",
   "taxon_finder_port": "<%= ENV['TAXON_FINDER_PORT'] %>",
   "redis_host": "<%= ENV['REDIS_HOST'] %>",
-  "resolver_url": "<%= ENV['GNRD_RESOLVER'] %>",
+  "resolver_url": "<%= ENV['RESOLVER_URL'] %>",
   "database": {
     "development": {
       "adapter": "postgresql",

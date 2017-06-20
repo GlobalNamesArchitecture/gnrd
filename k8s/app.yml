@@ -23,7 +23,7 @@ metadata:
   name: gnrd
   namespace: gn
 spec:
-  replicas: 1
+  replicas: 4
   template:
     metadata:
       namespace: gn
@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         - name: gnrd
-          image: gnames/gnrd:0.0.2
+          image: gnames/gnrd:0.0.4
 
           env:
             - name: RAILS_ENV
