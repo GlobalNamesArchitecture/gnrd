@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Gnrd::Dossier do
   include_context "shared_context"
   subject { Gnrd::Dossier }

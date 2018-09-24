@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 # Gathers parameters and input from users, calls name finding utitilites and
 # saves their output.
 class NameFinder < ActiveRecord::Base
   @queue = :NameFinder
-  %i(params output result errs).each { |f| serialize f, HashSerializer }
+  serialize(:errs, Array)
+  %i[params output result].each { |f| serialize f, Hash }
 
   attr_accessor :text, :names, :timeline, :resolved
 
@@ -35,6 +38,7 @@ class NameFinder < ActiveRecord::Base
   def state=(new_state)
     res = STATE.find { |_, v| v == new_state }
     raise(IndexError.new("Unknown state #{new_state}")) unless res
+
     self.current_state = res[0]
   end
 
@@ -67,6 +71,7 @@ class NameFinder < ActiveRecord::Base
 
   def create_temp_file
     return move_tempfile if tempfile?
+
     make_url_file if url?
   end
 
@@ -83,7 +88,7 @@ class NameFinder < ActiveRecord::Base
 
   def normalize_url
     url = params[:source][:url]
-    url =~ %r{^http[s]?://} ? url : "http://" + url
+    url.match?(%r{^http[s]?://}) ? url : "http://" + url
   end
 
   def move_tempfile

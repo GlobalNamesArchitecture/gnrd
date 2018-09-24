@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Gnrd
   # Prepares results from name finding for output
   class NamesCollection
@@ -39,22 +41,23 @@ module Gnrd
       end
     end
 
-    def pick_one(l, r)
-      return :no_overlap if no_overlap?(l, r)
-      if left_is_superset?(l, r)
+    def pick_one(left, right)
+      return :no_overlap if no_overlap?(left, right)
+
+      if left_is_superset?(left, right)
         :left_better
       else
         :right_better
       end
     end
 
-    def no_overlap?(l, r)
-      r.nil? || l[:offsetEnd] < r[:offsetStart]
+    def no_overlap?(left, right)
+      right.nil? || left[:offsetEnd] < right[:offsetStart]
     end
 
-    def left_is_superset?(l, r)
-      l[:offsetStart] <= r[:offsetStart] &&
-        l[:offsetEnd] >= r[:offsetEnd]
+    def left_is_superset?(left, right)
+      left[:offsetStart] <= right[:offsetStart] &&
+        left[:offsetEnd] >= right[:offsetEnd]
     end
   end
 end

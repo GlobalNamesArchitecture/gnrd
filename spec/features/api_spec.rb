@@ -1,11 +1,15 @@
+# frozen_string_literal: true
+
 describe "api" do
-  let(:text) { URI.escape("Atlanta and Pardosa moesta") }
+  let(:text) { Addressable::URI.escape("Atlanta and Pardosa moesta") }
   let(:html) do
-    URI.escape("<html><body><p>Atlanta and Pardosa moesta</p></body></html>")
+    Addressable::URI
+      .escape("<html><body><p>Atlanta and Pardosa moesta</p></body></html>")
   end
   let(:file) { File.absolute_path(__dir__ + "/../files/utf8.txt") }
   let(:url) do
-    URI.escape("https://en.wikipedia.org/wiki/Asian_long-horned_beetle")
+    Addressable::URI
+      .escape("https://en.wikipedia.org/wiki/Asian_long-horned_beetle")
   end
 
   context "input" do
@@ -15,11 +19,11 @@ describe "api" do
       expect(last_response.body).to include('scientificName":"Pardosa moesta"')
     end
 
-    it "accespts url" do
+    it "accepts url" do
       get "/name_finder.json?url=#{url}&unique=1"
       follow_redirect!
       expect(last_response.body)
-        .to include('scientificName":"Anthonomus aeneotinctus"')
+        .to include('scientificName":"Coleoptera"')
     end
 
     it "accepts file" do
@@ -48,13 +52,13 @@ describe "api" do
     end
 
     it "sets all parmeters" do
-      params = [%w(unique true), %w(return_content true),
-                %w(all_data_sources true), %w(best_match_only true),
-                %w(data_source_ids 1|2|3), %w(preferred_data_sources 1|2),
-                %w(detect_language false), %w(engine 1)]
+      params = [%w[unique true], %w[return_content true],
+                %w[all_data_sources true], %w[best_match_only true],
+                %w[data_source_ids 1|2|3], %w[preferred_data_sources 1|2],
+                %w[detect_language false], %w[engine 1]]
                .each_with_object([]) { |(k, v), obj| obj << "#{k}=#{v}" }
                .join("&")
-      get "/name_finder.json?#{URI.escape(params)}"
+      get "/name_finder.json?#{Addressable::URI.escape(params)}"
       params = JSON.parse(last_response.body,
                           symbolize_names: true)[:parameters]
       expect(params).to eq(unique: true,
@@ -68,13 +72,13 @@ describe "api" do
     end
 
     it "sets parmeters with 0 and 1 too" do
-      params = [%w(unique 1), %w(return_content 1),
-                %w(all_data_sources 1), %w(best_match_only 1),
-                %w(data_source_ids 1|2|3), %w(preferred_data_sources 1|2),
-                %w(detect_language 0), %w(engine 1)]
+      params = [%w[unique 1], %w[return_content 1],
+                %w[all_data_sources 1], %w[best_match_only 1],
+                %w[data_source_ids 1|2|3], %w[preferred_data_sources 1|2],
+                %w[detect_language 0], %w[engine 1]]
                .each_with_object([]) { |(k, v), obj| obj << "#{k}=#{v}" }
                .join("&")
-      get "/name_finder.json?#{URI.escape(params)}"
+      get "/name_finder.json?#{Addressable::URI.escape(params)}"
       params = JSON.parse(last_response.body,
                           symbolize_names: true)[:parameters]
       expect(params).to eq(unique: true,
@@ -95,7 +99,7 @@ describe "api" do
       follow_redirect!
       res = JSON.parse(last_response.body, symbolize_names: true)
       names = res[:names].map { |n| n[:scientificName] }
-      expect(res[:engines]).to eq %w(TaxonFinder NetiNeti)
+      expect(res[:engines]).to eq %w[TaxonFinder NetiNeti]
       expect(names).to eq ["Atlanta", "Pardosa moesta"]
     end
 
@@ -123,7 +127,7 @@ describe "api" do
       expect(names.size).to be > 10
       expect(names.join(", "))
         .to match(/(Vibrionidi quali esseri|Appunti geologici sul)/)
-      expect(res[:engines]).to eq %w(TaxonFinder NetiNeti)
+      expect(res[:engines]).to eq %w[TaxonFinder NetiNeti]
     end
 
     it "uses only TaxonFinder on italian when language_detection is on" do
@@ -180,7 +184,8 @@ describe "api" do
 
     context "data_source_ids" do
       it "resolves using specific data sources" do
-        params = "text=#{text}&data_source_ids=#{URI.escape('1|4')}"
+        params =
+          "text=#{text}&data_source_ids=#{Addressable::URI.escape('1|4')}"
         get("/name_finder.json?#{params}")
         follow_redirect!
         res = JSON.parse(last_response.body, symbolize_names: true)
@@ -194,8 +199,9 @@ describe "api" do
       end
 
       it "tramps app_data_sources setting" do
-        params = "text=#{text}&data_source_ids=#{URI.escape('1|4')}"
-        params << "&all_data_sources=true"
+        params =
+          "text=#{text}&data_source_ids=#{Addressable::URI.escape('1|4')}"
+        params += "&all_data_sources=true"
         get("/name_finder.json?#{params}")
         follow_redirect!
         res = JSON.parse(last_response.body, symbolize_names: true)
@@ -230,7 +236,7 @@ describe "api" do
     context "preferred_data_sources" do
       it "returns data from preferred data sources if exist" do
         params = "text=#{text}&best_match_only=true"
-        params << "&all_data_sources=true&preferred_data_sources=11"
+        params += "&all_data_sources=true&preferred_data_sources=11"
         get("/name_finder.json?#{params}")
         follow_redirect!
         res = JSON.parse(last_response.body, symbolize_names: true)
@@ -239,7 +245,7 @@ describe "api" do
 
       it "doesn't work with data_source_ids if preferred not included there" do
         params = "text=#{text}&best_match_only=true"
-        params << "&data_source_ids=1&preferred_data_sources=11"
+        params += "&data_source_ids=1&preferred_data_sources=11"
         get("/name_finder.json?#{params}")
         follow_redirect!
         res = JSON.parse(last_response.body, symbolize_names: true)

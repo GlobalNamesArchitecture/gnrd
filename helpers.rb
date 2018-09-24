@@ -1,10 +1,14 @@
-helpers do
+# frozen_string_literal: true
+
+# ApplicationHelpers module contains helpers for GNRD
+module ApplicationHelpers
   CONTENT_TYPE = { html: "text/html",
                    json: "application/json",
                    xml:  "application/xml" }.freeze
 
   def name_finder_init
     return find_by_token if params[:token]
+
     create_name_finder
   end
 

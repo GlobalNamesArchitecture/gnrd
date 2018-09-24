@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Gnrd
   class Error < RuntimeError; end
   class FileMissingError < Gnrd::Error; end
@@ -10,8 +12,8 @@ module Gnrd
 
     def initialize(status_code, message = nil)
       @status_code = status_code.to_i
-      is_404 = (@status_code == 404)
-      default_msg = is_404 ? "URL resource not found" : "URL retrieval error"
+      is404 = (@status_code == 404)
+      default_msg = is404 ? "URL resource not found" : "URL retrieval error"
       super(message || default_msg)
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Gnrd::TextExtractor do
   subject { Gnrd::TextExtractor }
   let(:pdf) { __dir__ + "/../files/file.pdf" }

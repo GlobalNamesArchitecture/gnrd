@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 # Creates final output for name-finding result
 class OutputBuilder
-  ENGINES = %w(TaxonFinder NetiNeti).freeze
+  ENGINES = %w[TaxonFinder NetiNeti].freeze
 
   class << self
     def init(nf)
@@ -36,7 +38,7 @@ class OutputBuilder
     def prepare_params(nf)
       params = Marshal.load Marshal.dump(nf.params)
       params[:engines] = engines(params[:engine])
-      if params[:source][:file]
+      if params[:source] && params[:source][:file]
         params[:source][:file] = params[:source][:file][:filename]
       end
       params.delete(:format)
@@ -98,14 +100,15 @@ class OutputBuilder
 
     def update_engines(nf)
       return nil unless nf.params[:detect_language] && nf.text.english? == false
+
       [ENGINES[0]]
     end
 
     def add_resolver_result(res, nf)
-      if nf.result[:resolved_names]
-        res[:resolved_names] = nf.result[:resolved_names]
-        res[:data_sources] = nf.result[:data_sources]
-      end
+      return unless nf.result[:resolved_names]
+
+      res[:resolved_names] = nf.result[:resolved_names]
+      res[:data_sources] = nf.result[:data_sources]
     end
   end
 end

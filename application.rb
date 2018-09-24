@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+require "addressable/uri"
 require "rack-timeout"
 require "sinatra"
 require "sinatra/base"
@@ -6,6 +9,7 @@ require "sinatra/redirect_with_flash"
 require "tilt/haml"
 require "tilt/sass"
 require "tilt/builder"
+require "timeout"
 require "resque/server"
 
 require_relative "lib/gnrd"
@@ -16,6 +20,7 @@ require_relative "helpers"
 configure do
   register Sinatra::Flash, Sinatra::PostGet
   helpers Sinatra::RedirectWithFlash
+  helpers ApplicationHelpers
 
   enable :sessions
 

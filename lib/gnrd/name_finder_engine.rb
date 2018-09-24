@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Gnrd
   # Finds scientific names in texts
   class NameFinderEngine
@@ -29,16 +31,16 @@ module Gnrd
     private
 
     def taxon_finder_names(names)
-      if options[:taxonfinder]
-        names[:tf] = @tf.find(dossier.text[:norm].dup)[:names]
-        names[:tf].each { |i| i[:scientificName].gsub!(/\[[^()]*\]/, ".") }
-      end
+      return unless options[:taxonfinder]
+
+      names[:tf] = @tf.find(dossier.text[:norm].dup)[:names]
+      names[:tf].each { |i| i[:scientificName].gsub!(/\[[^()]*\]/, ".") }
     end
 
     def netineti_names(names)
-      if options[:netineti]
-        names[:nn] = @nn.find(dossier.text[:norm].dup)[:names]
-      end
+      return unless options[:netineti]
+
+      names[:nn] = @nn.find(dossier.text[:norm].dup)[:names]
     end
 
     def taxon_finder_engine

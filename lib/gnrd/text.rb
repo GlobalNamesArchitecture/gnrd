@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Gnrd
   # Holds all information about a text to be used for name finding
   # and the source of the text
@@ -8,6 +10,7 @@ module Gnrd
       unless dossier.is_a? Gnrd::Dossier
         raise TypeError.new("Needs Gnrd::Dossier to init")
       end
+
       @dossier = dossier
     end
 
@@ -29,10 +32,10 @@ module Gnrd
 
     def set_orig
       txt = dossier.text[:orig]
-      txt = Gnrd::SourceFactory.inst(dossier).text unless txt
+      txt ||= Gnrd::SourceFactory.inst(dossier).text
       update_dossier(txt)
       dossier.text[:orig] =
-        txt.force_encoding(@dossier.text[:encoding])
+        txt.dup.force_encoding(@dossier.text[:encoding])
     end
 
     def update_dossier(txt)

@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require "active_record"
 require "docsplit"
 require "filemagic"
 require "fileutils"
 require "json"
 require "logger"
-require "mechanize"
 require "name-spotter"
 require "ostruct"
 require "rchardet"
@@ -23,7 +24,7 @@ require_relative "models/today"
 
 # Namespace module for Global Names Recognition and Discovery
 module Gnrd
-  ENVIRONMENTS = %i(development test production).freeze
+  ENVIRONMENTS = %i[development test production].freeze
 
   class << self
     def init
@@ -45,17 +46,17 @@ module Gnrd
     end
 
     def env=(env)
-      if ENVIRONMENTS.include?(env)
-        @env = env
-      else
+      unless ENVIRONMENTS.include?(env)
         raise TypeError.new("Wrong environment: '#{env}'")
       end
+
+      @env = env
     end
 
     def conf
       @conf ||= lambda do
         conf = conf_default.each_with_object({}) do |h, obj|
-          obj[h[0]] = conf_file[h[0]] ? conf_file[h[0]] : h[1]
+          obj[h[0]] = conf_file[h[0]] || h[1]
         end
         OpenStruct.new(conf)
       end[]
@@ -70,10 +71,12 @@ module Gnrd
       end
     end
 
+    # rubocop:disable Naming/MemoizedInstanceVariableName
     def db_connections
       @db ||= connect
       @redis ||= redis_connect
     end
+    # rubocop:enable Naming/MemoizedInstanceVariableName
 
     def disconnect
       ActiveRecord::Base.connection.disconnect!

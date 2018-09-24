@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Gnrd::FileInspector do
   include_context "shared_context"
   subject { Gnrd::FileInspector }
@@ -36,8 +38,9 @@ describe Gnrd::FileInspector do
     end
 
     it "finds image" do
-      expect(subject.info(img_path))
-        .to eq(magic: "JPEG image data, JFIF standard 1.02", type: "image_file")
+      info = subject.info(img_path)
+      expect(info[:magic]).to match(/JPEG image data, JFIF standard 1.02/)
+      expect(info[:type]).to eq("image_file")
     end
 
     it "marks other files as unknown" do

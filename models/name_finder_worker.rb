@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Performs name finding and resolution
 module NameFinderWorker
   class << self
@@ -41,10 +43,9 @@ module NameFinderWorker
     end
 
     def resolve_names(nf)
-      if resolve?(nf)
-        nf.result
-          .merge!(Gnrd::Resolver.new(nf.result[:names], nf.params).resolve)
-      end
+      return unless resolve?(nf)
+
+      nf.result.merge!(Gnrd::Resolver.new(nf.result[:names], nf.params).resolve)
     end
 
     def find_names_opts(nf)

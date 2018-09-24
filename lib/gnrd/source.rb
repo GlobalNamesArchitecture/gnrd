@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Gnrd
   # Abstract class for sources
   class Source

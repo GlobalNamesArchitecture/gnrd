@@ -7,5 +7,15 @@ Style/RaiseArgs:
   EnforcedStyle: compact
 Metrics/CyclomaticComplexity:
   Max: 7
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+    - views/namefinder.builder
+Metrics/LineLength:
+  Exclude:
+    - views/namefinder.builder
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+Naming/UncommunicativeMethodParamName:
+  Exclude:
+    - models/**/*

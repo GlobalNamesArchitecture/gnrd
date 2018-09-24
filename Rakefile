@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rake"
 require "bundler/setup"
 require "rspec/core/rake_task"
@@ -12,9 +14,12 @@ require_relative "lib/gnrd"
 RSpec::Core::RakeTask.new(:spec) { |t| t.pattern = "spec/**/*.rb" }
 RuboCop::RakeTask.new
 
-task default: [:rubocop, :spec]
+task default: %i[rubocop spec]
 
+# rubocop:disable Style/MixinUsage
 include ActiveRecord::Tasks
+# rubocop:enable Style/MixinUsage
+
 ActiveRecord::Base.configurations = Gnrd.conf.database
 
 Resque.logger = Logger.new("log/resque.log")
