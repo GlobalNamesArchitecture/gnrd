@@ -1,9 +1,9 @@
 sudo: required
 language: ruby
 rvm:
-  - 2.0
-  - 2.1
-  - 2.2
+  - 2.3
+  - 2.4
+  - 2.5
 bundler_args: --without development
 services:
   - redis-server
@@ -32,4 +32,3 @@ before_script:
 branches:
   only:
     - master
-
