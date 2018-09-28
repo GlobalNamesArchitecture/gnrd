@@ -9,7 +9,7 @@ services:
   - docker
   - postgresql
 addons:
-  postgresql: "10.5"
+  postgresql: "9.6"
 before_install:
   - docker run -d --name nn -p 0.0.0.0:6384:6384 gnames/netineti
   - docker run -d --name tf -p 0.0.0.0:1234:1234 gnames/taxonfinder
