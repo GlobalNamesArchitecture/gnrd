@@ -25,7 +25,7 @@ module Gnrd
       end
 
       def excel_file?(path, magic)
-        magic =~ /\bMicrosoft OOXML/ && path =~ /\.xlsx$/
+        magic =~ /\b(Microsoft OOXML|ZIP)\b/ && path =~ /\.xlsx$/
       end
 
       def file_type(magic)
