@@ -6,6 +6,8 @@ gem "actionpack", "~> 5.2"
 gem "activerecord", "~> 5.2"
 gem "addressable", "~> 2.5"
 gem "docsplit", "~> 0.7"
+gem "grpc", "~> 1.15"
+gem "grpc-tools", "~> 1.15"
 gem "haml", "~> 5.0"
 gem "iconv", "~> 1.0.5" # required by docsplit
 gem "mail", "~> 2.7"
