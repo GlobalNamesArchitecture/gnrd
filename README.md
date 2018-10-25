@@ -41,6 +41,12 @@ cd gnrd
 git checkout production
 ```
 
+Get packages for `ruby-filemagic` and `pg` gems
+
+```bash
+sudo apt install libmagic-dev libpq-dev
+```
+
 Create directories for database and configuration files
 
 ```bash

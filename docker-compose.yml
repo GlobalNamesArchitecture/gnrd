@@ -9,6 +9,7 @@ services:
     depends_on:
       - nn
       - tf
+      - gnf
       - redis
       - pg
   redis:
@@ -17,5 +18,7 @@ services:
     image: gnames/netineti
   tf:
     image: gnames/taxonfinder
+  gnf:
+    image: gnames/gnfinder
   pg:
     image: postgres
