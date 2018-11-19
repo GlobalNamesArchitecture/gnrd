@@ -19,6 +19,6 @@ services:
   tf:
     image: gnames/taxonfinder
   gnf:
-    image: gnames/gnfinder
+    image: gnames/gnfinder:v0.7.0
   pg:
     image: postgres

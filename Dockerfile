@@ -40,7 +40,7 @@ WORKDIR /app
 
 COPY config/docker/nginx-sites.conf /etc/nginx/sites-enabled/default
 COPY Gemfile /app
-COPY Gemfile.lock /app
+# COPY Gemfile.lock /app
 
 RUN bundle install
 

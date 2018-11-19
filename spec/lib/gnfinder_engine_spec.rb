@@ -10,6 +10,10 @@ describe Gnrd::GnfinderEngine do
       expect(subject.new(utf_dossier, {}).dossier).to be_kind_of(Gnrd::Dossier)
     end
 
+    it "takes params" do
+      params
+    end
+
     # it "takes options" do
     #   opts = { netineti: false }
     #   nf = subject.new(utf_dossier, opts)
