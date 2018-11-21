@@ -26,7 +26,8 @@ module NameFinderWorker
     # rubocop:disable Metrics/AbcSize
     def prepare_names(nf)
       if nf.params[:engine] == 3
-        nf.names = Gnrd::GnfinderEngine.new(nf.text.dossier, nf.params).find
+        nf.names = Gnrd::GnfinderEngine.new(nf.text.dossier, nf.params)
+                                       .find_and_resolve
       else
         opts = find_names_opts(nf)
         nf.names = Gnrd::NameFinderEngine.new(nf.text.dossier, opts)
@@ -45,7 +46,7 @@ module NameFinderWorker
     end
 
     def resolve?(nf)
-      nf.result[:names].any? && # !nf.params[:engine] == 3 &&
+      nf.result[:names].any? &&
         (nf.params[:all_data_sources] || nf.params[:data_source_ids].any?)
     end
 
