@@ -112,6 +112,16 @@ describe "api" do
       expect(res[:engines]).to eq ["TaxonFinder"]
       expect(names).to eq ["Pardosa moesta"]
     end
+
+    it "runs gnfinder when engine is 3" do
+      get "/name_finder.json?engine=3&text=#{text}"
+      expect(last_response.status).to be 303
+      follow_redirect!
+      res = JSON.parse(last_response.body, symbolize_names: true)
+      names = res[:names].map { |n| n[:scientificName] }
+      expect(res[:engines]).to eq ["Global Names Finder"]
+      expect(names).to eq ["Pardosa moesta"]
+    end
   end
 
   context "language detection" do

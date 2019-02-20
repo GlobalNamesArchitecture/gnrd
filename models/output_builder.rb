@@ -2,7 +2,7 @@
 
 # Creates final output for name-finding result
 class OutputBuilder
-  ENGINES = %w[TaxonFinder NetiNeti].freeze
+  ENGINES = %w[TaxonFinder NetiNeti, GlobalNamesFinder].freeze
 
   class << self
     def init(nf)
@@ -90,11 +90,13 @@ class OutputBuilder
     def engines(num)
       case num
       when 0
-        ENGINES
+        ENGINES #[0..1]
       when 1
         [ENGINES[0]]
       when 2
         [ENGINES[1]]
+      when 3
+        [ENGINES[3]]
       end
     end
 
