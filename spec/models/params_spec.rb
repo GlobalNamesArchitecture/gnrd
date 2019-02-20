@@ -25,7 +25,7 @@ describe Params do
     end
     let(:params5) { { unique: 1 } }
     let(:params6) { { unique: "true\n " } }
-    let(:params_gnfinder) { {engine: "3"} }
+    let(:params_gnfinder) { { engine: "3" } }
 
     it "removes unknown params" do
       prm = subject.new(params1).normalize

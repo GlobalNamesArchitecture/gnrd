@@ -7,14 +7,16 @@ describe Gnrd::GnfinderEngine do
   describe ".new" do
     let(:params) do
       Params.new(preferred_data_sources: [1, 11, 179],
-                all_data_sources: true,
-                detect_language: false).normalize
+                 all_data_sources: true,
+                 detect_language: false).normalize
     end
 
     it "creates new instance" do
-      expect(subject.new(utf_dossier, params)).to be_kind_of(Gnrd::GnfinderEngine)
+      expect(subject.new(utf_dossier, params))
+        .to be_kind_of(Gnrd::GnfinderEngine)
       expect(params[:all_data_sources]).to be true
-      expect(subject.new(utf_dossier, params).dossier).to be_kind_of(Gnrd::Dossier)
+      expect(subject.new(utf_dossier, params).dossier)
+        .to be_kind_of(Gnrd::Dossier)
     end
 
     it "takes params" do
@@ -29,8 +31,8 @@ describe Gnrd::GnfinderEngine do
   describe "#find_resolve" do
     let(:params) do
       Params.new(data_source_ids: [1, 11, 179],
-                detect_language: true,
-                all_data_sources: true).normalize
+                 detect_language: true,
+                 all_data_sources: true).normalize
     end
     it "finds names" do
       params[:with_bayes] = false
