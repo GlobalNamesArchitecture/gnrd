@@ -31,6 +31,7 @@ gem "sinatra-redirect-with-flash", "~> 0.2"
 gem "sinatra-reloader", "~> 1.0"
 
 group :development do
+  gem "bundler", "~> 2.0"
   gem "byebug", "~> 10.0"
   gem "git", "~> 1.5"
   gem "shotgun", "~> 0.9"

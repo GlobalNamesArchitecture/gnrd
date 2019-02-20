@@ -71,8 +71,7 @@ class Params
   end
 
   def detect_language?
-    dt = params[:detect_language] ||
-         (params[:find] && params[:find][:detect_language])
+    dt = params[:detect_language]
     return params[:engine].to_i < 3 if dt.nil?
 
     %w[0 false].include?(dt.to_s.strip) ? false : true

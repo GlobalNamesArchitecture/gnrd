@@ -7,7 +7,8 @@ describe Gnrd::GnfinderEngine do
   describe ".new" do
     let(:params) do
       Params.new(preferred_data_sources: [1, 11, 179],
-                all_data_sources: true).normalize
+                all_data_sources: true,
+                detect_language: false).normalize
     end
 
     it "creates new instance" do
