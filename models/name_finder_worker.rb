@@ -38,7 +38,7 @@ module NameFinderWorker
     # rubocop:enable Metrics/AbcSize
 
     def prepare_result(nf)
-      if nf.params[:engine] = 3
+      if nf.params[:engine] == 3
         nf.result = ResultBuilder.init_gnfinder_result(nf)
       else
         nf.result = ResultBuilder.init_result(nf)

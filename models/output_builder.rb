@@ -90,7 +90,7 @@ class OutputBuilder
     def engines(num)
       case num
       when 0
-        ENGINES #[0..1]
+        ENGINES[0..1]
       when 1
         [ENGINES[0]]
       when 2
