@@ -2,7 +2,7 @@
 
 # Creates final output for name-finding result
 class OutputBuilder
-  ENGINES = %w[TaxonFinder NetiNeti, GlobalNamesFinder].freeze
+  ENGINES = %w[TaxonFinder NetiNeti GlobalNamesFinder].freeze
 
   class << self
     def init(nf)
@@ -45,7 +45,36 @@ class OutputBuilder
       params
     end
 
+    def gnfinder?(nf)
+      nf.params[:engine] == 3
+    end
+
     def prepare_names(nf)
+      if gnfinder?(nf)
+        prepare_gnfinder_names(nf)
+      else
+        prepare_tf_nn_names(nf)
+      end
+    end
+
+    def prepare_gnfinder_names(nf)
+      names = []
+      nf.names.each do |n|
+        names << build_gnfinder_name(n)
+      end
+      names
+    end
+
+    def build_gnfinder_name(name)
+      {
+        verbatim: name.verbatim,
+        scientificName: name.name,
+        offsetStart: name.offset_start,
+        offsetEnd: name.offset_end,
+      }
+    end
+
+    def prepare_tf_nn_names(nf)
       names = nf.result[:names].map do |n|
         n.delete(:engine)
         n
@@ -65,7 +94,7 @@ class OutputBuilder
       res = { text_preparation_duration: text_preparation(tl),
               find_names_duration: find_names(tl),
               total_duration: total(tl) }
-      if nf.result[:resolved_names]
+      if nf.result[:resolved_names] && !gnfinder?(nf)
         res[:names_resolution_duration] = resolve_names(tl)
       end
       res
@@ -96,11 +125,12 @@ class OutputBuilder
       when 2
         [ENGINES[1]]
       when 3
-        [ENGINES[3]]
+        [ENGINES[2]]
       end
     end
 
     def update_engines(nf)
+      return nil if gnfinder?(nf)
       return nil unless nf.params[:detect_language] && nf.text.english? == false
 
       [ENGINES[0]]

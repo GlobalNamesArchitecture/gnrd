@@ -119,7 +119,7 @@ describe "api" do
       follow_redirect!
       res = JSON.parse(last_response.body, symbolize_names: true)
       names = res[:names].map { |n| n[:scientificName] }
-      expect(res[:engines]).to eq ["Global Names Finder"]
+      expect(res[:engines]).to eq ["GlobalNamesFinder"]
       expect(names).to eq ["Pardosa moesta"]
     end
   end
