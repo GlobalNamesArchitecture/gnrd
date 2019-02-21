@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 MAINTAINER Dmitry Mozzherin
-ENV LAST_FULL_REBUILD 2018-10-24
+ENV LAST_FULL_REBUILD 2019-02-21
 
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
@@ -40,7 +40,7 @@ WORKDIR /app
 
 COPY config/docker/nginx-sites.conf /etc/nginx/sites-enabled/default
 COPY Gemfile /app
-# COPY Gemfile.lock /app
+COPY Gemfile.lock /app
 
 RUN bundle install
 
