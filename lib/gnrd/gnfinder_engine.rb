@@ -29,7 +29,10 @@ module Gnrd
       if params[:all_data_sources] || !opts[:sources].empty?
         opts[:with_verification] = true
         params[:best_match_only] = true
+        params[:data_source_ids] = params[:preferred_data_sources] =
+         opts[:sources]
       end
+        puts params
       opts
     end
   end

@@ -8,6 +8,7 @@ describe Gnrd::GnfinderEngine do
     let(:params) do
       Params.new(preferred_data_sources: [1, 11, 179],
                  all_data_sources: true,
+                 engine: 3,
                  detect_language: false).normalize
     end
 
@@ -25,6 +26,14 @@ describe Gnrd::GnfinderEngine do
       expect(opts[:language]).to eq "eng"
       expect(opts[:with_verification]).to be true
       expect(opts[:sources]).to eq [1, 11, 179]
+      expect(params[:best_match_only]).to be true
+    end
+
+    it "does not set resolver without corresponding params" do
+      params = Params.new(engine: 3).normalize
+      gnf = subject.new(utf_dossier, params)
+      opts = gnf.opts
+      expect(opts[:with_verification]).to be nil
     end
   end
 

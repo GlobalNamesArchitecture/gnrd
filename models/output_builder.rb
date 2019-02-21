@@ -50,11 +50,16 @@ class OutputBuilder
     end
 
     def prepare_names(nf)
+      names = []
       if gnfinder?(nf)
-        prepare_gnfinder_names(nf)
+        names = prepare_gnfinder_names(nf)
       else
-        prepare_tf_nn_names(nf)
+        names = prepare_tf_nn_names(nf)
       end
+      unique_names = names.map do |n|
+        { scientificName: n[:scientificName] }
+      end.uniq
+      nf.params[:unique] ? unique_names : names
     end
 
     def prepare_gnfinder_names(nf)
@@ -79,10 +84,6 @@ class OutputBuilder
         n.delete(:engine)
         n
       end
-      unique_names = names.map do |n|
-        { scientificName: n[:scientificName] }
-      end.uniq
-      nf.params[:unique] ? unique_names : names
     end
 
     def format(nf)
@@ -137,6 +138,14 @@ class OutputBuilder
     end
 
     def add_resolver_result(res, nf)
+      if gnfinder?(nf)
+        add_resulver_results_gnf(res, nf) {
+
+        }
+      end
+    end
+
+    add_resolver_results_tf_nn(res, nf)
       return unless nf.result[:resolved_names]
 
       res[:resolved_names] = nf.result[:resolved_names]
