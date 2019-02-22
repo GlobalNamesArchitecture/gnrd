@@ -30,9 +30,8 @@ module Gnrd
         opts[:with_verification] = true
         params[:best_match_only] = true
         params[:data_source_ids] = params[:preferred_data_sources] =
-         opts[:sources]
+                                     opts[:sources]
       end
-        puts params
       opts
     end
   end
