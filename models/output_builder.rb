@@ -54,7 +54,7 @@ class OutputBuilder
                 prepare_gnfinder_names(nf)
               else
                 prepare_tf_nn_names(nf)
-              end
+      end
       unique_names = names.map do |n|
         { scientificName: n[:scientificName] }
       end.uniq
@@ -156,6 +156,35 @@ class OutputBuilder
           preferred_results: v[:preferred_results]
         }
       end
+    end
+
+    def verif_gnfinder(n)
+      v = n.verification
+      {
+        is_known_name: results[:matched_type] == :EXACT,
+        data_sources_number: v.data_sources_number,
+        in_curated_sources: v.data_source_quality,
+        results: {
+          match_value: v.match_type,
+          name_string: v.matched_name,
+          canonical_form: v.matched_canonical,
+          current_name_string: v.current_name,
+          data_source_id: v.data_source_id,
+          data_source_title: v.data_source_title,
+          classification_path: v.classification_path,
+          taxon_id: v.taxon_id,
+          edit_distance: v.edit_distance
+        }
+        preferred_results: v.preferred_results.each_with_object([]) do |r, ary|
+          ary << {
+            data_source_id: r.data_source_id,
+            data_source_title: r.data_source_title,
+            name_id: r.name_id,
+            name: r.name,
+            taxon_id: r.taxon_id
+          }
+        end
+      }
     end
 
     def add_resolver_results_tf_nn(res, nf)
