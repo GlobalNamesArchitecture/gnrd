@@ -63,11 +63,9 @@ class OutputBuilder
     end
 
     def prepare_gnfinder_names(nf)
-      names = []
-      nf.names.each do |n|
+      nf.names.each_with_object([]) do |n, names|
         names << build_gnfinder_name(n)
       end
-      names
     end
 
     def build_gnfinder_name(name)
@@ -138,16 +136,30 @@ class OutputBuilder
     end
 
     def add_resolver_result(res, nf)
-      if gnfinder?(nf)
-        add_resulver_results_gnf(res, nf) {
+      return unless nf.result[:resolved_names]
+      return add_resolver_results_gnfinder(res, nf) if gnfinder?(nf)
+      add_resolver_results_tf_nn(res, nf)
+    end
 
+    def add_resolver_results_gnfinder(res, nf)
+      verif = nf.names.each_with_object({}) do |n, m|
+        next if m[n.value] || !n.verification
+        m[n.value] = {
+          is_known_name: match
+        }
+      end
+      return if verif.empty?
+      res[:resolved_names] = verif.each_with_object([]) do |k, v, m|
+        m << {
+          supplied_name_string: k,
+          is_known_name: v[:is_known_name],
+          results: v[:results],
+          preferred_results: v[:preferred_results]
         }
       end
     end
 
-    add_resolver_results_tf_nn(res, nf)
-      return unless nf.result[:resolved_names]
-
+    def add_resolver_results_tf_nn(res, nf)
       res[:resolved_names] = nf.result[:resolved_names]
       res[:data_sources] = nf.result[:data_sources]
     end

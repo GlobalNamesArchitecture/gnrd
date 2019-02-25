@@ -16,8 +16,7 @@ class ResultBuilder
     end
 
     def init_gnfinder_result(nf)
-      { file: nf.text.dossier.file, text: nf.text.dossier.text,
-        names: nf.names }
+      { file: nf.text.dossier.file, text: nf.text.dossier.text }
     end
 
     private
