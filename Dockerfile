@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 MAINTAINER Dmitry Mozzherin
-ENV LAST_FULL_REBUILD 2016-03-06
+ENV LAST_FULL_REBUILD 2019-02-21
 
 RUN apt-get update && \
     apt-get install -y software-properties-common && \

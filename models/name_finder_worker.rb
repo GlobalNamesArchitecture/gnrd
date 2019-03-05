@@ -23,15 +23,27 @@ module NameFinderWorker
       nf.timeline[:text_extraction] = Time.now.to_f
     end
 
+    # rubocop:disable Metrics/AbcSize
     def prepare_names(nf)
-      opts = find_names_opts(nf)
-      nf.names = Gnrd::NameFinderEngine.new(nf.text.dossier, opts).find.combine
+      if nf.params[:engine] == 3
+        nf.names = Gnrd::GnfinderEngine.new(nf.text.dossier, nf.params)
+                                       .find_resolve
+      else
+        opts = find_names_opts(nf)
+        nf.names = Gnrd::NameFinderEngine.new(nf.text.dossier, opts)
+                                         .find.combine
+      end
       nf.timeline[:name_finding] = Time.now.to_f
     end
+    # rubocop:enable Metrics/AbcSize
 
     def prepare_result(nf)
-      nf.result = ResultBuilder.init_result(nf)
-      resolve_names(nf)
+      if nf.params[:engine] == 3
+        nf.result = ResultBuilder.init_gnfinder_result(nf)
+      else
+        nf.result = ResultBuilder.init_result(nf)
+        resolve_names(nf)
+      end
       nf.timeline[:stop] = Time.now.to_f
       nf.result[:timeline] = nf.timeline
       nf.output.merge! OutputBuilder.add_result(nf)

@@ -71,9 +71,8 @@ class Params
   end
 
   def detect_language?
-    dt = params[:detect_language] ||
-         (params[:find] && params[:find][:detect_language])
-    return true if dt.nil?
+    dt = params[:detect_language]
+    return params[:engine].to_i < 3 if dt.nil?
 
     %w[0 false].include?(dt.to_s.strip) ? false : true
   end
@@ -99,7 +98,7 @@ class Params
 
   def normalize_engine
     engine = params[:engine].to_i
-    engine_is_set = (0..2).cover?(engine)
+    engine_is_set = (0..3).cover?(engine)
     engine_is_set ? engine : 0
   end
 end

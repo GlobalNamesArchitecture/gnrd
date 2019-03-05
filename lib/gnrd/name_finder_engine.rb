@@ -8,9 +8,9 @@ module Gnrd
       taxon_finder: { klass: NameSpotter::TaxonFinderClient,
                       host: Gnrd.conf.taxon_finder_host,
                       port: Gnrd.conf.taxon_finder_port },
-      neti_neti:    { klass: NameSpotter::NetiNetiClient,
-                      host: Gnrd.conf.neti_neti_host,
-                      port: Gnrd.conf.neti_neti_port }
+      neti_neti: { klass: NameSpotter::NetiNetiClient,
+                   host: Gnrd.conf.neti_neti_host,
+                   port: Gnrd.conf.neti_neti_port }
     }.freeze
 
     def initialize(dossier, opts = {})

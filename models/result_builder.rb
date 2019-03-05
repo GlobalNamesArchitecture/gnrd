@@ -15,6 +15,10 @@ class ResultBuilder
         names: nf.names.combined }
     end
 
+    def init_gnfinder_result(nf)
+      { file: nf.text.dossier.file, text: nf.text.dossier.text }
+    end
+
     private
 
     def prepare_dossier(nf)
