@@ -114,13 +114,19 @@ describe "api" do
     end
 
     it "runs gnfinder when engine is 3" do
-      get "/name_finder.json?engine=3&text=#{text}"
+      text = "Pardosa moesta and Plantago major and Homo sapiens"
+      text = Addressable::URI.escape(text)
+      ds = Addressable::URI.escape("1|12|13")
+      get "/name_finder.json?engine=3&preferred_data_sources=#{ds}&text=#{text}"
       expect(last_response.status).to be 303
       follow_redirect!
       res = JSON.parse(last_response.body, symbolize_names: true)
       names = res[:names].map { |n| n[:scientificName] }
       expect(res[:engines]).to eq ["GlobalNamesFinder"]
-      expect(names).to eq ["Pardosa moesta"]
+      expect(names).to eq ["Pardosa moesta", "Plantago major", "Homo sapiens"]
+      expect(res[:resolved_names].size).to be 3
+      expect(res[:resolved_names][0][:supplied_name_string])
+        .to eq "Pardosa moesta"
     end
   end
 

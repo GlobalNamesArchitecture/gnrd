@@ -130,25 +130,23 @@ class OutputBuilder
     def update_engines(nf)
       return nil if gnfinder?(nf)
       return nil unless nf.params[:detect_language] && nf.text.english? == false
-
       [ENGINES[0]]
     end
 
     def add_resolver_result(res, nf)
-      return unless nf.result[:resolved_names]
       return add_resolver_results_gnfinder(res, nf) if gnfinder?(nf)
+
+      return unless nf.result[:resolved_names]
       add_resolver_results_tf_nn(res, nf)
     end
 
     def add_resolver_results_gnfinder(res, nf)
       verif = nf.names.each_with_object({}) do |n, m|
-        next if m[n.value] || !n.verification
-        m[n.value] = {
-          is_known_name: match
-        }
+        next if m[n.name] || !n.verification
+        m[n.name] = verif_gnfinder(n)
       end
       return if verif.empty?
-      res[:resolved_names] = verif.each_with_object([]) do |k, v, m|
+      res[:resolved_names] = verif.each_with_object([]) do |(k, v), m|
         m << {
           supplied_name_string: k,
           is_known_name: v[:is_known_name],
@@ -161,18 +159,16 @@ class OutputBuilder
     def verif_gnfinder(n)
       v = n.verification
       {
-        is_known_name: results[:matched_type] == :EXACT,
-        data_sources_number: v.data_sources_number,
+        is_known_name: v.match_type == :EXACT,
+        data_sources_number: v.data_sources_num,
         in_curated_sources: v.data_source_quality,
         results: {
           match_value: v.match_type,
           name_string: v.matched_name,
-          canonical_form: v.matched_canonical,
           current_name_string: v.current_name,
           data_source_id: v.data_source_id,
           data_source_title: v.data_source_title,
           classification_path: v.classification_path,
-          taxon_id: v.taxon_id,
           edit_distance: v.edit_distance
         },
         preferred_results: v.preferred_results.each_with_object([]) do |r, ary|
