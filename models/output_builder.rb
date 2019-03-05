@@ -174,7 +174,7 @@ class OutputBuilder
           classification_path: v.classification_path,
           taxon_id: v.taxon_id,
           edit_distance: v.edit_distance
-        }
+        },
         preferred_results: v.preferred_results.each_with_object([]) do |r, ary|
           ary << {
             data_source_id: r.data_source_id,
