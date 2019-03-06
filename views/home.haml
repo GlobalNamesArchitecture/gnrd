@@ -75,7 +75,7 @@
         %legend Output
         - %w(html json xml).each do |format|
           - checked = (format == "html") ? true : nil
-          %input{ type: :radio, name: :format, id: "format_#{format}",
+          %input{ type: :radio, name: :output_format, id: "format_#{format}",
                   value: format, checked: checked }
           %label{ for: "format_#{format}" }= format
         %br

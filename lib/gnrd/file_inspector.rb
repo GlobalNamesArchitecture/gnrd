@@ -1,15 +1,18 @@
+# frozen_string_literal: true
+
 module Gnrd
   # Tries to figure out a file type
   class FileInspector
     class << self
       def info(path)
-        raise(
-          TypeError.new("File path is not string: #{path}")
-        ) unless path.is_a?(String)
+        unless path.is_a?(String)
+          raise(TypeError.new("File path is not string: #{path}"))
+        end
 
-        raise(
-          Gnrd::FileMissingError.new("No such file: #{path}")
-        ) unless File.exist?(path)
+        unless File.exist?(path)
+          raise(Gnrd::FileMissingError.new("No such file: #{path}"))
+        end
+
         collect_info(path)
       end
 
@@ -22,7 +25,7 @@ module Gnrd
       end
 
       def excel_file?(path, magic)
-        magic =~ /^Zip/ && path =~ /\.xlsx$/
+        magic =~ /\bMicrosoft OOXML\b/ || path =~ /\.xlsx$/
       end
 
       def file_type(magic)

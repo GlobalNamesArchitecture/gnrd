@@ -24,3 +24,4 @@ cookbooks
 .sass-cache/**/*
 .byebug_history
 nohup.out
+.vim.custom

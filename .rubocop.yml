@@ -1,11 +1,32 @@
 AllCops:
+  TargetRubyVersion: 2.5
   Exclude:
     - db/**/*
     - bin/**/*
     - lib/gnrd/source_factory.rb
 Style/RaiseArgs:
   EnforcedStyle: compact
+Metrics/MethodLength:
+  Exclude:
+    - models/output_builder.rb
+    - lib/gnrd/gnfinder_engine.rb
+Metrics/AbcSize:
+  Exclude:
+    - models/output_builder.rb
+Metrics/ClassLength:
+  Exclude:
+    - models/output_builder.rb
 Metrics/CyclomaticComplexity:
   Max: 7
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+    - views/namefinder.builder
+Metrics/LineLength:
+  Exclude:
+    - views/namefinder.builder
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+Naming/UncommunicativeMethodParamName:
+  Exclude:
+    - models/**/*

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Symbolizes jsonb
 class HashSerializer
   def self.symbolize_keys(obj)

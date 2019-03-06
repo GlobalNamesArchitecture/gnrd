@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require "./application.rb"
 
 set :run, false
-set :environment, ENV["RACK_ENV"] ? ENV["RACK_ENV"] : :development
+set :environment, ENV["RACK_ENV"] || :development
 
 # Allows to use puts etc for logging
 FileUtils.mkdir_p "log" unless File.exist?("log")

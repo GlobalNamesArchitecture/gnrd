@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   app:
     build:
@@ -10,6 +10,7 @@ services:
     depends_on:
       - nn
       - tf
+      - gnf
       - redis
       - pg
     environment:
@@ -22,6 +23,10 @@ services:
     image: gnames/netineti
   tf:
     image: gnames/taxonfinder
+  gnf:
+    image: gnames/gnfinder:v0.8.4
+    ports:
+      - "0.0.0.0:8778:8778"
   pg:
     image: postgres
     volumes:

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe "/main.css" do
   it "renders" do
     visit "/main.css"
@@ -84,7 +86,7 @@ describe "/name_finder" do
   end
 
   context "text string" do
-    let(:params) { URI.encode("text=Pardosa moesta") }
+    let(:params) { Addressable::URI.encode("text=Pardosa moesta") }
 
     it "returns result in json" do
       visit "/name_finder.json?#{params}"
@@ -104,8 +106,9 @@ describe "/name_finder" do
 
   context "url string" do
     let(:url) { "https://en.wikipedia.org/wiki/Asian_long-horned_beetle" }
-    let(:url2) { "eol.org/pages/207212/overview" }
+    let(:url2) { "en.wikipedia.org/wiki/Asian_long-horned_beetle" }
     let(:bad_url) { "http://dunno.com/this/thingie" }
+    let(:url404) { "https://example.org/a35jdlsh3sslalh" }
 
     it "returns result in html" do
       visit "/name_finder?url=#{url}"
@@ -124,24 +127,30 @@ describe "/name_finder" do
 
     it "adds http:// to urls without prefix" do
       visit "/name_finder.json?url=#{url2}"
-      expect(page.body).to include("verbatim\":\"Epinephelus drummondhayi")
+      expect(page.body).to include('scientificName":"Anoplophora glabripennis')
     end
 
     it "redirects home when url is not found" do
       visit "/name_finder?url=#{bad_url}"
       expect(page.current_path).to eq "/"
       expect(page.status_code).to be 200
-      expect(page.body).to include("URL resource not found")
+      expect(page.body).to include("URL retrieval error")
     end
 
-    it "returns not found for non-existant url in json" do
+    it "returns timeout code for non-existant domain in json" do
       visit "/name_finder.json?url=#{bad_url}"
-      expect(page.status_code).to be 404
-      expect(page.body).to include("404")
+      expect(page.status_code).to be 408
+      expect(page.body).to include("408")
     end
 
-    it "returns not found for non-existant url in xml" do
+    it "returns timeout for non-existant domain in xml" do
       visit "/name_finder.xml?url=#{bad_url}"
+      expect(page.status_code).to be 408
+      expect(page.body).to include("<status>408</status>")
+    end
+
+    it "returns not found for known domain, bad path in xml" do
+      visit "/name_finder.xml?url=#{url404}"
       expect(page.status_code).to be 404
       expect(page.body).to include("<status>404</status>")
     end
@@ -154,7 +163,7 @@ describe "/name_finder" do
     end
 
     it "returns result in json" do
-      path = "/name_finder.json?url=#{URI.encode(url)}&unique=true"
+      path = "/name_finder.json?url=#{Addressable::URI.encode(url)}&unique=true"
       visit path
       expect(page.body)
         .to include("\"scientificName\":\"Oxyuranus temporalis\"")

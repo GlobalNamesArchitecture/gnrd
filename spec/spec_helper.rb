@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "coveralls"
 Coveralls.wear!
 
@@ -5,7 +7,7 @@ require "rack/test"
 require "capybara"
 require "capybara/rspec"
 require "capybara/dsl"
-require "factory_girl"
+require "factory_bot"
 require "json"
 
 ENV["RACK_ENV"] = "test"

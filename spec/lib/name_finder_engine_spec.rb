@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Gnrd::NameFinderEngine do
   include_context "shared_context"
   subject { Gnrd::NameFinderEngine }
@@ -29,7 +31,7 @@ describe Gnrd::NameFinderEngine do
       names = nf.find.combine
       expect(names).to be_kind_of Gnrd::NamesCollection
       sci_names = names.combined.map { |n| n[:scientificName] }
-      expect(sci_names).to eq %w(Mammalia Aves Reptilia)
+      expect(sci_names).to eq %w[Mammalia Aves Reptilia]
     end
   end
 end

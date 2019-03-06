@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # These tests check that all parameters and fields for web-based user interface
 # are working as expected
 describe "web user interface" do
@@ -18,7 +20,7 @@ describe "web user interface" do
       fill_in("find_url", with: url)
       choose("format_json")
       click_button("Find Names")
-      expect(page.body).to include('scientificName":"Anoplophora nobilis"')
+      expect(page.body).to include('scientificName":"Coleoptera"')
     end
 
     it "takes file" do
@@ -39,7 +41,7 @@ describe "web user interface" do
       click_button("Find Names")
       res = JSON.parse(page.body, symbolize_names: true)
       expect(res[:parameters][:engine]).to be 0
-      expect(res[:engines]).to eq %w(TaxonFinder NetiNeti)
+      expect(res[:engines]).to eq %w[TaxonFinder NetiNeti]
     end
 
     it "can be set to use TaxonFinder only" do
@@ -50,7 +52,7 @@ describe "web user interface" do
       click_button("Find Names")
       res = JSON.parse(page.body, symbolize_names: true)
       expect(res[:parameters][:engine]).to be 1
-      expect(res[:engines]).to eq %w(TaxonFinder)
+      expect(res[:engines]).to eq %w[TaxonFinder]
     end
 
     it "can be set to use NetiNeti only" do
@@ -61,7 +63,7 @@ describe "web user interface" do
       click_button("Find Names")
       res = JSON.parse(page.body, symbolize_names: true)
       expect(res[:parameters][:engine]).to be 2
-      expect(res[:engines]).to eq %w(NetiNeti)
+      expect(res[:engines]).to eq %w[NetiNeti]
     end
   end
 
@@ -73,7 +75,7 @@ describe "web user interface" do
       click_button("Find Names")
       res = JSON.parse(page.body, symbolize_names: true)
       expect(res[:parameters][:engine]).to be 0
-      expect(res[:engines]).to eq %w(TaxonFinder)
+      expect(res[:engines]).to eq %w[TaxonFinder]
     end
 
     it "can be set to no" do
@@ -84,7 +86,7 @@ describe "web user interface" do
       click_button("Find Names")
       res = JSON.parse(page.body, symbolize_names: true)
       expect(res[:parameters][:engine]).to be 0
-      expect(res[:engines]).to eq %w(TaxonFinder NetiNeti)
+      expect(res[:engines]).to eq %w[TaxonFinder NetiNeti]
     end
   end
 

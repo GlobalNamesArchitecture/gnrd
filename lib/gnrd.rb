@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "../environment"
 require_relative "gnrd/version"
 require_relative "gnrd/errors"
@@ -7,6 +9,7 @@ require_relative "gnrd/text_extractor"
 require_relative "gnrd/text"
 require_relative "gnrd/source"
 require_relative "gnrd/source_factory"
+require_relative "gnrd/gnfinder_engine"
 require_relative "gnrd/name_finder_engine"
 require_relative "gnrd/names_collection"
 require_relative "gnrd/resolver"

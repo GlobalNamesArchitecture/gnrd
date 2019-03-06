@@ -16,15 +16,15 @@ ActiveRecord::Schema.define(version: 20160403224708) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "name_finders", force: :cascade do |t|
+  create_table "name_finders",  force: :cascade do |t|
     t.string   "token"
     t.jsonb    "params"
     t.integer  "current_state", default: 0
     t.jsonb    "result"
     t.jsonb    "output"
     t.jsonb    "errs",          default: []
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "today", force: :cascade do |t|

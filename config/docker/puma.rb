@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 threads 1, 6
 workers ENV["PUMA_WORKERS"] || 4
 
-app_dir = File.expand_path("../../..", __FILE__)
+app_dir = File.expand_path("../..", __dir__)
 tmp_dir = "#{app_dir}/tmp"
 
 # Default to production

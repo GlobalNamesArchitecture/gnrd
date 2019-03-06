@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Gnrd
   # Checks names qualilty using global names resolver
   class Resolver
@@ -18,10 +20,10 @@ module Gnrd
     private
 
     def output(res)
-      if res[:data]
-        { data_sources: res[:data_sources],
-          resolved_names: res[:data] }
-      end
+      return unless res[:data]
+
+      { data_sources: res[:data_sources],
+        resolved_names: res[:data] }
     end
 
     def resolve_names

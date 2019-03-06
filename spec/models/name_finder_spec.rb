@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe NameFinder do
   subject { NameFinder }
   let(:params) { { format: "json", text: "Pardosa moesta" } }
@@ -18,7 +20,7 @@ describe NameFinder do
     it "populates id, token" do
       nf = subject.create(params: params)
       expect(nf.id).to be > 0
-      expect(nf.id).to be_kind_of Fixnum
+      expect(nf.id).to be_kind_of Integer
       expect(nf.token).to match(/^[0-9a-z]{10}$/)
     end
 

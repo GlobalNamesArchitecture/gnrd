@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 module Gnrd
   # Extracts texts from images, pdfs, and other binary files
   class TextExtractor
     def initialize(path)
       @path = path
       raise(FileMissingError) unless File.exist?(@path)
+
       @dir = make_dir
     end
 
@@ -24,13 +27,14 @@ module Gnrd
 
     def assemble_text(files)
       return "" if files.empty?
+
       files = files.sort_by do |f|
         m = f.match(/\d+/)
         m ? m[0].to_i : 0
       end
-      files.each_with_object("") do |f, obj|
+      files.each_with_object([]) do |f, obj|
         obj << File.read(File.join(@dir, f))
-      end
+      end.join("\n")
     end
 
     def dir_name

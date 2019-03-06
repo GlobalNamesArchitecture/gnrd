@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Params do
   subject { Params }
 
@@ -21,9 +23,9 @@ describe Params do
         detect_language: "false\n ", verbatim: true, unique: "whaa?",
         format: "klenon" }
     end
-    let(:params4) { { find: { detect_language: false } } }
     let(:params5) { { unique: 1 } }
     let(:params6) { { unique: "true\n " } }
+    let(:params_gnfinder) { { engine: "3" } }
 
     it "removes unknown params" do
       prm = subject.new(params1).normalize
@@ -52,8 +54,6 @@ describe Params do
     it "deals with detect_language false param" do
       prm = subject.new(params3).normalize
       expect(prm[:detect_language]).to be false
-      prm = subject.new(params4).normalize
-      expect(prm[:detect_language]).to be false
     end
 
     it "sets detect_language to true by default" do
@@ -65,14 +65,13 @@ describe Params do
       expect(subject.new(params1).normalize[:format]).to eq "json"
       expect(subject.new(params2).normalize[:format]).to eq "xml"
       expect(subject.new(params3).normalize[:format]).to eq "html"
-      expect(subject.new(params4).normalize[:format]).to eq "html"
     end
 
     it "normalizes engine" do
       expect(subject.new(params1).normalize[:engine]).to be 2
       expect(subject.new(params2).normalize[:engine]).to be 1
       expect(subject.new(params3).normalize[:engine]).to be 0
-      expect(subject.new(params4).normalize[:engine]).to be 0
+      expect(subject.new(params_gnfinder).normalize[:engine]).to be 3
     end
 
     it "normalizes data sources" do
@@ -81,8 +80,6 @@ describe Params do
       expect(subject.new(params2).normalize[:preferred_data_sources])
         .to eq [1, 3]
       expect(subject.new(params3).normalize[:preferred_data_sources])
-        .to eq []
-      expect(subject.new(params4).normalize[:preferred_data_sources])
         .to eq []
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 get "/main.css" do
   content_type "text/css", charset: "utf-8"
   scss :main
@@ -37,6 +39,7 @@ get "/history" do
 end
 
 post_get "/name_finder.?:format?" do
+  params[:format] = params[:output_format] if params[:output_format]
   @title = "Discovered Names"
   @page = "home"
   @header = "Discovered Names"

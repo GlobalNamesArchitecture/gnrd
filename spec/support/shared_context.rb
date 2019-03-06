@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.shared_context "shared_context", a: :b do
   let(:d) { Gnrd::Dossier }
   let(:path) { File.absolute_path(__dir__ + "/../files") }

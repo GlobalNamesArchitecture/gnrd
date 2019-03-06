@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 describe Gnrd::Text do
   include_context "shared_context"

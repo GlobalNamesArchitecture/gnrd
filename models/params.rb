@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Normalizes parameters entered via API or User Interface
 class Params
   attr_reader :params
@@ -35,7 +37,7 @@ class Params
   private
 
   def true?(param)
-    %w(1 on true).include?(param.to_s.strip)
+    %w[1 on true].include?(param.to_s.strip)
   end
 
   def adjust_by_verbatim
@@ -43,9 +45,10 @@ class Params
   end
 
   def params_sources
-    %i(url file text).each_with_object({}) do |p, obj|
-      v =  params.delete(p) || (params[:find] && params[:find].delete(p))
+    %i[url file text].each_with_object({}) do |p, obj|
+      v =  params.delete(p) || params[:find]&.delete(p)
       next if v.to_s.strip == ""
+
       v = normalize_file_source(v) if p == :file
       obj[p] = v
     end
@@ -56,7 +59,7 @@ class Params
   end
 
   def params_boolean
-    %i(unique return_content all_data_sources best_match_only)
+    %i[unique return_content all_data_sources best_match_only]
       .each_with_object({}) do |p, obj|
       obj[p] = true?(params[p])
     end
@@ -64,18 +67,18 @@ class Params
 
   def normalize_format
     fmt = params[:format] ? params[:format].strip : "html"
-    %w(json xml html).include?(fmt) ? fmt : "html"
+    %w[json xml html].include?(fmt) ? fmt : "html"
   end
 
   def detect_language?
-    dt = params[:detect_language] ||
-         (params[:find] && params[:find][:detect_language])
-    return true if dt.nil?
-    %w(0 false).include?(dt.to_s.strip) ? false : true
+    dt = params[:detect_language]
+    return params[:engine].to_i < 3 if dt.nil?
+
+    %w[0 false].include?(dt.to_s.strip) ? false : true
   end
 
   def params_data_sources
-    %i(data_source_ids preferred_data_sources)
+    %i[data_source_ids preferred_data_sources]
       .each_with_object({}) do |p, obj|
       obj[p] = params[p] ? normalize_data_source(params[p]) : []
     end
@@ -95,7 +98,7 @@ class Params
 
   def normalize_engine
     engine = params[:engine].to_i
-    engine_is_set = (0..2).cover?(engine)
+    engine_is_set = (0..3).cover?(engine)
     engine_is_set ? engine : 0
   end
 end

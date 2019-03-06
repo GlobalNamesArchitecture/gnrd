@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Gnrd
   # Finds scientific names in texts
   class NameFinderEngine
@@ -6,9 +8,9 @@ module Gnrd
       taxon_finder: { klass: NameSpotter::TaxonFinderClient,
                       host: Gnrd.conf.taxon_finder_host,
                       port: Gnrd.conf.taxon_finder_port },
-      neti_neti:    { klass: NameSpotter::NetiNetiClient,
-                      host: Gnrd.conf.neti_neti_host,
-                      port: Gnrd.conf.neti_neti_port }
+      neti_neti: { klass: NameSpotter::NetiNetiClient,
+                   host: Gnrd.conf.neti_neti_host,
+                   port: Gnrd.conf.neti_neti_port }
     }.freeze
 
     def initialize(dossier, opts = {})
@@ -29,16 +31,16 @@ module Gnrd
     private
 
     def taxon_finder_names(names)
-      if options[:taxonfinder]
-        names[:tf] = @tf.find(dossier.text[:norm].dup)[:names]
-        names[:tf].each { |i| i[:scientificName].gsub!(/\[[^()]*\]/, ".") }
-      end
+      return unless options[:taxonfinder]
+
+      names[:tf] = @tf.find(dossier.text[:norm].dup)[:names]
+      names[:tf].each { |i| i[:scientificName].gsub!(/\[[^()]*\]/, ".") }
     end
 
     def netineti_names(names)
-      if options[:netineti]
-        names[:nn] = @nn.find(dossier.text[:norm].dup)[:names]
-      end
+      return unless options[:netineti]
+
+      names[:nn] = @nn.find(dossier.text[:norm].dup)[:names]
     end
 
     def taxon_finder_engine

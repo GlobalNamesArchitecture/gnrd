@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Gnrd do
   describe ".version" do
     it "returns app version" do

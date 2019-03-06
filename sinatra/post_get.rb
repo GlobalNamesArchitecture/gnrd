@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module Sinatra
-  # Creates a DSL method for combininb get and post requests with the same body
+  # Creates a DSL method for combining get and post requests with the same body
   module PostGet
     def post_get(route, &block)
       get(route, &block)
