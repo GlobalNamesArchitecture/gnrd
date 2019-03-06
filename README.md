@@ -15,7 +15,7 @@ Install
 
 There are quite a few moving parts in the system -- Tesseract for OCR,
 Libre Office to read various file formats, Postgresql for data, Redis for
-asyncronous execution of commands, NetiNeti and TaxonFinder for name-finding
+asyncronous execution of commands, `gnfinder` for name-finding
 etc. We recommend to install Docker and Docker Compose to dramatically simplify
 the installation process.
 
@@ -152,9 +152,9 @@ isolate to its own commit so I can cherry-pick around it.
 Copyright
 ---------
 
-Authors: [David Shorthouse][dps], [Dmitry Mozzherin][dimus]
+Authors: [Dmitry Mozzherin][dimus], [David Shorthouse][dps]
 
-Copyright (c) 2012-2016 Marine Biological Laboratory.
+Copyright © 2012-2019 Marine Biological Laboratory.
 See [LICENSE.txt][license] for further details.
 
 [ci_img]: https://secure.travis-ci.org/GlobalNamesArchitecture/gnrd.svg

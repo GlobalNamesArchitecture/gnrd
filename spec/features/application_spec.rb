@@ -134,19 +134,19 @@ describe "/name_finder" do
       visit "/name_finder?url=#{bad_url}"
       expect(page.current_path).to eq "/"
       expect(page.status_code).to be 200
-      expect(page.body).to include("URL retrieval error")
+      expect(page.body).to match(/URL (resource not found|retrieval error)/)
     end
 
-    it "returns timeout code for non-existant domain in json" do
+    it "returns page not found code for non-existant domain in json" do
       visit "/name_finder.json?url=#{bad_url}"
-      expect(page.status_code).to be 408
-      expect(page.body).to include("408")
+      expect(page.status_code).to be 404
+      expect(page.body).to include("404")
     end
 
-    it "returns timeout for non-existant domain in xml" do
+    it "returns page not found for non-existant domain in xml" do
       visit "/name_finder.xml?url=#{bad_url}"
-      expect(page.status_code).to be 408
-      expect(page.body).to include("<status>408</status>")
+      expect(page.status_code).to be 404
+      expect(page.body).to include("<status>404</status>")
     end
 
     it "returns not found for known domain, bad path in xml" do
@@ -243,7 +243,7 @@ describe "/name_finder" do
       visit "/"
       attach_file("find_file", msw)
       click_button("Find Names")
-      expect(page.body).to include("<td>Pangagrellus redivivus</td>")
+      expect(page.body).to include("Panagrellus redivivus")
     end
 
     it "returns result from Microsoft Excel file" do

@@ -27,6 +27,6 @@ Metrics/LineLength:
     - views/namefinder.builder
 Style/StringLiterals:
   EnforcedStyle: double_quotes
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   Exclude:
     - models/**/*

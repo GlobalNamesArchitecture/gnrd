@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Normalizes parameters entered via API or User Interface
+# Normalizes parameters entered via API or User Interface.
 class Params
   attr_reader :params
 
@@ -22,6 +22,7 @@ class Params
     res[:detect_language] = detect_language?
     res[:format] = normalize_format
     res[:engine] = normalize_engine
+    res[:no_bayes] = res[:engine] == 1
     res[:unique] = adjust_by_verbatim if params[:verbatim]
     res
   end
@@ -59,7 +60,7 @@ class Params
   end
 
   def params_boolean
-    %i[unique return_content all_data_sources best_match_only]
+    %i[unique return_content with_verification]
       .each_with_object({}) do |p, obj|
       obj[p] = true?(params[p])
     end
@@ -72,13 +73,11 @@ class Params
 
   def detect_language?
     dt = params[:detect_language]
-    return params[:engine].to_i < 3 if dt.nil?
-
-    %w[0 false].include?(dt.to_s.strip) ? false : true
+    %w[1 true].include?(dt.to_s.strip) ? true : false
   end
 
   def params_data_sources
-    %i[data_source_ids preferred_data_sources]
+    %i[preferred_data_sources]
       .each_with_object({}) do |p, obj|
       obj[p] = params[p] ? normalize_data_source(params[p]) : []
     end
@@ -98,7 +97,7 @@ class Params
 
   def normalize_engine
     engine = params[:engine].to_i
-    engine_is_set = (0..3).cover?(engine)
+    engine_is_set = (0..1).cover?(engine)
     engine_is_set ? engine : 0
   end
 end

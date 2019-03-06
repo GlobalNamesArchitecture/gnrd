@@ -1,0 +1,16 @@
+{
+  "spellright.language": [
+    "English (American)"
+  ],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex",
+    "plaintext",
+    "haml"
+  ],
+  "spellright.parserByClass": {
+    "haml": {
+      "parser": "code"
+    }
+  }
+}

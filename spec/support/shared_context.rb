@@ -58,11 +58,4 @@ RSpec.shared_context "shared_context", a: :b do
 
   let(:binary_path) { path + "/binary" }
   let(:binary_dossier) { d.new(file: { path: binary_path }) }
-
-  let(:names_nn_tt) do
-    names = File.read(__dir__ + "/../files/json/names.json")
-    JSON.parse(names, symbolize_names: true)
-  end
-  let(:names_nn) { { nn: names_nn_tf[:nn] } }
-  let(:names_tf) { { tf: names_nn_tf[:tf] } }
 end

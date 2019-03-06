@@ -32,33 +32,34 @@
     =  json_url + "?text=A+spider+named+Pardosa+moesta+Banks,+1892"
   %dt engine (optional)
   %dd
-    Type: integer, Default: 0. Either 1 for TaxonFinder, 2 for NetiNeti, or 0
-    for both. If absent, both engines are used.
+    Type: integer, Default: 0. Heuristic and Bayes approaches is 0,
+    skipping Bayes algorithm is 1.
     %br/
     %em e.g.
     = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;engine=1"
   %dt unique (optional)
   %dd
-    Type: boolean (true/false), Default: true. If 'true', response has unique
-    names without offsets.
+    Type: boolean (true/false or 1/0), Default: true. If 'true', response
+    has unique names without offsets.
     %br/
     %em e.g.
     = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;unique=true"
   %dt verbatim (optional)
   %dd
-    Type: boolean (true/false), Default: false. If 'true', response includes
-    verbatim strings.
+    Type: boolean (true/false or 1/0), Default: false. If 'true', response
+    includes verbatim strings.
     %br/
     %em e.g.
     = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;verbatim=false"
   %dt detect_language (optional)
-  %dd
-    Type: boolean (true/false), Default: true. When 'true', NetiNeti is not
-    used if the language of incoming text is determined not to be English.
-    When 'false', NetiNeti will be used if requested.
+  %dj
+    Type: boolean (true/false or 1/0), Default: false. When 'true', Bayes
+    algorithm will use a training set for the detected language, if
+    it is available. Only English and German are supported at the moment.
+    If there is an unsupported language, English training set is used.
     %br/
     %em e.g.
-    = json_url + "?url=http://es.wikipedia.org/wiki/Animalia&amp;detect_language=false"
+    = json_url + "?url=http://es.wikipedia.org/wiki/Animalia&amp;detect_language=true"
   %dt callback (optional)
   %dd
     Type: string. Can be used for cross-domain JavaScript integration.
@@ -66,35 +67,39 @@
     %em e.g.
     = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;callback=MyCoolCallBack"
 
-  %h4 Optional resolution parameters
+  %h4 Optional parameters for verifying found names
 
-  %dt all_data_sources (optional)
+  %dt with_verification (optional)
   %dd
     Type: bolean (true/false). Resolve found names against all available
     = succeed "." do
       %a{ href: "http://resolver.globalnames.org/data_sources" }
-        Data Sources
+        Data Sources and return the one best match.
     %br/
     %em e.g.
-    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;all_data_sources=true"
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;with_verification=true"
 
-  %dt data_source_ids (optional)
+    If you are interested in results from particular data sources use the
+    preferred_data_sources parameter
+
+  %dt preferred_data_sources (optional)
   %dd
-    Type: string. Pipe separated list of data source ids to resolve found
-    names against. See list of
+    Type: string. Pipe-separated list of data source ids. If there is a match
+    for these data sources, the result will always be shown at the
+    preferred_results section. See the list of
     = succeed "." do
       %a{ href: "http://resolver.globalnames.org/data_sources" }
         Data Sources
     %br/
     %em e.g.
-    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;data_source_ids=1|169"
+    = json_url + "?url=http://en.wikipedia.org/wiki/Animalia&amp;preferred_data_sources=1|12"
 
 %h3
   %a{ name: "api-example" } Example
 
 %p
   %em e.g.
-  = json_url + "?url=http://en.wikipedia.org/wiki/Araneae"
+  = json_url + "?url=http://en.wikipedia.org/wiki/Araneae&amp;preferred_data_sources=1|12"
 
 %h4 Initial Response Containing Token URL
 
@@ -105,13 +110,26 @@
 %pre.code
   :escaped
     {
-      "token_url" : "#{json_url}?token=VmuYurv3QLyMXLABnqU1vg",
-      "input_url" : "http://en.wikipedia.org/wiki/Araneae",
-      "file"      : "",
-      "status"    : 303,
-      "engines"   : ["TaxonFinder", "NetiNeti"],
-      "unique"    : false,
-      "verbatim"  : true,
+      "token_url": "http://localhost:9292/name_finder.json?token=6ofibu06av",
+      "input_url": "https://en.wikipedia.org/wiki/Animalia",
+      "file": null,
+      "status": 303,
+      "engines": [
+        "gnfinder"
+      ],
+      "unique": false,
+      "verbatim": true,
+      "parameters": {
+        "return_content": false,
+        "with_verification": false,
+        "preferred_data_sources": [
+          1,
+          12
+        ],
+        "detect_language": false,
+        "engine": 0,
+        "no_bayes": false
+      },
       "queue_size": 1
     }
 
@@ -119,43 +137,109 @@
 
 %pre.code
   :escaped
-    {
-      "token_url" : "#{json_url}?token=VmuYurv3QLyMXLABnqU1vg",
-      "input_url" : "http://en.wikipedia.org/wiki/Araneae",
-      "file"      : "",
-      "status"    : 200,
-      "engines"   : ["TaxonFinder", "NetiNeti"],
-      "unique"    : false,
-      "verbatim"  : true,
-      "agent"     : {
-        "code"         : "200",
-        "content_type" : "text/html; charset=UTF-8",
-        "filename"     : "Araneae.html"
-      },
-      "created"   : "2012-06-28T03:21:28-04:00",
-      "execution_time" : {
-        "find_names_duration" : 1.935246,
-        "total_duration"      : 4.051854
-      },
-      "total"    : 347,
-      "names":[
-        {
-          "verbatim"       : "T. nigroannulatum build",
-          "identifiedName" : "T. nigroannulatum",
-          "scientificName" : "Theridion nigroannulatum",
-          "offsetStart"    : 39686,
-          "offsetEnd"      : 39708,
-        },
-        {
-          "verbatim"       : "Uloboridae",
-          "identifiedName" : "Uloboridae"
-          "scientificName" : "Uloboridae",
-          "offsetStart"    : 39885,
-          "offsetEnd"      : 39896,
-        },
-        ...etc...
-      ]
-    }
+          {
+            "token_url": "http://localhost:9292/name_finder.json?token=6ofibu06av",
+            "input_url": "https://en.wikipedia.org/wiki/Animalia",
+            "file": null,
+            "status": 200,
+            "engines": [
+              "gnfinder"
+            ],
+            "unique": false,
+            "verbatim": true,
+            "parameters": {
+              "return_content": false,
+              "with_verification": false,
+              "preferred_data_sources": [
+                1,
+                12
+              ],
+              "preferred_data_sources": [],
+              "detect_language": false,
+              "engine": 0,
+              "no_bayes": false
+            },
+            "names": [
+              {
+         with_verification": "Animalia)",
+                "scientificName": "Animalia",
+                "offsetStart": 4207,
+                "offsetEnd": 4216
+              }, ...
+              {
+                "verbatim": "Sunda",
+                "scientificName": "Sunda",
+                "offsetStart": 85264,
+                "offsetEnd": 85269
+              }
+            ],
+            "language_used": "eng",
+            "execution_time": {
+              "text_preparation_duration": 3.831543207168579,
+              "find_names_duration": 1.442460060119629,
+              "total_duration": 5.2784082889556885
+            },
+            "verified_names": [
+              {
+                "supplied_name_string": "Animalia",
+                "is_known_name": true,
+                "results": {
+                  "match_value": "EXACT",
+                  "name_string": "Animalia",
+                  "current_name_string": "Animalia",
+                  "data_source_id": 1,
+                  "data_source_title": "Catalogue of Life",
+                  "classification_path": "Animalia",
+                  "edit_distance": 0
+                },
+                "preferred_results": [
+                  {
+                    "data_source_id": 1,
+                    "data_source_title": "Catalogue of Life",
+                    "name": "Animalia",
+                    "taxon_id": "54767744"
+                  }
+                ]
+              }, ...
+              {
+                "supplied_name_string": "Runa",
+                "is_known_name": true,
+                "results": {
+                  "match_value": "EXACT",
+                  "name_string": "Runa L. Agassiz, 1841",
+                  "current_name_string": "Runa L. Agassiz, 1841",
+                  "data_source_id": 9,
+                  "data_source_title": "World Register of Marine Species",
+                  "classification_path": "Biota|Animalia|Echinodermata|Echinozoa|Echinoidea|Euechinoidea|Irregularia|Neognathostomata|Clypeasteroida|Scutellina||Runa",
+                  "edit_distance": 0
+                },
+                "preferred_results": [
+                  {
+                    "data_source_id": 12,
+                    "data_source_title": "Encyclopedia of Life",
+                    "name": "Runa",
+                    "taxon_id": "24228379"
+                  }
+                ]
+              },
+              {
+                "supplied_name_string": "Sunda",
+                "is_known_name": true,
+                "results": {
+                  "match_value": "EXACT",
+                  "name_string": "Sunda Pruthi, 1936",
+                  "current_name_string": "Stirellus Osborn & Ball, 1902",
+                  "data_source_id": 181,
+                  "data_source_title": "The Interim Register of Marine and Nonmarine Genera",
+                  "classification_path": "Biota|Animalia|Arthropoda|Hexapoda|Insecta|Hemiptera|Cicadellidae|Stirellus",
+                  "edit_distance": 0
+                },
+                "preferred_results": []
+              }
+            ],
+            "total": 450,
+            "queue_size": 0
+          }
 
 %h3 Advanced
 
@@ -185,4 +269,3 @@
     res = Net::HTTP.start(uri.hostname, uri.port) do |http|
       http.request(req)
     end
-

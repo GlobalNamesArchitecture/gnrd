@@ -56,9 +56,9 @@ describe Params do
       expect(prm[:detect_language]).to be false
     end
 
-    it "sets detect_language to true by default" do
+    it "sets detect_language to false by default" do
       prm = subject.new(params2).normalize
-      expect(prm[:detect_language]).to be true
+      expect(prm[:detect_language]).to be false
     end
 
     it "normalizes format" do
@@ -68,10 +68,10 @@ describe Params do
     end
 
     it "normalizes engine" do
-      expect(subject.new(params1).normalize[:engine]).to be 2
+      expect(subject.new(params1).normalize[:engine]).to be 0
       expect(subject.new(params2).normalize[:engine]).to be 1
       expect(subject.new(params3).normalize[:engine]).to be 0
-      expect(subject.new(params_gnfinder).normalize[:engine]).to be 3
+      expect(subject.new(params_gnfinder).normalize[:engine]).to be 0
     end
 
     it "normalizes data sources" do

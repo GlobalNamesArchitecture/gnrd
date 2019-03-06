@@ -2,19 +2,19 @@
 
 source "https://rubygems.org"
 
-gem "actionpack", "~> 5.2"
-gem "activerecord", "~> 5.2"
+gem "actionpack", "~> 5.2.3"
+gem "activerecord", "~> 5.2.3"
 gem "addressable", "~> 2.5"
 gem "backports", "~> 3.12"
 gem "docsplit", "~> 0.7"
-gem "gnfinder", "~> 0.2"
+gem "gnfinder", "~> 0.9.0.1"
 gem "grpc", "~> 1.15"
 gem "grpc-tools", "~> 1.15"
 gem "haml", "~> 5.0"
 gem "i18n", "~> 1.6"
 gem "iconv", "~> 1.0.5" # required by docsplit
 gem "mail", "~> 2.7"
-gem "name-spotter", "~> 0.3.3"
+gem "nokogiri", ">= 1.10.4"
 gem "pg", "~> 1.1" # libpq-dev is dependency
 gem "puma", "~> 3.12"
 gem "rack", "~> 2.0"

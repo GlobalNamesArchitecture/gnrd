@@ -11,8 +11,8 @@ module Gnrd
       f.write(resp.body)
       f.close
       path
-    rescue RestClient::ExceptionWithResponse => err
-      raise Gnrd::UrlRetrievalError.new(err.response.code)
+    rescue RestClient::ExceptionWithResponse => e
+      raise Gnrd::UrlRetrievalError.new(e.response.code)
     end
 
     private

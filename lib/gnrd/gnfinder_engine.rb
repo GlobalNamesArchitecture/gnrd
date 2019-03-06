@@ -22,15 +22,12 @@ module Gnrd
     # gen_opts(params) generates parameters recognizable by gRPC server of
     # gnfinder
     def gen_opts(params)
-      opts = { with_bayes: true }
-      opts[:language] = "eng" unless params[:detect_language]
+      opts = {}
+      opts[:no_bayes] = params[:no_bayes]
+      opts[:detect_language] = params[:detect_language]
       opts[:sources] = params[:preferred_data_sources]
-      opts[:sources] = params[:data_source_ids] if opts[:sources].empty?
-      if params[:all_data_sources] || !opts[:sources].empty?
-        opts[:with_verification] = true
-        params[:best_match_only] = true
-        params[:data_source_ids] = params[:preferred_data_sources] =
-                                     opts[:sources]
+      if params[:with_verification] || !opts[:sources].empty?
+        opts[:verification] = true
       end
       opts
     end

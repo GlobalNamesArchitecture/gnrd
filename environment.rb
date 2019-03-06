@@ -6,11 +6,11 @@ require "filemagic"
 require "fileutils"
 require "json"
 require "logger"
-require "name-spotter"
 require "ostruct"
 require "rchardet"
 require "resque"
 require "resque/server"
+require "rest_client"
 require "sanitize"
 require "gnfinder"
 
@@ -100,13 +100,10 @@ module Gnrd
 
     def conf_default
       {
-        "redis_host" => "redis",
+        "redis_host" => "redis", "tmp_dir" => "/tmp",
         "database" => db_conf, "session_secret" => "!!change!!me!!",
-        "tmp_dir" => "/tmp", "neti_neti_host" => "nn",
-        "neti_neti_port" => 6384, "taxon_finder_host" => "tf",
-        "taxon_finder_port" => 1234, "gnfinder_host" => "gnf",
-        "gnfinder_port" => 8778, "disqus_shortname" => "globalnames-rd",
-        "resolver_url" => "http://resolver.globalnames.org/name_resolvers.json"
+        "gnfinder_host" => "gnf", "gnfinder_port" => 8778,
+        "disqus_shortname" => "globalnames-rd"
       }
     end
 

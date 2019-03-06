@@ -33,9 +33,9 @@
         - if !@output[:unique]
           %strong instances
         found using
-        %strong #{@output[:engines].join(" and ")}
-        - if @output[:engines] == ["TaxonFinder"] && @output[:english] == false
-          (NetiNeti was not used)
+        %strong #{@output[:engine]}
+        - if @output[:engine] == "gnfinder_no_bayes"
+          (Bayes algorithms were not used)
     - if @output[:execution_time] && @output[:status] == 200
       %li
         #{sprintf("%.3f", @output[:execution_time][:text_preparation_duration])}s to prepare text,

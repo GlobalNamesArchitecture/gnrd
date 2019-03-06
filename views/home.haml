@@ -2,16 +2,11 @@
   Find scientific names on web pages, PDFs, Microsoft Office documents, images,
   or in freeform text. Encrypted or image-based PDFs and image files first pass
   through an OCR routine using
-  %a{ href: "http://code.google.com/p/tesseract-ocr/" } Tesseract
-  prior to using the excellent
-  %a{ href: "http://code.google.com/p/taxon-finder/" } TaxonFinder
-  and
-  %a{ href: "https://github.com/mbl-cli/NetiNeti" } NetiNeti
-  names discovery engines. The language of incoming content is determined using
-  %a{ href: "https://rubygems.org/gems/unsupervised-language-detection" }
-    unsupervised language detection.
-  If found to be other than English, TaxonFinder is preferentially used. Found
-  names can be optionally resolved against a number of resources.
+  %a{ href: "https://github.com/tesseract-ocr/tesseract" } Tesseract
+  prior to using
+  %a{ href: "https://github.com/gnames/gnfinder" } gnfinder
+  names discovery engine.
+  Found names can be optionally verified against a number of resources.
 
 .panel#chrome-panel
   .clear#chrome
@@ -56,20 +51,19 @@
     #advanced_selections
       %fieldset
         %legend Name-Finding Engine
-        - { "Both" => 0, "TaxonFinder" => 1,
-            "NetiNeti" => 2 }.each do |key, value|
-          - checked = (key == "Both") ? true : nil
+        - { "gnfinder" => 0, "gnfinder_no_bayes" => 1 }.each do |key, value|
+          - checked = (key == "gnfinder") ? true : nil
           %input{ type: :radio, name: "engine", id: "engine_#{key}",
                   value: value, checked: checked }
           %label{ for: "engine_#{key}" }= key
       %fieldset
         %legend Detect Language
         - { "Yes" => "true", "No" => "false" }.each do |key, value|
-          - checked = (key == "Yes") ? true : nil
+          - checked = (key == "No") ? true : nil
           - id = key.gsub(" ", "_").downcase
           %input{ type: :radio, name: :detect_language,
             id: "detect_language_#{id}", value: value,
-            checked: checked }
+            checked: nil }
           %label{ for: "detect_language_#{id}" }= key
       %fieldset
         %legend Output
@@ -91,19 +85,23 @@
                   value: v, checked: checked }
           %label{ for: "unique_#{id}" }= k
       %fieldset
-        %legend Resolve Against
-        %input{ type: :checkbox, id: "all_data_sources",
-                name: "all_data_sources" }
-        %label{ for: "all_data_sources",
-                id: "all_data_sources_label" }= "All data sources"
+        %legend Verification
+        %input{ type: :checkbox, id: "with_verification",
+                name: "with_verification" }
+        %label{ for: "with_verification",
+                id: "with_verification_label" }= "Verify (best result only)"
+
+        %p
+          %strong Return results from preferred data sources:
+
         - { "Catalogue of Life" => 1, "ITIS" => 3,
             "Index Fungorum" => 5, "GBIF" => 11, "IPNI" => 167,
-            "EOL" => 12, "Union" => 7,
+            "Encyclopedia of Life" => 12, "Open Tree of Life" => 179,
             "uBio NameBank" => 169 }.each do |key, value|
           %div
-            %input{ type: :checkbox, id: "data_source_ids_#{value}",
-                    name: "data_source_ids[#{value}]" }
-            %label{ for: "data_source_ids_#{value}" }= key
+            %input{ type: :checkbox, id: "preferred_data_sources_#{value}",
+                    name: "preferred_data_sources[#{value}]" }
+            %label{ for: "preferred_data_sources_#{value}" }= key
     %div
       %input.form-button.submit-button{ type: :submit, value: "Find Names" }
 %p

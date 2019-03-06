@@ -15,7 +15,9 @@ xml.result do
     xml.execution_time do
       xml.text_preparation_duration @output[:execution_time][:text_preparation_duration]
       xml.find_names_duration @output[:execution_time][:find_names_duration]
-      xml.names_resolution_duration @output[:execution_time][:names_resolution_duration] if @output[:execution_time][:names_resolution_duration]
+      if @output[:execution_time][:names_resolution_duration]
+        xml.names_resolution_duration @output[:execution_time][:names_resolution_duration]
+      end
       xml.total_duration @output[:execution_time][:total_duration]
     end
   end
@@ -47,12 +49,14 @@ xml.result do
   end
   xml.context do
     @output[:context]&.each do |context|
-      xml.context_data_source_id context[:context_data_source_id] if context[:context_data_source_id]
+      if context[:context_data_source_id]
+        xml.context_data_source_id context[:context_data_source_id]
+      end
       xml.context_clade context[:context_clade] if context[:context_clade]
     end
   end
-  xml.resolved_names "xmlns:dwc" => "http://rs.tdwg.org/dwc/terms/" do
-    @output[:resolved_names]&.each do |name|
+  xml.verified_names "xmlns:dwc" => "http://rs.tdwg.org/dwc/terms/" do
+    @output[:verified_names]&.each do |name|
       xml.name do
         xml.dwc :scientificName, name[:supplied_name_string]
         xml.results do
@@ -62,11 +66,17 @@ xml.result do
               xml.gni_uuid r[:gni_uuid] if r[:gni_uuid]
               xml.name_string r[:name_string] if r[:name_string]
               xml.canonical_form r[:canonical_form] if r[:canonical_form]
-              xml.classification_path r[:classification_path] if r[:classification_path]
-              xml.classification_path_ids r[:classification_path_ids] if r[:classification_path_ids]
+              if r[:classification_path]
+                xml.classification_path r[:classification_path]
+              end
+              if r[:classification_path_ids]
+                xml.classification_path_ids r[:classification_path_ids]
+              end
               xml.taxon_id r[:taxon_id] if r[:taxon_id]
               xml.current_taxon_id r[:current_taxon_id] if r[:current_taxon_id]
-              xml.current_name_string r[:current_name_string] if r[:current_name_string]
+              if r[:current_name_string]
+                xml.current_name_string r[:current_name_string]
+              end
               xml.local_id r[:local_id] if r[:local_id]
               xml.global_id r[:global_id] if r[:global_id]
               xml.url r[:url] if r[:url]
