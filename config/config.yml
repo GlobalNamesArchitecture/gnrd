@@ -12,19 +12,19 @@ resolver_url: <%= ENV["RESOLVER_URL"] %>
 database:
   development:
     adapter: postgresql
-    host: <%= ENV["DB_HOST"] %>
+    host: <%= ENV["GNRD_DB_HOST"] %>
     username: postgres
     password: null
     database: gnrd_development
   test:
     adapter: postgresql
-    host: <%= ENV["DB_HOST"] %>
+    host: <%= ENV["GNRD_DB_HOST"] %>
     username: postgres
     password: null
     database: gnrd_test
   production:
     adapter: postgresql
-    host: <%= ENV["DB_HOST"] %>
-    username: <%= ENV["DB_USER"] %>
-    password: <%= ENV["DB_PASSWORD"] %>
+    host: <%= ENV["GNRD_DB_HOST"] %>
+    username: <%= ENV["GNRD_DB_USER"] %>
+    password: <%= ENV["GNRD_DB_USER_PASSWORD"] %>
     database: "gnrd"

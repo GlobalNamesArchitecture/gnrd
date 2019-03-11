@@ -6,6 +6,7 @@ services:
       - .env
     ports:
       - "0.0.0.0:9292:9292"
+      - "0.0.0.0:80:80"
     volumes:
       - .:/app
     depends_on:
@@ -13,7 +14,7 @@ services:
       - tf
       - gnf
       - redis
-      - pg
+      - pgdb
   redis:
     image: redis
   nn:
@@ -24,5 +25,7 @@ services:
     image: gnames/gnfinder:v0.8.4
     ports:
       - "0.0.0.0:8778:8778"
-  pg:
+  pgdb:
     image: postgres
+    ports:
+      - "0.0.0.0:5432:5432"
