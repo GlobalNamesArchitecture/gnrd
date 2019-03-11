@@ -2,6 +2,8 @@ version: '3'
 services:
   app:
     build: .
+    env_file:
+      - .env
     ports:
       - "0.0.0.0:9292:9292"
     volumes:

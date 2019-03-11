@@ -1,0 +1,30 @@
+---
+session_secret: <%= ENV["GNRD_SALT"] %>
+tmp_dir: "/tmp"
+neti_neti_host: <%= ENV["NETI_NETI_HOST"] %>
+neti_neti_port: <%= ENV["NETI_NETI_PORT"] %>
+taxon_finder_host: <%= ENV["TAXON_FINDER_HOST"] %>
+taxon_finder_port: <%= ENV["TAXON_FINDER_PORT"] %>
+gnfinder_host: <%= ENV["GNFINDER_HOST"] %>
+gnfinder_port:  <%= ENV["GNFINDER_PORT"] %>
+redis_host: <%= ENV["REDIS_HOST"] %>
+resolver_url: <%= ENV["RESOLVER_URL"] %>
+database:
+  development:
+    adapter: postgresql
+    host: <%= ENV["DB_HOST"] %>
+    username: postgres
+    password: null
+    database: gnrd_development
+  test:
+    adapter: postgresql
+    host: <%= ENV["DB_HOST"] %>
+    username: postgres
+    password: null
+    database: gnrd_test
+  production:
+    adapter: postgresql
+    host: <%= ENV["DB_HOST"] %>
+    username: <%= ENV["DB_USER"] %>
+    password: <%= ENV["DB_PASSWORD"] %>
+    database: "gnrd"

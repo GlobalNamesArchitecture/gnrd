@@ -4,7 +4,8 @@ require "active_record"
 require "docsplit"
 require "filemagic"
 require "fileutils"
-require "json"
+require "yaml"
+require "erb"
 require "logger"
 require "name-spotter"
 require "ostruct"
@@ -112,8 +113,8 @@ module Gnrd
 
     def conf_file
       @conf_file ||= lambda do
-        path = File.join(__dir__, "config", "config.json")
-        File.exist?(path) ? JSON.parse(File.read(path)) : {}
+        path = File.join(__dir__, "config", "config.yml")
+        YAML.safe_load(ERB.new(File.read(path)).result)
       end[]
     end
   end
