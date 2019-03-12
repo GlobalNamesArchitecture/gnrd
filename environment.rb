@@ -69,7 +69,7 @@ module Gnrd
         obj[e.to_s] = { "adapter" => "postgresql", "encoding" => "unicode",
                         "database" => "gnrd_#{e}", "pool" => 5,
                         "username" => "postgres", "password" => nil,
-                        "host" => "pg" }
+                        "host" => "pgdb" }
       end
     end
 
@@ -91,6 +91,10 @@ module Gnrd
     def connect
       ActiveRecord::Base.logger = Logger.new(__dir__ + "/log/postgres.log")
       ActiveRecord::Base.logger.level = Logger::INFO
+      if ENV["RACK_ENV"] == "production"
+        Gnrd.conf.database.delete("test")
+        Gnrd.conf.database.delete("development")
+      end
       ActiveRecord::Base.configurations = Gnrd.conf.database
       ActiveRecord::Base.establish_connection(env)
     end
@@ -114,7 +118,7 @@ module Gnrd
     def conf_file
       @conf_file ||= lambda do
         path = File.join(__dir__, "config", "config.yml")
-        YAML.safe_load(ERB.new(File.read(path)).result)
+        conf = YAML.safe_load(ERB.new(File.read(path)).result)
       end[]
     end
   end
