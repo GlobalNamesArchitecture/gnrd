@@ -143,10 +143,10 @@ class OutputBuilder
     end
 
     def add_resolver_results_gnfinder(res, nf)
-      verif = nf.names.each_with_object({}) do |n, m|
-        next if m[n.name] || !n.verification
+      verif = nf.names.each_with_object({}) do |n, v|
+        next if v[n.name] || !n.verification
 
-        m[n.name] = verif_gnfinder(n)
+        v[n.name] = verif_gnfinder(n)
       end
       return if verif.empty?
 
@@ -154,6 +154,8 @@ class OutputBuilder
         m << {
           supplied_name_string: k,
           is_known_name: v[:is_known_name],
+          data_sources_number: v[:data_sources_number],
+          in_curated_sources: v[:in_curated_sources],
           results: v[:results],
           preferred_results: v[:preferred_results]
         }
@@ -165,7 +167,7 @@ class OutputBuilder
       {
         is_known_name: v.match_type == :EXACT,
         data_sources_number: v.data_sources_num,
-        in_curated_sources: v.data_source_quality,
+        in_curated_sources: v.data_source_quality == "HasCuratedSources",
         results: {
           match_value: v.match_type,
           name_string: v.matched_name,

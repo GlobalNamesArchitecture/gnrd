@@ -118,7 +118,7 @@ module Gnrd
     def conf_file
       @conf_file ||= lambda do
         path = File.join(__dir__, "config", "config.yml")
-        conf = YAML.safe_load(ERB.new(File.read(path)).result)
+        YAML.safe_load(ERB.new(File.read(path)).result)
       end[]
     end
   end

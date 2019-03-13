@@ -127,6 +127,8 @@ describe "api" do
       expect(res[:resolved_names].size).to be 3
       expect(res[:resolved_names][0][:supplied_name_string])
         .to eq "Pardosa moesta"
+      expect(res[:resolved_names][0][:in_curated_sources])
+        .to eq true
     end
   end
 

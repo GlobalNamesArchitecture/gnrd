@@ -13,6 +13,7 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Exclude:
     - models/output_builder.rb
+    - environment.rb
 Metrics/ClassLength:
   Exclude:
     - models/output_builder.rb
