@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y software-properties-common && \
     apt-add-repository ppa:brightbox/ruby-ng && \
     apt-get update && \
-    apt-get install -y ruby2.5 ruby2.5-dev ruby-switch \
+    apt-get install -y ruby2.6 ruby2.6-dev ruby-switch \
     zlib1g-dev liblzma-dev libxml2-dev libpq-dev git locales \
     libxslt-dev supervisor build-essential nodejs supervisor && \
     apt-get -y install graphicsmagick poppler-utils poppler-data \
@@ -30,7 +30,7 @@ ENV RESQUE_WORKERS 1
 ENV QUEUE NameFinder
 ENV PUMA_WORKERS 2
 
-RUN ruby-switch --set ruby2.5
+RUN ruby-switch --set ruby2.6
 RUN echo 'gem: --no-rdoc --no-ri >> "$HOME/.gemrc"'
 
 RUN gem install bundler && \
@@ -40,7 +40,7 @@ WORKDIR /app
 
 COPY config/docker/nginx-sites.conf /etc/nginx/sites-enabled/default
 COPY Gemfile /app
-COPY Gemfile.lock /app
+#COPY Gemfile.lock /app
 
 RUN bundle install
 

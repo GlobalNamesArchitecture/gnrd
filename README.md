@@ -154,7 +154,7 @@ Copyright
 
 Authors: [David Shorthouse][dps], [Dmitry Mozzherin][dimus]
 
-Copyright (c) 2012-2016 Marine Biological Laboratory.
+Copyright (c) 2012-2019 Marine Biological Laboratory.
 See [LICENSE.txt][license] for further details.
 
 [ci_img]: https://secure.travis-ci.org/GlobalNamesArchitecture/gnrd.svg

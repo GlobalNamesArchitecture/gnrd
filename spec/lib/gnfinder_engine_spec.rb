@@ -24,7 +24,7 @@ describe Gnrd::GnfinderEngine do
       gnf = subject.new(utf_dossier, params)
       opts = gnf.opts
       expect(opts[:language]).to eq "eng"
-      expect(opts[:with_verification]).to be true
+      expect(opts[:verification]).to be true
       expect(opts[:sources]).to eq [1, 11, 179]
       expect(params[:best_match_only]).to be true
     end
@@ -33,7 +33,7 @@ describe Gnrd::GnfinderEngine do
       params = Params.new(engine: 3).normalize
       gnf = subject.new(utf_dossier, params)
       opts = gnf.opts
-      expect(opts[:with_verification]).to be nil
+      expect(opts[:verification]).to be nil
     end
   end
 
@@ -44,13 +44,13 @@ describe Gnrd::GnfinderEngine do
                  all_data_sources: true).normalize
     end
     it "finds names" do
-      params[:with_bayes] = false
+      params[:no_bayes] = true
       gnf = subject.new(utf_dossier, params)
       names = gnf.find_resolve
       name = names[0].to_h
       expect(name[:type]).to eq "Uninomial"
-      expect(name[:verification].to_h[:current_name]).to eq "Pedicia"
-      expect(name[:verification].to_h[:data_source_id]).to be 1
+      expect(name[:verification][:best_result][:current_name]).to eq "Pedicia"
+      expect(name[:verification][:best_result][:data_source_id]).to be 1
     end
   end
 end

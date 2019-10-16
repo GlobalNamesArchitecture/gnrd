@@ -162,25 +162,25 @@ class OutputBuilder
 
     def verif_gnfinder(n)
       v = n.verification
+      br = v.best_result
       {
-        is_known_name: v.match_type == :EXACT,
+        is_known_name: br.match_type == :EXACT,
         data_sources_number: v.data_sources_num,
         in_curated_sources: v.data_source_quality,
         results: {
-          match_value: v.match_type,
-          name_string: v.matched_name,
-          current_name_string: v.current_name,
-          data_source_id: v.data_source_id,
-          data_source_title: v.data_source_title,
-          classification_path: v.classification_path,
-          edit_distance: v.edit_distance
+          match_value: br.match_type,
+          name_string: br.matched_name,
+          current_name_string: br.current_name,
+          data_source_id: br.data_source_id,
+          data_source_title: br.data_source_title,
+          classification_path: br.classification_path,
+          edit_distance: br.edit_distance
         },
         preferred_results: v.preferred_results.each_with_object([]) do |r, ary|
           ary << {
             data_source_id: r.data_source_id,
             data_source_title: r.data_source_title,
-            name_id: r.name_id,
-            name: r.name,
+            name: r.matched_name,
             taxon_id: r.taxon_id
           }
         end

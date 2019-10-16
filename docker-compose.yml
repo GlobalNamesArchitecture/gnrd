@@ -19,7 +19,7 @@ services:
   tf:
     image: gnames/taxonfinder
   gnf:
-    image: gnames/gnfinder:v0.8.4
+    image: gnames/gnfinder:v0.9.0
     ports:
       - "0.0.0.0:8778:8778"
   pg:
