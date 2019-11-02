@@ -98,7 +98,7 @@ GEM
       unicode_utils (~> 1.4)
       unsupervised-language-detection (~> 0.0.6)
     netrc (0.11.0)
-    nokogiri (1.10.1)
+    nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
     nokogumbo (1.5.0)
       nokogiri
