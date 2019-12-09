@@ -1,8 +1,7 @@
 sudo: required
 language: ruby
 rvm:
-  - 2.4
-  - 2.5
+  - 2.6
 bundler_args: --without development
 services:
   - redis-server
@@ -11,7 +10,7 @@ services:
 addons:
   postgresql: "9.6"
 before_install:
-  - docker run -d --name gnf -p 0.0.0.0:8778:8778 gnames/gnfinder
+  - docker run -d --name gnf -p 0.0.0.0:8778:8778 gnames/gnfinder:v0.9.0
   - sudo apt-get update
   - sudo apt-get -qy install graphicsmagick
   - sudo apt-get -qy install --fix-missing poppler-utils
@@ -22,8 +21,16 @@ before_install:
   - sudo apt-get -qy install libreoffice
   - sudo apt-get -qy install libmagic-dev
   - sudo apt-get -qy install wget
-  - cp config/config.json.example config/config.json
   - gem install bundler
+  - export RACK_ENV=test
+  - export RESQUE_WORKERS=1
+  - REDIS_HOST=0.0.0.0
+  - export GNRD_SALT=test
+  - export GNFINDER_HOST=0.0.0.0
+  - export GNFINDER_PORT=8778
+  - GNRD_DB_HOST=0.0.0.0
+  - GNRD_DB_USER=postgres
+  - GNRD_DB_USER_PASSWORD=''
 before_script:
   - bundle exec rake db:setup
   - QUEUE=gnrd TERM_CHILD=1 rake resque:work &
