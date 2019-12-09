@@ -55,20 +55,16 @@ module Gnrd
     end
 
     def conf
-      @conf ||= lambda do
-        conf = conf_default.each_with_object({}) do |h, obj|
-          obj[h[0]] = conf_file[h[0]] || h[1]
-        end
-        OpenStruct.new(conf)
-      end[]
+      @conf ||= OpenStruct.new(conf_default)
     end
 
     def db_conf
       ENVIRONMENTS.each_with_object({}) do |e, obj|
         obj[e.to_s] = { "adapter" => "postgresql", "encoding" => "unicode",
                         "database" => "gnrd_#{e}", "pool" => 5,
-                        "username" => "postgres", "password" => nil,
-                        "host" => "pg" }
+                        "username" => ENV["GNRD_DB_USER"],
+                        "password" => ENV["GNRD_DB_USER_PASSWORD"],
+                        "host" => ENV["GNRD_DB_HOST"] }
       end
     end
 
@@ -100,18 +96,12 @@ module Gnrd
 
     def conf_default
       {
-        "redis_host" => "redis", "tmp_dir" => "/tmp",
-        "database" => db_conf, "session_secret" => "!!change!!me!!",
-        "gnfinder_host" => "gnf", "gnfinder_port" => 8778,
+        redis_host: ENV["REDIS_HOST"], tmp_dir: "/tmp",
+        database: db_conf, session_secret: ENV["GNRD_SALT"],
+        gnfinder_host: ENV["GNFINDER_HOST"],
+        gnfinder_port: ENV["GNFINDER_PORT"],
         "disqus_shortname" => "globalnames-rd"
       }
-    end
-
-    def conf_file
-      @conf_file ||= lambda do
-        path = File.join(__dir__, "config", "config.json")
-        File.exist?(path) ? JSON.parse(File.read(path)) : {}
-      end[]
     end
   end
 end
