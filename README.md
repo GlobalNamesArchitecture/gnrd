@@ -1,6 +1,7 @@
 Global Names Recognition and Discovery (GNRD)
 =============================================
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3569619.svg)](https://doi.org/10.5281/zenodo.3569619)
 [![Continuous Integration Status][ci_img]][ci]
 [![Coverage Status][coverage_img]][coverage]
 [![CodePolice][qc_img]][qc]
