@@ -24,7 +24,7 @@ gem "rchardet", "~> 1.8"
 gem "resque", "~> 1.27", require: "resque/server"
 gem "rest-client", "~> 2.0"
 gem "ruby-filemagic", "~> 0.7" # libmagic-dev is dependency
-gem "sanitize", "~> 4.6"
+gem "sanitize", "~> 5.2"
 gem "sass", "~> 3.6"
 gem "sinatra", "~> 2.0"
 gem "sinatra-activerecord", "~> 2.0"
