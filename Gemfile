@@ -17,7 +17,7 @@ gem "mail", "~> 2.7"
 gem "nokogiri", ">= 1.10.4"
 gem "pg", "~> 1.1" # libpq-dev is dependency
 gem "puma", "~> 3.12"
-gem "rack", "~> 2.0"
+gem "rack", "~> 2.1"
 gem "rack-test", "~> 1.1"
 gem "rack-timeout", "~> 0.5"
 gem "rchardet", "~> 1.8"
