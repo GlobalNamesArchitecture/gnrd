@@ -30,8 +30,17 @@ Prerequisites
 * Docker Compose >= 1.6
 * Git
 
-Install for production on one machine
+Install in production environment on one machine
 ------------------------------------------------
+
+NOTE: This install is not safe, and is given to test
+installation by new users. You need to create real passwords
+and change settings in `.env` file accordingly, also you need to remove `POSTGRES_HOST_AUTH_METHOD=trust` environment variable from `.env` file.
+
+Here we will assume installation is done by a user `john` with a group `john`
+
+Add user `john` to `docker` group in `/etc/group` and relog.
+Thiw will give the user privileges to operate docker.
 
 Get source code and swich to production branch
 
@@ -41,24 +50,12 @@ cd gnrd
 git checkout production
 ```
 
-Get packages for `ruby-filemagic` and `pg` gems
-
-```bash
-sudo apt install libmagic-dev libpq-dev
-```
-
-Create directories for database and configuration files
+Create directory for the database
 
 ```bash
 sudo mkdir -p /opt/gna/data/gnrd/postgresql/data
-sudo mkdir -p /opt/gna/config/gnrd
-sudo chown 999:999 -R /opt/gna/data/gnrd/postgresql
-sudo cp ./config/config.json.example /opt/gna/config/gnrd/config.json
-sudo cp ./config/docker/gnrd.env.example /opt/gna/config/gnrd/gnrd.env
+sudo chown john:john -R /opt/gna/data/gnrd/postgresql
 ```
-
-Modify config.json and gnrd.env to suit your needs (defaults are not secure,
-but work as well).
 
 Optionally pull gnames/gnrd from dockerhub to save time on the gnrd docker
 image building step

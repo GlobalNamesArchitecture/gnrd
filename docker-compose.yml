@@ -22,5 +22,7 @@ services:
       - "0.0.0.0:8778:8778"
   pg:
     image: postgres
+    env_file:
+      - .env
     volumes:
       - /opt/gna/data/gnrd/postgresql/data:/var/lib/postgresql/data
