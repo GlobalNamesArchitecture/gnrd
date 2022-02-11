@@ -1,6 +1,9 @@
 Global Names Recognition and Discovery (GNRD)
 =============================================
 
+This repository is archived and inactive. For finding scientific names
+in texts use https://github.com/gnames/gnfinder.
+
 [![Continuous Integration Status][ci_img]][ci]
 [![Coverage Status][coverage_img]][coverage]
 [![CodePolice][qc_img]][qc]
